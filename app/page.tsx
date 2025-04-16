@@ -4,6 +4,7 @@ import { CategoryGrid } from "@/components/category-grid"
 import { CTASection } from "@/components/cta-section"
 import { SafariFAQ } from "@/components/safari-faq"
 import { Header } from "@/components/header"
+import Image from "next/image"
 
 export default function HomePage() {
   return (
@@ -11,10 +12,22 @@ export default function HomePage() {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="bg-[url('/placeholder.svg?height=600&width=1200')] bg-cover bg-center py-20 text-white">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Find Your Perfect African Safari</h1>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
+        <section className="relative h-[600px] text-white">
+          <div className="absolute inset-0">
+            <Image
+              src="/safari-tent.jpg"
+              alt="Luxury safari tent in Africa"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-black/40" />
+          </div>
+          <div className="relative container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 max-w-4xl">
+              Find Your Perfect African Safari
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 max-w-2xl">
               Discover the best safari lodges, tour operators, and adventure activities across Africa
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
