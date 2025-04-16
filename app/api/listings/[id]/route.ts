@@ -6,7 +6,7 @@ export async function PUT(
   context: { params: { id: string } }
 ) {
   try {
-    const id = context.params.id
+    const id = await Promise.resolve(context.params.id)
     const supabase = await getSupabaseServerClient()
 
     if (!supabase) {
