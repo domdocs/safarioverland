@@ -1,4 +1,3 @@
-import { SimpleFeaturedListings } from "@/components/simple-featured-listings"
 import { SimpleMapView } from "@/components/simple-map-view"
 import { CategoryGrid } from "@/components/category-grid"
 import { CTASection } from "@/components/cta-section"

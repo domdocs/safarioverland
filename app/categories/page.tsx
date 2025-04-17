@@ -2,14 +2,25 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { getCategories } from "@/lib/listings"
 
+type Category = {
+  name: string
+  slug: string
+  description: string
+  count?: number
+}
+
 export const metadata: Metadata = {
   title: "Safari Categories | Safari Overland Directory",
   description:
     "Browse all safari categories in our comprehensive directory of African safari services and accommodations.",
 }
 
+// Force dynamic rendering and revalidation
+export const revalidate = 0
+export const dynamic = 'force-dynamic'
+
 export default async function CategoriesPage() {
-  const categories = await getCategories()
+  const categories = await getCategories() as Category[]
 
   return (
     <div className="container mx-auto px-4 py-8">
