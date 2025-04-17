@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { FeaturedListings } from "@/components/featured-listings"
 
+export const revalidate = 60 // revalidate every minute
+
 export default function HomePage() {
   return (
     <>

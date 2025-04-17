@@ -366,14 +366,19 @@ export async function getListings({
 
 // Get featured listings
 export async function getFeaturedListings(limit = 6): Promise<DirectoryListing[]> {
+  console.log(`Fetching featured listings with limit: ${limit}`)
+  
   try {
     const supabase = getSupabaseServerClient()
 
     if (!supabase) {
-      console.warn("Supabase client not available, using mock data for featured listings")
-      return getListingsSync({ featured: true, limit })
+      console.warn("Supabase client not available, falling back to mock data for featured listings")
+      const mockData = getListingsSync({ featured: true, limit })
+      console.log(`Returning ${mockData.length} mock featured listings`)
+      return mockData
     }
 
+    console.log("Executing Supabase query for featured listings...")
     const { data, error } = await supabase
       .from("directory_listings")
       .select("*")
@@ -383,14 +388,39 @@ export async function getFeaturedListings(limit = 6): Promise<DirectoryListing[]
       .limit(limit)
 
     if (error) {
-      console.error("Error fetching featured listings from Supabase:", error)
-      return getListingsSync({ featured: true, limit })
+      console.error("Error fetching featured listings from Supabase:", error.message)
+      console.error("Error details:", error)
+      console.log("Falling back to mock data due to Supabase error")
+      const mockData = getListingsSync({ featured: true, limit })
+      console.log(`Returning ${mockData.length} mock featured listings`)
+      return mockData
     }
 
-    return data as DirectoryListing[]
+    if (!data || data.length === 0) {
+      console.log("No featured listings found in Supabase")
+      const mockData = getListingsSync({ featured: true, limit })
+      console.log(`Falling back to ${mockData.length} mock featured listings`)
+      return mockData
+    }
+
+    console.log(`Successfully fetched ${data.length} featured listings from Supabase`)
+    return data.map((item: DirectoryListing) => ({
+      ...item,
+      id: item.id || String(item.id),
+      website: item.website || null,
+      image_url: item.image_url || null,
+      created_at: item.created_at || new Date().toISOString(),
+      updated_at: item.updated_at || new Date().toISOString()
+    }))
   } catch (error) {
-    console.error("Error in getFeaturedListings:", error)
-    return getListingsSync({ featured: true, limit })
+    console.error("Unexpected error in getFeaturedListings:", error)
+    if (error instanceof Error) {
+      console.error("Error message:", error.message)
+      console.error("Error stack:", error.stack)
+    }
+    const mockData = getListingsSync({ featured: true, limit })
+    console.log(`Falling back to ${mockData.length} mock featured listings due to unexpected error`)
+    return mockData
   }
 }
 
