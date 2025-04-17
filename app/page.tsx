@@ -5,6 +5,8 @@ import { CTASection } from "@/components/cta-section"
 import { SafariFAQ } from "@/components/safari-faq"
 import { Header } from "@/components/header"
 import Image from "next/image"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export default function HomePage() {
   return (
@@ -37,12 +39,18 @@ export default function HomePage() {
               >
                 Browse Categories
               </a>
-              <a
-                href="/submit-listing"
-                className="bg-white hover:bg-gray-100 text-primary font-bold py-4 px-8 rounded-lg text-lg"
+              <Button
+                variant="default"
+                size="lg"
+                asChild
               >
-                Add Your Business
-              </a>
+                <Link
+                  href="/submit"
+                  className="font-semibold"
+                >
+                  Submit Your Listing
+                </Link>
+              </Button>
             </div>
           </div>
         </section>

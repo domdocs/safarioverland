@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export function CTASection() {
   return (
@@ -15,12 +16,18 @@ export function CTASection() {
                 Join our directory of trusted safari service providers and connect with travelers from around the world.
                 Increase your visibility and grow your business.
               </p>
-              <Link
-                href="/submit-listing"
-                className="mt-8 inline-flex items-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-orange-600 shadow hover:bg-orange-50"
+              <Button
+                variant="default"
+                size="lg"
+                asChild
               >
-                List Your Business
-              </Link>
+                <Link
+                  href="/submit"
+                  className="font-semibold"
+                >
+                  Submit Your Listing
+                </Link>
+              </Button>
             </div>
           </div>
           <div className="aspect-w-5 aspect-h-3 -mt-6 md:aspect-w-2 md:aspect-h-1">

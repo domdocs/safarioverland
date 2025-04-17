@@ -11,7 +11,7 @@ export async function POST(
   context: { params: { id: string } }
 ) {
   try {
-    const id = await Promise.resolve(context.params.id)
+    const { id } = context.params
 
     // Initialize Supabase client
     const supabase = await getSupabaseServerClient()

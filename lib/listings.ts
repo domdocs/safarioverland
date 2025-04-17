@@ -490,8 +490,31 @@ export async function getListingsByRegion(region: string, limit = 12): Promise<D
 
 // Get pending listings
 export async function getPendingListings(limit = 10): Promise<DirectoryListing[]> {
-  // Always return mock data to ensure the page renders
-  return getListingsSync({ status: "pending", limit })
+  try {
+    const supabase = getSupabaseServerClient()
+
+    if (!supabase) {
+      console.warn("Supabase client not available, using mock data for pending listings")
+      return getListingsSync({ status: "pending", limit })
+    }
+
+    const { data, error } = await supabase
+      .from("directory_listings")
+      .select("*")
+      .eq("status", "pending")
+      .order("created_at", { ascending: false })
+      .limit(limit)
+
+    if (error) {
+      console.error("Error fetching pending listings from Supabase:", error)
+      return getListingsSync({ status: "pending", limit })
+    }
+
+    return data as DirectoryListing[]
+  } catch (error) {
+    console.error("Error in getPendingListings:", error)
+    return getListingsSync({ status: "pending", limit })
+  }
 }
 
 // Get listing count

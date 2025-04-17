@@ -6,35 +6,21 @@ export async function PUT(
   context: { params: { id: string } }
 ) {
   try {
-    const id = await Promise.resolve(context.params.id)
+    const { id } = context.params
     const supabase = await getSupabaseServerClient()
 
     if (!supabase) {
       return NextResponse.json(
-        { error: "Database client initialization failed" },
+        { error: "Failed to initialize Supabase client" },
         { status: 500 }
       )
     }
 
-    const data = await request.json()
-
+    const json = await request.json()
     const { error } = await supabase
       .from("directory_listings")
       .update({
-        listing_name: data.listing_name,
-        category: data.category,
-        region: data.region,
-        country: data.country,
-        location: data.location,
-        description: data.description,
-        contact_name: data.contact_name,
-        contact_email: data.contact_email,
-        contact_phone: data.contact_phone,
-        website: data.website || null,
-        price_info: data.price_info || "",
-        image_url: data.image_url || null,
-        featured: data.featured,
-        status: data.status,
+        ...json,
         updated_at: new Date().toISOString()
       })
       .eq("id", id)

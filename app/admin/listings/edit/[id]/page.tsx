@@ -13,7 +13,7 @@ export default async function EditListingPage({ params }: EditListingPageProps) 
   const listing = await getListingById(id)
 
   if (!listing) {
-    return notFound()
+    notFound()
   }
 
   return (
