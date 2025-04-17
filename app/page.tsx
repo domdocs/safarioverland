@@ -7,6 +7,7 @@ import { Header } from "@/components/header"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { FeaturedListings } from "@/components/featured-listings"
 
 export default function HomePage() {
   return (
@@ -57,7 +58,10 @@ export default function HomePage() {
 
         {/* Featured Listings */}
         <section className="container mx-auto px-4">
-          <SimpleFeaturedListings />
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold mb-6">Featured Listings</h2>
+            <FeaturedListings />
+          </div>
         </section>
 
         {/* Categories */}

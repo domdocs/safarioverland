@@ -367,54 +367,30 @@ export async function getListings({
 // Get featured listings
 export async function getFeaturedListings(limit = 6): Promise<DirectoryListing[]> {
   try {
-    // Always return mock data first to ensure the page renders quickly
-    const mockData = filterMockListings({ featured: true, limit })
-
-    // Then try to get real data from Supabase
     const supabase = getSupabaseServerClient()
+
     if (!supabase) {
-      return mockData
+      console.warn("Supabase client not available, using mock data for featured listings")
+      return getListingsSync({ featured: true, limit })
     }
 
-    try {
-      const { data, error } = await supabase
-        .from("directory_listings")
-        .select("*")
-        .eq("featured", true)
-        .eq("status", "approved")
-        .order("created_at", { ascending: false })
-        .limit(limit)
+    const { data, error } = await supabase
+      .from("directory_listings")
+      .select("*")
+      .eq("featured", true)
+      .eq("status", "approved")
+      .order("created_at", { ascending: false })
+      .limit(limit)
 
-      if (error || !data || data.length === 0) {
-        return mockData
-      }
-
-      return data.map((item: any) => ({
-        id: item.id || String(item.id),
-        listing_name: item.listing_name || "",
-        category: item.category || "",
-        region: item.region || "",
-        country: item.country || "",
-        location: item.location || "",
-        description: item.description || "",
-        contact_name: item.contact_name || "",
-        contact_email: item.contact_email || "",
-        contact_phone: item.contact_phone || "",
-        website: item.website || null,
-        price_info: item.price_info || "",
-        featured: Boolean(item.featured),
-        image_url: item.image_url || null,
-        status: item.status || "approved",
-        created_at: item.created_at || new Date().toISOString(),
-        updated_at: item.updated_at || new Date().toISOString(),
-      }))
-    } catch (error) {
-      console.error("Error in getFeaturedListings:", error)
-      return mockData
+    if (error) {
+      console.error("Error fetching featured listings from Supabase:", error)
+      return getListingsSync({ featured: true, limit })
     }
+
+    return data as DirectoryListing[]
   } catch (error) {
     console.error("Error in getFeaturedListings:", error)
-    return filterMockListings({ featured: true, limit })
+    return getListingsSync({ featured: true, limit })
   }
 }
 
