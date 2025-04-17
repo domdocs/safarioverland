@@ -107,9 +107,10 @@ export function ListingEditForm({ listing }: ListingEditFormProps) {
         body: JSON.stringify(values),
       })
 
+      const result = await response.json()
+
       if (!response.ok) {
-        const error = await response.json()
-        throw new Error(error.message || 'Failed to update listing')
+        throw new Error(result.error || 'Failed to update listing')
       }
 
       toast({
@@ -117,9 +118,10 @@ export function ListingEditForm({ listing }: ListingEditFormProps) {
         description: "The listing has been updated and will be reflected in the directory.",
       })
 
-      // Refresh the page to show updated data
+      // Force a cache revalidation and refresh
       router.refresh()
     } catch (error) {
+      console.error('Error updating listing:', error)
       toast({
         title: "Error updating listing",
         description: error instanceof Error ? error.message : "Failed to update listing",
