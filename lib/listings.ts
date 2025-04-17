@@ -425,9 +425,13 @@ export async function getFeaturedListings(limit = 6): Promise<DirectoryListing[]
 }
 
 // Get listings by category
-export async function getListingsByCategory(category: string, limit = 100): Promise<DirectoryListing[]> {
+export async function getListingsByCategory(
+  category: string,
+  limit = 6,
+  offset = 0
+): Promise<DirectoryListing[]> {
   try {
-    console.log(`Fetching listings for category: ${category} with limit: ${limit}`)
+    console.log(`Fetching listings for category: ${category} with limit: ${limit} and offset: ${offset}`)
 
     // Try to get the Supabase client
     const supabase = getSupabaseServerClient()
@@ -437,14 +441,14 @@ export async function getListingsByCategory(category: string, limit = 100): Prom
     }
 
     try {
-      // Execute the query with a higher limit
+      // Execute the query with pagination
       const { data, error } = await supabase
         .from("directory_listings")
         .select("*")
         .eq("category", category)
         .eq("status", "approved")
         .order("created_at", { ascending: false })
-        .limit(limit)
+        .range(offset, offset + limit - 1)
 
       if (error) {
         console.error(`Error fetching listings for category ${category}:`, error)

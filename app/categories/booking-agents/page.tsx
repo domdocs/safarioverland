@@ -1,12 +1,19 @@
-import { getListingsByCategorySync } from "@/lib/listings"
+import type { Metadata } from "next"
+import { getListingsByCategory } from "@/lib/listings"
 import { CategoryLayout } from "@/components/category-layout"
-import { ListingsGrid } from "@/components/listings-grid"
+import { PaginatedListingsGrid } from "@/components/paginated-listings-grid"
+
+export const metadata: Metadata = {
+  title: "Booking Agents | Safari Overland Directory",
+  description:
+    "Connect with specialized safari booking agents who can arrange your perfect African adventure from start to finish.",
+}
 
 export const dynamic = "force-dynamic"
 
-export default function BookingAgentsPage() {
-  // Use the synchronous version directly - no async/await
-  const listings = getListingsByCategorySync("booking-agents")
+export default async function BookingAgentsPage() {
+  // Get initial listings
+  const initialListings = await getListingsByCategory("booking-agents", 6)
 
   return (
     <CategoryLayout
@@ -14,9 +21,10 @@ export default function BookingAgentsPage() {
       description="Connect with specialized safari booking agents who can arrange your perfect African adventure from start to finish."
       image="/placeholder.svg?height=400&width=800&text=Booking+Agents"
     >
-      <ListingsGrid
-        listings={listings}
+      <PaginatedListingsGrid
+        initialListings={initialListings}
         category="Booking Agents"
+        categorySlug="booking-agents"
         emptyMessage="No booking agent listings available at the moment"
       />
     </CategoryLayout>

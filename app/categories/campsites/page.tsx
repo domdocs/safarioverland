@@ -1,12 +1,19 @@
-import { getListingsByCategorySync } from "@/lib/listings"
+import type { Metadata } from "next"
+import { getListingsByCategory } from "@/lib/listings"
 import { CategoryLayout } from "@/components/category-layout"
-import { ListingsGrid } from "@/components/listings-grid"
+import { PaginatedListingsGrid } from "@/components/paginated-listings-grid"
+
+export const metadata: Metadata = {
+  title: "Safari Campsites | Safari Overland Directory",
+  description:
+    "Experience the authentic African wilderness with our selection of safari campsites, from basic bush camps to comfortable glamping sites.",
+}
 
 export const dynamic = "force-dynamic"
 
-export default function CampsitesPage() {
-  // Use the synchronous version directly - no async/await
-  const listings = getListingsByCategorySync("campsites")
+export default async function CampsitesPage() {
+  // Get initial listings
+  const initialListings = await getListingsByCategory("campsites", 6)
 
   return (
     <CategoryLayout
@@ -14,9 +21,10 @@ export default function CampsitesPage() {
       description="Experience the authentic African wilderness with our selection of safari campsites, from basic bush camps to comfortable glamping sites."
       image="/placeholder.svg?height=400&width=800&text=Safari+Campsites"
     >
-      <ListingsGrid
-        listings={listings}
+      <PaginatedListingsGrid
+        initialListings={initialListings}
         category="Safari Campsites"
+        categorySlug="campsites"
         emptyMessage="No campsite listings available at the moment"
       />
     </CategoryLayout>

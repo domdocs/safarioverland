@@ -1,12 +1,19 @@
-import { getListingsByCategorySync } from "@/lib/listings"
+import type { Metadata } from "next"
+import { getListingsByCategory } from "@/lib/listings"
 import { CategoryLayout } from "@/components/category-layout"
 import { ListingsGrid } from "@/components/listings-grid"
 
+export const metadata: Metadata = {
+  title: "Game Viewing | Safari Overland Directory",
+  description:
+    "Discover specialized game viewing experiences with expert guides who know exactly where to find Africa's most iconic wildlife.",
+}
+
 export const dynamic = "force-dynamic"
 
-export default function GameViewingPage() {
-  // Use the synchronous version directly - no async/await
-  const listings = getListingsByCategorySync("game-viewing")
+export default async function GameViewingPage() {
+  // Use the async function to get real data from Supabase
+  const listings = await getListingsByCategory("game-viewing", 6)
 
   return (
     <CategoryLayout
