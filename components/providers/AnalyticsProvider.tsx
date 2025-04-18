@@ -3,7 +3,12 @@
 import React from 'react'
 
 export const AnalyticsProvider = ({ children }: { children: React.ReactNode }) => {
-  return <>{children}</>
+  return (
+    <>
+      {/* Empty placeholder component */}
+      {children}
+    </>
+  )
 }
 
 export default AnalyticsProvider 
