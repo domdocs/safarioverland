@@ -19,7 +19,7 @@ export default async function FourByFourRentalsPage() {
     <CategoryLayout
       title="4x4 Rentals"
       description="Find the perfect 4x4 vehicle for your self-drive safari adventure, fully equipped with everything you need for off-road exploration."
-      image="/rentals.jpg"
+      image="/rentals.jpeg"
     >
       <PaginatedListingsGrid
         initialListings={initialListings}
