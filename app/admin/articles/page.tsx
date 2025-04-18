@@ -2,13 +2,26 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Plus } from "lucide-react"
-import { getArticles } from "@/lib/articles"
 
-export const dynamic = "force-dynamic"
+// Temporary mock data until we set up proper data storage
+const mockArticles = [
+  {
+    id: "1",
+    title: "Safari Planning Guide",
+    status: "draft",
+    category: "Planning Guides",
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: "2",
+    title: "Wildlife Photography Tips",
+    status: "published",
+    category: "Travel Tips",
+    updated_at: new Date().toISOString()
+  }
+]
 
-export default async function ArticlesPage() {
-  const articles = await getArticles({ status: "draft" })
-
+export default function ArticlesPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-8">
@@ -22,7 +35,7 @@ export default async function ArticlesPage() {
       </div>
 
       <div className="grid gap-6">
-        {articles.map((article) => (
+        {mockArticles.map((article) => (
           <Link key={article.id} href={`/admin/articles/${article.id}/edit`}>
             <Card className="hover:shadow-md transition-shadow">
               <CardHeader>
@@ -41,14 +54,13 @@ export default async function ArticlesPage() {
                 <div className="text-sm text-muted-foreground">
                   <p>Category: {article.category}</p>
                   <p>Last updated: {new Date(article.updated_at).toLocaleDateString()}</p>
-                  {article.pdf_url && <p>Has PDF attachment</p>}
                 </div>
               </CardContent>
             </Card>
           </Link>
         ))}
 
-        {articles.length === 0 && (
+        {mockArticles.length === 0 && (
           <div className="text-center py-12 text-muted-foreground">
             No articles yet. Click "New Article" to create one.
           </div>

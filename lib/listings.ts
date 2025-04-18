@@ -366,61 +366,46 @@ export async function getListings({
 
 // Get featured listings
 export async function getFeaturedListings(limit = 6): Promise<DirectoryListing[]> {
-  console.log(`Fetching featured listings with limit: ${limit}`)
-  
   try {
     const supabase = getSupabaseServerClient()
-
+    
     if (!supabase) {
-      console.warn("Supabase client not available, falling back to mock data for featured listings")
-      const mockData = getListingsSync({ featured: true, limit })
-      console.log(`Returning ${mockData.length} mock featured listings`)
-      return mockData
+      console.error("Supabase client not available")
+      const mockFeatured = mockListings.filter((listing) => listing.featured)
+      const shuffled = [...mockFeatured].sort(() => Math.random() - 0.5)
+      return shuffled.slice(0, limit)
     }
 
-    console.log("Executing Supabase query for featured listings...")
-    const { data, error } = await supabase
+    const { data: allFeatured, error } = await supabase
       .from("directory_listings")
       .select("*")
       .eq("featured", true)
       .eq("status", "approved")
-      .order("created_at", { ascending: false })
-      .limit(limit)
 
     if (error) {
-      console.error("Error fetching featured listings from Supabase:", error.message)
-      console.error("Error details:", error)
-      console.log("Falling back to mock data due to Supabase error")
-      const mockData = getListingsSync({ featured: true, limit })
-      console.log(`Returning ${mockData.length} mock featured listings`)
-      return mockData
+      console.error("Error fetching featured listings:", error)
+      // Fallback to mock data
+      const mockFeatured = mockListings.filter((listing) => listing.featured)
+      const shuffled = [...mockFeatured].sort(() => Math.random() - 0.5)
+      return shuffled.slice(0, limit)
     }
 
-    if (!data || data.length === 0) {
-      console.log("No featured listings found in Supabase")
-      const mockData = getListingsSync({ featured: true, limit })
-      console.log(`Falling back to ${mockData.length} mock featured listings`)
-      return mockData
+    if (!allFeatured || allFeatured.length === 0) {
+      // Fallback to mock data if no featured listings found
+      const mockFeatured = mockListings.filter((listing) => listing.featured)
+      const shuffled = [...mockFeatured].sort(() => Math.random() - 0.5)
+      return shuffled.slice(0, limit)
     }
 
-    console.log(`Successfully fetched ${data.length} featured listings from Supabase`)
-    return data.map((item: DirectoryListing) => ({
-      ...item,
-      id: item.id || String(item.id),
-      website: item.website || null,
-      image_url: item.image_url || null,
-      created_at: item.created_at || new Date().toISOString(),
-      updated_at: item.updated_at || new Date().toISOString()
-    }))
+    // Randomly shuffle the featured listings and take the requested number
+    const shuffled = [...allFeatured].sort(() => Math.random() - 0.5)
+    return shuffled.slice(0, limit)
   } catch (error) {
-    console.error("Unexpected error in getFeaturedListings:", error)
-    if (error instanceof Error) {
-      console.error("Error message:", error.message)
-      console.error("Error stack:", error.stack)
-    }
-    const mockData = getListingsSync({ featured: true, limit })
-    console.log(`Falling back to ${mockData.length} mock featured listings due to unexpected error`)
-    return mockData
+    console.error("Error in getFeaturedListings:", error)
+    // Fallback to mock data
+    const mockFeatured = mockListings.filter((listing) => listing.featured)
+    const shuffled = [...mockFeatured].sort(() => Math.random() - 0.5)
+    return shuffled.slice(0, limit)
   }
 }
 

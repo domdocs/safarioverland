@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Safari Overland",
   description: "Connect with safari service providers across Africa",
   manifest: "/manifest.json",
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export const viewport: Viewport = {
@@ -26,7 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+      </head>
+      <body className={inter.className} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <SupabaseProvider>
             {children}

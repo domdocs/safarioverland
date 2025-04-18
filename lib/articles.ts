@@ -1,4 +1,4 @@
-import { getSupabaseServerClient } from "./supabase"
+import { getSupabaseServerClient, getSupabaseBrowserClient } from "./supabase"
 
 export type Article = {
   id: string
@@ -8,6 +8,11 @@ export type Article = {
   content: string
   category: string
   featured_image?: string | null
+  images: Array<{
+    url: string
+    caption?: string
+    alt?: string
+  }>
   pdf_url?: string | null
   author?: string | null
   published_at: string
@@ -83,7 +88,8 @@ export async function getArticleBySlug(slug: string) {
 }
 
 export async function createArticle(article: ArticleInput) {
-  const supabase = getSupabaseServerClient()
+  // Try browser client first, fall back to server client
+  const supabase = getSupabaseBrowserClient() || getSupabaseServerClient()
   if (!supabase) {
     throw new Error("Supabase client not available")
   }
@@ -95,6 +101,7 @@ export async function createArticle(article: ArticleInput) {
     .single()
 
   if (error) {
+    console.error("Error creating article:", error)
     throw error
   }
 

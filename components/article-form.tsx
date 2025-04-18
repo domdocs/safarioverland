@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { toast } from "sonner"
 import type { Article, ArticleInput } from "@/lib/articles"
+import { ImageUploader } from "@/components/image-uploader"
 
 const CATEGORIES = [
   "Planning Guides",
@@ -29,6 +30,7 @@ interface ArticleFormProps {
 export function ArticleForm({ article, onSubmit }: ArticleFormProps) {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [images, setImages] = useState<Article["images"]>(article?.images || [])
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -43,6 +45,7 @@ export function ArticleForm({ article, onSubmit }: ArticleFormProps) {
         content: formData.get("content") as string,
         category: formData.get("category") as string,
         featured_image: formData.get("featured_image") as string || null,
+        images: images,
         pdf_url: formData.get("pdf_url") as string || null,
         author: formData.get("author") as string || null,
         meta_description: formData.get("meta_description") as string || null,
@@ -130,6 +133,15 @@ export function ArticleForm({ article, onSubmit }: ArticleFormProps) {
             name="featured_image"
             defaultValue={article?.featured_image || ""}
             placeholder="Enter featured image URL (optional)"
+          />
+        </div>
+
+        <div>
+          <Label>Article Images</Label>
+          <ImageUploader
+            images={images}
+            onChange={setImages}
+            maxImages={10}
           />
         </div>
 

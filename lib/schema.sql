@@ -7,6 +7,7 @@ create table if not exists articles (
   content text not null,
   category text not null,
   featured_image text,
+  images jsonb[] default array[]::jsonb[],
   pdf_url text,
   author text,
   published_at timestamp with time zone default now(),
