@@ -5,8 +5,6 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { SupabaseProvider } from "@/components/supabase-provider"
-import { AnalyticsProvider } from "@/components/providers/AnalyticsProvider"
-import { CookieConsent } from "@/components/CookieConsent"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -34,10 +32,7 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <SupabaseProvider>
-            <AnalyticsProvider>
-              {children}
-              <CookieConsent />
-            </AnalyticsProvider>
+            {children}
             <Toaster />
           </SupabaseProvider>
         </ThemeProvider>
@@ -45,3 +40,6 @@ export default function RootLayout({
     </html>
   )
 }
+
+
+import './globals.css'
