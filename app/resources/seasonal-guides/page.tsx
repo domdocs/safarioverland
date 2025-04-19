@@ -53,7 +53,7 @@ export default function SeasonalGuidesPage() {
               </div>
             </div>
             <div className="relative h-64 md:h-auto">
-              <Image src="/placeholder.svg?height=600&width=800" alt="Safari Seasons" fill className="object-cover" />
+              <Image src="/images/seasonal-guides/safari-seasons.jpg" alt="Safari Seasons" fill className="object-cover" />
             </div>
           </div>
         </div>
