@@ -55,8 +55,8 @@ export default function PlanningGuidesPage() {
             </div>
             <div className="relative h-64 md:h-auto">
               <Image
-                src="/placeholder.svg?height=600&width=800"
-                alt="First-Time Safari Guide"
+                src="/images/planning-guides/first-time-safari-guide.jpg"
+                alt="First-Time Safari Guide showing excited travelers on a safari vehicle"
                 fill
                 className="object-cover"
               />
