@@ -92,21 +92,21 @@ export default function ConservationPage() {
               {[
                 {
                   title: "Endangered Species Protection",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/conservation/wildlife/endangered-species.jpg",
                   excerpt:
                     "Learn about efforts to protect Africa's most endangered species and how safari tourism supports these initiatives.",
                   link: "/resources/conservation/endangered-species",
                 },
                 {
                   title: "Anti-Poaching Initiatives",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/conservation/wildlife/anti-poaching.jpg",
                   excerpt:
                     "Discover how safari operators and conservation organizations are working together to combat poaching.",
                   link: "/resources/conservation/anti-poaching",
                 },
                 {
                   title: "Habitat Preservation",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/conservation/wildlife/habitat-preservation.jpg",
                   excerpt:
                     "Understand the importance of preserving natural habitats and corridors for wildlife movement across Africa.",
                   link: "/resources/conservation/habitat-preservation",
