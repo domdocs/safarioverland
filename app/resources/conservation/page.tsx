@@ -59,7 +59,7 @@ export default function ConservationPage() {
             </div>
             <div className="relative h-64 md:h-auto">
               <Image 
-                src="/images/conservation-overview.jpg" 
+                src="/images/conservation/conservation-overview.jpg" 
                 alt="Conservation rangers monitoring wildlife in a protected area" 
                 fill 
                 className="object-cover" 
