@@ -101,7 +101,7 @@ export default function PlanningGuidesPage() {
                   image: "/placeholder.svg?height=300&width=500",
                   excerpt:
                     "An in-depth comparison of East Africa and Southern Africa safari experiences, highlighting the unique features of each region.",
-                  link: "/resources/planning-guides/east-vs-southern-africa",
+                  link: "/resources/planning-guides/east-vs-southern",
                 },
                 {
                   title: "Off-the-Beaten-Path Safari Destinations",
