@@ -25,7 +25,7 @@ const OffTheBeatenPathPage = () => {
       <div className="grid md:grid-cols-2 gap-10 mb-16">
         <div className="relative h-[400px] sm:h-[450px] rounded-xl overflow-hidden shadow-md">
           <Image 
-            src="/images/resources/off-beaten-path-hero.jpg" 
+            src="/images/planning-guides/destinations/off-the-beaten-path.jpg" 
             alt="A remote African landscape with wildlife away from the crowds" 
             fill
             className="object-cover"
@@ -59,7 +59,7 @@ const OffTheBeatenPathPage = () => {
           
           <div className="relative h-[300px] rounded-xl overflow-hidden my-8">
             <Image 
-              src="/images/resources/timbuktu-landscape.jpg" 
+              src="/images/stories/mosque-timbuktu.jpg" 
               alt="Ancient mud-brick mosques of Timbuktu with desert sand streets" 
               fill
               className="object-cover"
