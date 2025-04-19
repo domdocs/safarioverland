@@ -214,21 +214,21 @@ export default function PlanningGuidesPage() {
               {[
                 {
                   title: "Best Time to Visit Each Safari Destination",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/planning-guides/timing/best-time-to-visit.jpg",
                   excerpt:
                     "A month-by-month guide to the optimal times for visiting different safari destinations across Africa.",
                   link: "/resources/planning-guides/best-times",
                 },
                 {
                   title: "Planning Around Wildlife Events",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/planning-guides/timing/great-migration.jpg",
                   excerpt:
                     "Time your safari to witness spectacular wildlife events like the Great Migration, calving season, or bird migrations.",
                   link: "/resources/planning-guides/wildlife-events",
                 },
                 {
                   title: "Green Season Safari Benefits",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/planning-guides/timing/green-season.jpg",
                   excerpt:
                     "Discover the advantages of traveling during the less crowded green season, from lower prices to unique wildlife viewing.",
                   link: "/resources/planning-guides/green-season",
