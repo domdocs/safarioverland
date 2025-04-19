@@ -1,14 +1,9 @@
+"use client";
+
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { AlertCircle, ArrowLeft, DollarSign, Info, Check, CreditCard, Coffee, Camera, MapPin, Wifi, Shield, Cloud, Zap, ShoppingBag, Package } from 'lucide-react';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Hidden Costs of Safari Travel | Safari Overland',
-  description: 'Be prepared for all expenses with our comprehensive guide to the often overlooked costs associated with safari travel in Africa.',
-  keywords: 'safari hidden costs, unexpected safari expenses, safari tipping, safari travel insurance, safari budgeting, safari visa fees, safari gear costs',
-};
 
 const HiddenCostsPage = () => {
     return (
