@@ -279,7 +279,7 @@ export default function ConservationPage() {
             {
               title: "Rhino Conservation in Zimbabwe",
               location: "Matobo National Park, Zimbabwe",
-              image: "/placeholder.svg?height=400&width=600",
+              image: "/images/success-stories/rhino-conservation.jpg",
               excerpt:
                 "How community involvement and tourism have helped rhino populations recover in Zimbabwe's Matobo National Park.",
               link: "/resources/conservation/success-stories/zimbabwe-rhinos",
@@ -287,7 +287,7 @@ export default function ConservationPage() {
             {
               title: "Mountain Gorilla Recovery",
               location: "Virunga Mountains, Rwanda/Uganda",
-              image: "/placeholder.svg?height=400&width=600",
+              image: "/images/success-stories/gorilla-recovery.jpg",
               excerpt:
                 "The remarkable story of how mountain gorilla populations have more than doubled through conservation efforts supported by tourism.",
               link: "/resources/conservation/success-stories/mountain-gorillas",
@@ -295,7 +295,7 @@ export default function ConservationPage() {
             {
               title: "Elephant Corridors in Kenya",
               location: "Amboseli-Tsavo Ecosystem, Kenya",
-              image: "/placeholder.svg?height=400&width=600",
+              image: "/images/success-stories/elephant-corridor.jpg",
               excerpt:
                 "How strategic land conservation has restored vital elephant migration corridors between national parks in Kenya.",
               link: "/resources/conservation/success-stories/kenya-corridors",
@@ -303,7 +303,7 @@ export default function ConservationPage() {
             {
               title: "Community Conservation in Namibia",
               location: "Namibian Conservancies",
-              image: "/placeholder.svg?height=400&width=600",
+              image: "/images/success-stories/namib-community.jpg",
               excerpt:
                 "Namibia's innovative conservancy model that has put wildlife management in the hands of local communities with remarkable results.",
               link: "/resources/conservation/success-stories/namibia-conservancies",
