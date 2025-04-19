@@ -138,21 +138,21 @@ export default function ConservationPage() {
               {[
                 {
                   title: "Community-Based Conservation",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/conservation/community/community-conservation.jpg",
                   excerpt:
                     "How local communities are becoming stewards of wildlife through innovative conservation programs.",
                   link: "/resources/conservation/community-conservation",
                 },
                 {
                   title: "Cultural Preservation",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/conservation/community/cultural-preservation.jpg",
                   excerpt:
                     "The importance of preserving traditional knowledge and cultural practices in conservation efforts.",
                   link: "/resources/conservation/cultural-preservation",
                 },
                 {
                   title: "Education & Awareness",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/conservation/community/conservation-education.jpg",
                   excerpt:
                     "How conservation education programs are creating the next generation of wildlife stewards in Africa.",
                   link: "/resources/conservation/education-awareness",
