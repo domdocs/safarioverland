@@ -91,21 +91,21 @@ export default function PlanningGuidesPage() {
               {[
                 {
                   title: "Choosing the Right Safari Destination",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/planning-guides/destinations/safari-destinations.jpg",
                   excerpt:
                     "A comprehensive comparison of safari destinations across Africa to help you choose the perfect location for your interests and budget.",
                   link: "/resources/planning-guides/choosing-destinations",
                 },
                 {
                   title: "East Africa vs. Southern Africa",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/planning-guides/destinations/east-vs-southern.jpg",
                   excerpt:
                     "An in-depth comparison of East Africa and Southern Africa safari experiences, highlighting the unique features of each region.",
                   link: "/resources/planning-guides/east-vs-southern",
                 },
                 {
                   title: "Off-the-Beaten-Path Safari Destinations",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/planning-guides/destinations/off-the-beaten-path.jpg",
                   excerpt:
                     "Discover lesser-known but equally rewarding safari destinations for travelers seeking unique experiences away from the crowds.",
                   link: "/resources/planning-guides/off-the-beaten-path",
