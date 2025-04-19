@@ -383,7 +383,14 @@ export default function ConservationPage() {
               <Card className="hover:shadow-md transition-shadow h-full">
                 <CardContent className="p-6 flex flex-col items-center text-center">
                   <div className="relative w-24 h-24 mb-4">
-                    <Image src={org.logo || "/placeholder.svg"} alt={org.name} fill className="object-contain" />
+                    <Image 
+                      src={org.logo} 
+                      alt={org.name} 
+                      fill
+                      sizes="(max-width: 768px) 96px, 96px"
+                      className="object-contain" 
+                      unoptimized
+                    />
                   </div>
                   <h3 className="font-medium text-sm">{org.name}</h3>
                 </CardContent>
