@@ -970,9 +970,12 @@ const HiddenCostsPage = () => {
                         </li>
                     </ul>
                     <div className="mt-4">
-                        <Link href="#" className="inline-flex items-center bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 font-medium transition-colors">
+                        <a 
+                            href="#" 
+                            className="inline-flex items-center bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 font-medium transition-colors"
+                        >
                             Download Safari Budget Calculator
-                        </Link>
+                        </a>
                     </div>
                 </div>
 
