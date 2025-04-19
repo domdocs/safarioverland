@@ -9,10 +9,10 @@ export default function ResourcesPage() {
     <div>
       {/* Hero Section */}
       <section className="relative">
-        <div className="relative h-[300px] w-full">
+        <div className="relative h-[300px] md:h-[400px] w-full">
           <Image
-            src="/placeholder.svg?height=600&width=1600"
-            alt="Safari Resources"
+            src="/images/resources-hero.jpg"
+            alt="African safari landscape with wildlife at sunset"
             fill
             className="object-cover"
             priority
