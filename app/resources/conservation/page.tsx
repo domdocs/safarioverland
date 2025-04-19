@@ -58,7 +58,12 @@ export default function ConservationPage() {
               <Button>Our Conservation Commitment</Button>
             </div>
             <div className="relative h-64 md:h-auto">
-              <Image src="/placeholder.svg?height=600&width=800" alt="Conservation" fill className="object-cover" />
+              <Image 
+                src="/images/conservation-overview.jpg" 
+                alt="Conservation rangers monitoring wildlife in a protected area" 
+                fill 
+                className="object-cover" 
+              />
             </div>
           </div>
         </div>
