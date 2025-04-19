@@ -255,21 +255,21 @@ export default function PlanningGuidesPage() {
               {[
                 {
                   title: "Family Safari Guide",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/planning-guides/travelers/family-safari.jpg",
                   excerpt:
                     "Everything you need to know about planning a safari with children, including family-friendly destinations and accommodations.",
                   link: "/resources/planning-guides/family-safaris",
                 },
                 {
                   title: "Solo Traveler Safari Tips",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/planning-guides/travelers/solo-traveler.jpg",
                   excerpt:
                     "Practical advice for solo travelers on safari, from choosing the right tour to safety considerations and social opportunities.",
                   link: "/resources/planning-guides/solo-travel",
                 },
                 {
                   title: "Accessible Safari Options",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/planning-guides/travelers/accessible-safari.jpg",
                   excerpt:
                     "Information on safari options for travelers with mobility challenges or other accessibility needs.",
                   link: "/resources/planning-guides/accessible-safaris",
