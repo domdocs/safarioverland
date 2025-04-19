@@ -17,7 +17,7 @@ const NamibiaConservanciesPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2">
                     <div className="relative h-64 md:h-auto">
                         <Image 
-                            src="/placeholder.svg?height=600&width=800" 
+                            src="/images/success-stories/namib-community.jpg" 
                             alt="Community conservancy rangers in Namibia" 
                             fill 
                             className="object-cover" 
