@@ -132,21 +132,21 @@ export default function PlanningGuidesPage() {
               {[
                 {
                   title: "Safari Budgeting Guide",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/planning-guides/budgeting/safari-budgeting.jpg",
                   excerpt:
                     "A comprehensive guide to budgeting for your safari, with cost breakdowns for different types of safaris and destinations.",
                   link: "/resources/planning-guides/budgeting",
                 },
                 {
                   title: "Luxury vs. Budget Safaris",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/planning-guides/budgeting/budget-vs-luxury.jpg",
                   excerpt:
                     "Compare luxury and budget safari options to find the right balance of comfort and value for your African adventure.",
                   link: "/resources/planning-guides/luxury-vs-budget",
                 },
                 {
                   title: "Hidden Costs of Safari Travel",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/planning-guides/budgeting/hidden-costs.jpg",
                   excerpt:
                     "Be prepared for all expenses with our guide to the often overlooked costs associated with safari travel.",
                   link: "/resources/planning-guides/hidden-costs",
