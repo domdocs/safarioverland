@@ -230,20 +230,20 @@ export default function ConservationPage() {
               {[
                 {
                   title: "Responsible Safari Practices",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/conservation/traveler/responsible-safari.jpg",
                   excerpt: "Practical guidelines for travelers to minimize their environmental impact while on safari.",
                   link: "/resources/conservation/responsible-practices",
                 },
                 {
                   title: "Choosing Ethical Operators",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/conservation/traveler/ethical-operators.jpg",
                   excerpt:
                     "How to identify and select safari operators with strong conservation and community commitments.",
                   link: "/resources/conservation/ethical-operators",
                 },
                 {
                   title: "Beyond Your Safari",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/conservation/traveler/beyond-your-safari.jpg",
                   excerpt: "Ways to continue supporting African conservation efforts after your safari adventure ends.",
                   link: "/resources/conservation/beyond-safari",
                 },
