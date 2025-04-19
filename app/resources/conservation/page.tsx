@@ -184,21 +184,21 @@ export default function ConservationPage() {
               {[
                 {
                   title: "The Economics of Conservation",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/conservation/economic/economics-of-conservation.jpg",
                   excerpt:
                     "Understanding how tourism creates economic incentives for wildlife conservation across Africa.",
                   link: "/resources/conservation/economics",
                 },
                 {
                   title: "Sustainable Tourism Models",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/conservation/economic/sustainable-tourism.jpg",
                   excerpt:
                     "Innovative approaches to sustainable tourism that maximize conservation benefits while minimizing impacts.",
                   link: "/resources/conservation/sustainable-tourism",
                 },
                 {
                   title: "Conservation Funding",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/conservation/economic/conservation-funding.jpg",
                   excerpt:
                     "How safari tourism directly and indirectly funds conservation efforts across the continent.",
                   link: "/resources/conservation/funding",
