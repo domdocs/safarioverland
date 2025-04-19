@@ -34,6 +34,9 @@ export default function ConservationPage() {
         <Link href="/resources/seasonal-guides">
           <Button variant="outline">Seasonal Guides</Button>
         </Link>
+        <Link href="/resources/conservation/success-stories/zimbabwe-rhinos">
+          <Button variant="outline">Zimbabwe Rhinos Success Stories</Button>
+        </Link>
       </div>
 
       {/* Conservation Overview */}
@@ -332,42 +335,42 @@ export default function ConservationPage() {
           {[
             {
               name: "African Wildlife Foundation",
-              logo: "/placeholder.svg?height=150&width=150",
+              logo: "/organisations/african-wildlife-foundation.png",
               link: "https://www.awf.org/",
             },
             {
               name: "African Parks",
-              logo: "/placeholder.svg?height=150&width=150",
+              logo: "/organisations/african-parks.png",
               link: "https://www.africanparks.org/",
             },
             {
               name: "Wildlife Conservation Society",
-              logo: "/placeholder.svg?height=150&width=150",
+              logo: "/organisations/wildlife-conservation-society.svg.png",
               link: "https://www.wcs.org/",
             },
             {
               name: "World Wildlife Fund",
-              logo: "/placeholder.svg?height=150&width=150",
+              logo: "/organisations/world-wildlife-fund.png",
               link: "https://www.worldwildlife.org/",
             },
             {
               name: "Save the Rhino",
-              logo: "/placeholder.svg?height=150&width=150",
+              logo: "/organisations/save-the-rhino.png",
               link: "https://www.savetherhino.org/",
             },
             {
               name: "Cheetah Conservation Fund",
-              logo: "/placeholder.svg?height=150&width=150",
+              logo: "/organisations/cheetah-conservation-fund.svg",
               link: "https://cheetah.org/",
             },
             {
               name: "Painted Dog Conservation",
-              logo: "/placeholder.svg?height=150&width=150",
+              logo: "/organisations/painted-dog-conservation.png",
               link: "https://www.painteddogresearch.org/",
             },
             {
               name: "Gorilla Doctors",
-              logo: "/placeholder.svg?height=150&width=150",
+              logo: "/organisations/gorilla-doctors.png",
               link: "https://www.gorilladoctors.org/",
             },
           ].map((org) => (
