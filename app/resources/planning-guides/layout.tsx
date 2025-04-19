@@ -56,11 +56,18 @@ export default function PlanningGuidesLayout({
               <span>Before You Go</span>
             </Link>
             <Link
-              href="/resources/planning-guides/choosing-destination"
+              href="/resources/planning-guides/choosing-destinations"
               className="flex items-center gap-2.5 px-3 py-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
             >
               <Map className="h-5 w-5 text-primary" />
               <span>Choosing Your Destination</span>
+            </Link>
+            <Link
+              href="/resources/planning-guides/east-vs-southern"
+              className="flex items-center gap-2.5 px-3 py-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+            >
+              <Compass className="h-5 w-5 text-primary" />
+              <span>East vs Southern Africa</span>
             </Link>
           </nav>
         </div>
