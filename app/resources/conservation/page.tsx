@@ -350,7 +350,7 @@ export default function ConservationPage() {
             },
             {
               name: "Wildlife Conservation Society",
-              logo: "/images/organisations/wildlife-conservation-society.png", 
+              logo: "/images/organisations/wildlife-conservation-society.jpg", 
               link: "https://www.wcs.org/",
             },
             {
