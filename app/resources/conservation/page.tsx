@@ -365,7 +365,7 @@ export default function ConservationPage() {
             },
             {
               name: "Cheetah Conservation Fund",
-              logo: "/images/organisations/cheetah-conservation-fund.png", 
+              logo: "/images/organisations/cheetah-conservation-fund.jpg", 
               link: "https://cheetah.org/",
             },
             {
