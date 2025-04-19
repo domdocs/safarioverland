@@ -116,7 +116,7 @@ const OffTheBeatenPathPage = () => {
           
           <div className="relative h-[300px] rounded-xl overflow-hidden my-8">
             <Image 
-              src="/images/resources/mahale-mountains.jpg" 
+              src="/images/stories/mahale-mountains.jpg" 
               alt="The lush forests of Mahale Mountains with Lake Tanganyika in the distance" 
               fill
               className="object-cover"
