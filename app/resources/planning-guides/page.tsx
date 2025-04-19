@@ -173,21 +173,21 @@ export default function PlanningGuidesPage() {
               {[
                 {
                   title: "Ultimate Safari Packing List",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/planning-guides/packing/packing-list.jpg",
                   excerpt:
                     "A comprehensive packing list for safari travelers, with recommendations for clothing, gear, and essentials.",
                   link: "/resources/planning-guides/packing-list",
                 },
                 {
                   title: "Photography Gear for Safari",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/planning-guides/packing/photography-gear.jpg",
                   excerpt:
                     "Expert recommendations for photography equipment to capture your safari memories, from professional setups to smartphone tips.",
                   link: "/resources/planning-guides/photography-gear",
                 },
                 {
                   title: "Seasonal Packing Guide",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/planning-guides/packing/seasonal-packing.jpg",
                   excerpt:
                     "Adjust your packing list based on the season and destination with our specialized seasonal packing guides.",
                   link: "/resources/planning-guides/seasonal-packing",
