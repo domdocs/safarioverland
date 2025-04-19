@@ -340,42 +340,42 @@ export default function ConservationPage() {
           {[
             {
               name: "African Wildlife Foundation",
-              logo: "/organisations/african-wildlife-foundation.png",
+              logo: "/images/organisations/african-wildlife-foundation.jpg", 
               link: "https://www.awf.org/",
             },
             {
               name: "African Parks",
-              logo: "/organisations/african-parks.png",
+              logo: "/images/organisations/african-parks.png",
               link: "https://www.africanparks.org/",
             },
             {
               name: "Wildlife Conservation Society",
-              logo: "/organisations/wildlife-conservation-society.svg.png",
+              logo: "/images/organisations/wildlife-conservation-society.png", 
               link: "https://www.wcs.org/",
             },
             {
               name: "World Wildlife Fund",
-              logo: "/organisations/world-wildlife-fund.png",
+              logo: "/images/organisations/world-wildlife-fund.png",
               link: "https://www.worldwildlife.org/",
             },
             {
               name: "Save the Rhino",
-              logo: "/organisations/save-the-rhino.png",
+              logo: "/images/organisations/save-the-rhino.png",
               link: "https://www.savetherhino.org/",
             },
             {
               name: "Cheetah Conservation Fund",
-              logo: "/organisations/cheetah-conservation-fund.svg",
+              logo: "/images/organisations/cheetah-conservation-fund.png", 
               link: "https://cheetah.org/",
             },
             {
               name: "Painted Dog Conservation",
-              logo: "/organisations/painted-dog-conservation.png",
+              logo: "/images/organisations/painted-dog-conservation.png",
               link: "https://www.painteddogresearch.org/",
             },
             {
               name: "Gorilla Doctors",
-              logo: "/organisations/gorilla-doctors.png",
+              logo: "/images/organisations/gorilla-doctors.png",
               link: "https://www.gorilladoctors.org/",
             },
           ].map((org) => (
@@ -386,10 +386,11 @@ export default function ConservationPage() {
                     <Image 
                       src={org.logo} 
                       alt={org.name} 
-                      fill
-                      sizes="(max-width: 768px) 96px, 96px"
+                      width={96}
+                      height={96}
                       className="object-contain" 
                       unoptimized
+                      priority
                     />
                   </div>
                   <h3 className="font-medium text-sm">{org.name}</h3>
