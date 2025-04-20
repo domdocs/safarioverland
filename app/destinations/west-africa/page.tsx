@@ -5,6 +5,19 @@ import { DestinationSeasons } from "@/components/destination-seasons"
 import { DestinationMap } from "@/components/destination-map"
 import { ListingsGrid } from "@/components/listings-grid"
 
+// Define Season type to match the component's requirements
+type Season = {
+  name: string
+  months: string
+  weather: string
+  wildlife: string
+  crowds: string
+  pros: string[]
+  cons: string[]
+  icon: "sun" | "cloud" | "rain" | "thermometer"
+  costs: string
+}
+
 // Mock data for West Africa attractions
 const westAfricaAttractions = [
   {
@@ -65,32 +78,32 @@ const westAfricaWildlife = [
   {
     name: "Forest Elephant",
     description: "Smaller than savannah elephants",
-    image: "/placeholder.svg?height=150&width=150",
+    image: "/images/destinations/wildlife/forest-elephant.jpg",
   },
   {
     name: "Colobus Monkey",
     description: "Sacred in many communities",
-    image: "/placeholder.svg?height=150&width=150",
+    image: "/images/destinations/wildlife/colobus-monkey.jpg",
   },
   {
     name: "West African Lion",
     description: "Critically endangered subspecies",
-    image: "/placeholder.svg?height=150&width=150",
+    image: "/images/destinations/wildlife/west-african-lion.jpg",
   },
   {
     name: "Hippo",
     description: "Found in rivers and coastal areas",
-    image: "/placeholder.svg?height=150&width=150",
+    image: "/images/destinations/wildlife/hippo.jpg",
   },
   {
     name: "Birdlife",
     description: "Over 500 species in coastal wetlands",
-    image: "/placeholder.svg?height=150&width=150",
+    image: "/images/destinations/wildlife/west-africa-birds.jpg",
   },
 ]
 
 // Mock data for West Africa seasons
-const westAfricaSeasons = [
+const westAfricaSeasons: Season[] = [
   {
     name: "Dry Season",
     months: "November to April",
@@ -104,7 +117,7 @@ const westAfricaSeasons = [
       "Some water sources dry up",
       "Vegetation can be sparse and brown",
     ],
-    icon: "sun",
+    icon: "sun" as const,
     costs: "Premium pricing, especially December-February"
   },
   {
@@ -120,7 +133,7 @@ const westAfricaSeasons = [
       "Wildlife harder to spot in dense vegetation",
       "Mosquitoes and disease risk higher",
     ],
-    icon: "rain",
+    icon: "rain" as const,
     costs: "Lower rates (20-40% discount from peak season)"
   },
   {
@@ -136,7 +149,7 @@ const westAfricaSeasons = [
       "Some lodges still closed from wet season",
       "Variable weather conditions",
     ],
-    icon: "cloud",
+    icon: "cloud" as const,
     costs: "Moderate pricing, increasing toward December holidays"
   },
   {
@@ -152,7 +165,7 @@ const westAfricaSeasons = [
       "Sparse vegetation",
       "Limited water availability in some areas",
     ],
-    icon: "thermometer",
+    icon: "thermometer" as const,
     costs: "Slightly lower than peak season rates"
   },
 ]
