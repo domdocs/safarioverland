@@ -167,21 +167,21 @@ export default function SeasonalGuidesPage() {
               {[
                 {
                   title: "Kenya Seasonal Guide",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/seasonal-guides/travel-guide-kenya.jpg",
                   excerpt:
                     "Month-by-month guide to Kenya's safari seasons, including the Great Migration in the Masai Mara.",
                   link: "/resources/seasonal-guides/kenya",
                 },
                 {
                   title: "Tanzania Seasonal Guide",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/seasonal-guides/travel-guide-tanzania.jpg",
                   excerpt:
                     "Detailed seasonal information for Tanzania's diverse safari destinations, from Serengeti to Selous.",
                   link: "/resources/seasonal-guides/tanzania",
                 },
                 {
                   title: "Uganda & Rwanda Seasonal Guide",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/seasonal-guides/travel-guide-uganda-rwanda.jpg",
                   excerpt:
                     "Best times for gorilla trekking and wildlife viewing in Uganda and Rwanda throughout the year.",
                   link: "/resources/seasonal-guides/uganda-rwanda",
@@ -189,7 +189,7 @@ export default function SeasonalGuidesPage() {
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
                   <div className="relative h-48">
-                    <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
+                    <Image src={guide.image} alt={guide.title} fill className="object-cover" />
                   </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
@@ -208,21 +208,21 @@ export default function SeasonalGuidesPage() {
               {[
                 {
                   title: "South Africa Seasonal Guide",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/seasonal-guides/travel-guide-south-africa.jpg",
                   excerpt:
                     "Month-by-month guide to South Africa's diverse safari regions, including Kruger and private reserves.",
                   link: "/resources/seasonal-guides/south-africa",
                 },
                 {
                   title: "Botswana Seasonal Guide",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/seasonal-guides/travel-guide-botswana.jpg",
                   excerpt:
                     "Detailed information on Botswana's dramatic seasonal changes, from dry season to Okavango floods.",
                   link: "/resources/seasonal-guides/botswana",
                 },
                 {
                   title: "Zimbabwe & Zambia Seasonal Guide",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/seasonal-guides/travel-guide-zambia-zimbabwe.jpg",
                   excerpt:
                     "Best times for visiting Victoria Falls and the wildlife-rich national parks of Zimbabwe and Zambia.",
                   link: "/resources/seasonal-guides/zimbabwe-zambia",
@@ -230,7 +230,7 @@ export default function SeasonalGuidesPage() {
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
                   <div className="relative h-48">
-                    <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
+                    <Image src={guide.image} alt={guide.title} fill className="object-cover" />
                   </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
@@ -249,28 +249,28 @@ export default function SeasonalGuidesPage() {
               {[
                 {
                   title: "Ghana & Senegal Seasonal Guide",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/seasonal-guides/travel-guide-ghana.jpg",
                   excerpt:
                     "Optimal times for wildlife viewing and cultural experiences in West Africa's emerging safari destinations.",
                   link: "/resources/seasonal-guides/ghana-senegal",
                 },
                 {
                   title: "Nigeria & Benin Seasonal Guide",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/seasonal-guides/travel-guide-senegal.jpg",
                   excerpt:
                     "Seasonal information for visiting national parks and wildlife reserves in Nigeria and Benin.",
                   link: "/resources/seasonal-guides/nigeria-benin",
                 },
                 {
                   title: "West Africa Bird Watching Seasons",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/seasonal-guides/travel-guide-west-africa-birds.jpg",
                   excerpt: "Specialized guide for bird watching enthusiasts visiting West Africa's diverse ecosystems.",
                   link: "/resources/seasonal-guides/west-africa-birds",
                 },
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
                   <div className="relative h-48">
-                    <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
+                    <Image src={guide.image} alt={guide.title} fill className="object-cover" />
                   </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
@@ -289,27 +289,27 @@ export default function SeasonalGuidesPage() {
               {[
                 {
                   title: "Morocco Seasonal Guide",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/seasonal-guides/travel-guide-morocco.jpg",
                   excerpt:
                     "Best times for desert safaris, mountain trekking, and wildlife viewing in Morocco's diverse landscapes.",
                   link: "/resources/seasonal-guides/morocco",
                 },
                 {
                   title: "Egypt Desert Safari Seasons",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/seasonal-guides/travel-guide-egypt.jpg",
                   excerpt: "Optimal times for exploring Egypt's Western Desert, oases, and unique desert wildlife.",
                   link: "/resources/seasonal-guides/egypt",
                 },
                 {
                   title: "North Africa Bird Migration Guide",
-                  image: "/placeholder.svg?height=300&width=500",
+                  image: "/images/seasonal-guides/travel-guide-north-africa-birds.jpg",
                   excerpt: "Seasonal guide to bird migrations across North Africa's wetlands and coastal areas.",
                   link: "/resources/seasonal-guides/north-africa-birds",
                 },
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
                   <div className="relative h-48">
-                    <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
+                    <Image src={guide.image} alt={guide.title} fill className="object-cover" />
                   </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
@@ -393,42 +393,42 @@ export default function SeasonalGuidesPage() {
           {[
             {
               title: "Great Migration Seasonal Guide",
-              image: "/placeholder.svg?height=300&width=500",
+              image: "/images/seasonal-guides/kenya-migration.jpg",
               excerpt:
                 "Month-by-month tracking of the Great Migration through Tanzania and Kenya, with the best viewing locations.",
               link: "/resources/seasonal-guides/great-migration",
             },
             {
               title: "Bird Watching Seasonal Guide",
-              image: "/placeholder.svg?height=300&width=500",
+              image: "/images/seasonal-guides/travel-guide-west-africa-birds.jpg",
               excerpt:
                 "Optimal times for bird watching across Africa, including migratory seasons and endemic species.",
               link: "/resources/seasonal-guides/bird-watching",
             },
             {
               title: "Photography Seasonal Guide",
-              image: "/placeholder.svg?height=300&width=500",
+              image: "/images/seasonal-guides/safari-seasons.jpg",
               excerpt:
                 "Best seasons for wildlife photography in different regions, considering light, landscapes, and animal behavior.",
               link: "/resources/seasonal-guides/photography",
             },
             {
               title: "Budget Travel Seasonal Guide",
-              image: "/placeholder.svg?height=300&width=500",
+              image: "/images/seasonal-guides/travel-guide-botswana.jpg",
               excerpt:
                 "How to maximize value by traveling during shoulder and green seasons while still enjoying excellent experiences.",
               link: "/resources/seasonal-guides/budget-travel",
             },
             {
               title: "Family Safari Seasonal Guide",
-              image: "/placeholder.svg?height=300&width=500",
+              image: "/images/seasonal-guides/travel-guide-south-africa.jpg",
               excerpt:
                 "Best times for family safaris, considering school holidays, weather conditions, and child-friendly activities.",
               link: "/resources/seasonal-guides/family-safaris",
             },
             {
               title: "Gorilla Trekking Seasonal Guide",
-              image: "/placeholder.svg?height=300&width=500",
+              image: "/images/seasonal-guides/travel-guide-uganda-rwanda.jpg",
               excerpt:
                 "Optimal times for gorilla trekking in Uganda, Rwanda, and DRC, with seasonal considerations for each location.",
               link: "/resources/seasonal-guides/gorilla-trekking",
@@ -436,7 +436,7 @@ export default function SeasonalGuidesPage() {
           ].map((guide) => (
             <Card key={guide.title} className="overflow-hidden">
               <div className="relative h-48">
-                <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
+                <Image src={guide.image} alt={guide.title} fill className="object-cover" />
               </div>
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
