@@ -95,7 +95,7 @@ const westAfricaSeasons = [
     name: "Dry Season",
     months: "November to April",
     weather: "Hot days, cooler nights, minimal rain",
-    wildlife: "Best viewing as animals gather at water sources",
+    wildlife: "Best wildlife viewing as animals gather at water sources",
     crowds: "Peak tourist season, moderate crowds",
     pros: ["Best Wildlife Viewing", "Comfortable Temperatures", "Accessible Roads", "Less Mosquitoes"],
     cons: [
@@ -105,6 +105,7 @@ const westAfricaSeasons = [
       "Vegetation can be sparse and brown",
     ],
     icon: "sun",
+    costs: "Premium pricing, especially December-February"
   },
   {
     name: "Wet Season",
@@ -120,6 +121,7 @@ const westAfricaSeasons = [
       "Mosquitoes and disease risk higher",
     ],
     icon: "rain",
+    costs: "Lower rates (20-40% discount from peak season)"
   },
   {
     name: "Early Dry",
@@ -135,6 +137,7 @@ const westAfricaSeasons = [
       "Variable weather conditions",
     ],
     icon: "cloud",
+    costs: "Moderate pricing, increasing toward December holidays"
   },
   {
     name: "Late Dry",
@@ -150,6 +153,7 @@ const westAfricaSeasons = [
       "Limited water availability in some areas",
     ],
     icon: "thermometer",
+    costs: "Slightly lower than peak season rates"
   },
 ]
 
