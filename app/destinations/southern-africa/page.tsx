@@ -10,9 +10,9 @@ import ImageTextSplit from '@/components/ImageTextSplit';
 import FeatureGrid from '@/components/FeatureGrid';
 
 export const metadata: Metadata = {
-  title: 'Southern Africa Safaris | Ultimate Safari Guide | Safari Overland',
-  description: 'Explore the diverse wilderness of Southern Africa with our comprehensive safari guide. From Botswana's Okavango Delta to Kruger National Park and Victoria Falls.',
-  keywords: 'Southern Africa safari, Botswana safari, South Africa safari, Zimbabwe safari, Kruger National Park, Okavango Delta, Victoria Falls, safari destinations'
+  title: "Southern Africa Safaris | Ultimate Safari Guide | Safari Overland",
+  description: "Explore the diverse wilderness of Southern Africa with our comprehensive safari guide. From Botswana's Okavango Delta to Kruger National Park and Victoria Falls.",
+  keywords: "Southern Africa safari, Botswana safari, South Africa safari, Zimbabwe safari, Kruger National Park, Okavango Delta, Victoria Falls, safari destinations"
 };
 
 export default function SouthernAfricaPage() {
