@@ -10,7 +10,7 @@ const regions = [
     slug: "east-africa",
     description:
       "Home to the Serengeti, Masai Mara, and the Great Migration, East Africa offers classic safari landscapes and incredible wildlife density.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/images/destinations/east-africa.jpg",
     countries: ["Kenya", "Tanzania", "Uganda", "Rwanda"],
     highlights: ["Great Migration", "Gorilla Trekking", "Serengeti", "Ngorongoro Crater"],
   },
@@ -19,7 +19,7 @@ const regions = [
     slug: "southern-africa",
     description:
       "From the Okavango Delta to Kruger National Park, Southern Africa combines diverse ecosystems with excellent infrastructure.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/images/destinations/southern-africa.jpg",
     countries: ["South Africa", "Botswana", "Namibia", "Zimbabwe", "Zambia"],
     highlights: ["Okavango Delta", "Kruger National Park", "Victoria Falls", "Namib Desert"],
   },
@@ -28,7 +28,7 @@ const regions = [
     slug: "west-africa",
     description:
       "Less traveled but rich in culture and wildlife, West Africa offers unique safari experiences and vibrant cultural encounters.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/images/destinations/west-africa.jpg",
     countries: ["Ghana", "Senegal", "Nigeria", "Benin"],
     highlights: ["Mole National Park", "Pendjari National Park", "Cultural Experiences", "Coastal Reserves"],
   },
@@ -37,7 +37,7 @@ const regions = [
     slug: "north-africa",
     description:
       "Combining desert adventures with historical sites, North Africa offers unique wildlife and stunning landscapes.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/images/destinations/north-africa.jpg",
     countries: ["Morocco", "Egypt", "Tunisia"],
     highlights: ["Sahara Desert", "Atlas Mountains", "Desert Wildlife", "Oasis Ecosystems"],
   },
@@ -58,7 +58,7 @@ export default function DestinationsPage() {
           <Link key={region.slug} href={`/destinations/${region.slug}`}>
             <Card className="overflow-hidden h-full hover:shadow-lg transition-shadow">
               <div className="relative h-64">
-                <Image src={region.image || "/placeholder.svg"} alt={region.name} fill className="object-cover" />
+                <Image src={region.image} alt={region.name} fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 text-white">
                   <h2 className="text-2xl font-bold mb-1">{region.name}</h2>
@@ -118,29 +118,29 @@ export default function DestinationsPage() {
             {[
               {
                 name: "Kenya",
-                image: "/placeholder.svg?height=300&width=400",
+                image: "/images/destinations/east-africa.jpg",
                 highlights: ["Masai Mara", "Amboseli", "Great Migration"],
               },
               {
                 name: "Tanzania",
-                image: "/placeholder.svg?height=300&width=400",
+                image: "/images/destinations/east-africa.jpg",
                 highlights: ["Serengeti", "Ngorongoro", "Zanzibar"],
               },
               {
                 name: "South Africa",
-                image: "/placeholder.svg?height=300&width=400",
+                image: "/images/destinations/southern-africa.jpg",
                 highlights: ["Kruger", "Cape Town", "Garden Route"],
               },
               {
                 name: "Botswana",
-                image: "/placeholder.svg?height=300&width=400",
+                image: "/images/destinations/southern-africa.jpg",
                 highlights: ["Okavango Delta", "Chobe", "Kalahari"],
               },
             ].map((country) => (
               <div key={country.name} className="flex gap-4 items-start">
                 <div className="relative w-24 h-24 flex-shrink-0">
                   <Image
-                    src={country.image || "/placeholder.svg"}
+                    src={country.image}
                     alt={country.name}
                     fill
                     className="object-cover rounded-md"
