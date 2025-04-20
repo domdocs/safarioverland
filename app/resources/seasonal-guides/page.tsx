@@ -248,6 +248,13 @@ export default function SeasonalGuidesPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 {
+                  title: "West Africa Safari Seasons",
+                  image: "/images/seasonal-guides/travel-guide-west-africa.jpg",
+                  excerpt:
+                    "Comprehensive guide to the best times for wildlife viewing across West Africa's diverse safari destinations.",
+                  link: "/resources/seasonal-guides/west-africa",
+                },
+                {
                   title: "Ghana Seasonal Guide",
                   image: "/images/seasonal-guides/travel-guide-ghana.jpg",
                   excerpt:
@@ -260,12 +267,6 @@ export default function SeasonalGuidesPage() {
                   excerpt:
                     "Seasonal information for visiting national parks and wildlife reserves in Senegal.",
                   link: "/resources/seasonal-guides/nigeria-benin",
-                },
-                {
-                  title: "West Africa Bird Watching Seasons",
-                  image: "/images/seasonal-guides/travel-guide-west-africa-birds.jpg",
-                  excerpt: "Specialized guide for bird watching enthusiasts visiting West Africa's diverse ecosystems.",
-                  link: "/resources/seasonal-guides/west-africa-birds",
                 },
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
