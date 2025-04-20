@@ -248,17 +248,17 @@ export default function SeasonalGuidesPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 {
-                  title: "Ghana & Senegal Seasonal Guide",
+                  title: "Ghana Seasonal Guide",
                   image: "/images/seasonal-guides/travel-guide-ghana.jpg",
                   excerpt:
-                    "Optimal times for wildlife viewing and cultural experiences in West Africa's emerging safari destinations.",
+                    "Optimal times for wildlife viewing and cultural experiences in Ghana's emerging safari destinations.",
                   link: "/resources/seasonal-guides/ghana-senegal",
                 },
                 {
-                  title: "Nigeria & Benin Seasonal Guide",
+                  title: "Senegal Seasonal Guide",
                   image: "/images/seasonal-guides/travel-guide-senegal.jpg",
                   excerpt:
-                    "Seasonal information for visiting national parks and wildlife reserves in Nigeria and Benin.",
+                    "Seasonal information for visiting national parks and wildlife reserves in Senegal.",
                   link: "/resources/seasonal-guides/nigeria-benin",
                 },
                 {
