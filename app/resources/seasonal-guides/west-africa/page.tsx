@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, CalendarDays, Sun, CloudRain, Camera, Compass } from 'lucide-react';
+import { ArrowLeft, CalendarDays, Sun, Cloud, CloudRain, Thermometer, Compass } from 'lucide-react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -185,7 +185,7 @@ const WestAfricaSeasonalGuidePage = () => {
               </div>
             </div>
             <div className="flex items-start gap-2 mb-3">
-              <Camera className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+              <Thermometer className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
               <div>
                 <strong className="block">Special wildlife events:</strong>
                 Elephant gatherings at water sources (January-March), excellent antelope viewing
@@ -213,7 +213,7 @@ const WestAfricaSeasonalGuidePage = () => {
               </div>
             </div>
             <div className="flex items-start gap-2 mb-3">
-              <Camera className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+              <Thermometer className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
               <div>
                 <strong className="block">Notable regions:</strong>
                 Sine-Saloum Delta (Senegal), Bijagos Archipelago (Guinea-Bissau), Keta Lagoon (Ghana)
@@ -241,7 +241,7 @@ const WestAfricaSeasonalGuidePage = () => {
               </div>
             </div>
             <div className="flex items-start gap-2 mb-3">
-              <Camera className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+              <Thermometer className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
               <div>
                 <strong className="block">Special wildlife events:</strong>
                 Chimpanzee tracking, forest elephant sightings, incredible diversity of butterflies and birds
@@ -269,7 +269,7 @@ const WestAfricaSeasonalGuidePage = () => {
               </div>
             </div>
             <div className="flex items-start gap-2 mb-3">
-              <Camera className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+              <Thermometer className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
               <div>
                 <strong className="block">Special wildlife events:</strong>
                 Hippo pods, Nile crocodiles, diverse birdlife along river banks
