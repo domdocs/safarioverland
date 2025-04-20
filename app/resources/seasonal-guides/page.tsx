@@ -259,14 +259,14 @@ export default function SeasonalGuidesPage() {
                   image: "/images/seasonal-guides/travel-guide-ghana.jpg",
                   excerpt:
                     "Optimal times for wildlife viewing and cultural experiences in Ghana's emerging safari destinations.",
-                  link: "/resources/seasonal-guides/ghana-senegal",
+                  link: "/resources/seasonal-guides/ghana",
                 },
                 {
                   title: "Senegal Seasonal Guide",
                   image: "/images/seasonal-guides/travel-guide-senegal.jpg",
                   excerpt:
                     "Seasonal information for visiting national parks and wildlife reserves in Senegal.",
-                  link: "/resources/seasonal-guides/nigeria-benin",
+                  link: "/resources/seasonal-guides/senegal",
                 },
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
