@@ -425,7 +425,7 @@ export default function SeasonalGuidesPage() {
               image: "/images/seasonal-guides/travel-guide-south-africa.jpg",
               excerpt:
                 "Best times for family safaris, considering school holidays, weather conditions, and child-friendly activities.",
-              link: "/resources/seasonal-guides/family-safari",
+              link: "/resources/seasonal-guides/family-safaris",
             },
             {
               title: "Gorilla Trekking Seasonal Guide",
