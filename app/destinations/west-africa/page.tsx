@@ -266,7 +266,7 @@ export default function WestAfricaPage() {
       <DestinationHeader
         title="West Africa"
         description="Discover the less-traveled safari destinations of West Africa, offering unique wildlife, vibrant cultures, and authentic experiences away from the tourist crowds."
-        image="/placeholder.svg?height=800&width=1600"
+        image="/images/destinations/west-africa.jpg"
         facts={[
           { label: "Countries", value: "Ghana, Senegal, Nigeria, Benin" },
           { label: "Best Time to Visit", value: "November to April" },

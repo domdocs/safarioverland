@@ -311,7 +311,7 @@ export default function EastAfricaPage() {
         <div className="relative rounded-xl overflow-hidden">
           <div className="aspect-video relative">
             <Image 
-              src="/images/destinations/east-africa-hero.jpg" 
+              src="/images/destinations/east-africa.jpg" 
               alt="East Africa Safari Landscape with elephants and Mount Kilimanjaro" 
               fill 
               className="object-cover" 

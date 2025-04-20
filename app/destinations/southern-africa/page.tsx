@@ -107,7 +107,7 @@ export default function SouthernAfricaPage() {
       {/* Hero Section */}
       <div className="relative h-[60vh] w-full">
         <Image 
-          src="/images/destinations/southern-africa-hero.jpg" 
+          src="/images/destinations/southern-africa.jpg" 
           alt="Southern Africa Safari Landscape" 
           fill 
           priority

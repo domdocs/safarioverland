@@ -300,7 +300,7 @@ export default function NorthAfricaPage() {
         <div className="relative rounded-xl overflow-hidden">
           <div className="aspect-video relative">
             <Image 
-              src="/images/destinations/north-africa-hero.jpg" 
+              src="/images/destinations/north-africa.jpg" 
               alt="North Africa desert landscape with camels and dunes at sunset" 
               fill 
               className="object-cover" 
