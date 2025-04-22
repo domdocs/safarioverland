@@ -28,9 +28,6 @@ export default function HistoryPage() {
         <Link href="/about">
           <Button variant="outline">Overview</Button>
         </Link>
-        <Link href="/about/team">
-          <Button variant="outline">Our Team</Button>
-        </Link>
         <Link href="/about/history">
           <Button variant="default">Our History</Button>
         </Link>

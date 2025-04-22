@@ -38,9 +38,6 @@ export default function AboutPage() {
           <Link href="/about">
             <Button variant="default">Overview</Button>
           </Link>
-          <Link href="/about/team">
-            <Button variant="outline">Our Team</Button>
-          </Link>
           <Link href="/about/history">
             <Button variant="outline">Our History</Button>
           </Link>
@@ -163,17 +160,7 @@ export default function AboutPage() {
         {/* Quick Links */}
         <section>
           <h2 className="text-3xl font-bold mb-8 text-center">Explore More About Us</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Link href="/about/team">
-              <div className="bg-secondary text-white p-6 rounded-lg hover:bg-secondary/90 transition-colors">
-                <Users className="h-8 w-8 mb-4" />
-                <h3 className="text-xl font-bold mb-2">Meet Our Team</h3>
-                <p className="mb-4">Get to know the passionate safari experts behind Safari Overland.</p>
-                <div className="flex items-center text-sm font-medium">
-                  Learn more <ChevronRight className="h-4 w-4 ml-1" />
-                </div>
-              </div>
-            </Link>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Link href="/about/history">
               <div className="bg-primary text-white p-6 rounded-lg hover:bg-primary/90 transition-colors">
                 <History className="h-8 w-8 mb-4" />

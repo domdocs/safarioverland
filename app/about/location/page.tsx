@@ -21,9 +21,6 @@ export default function LocationPage() {
         <Link href="/about">
           <Button variant="outline">Overview</Button>
         </Link>
-        <Link href="/about/team">
-          <Button variant="outline">Our Team</Button>
-        </Link>
         <Link href="/about/history">
           <Button variant="outline">Our History</Button>
         </Link>
