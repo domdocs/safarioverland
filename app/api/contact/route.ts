@@ -17,45 +17,74 @@ async function sendEmailNotification(data: {
   subject: string
   message: string
 }) {
-  // Option 1: Use a third-party email service like Resend.com
-  if (process.env.RESEND_API_KEY) {
-    try {
-      const response = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.RESEND_API_KEY}`
-        },
-        body: JSON.stringify({
-          from: 'contact@safarioverland.com',
-          to: process.env.NOTIFICATION_EMAIL || 'info@safarioverland.com', // Update this to your email
-          subject: `New Contact Form Submission: ${data.subject}`,
-          html: `
-            <h2>New Contact Message from ${data.name}</h2>
-            <p><strong>From:</strong> ${data.name} (${data.email})</p>
-            <p><strong>Subject:</strong> ${data.subject}</p>
-            <p><strong>Message:</strong></p>
-            <div style="padding: 15px; border-left: 4px solid #ddd; margin: 10px 0;">
-              ${data.message.replace(/\n/g, '<br />')}
-            </div>
-          `
-        })
-      })
-      
-      if (!response.ok) {
-        throw new Error(`Failed to send email notification: ${response.statusText}`)
-      }
-      
-      return true
-    } catch (error) {
-      console.error('Email notification error:', error)
-      return false
-    }
+  console.log("Starting email notification process...")
+  
+  // Check if API key is configured
+  if (!process.env.RESEND_API_KEY) {
+    console.error("RESEND_API_KEY is not configured in environment variables")
+    return false
   }
   
-  // Option 2: For development, just log it
-  console.log('Contact form submission (would send email):', data)
-  return true
+  // Get notification email (with fallback)
+  const notificationEmail = process.env.NOTIFICATION_EMAIL || 'info@safarioverland.com'
+  console.log(`Will send notification to: ${notificationEmail}`)
+  
+  try {
+    console.log("Preparing to send email via Resend API...")
+    
+    const emailPayload = {
+      from: 'contact@safarioverland.com',
+      to: notificationEmail,
+      subject: `New Contact Form Submission: ${data.subject}`,
+      html: `
+        <h2>New Contact Message from ${data.name}</h2>
+        <p><strong>From:</strong> ${data.name} (${data.email})</p>
+        <p><strong>Subject:</strong> ${data.subject}</p>
+        <p><strong>Message:</strong></p>
+        <div style="padding: 15px; border-left: 4px solid #ddd; margin: 10px 0;">
+          ${data.message.replace(/\n/g, '<br />')}
+        </div>
+      `
+    }
+    
+    console.log("Email payload prepared:", JSON.stringify({
+      to: emailPayload.to,
+      subject: emailPayload.subject
+    }))
+    
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.RESEND_API_KEY}`
+      },
+      body: JSON.stringify(emailPayload)
+    })
+    
+    // Log detailed response information
+    const responseText = await response.text()
+    console.log(`Resend API response status: ${response.status}`)
+    console.log(`Resend API response body: ${responseText}`)
+    
+    let responseData
+    try {
+      // Try to parse as JSON if possible
+      responseData = JSON.parse(responseText)
+    } catch (e) {
+      // Not JSON, use text as is
+      responseData = responseText
+    }
+    
+    if (!response.ok) {
+      throw new Error(`Failed to send email notification: ${JSON.stringify(responseData)}`)
+    }
+    
+    console.log("Email sent successfully:", JSON.stringify(responseData))
+    return true
+  } catch (error) {
+    console.error('Email notification error:', error)
+    return false
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -110,9 +139,13 @@ export async function POST(request: NextRequest) {
     }
 
     // Send email notification
-    await sendEmailNotification({ name, email, subject, message })
-
-    return NextResponse.json({ success: true })
+    const emailSent = await sendEmailNotification({ name, email, subject, message })
+    
+    // Include email status in response for debugging
+    return NextResponse.json({ 
+      success: true, 
+      emailSent 
+    })
     
   } catch (error) {
     console.error("Contact form error:", error)
