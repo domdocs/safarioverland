@@ -16,6 +16,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/components/ui/use-toast"
+import { CheckCircle2 } from "lucide-react"
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 
 // Form validation schema
 const contactFormSchema = z.object({
@@ -45,6 +47,7 @@ const defaultValues: Partial<ContactFormValues> = {
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
   const { toast } = useToast()
 
   // Initialize react-hook-form
@@ -78,6 +81,9 @@ export function ContactForm() {
         description: "Thank you for your message. We'll get back to you soon!",
       })
 
+      // Set submitted state
+      setIsSubmitted(true)
+
       // Reset the form
       form.reset(defaultValues)
       
@@ -92,6 +98,25 @@ export function ContactForm() {
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  if (isSubmitted) {
+    return (
+      <Alert className="bg-green-50 border-green-200">
+        <CheckCircle2 className="h-5 w-5 text-green-600" />
+        <AlertTitle className="text-green-800 text-lg font-medium ml-2">Message Sent Successfully</AlertTitle>
+        <AlertDescription className="text-green-700 ml-7">
+          Thank you for your message! We've received it and will get back to you as soon as possible.
+        </AlertDescription>
+        <Button 
+          onClick={() => setIsSubmitted(false)} 
+          variant="outline" 
+          className="mt-4 ml-7"
+        >
+          Send Another Message
+        </Button>
+      </Alert>
+    )
   }
 
   return (
