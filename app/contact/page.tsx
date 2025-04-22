@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Metadata } from "next"
-import { Mail, Phone, MapPin, ArrowRight, MessageCircle, Clock } from "lucide-react"
+import { Mail, Phone, MapPin, ArrowRight } from "lucide-react"
 import { ContactForm } from "./contact-form"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
@@ -18,7 +18,7 @@ export default function ContactPage() {
           <h1 className="text-3xl md:text-4xl font-bold mb-4">Contact Us</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Have questions about safari planning? Need help with your listing? 
-            Get in touch with our team based in Victoria Falls, Zimbabwe.
+            Get in touch with our team based in Cape Town, London, and Victoria Falls.
           </p>
         </div>
 
@@ -40,10 +40,8 @@ export default function ContactPage() {
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-medium">Address</p>
-                      <p className="text-muted-foreground">Aerodrome</p>
-                      <p className="text-muted-foreground">Victoria Falls</p>
-                      <p className="text-muted-foreground">Zimbabwe</p>
+                      <p className="font-medium">Locations</p>
+                      <p className="text-muted-foreground">Cape Town | London | Victoria Falls</p>
                     </div>
                   </div>
                   
@@ -60,63 +58,6 @@ export default function ContactPage() {
                     <div>
                       <p className="font-medium">Email</p>
                       <p className="text-muted-foreground">info@safarioverland.com</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-3">
-                    <Clock className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
-                    <div>
-                      <p className="font-medium">Operating Hours</p>
-                      <p className="text-muted-foreground">Monday - Friday: 8:00 AM - 5:00 PM CAT</p>
-                      <p className="text-muted-foreground">Saturday: 9:00 AM - 1:00 PM CAT</p>
-                      <p className="text-muted-foreground">Sunday: Closed</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-4">Department Emails</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <MessageCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                    <div>
-                      <p className="font-medium">General Inquiries</p>
-                      <p className="text-muted-foreground">info@safarioverland.com</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-3">
-                    <MessageCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                    <div>
-                      <p className="font-medium">Partnerships</p>
-                      <p className="text-muted-foreground">partners@safarioverland.com</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-3">
-                    <MessageCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                    <div>
-                      <p className="font-medium">Support</p>
-                      <p className="text-muted-foreground">support@safarioverland.com</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-3">
-                    <MessageCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                    <div>
-                      <p className="font-medium">Privacy Concerns</p>
-                      <p className="text-muted-foreground">privacy@safarioverland.com</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-3">
-                    <MessageCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                    <div>
-                      <p className="font-medium">Legal Matters</p>
-                      <p className="text-muted-foreground">legal@safarioverland.com</p>
                     </div>
                   </div>
                 </div>
@@ -149,7 +90,7 @@ export default function ContactPage() {
               <CardContent className="p-6">
                 <h3 className="text-lg font-bold mb-2">How can I update my existing listing?</h3>
                 <p className="text-muted-foreground mb-4">
-                  Log in to your account and navigate to 'Dashboard' > 'My Listings' to edit your business information. Alternatively, contact our support team for assistance.
+                  Log in to your account and navigate to 'Dashboard' {'>'} 'My Listings' to edit your business information. Alternatively, contact our support team for assistance.
                 </p>
                 <Link 
                   href="/dashboard" 
@@ -164,13 +105,13 @@ export default function ContactPage() {
               <CardContent className="p-6">
                 <h3 className="text-lg font-bold mb-2">Do you offer advertising opportunities?</h3>
                 <p className="text-muted-foreground mb-4">
-                  Yes, we offer various promotional opportunities for safari businesses. Contact our partnerships team at partners@safarioverland.com for information about featured listings and advertising packages.
+                  Yes, we offer various promotional opportunities for safari businesses. Contact us at info@safarioverland.com for information about featured listings and advertising packages.
                 </p>
                 <Link 
-                  href="mailto:partners@safarioverland.com" 
+                  href="mailto:info@safarioverland.com" 
                   className="inline-flex items-center text-primary hover:text-primary/80 font-medium"
                 >
-                  Contact partnerships <ArrowRight className="ml-1 h-4 w-4" />
+                  Contact us <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </CardContent>
             </Card>
@@ -182,7 +123,7 @@ export default function ContactPage() {
                   We're always open to collaborations with travel agencies, conservation organizations, and other stakeholders in the safari industry. Send us an email outlining your partnership proposal.
                 </p>
                 <Link 
-                  href="mailto:partners@safarioverland.com" 
+                  href="mailto:info@safarioverland.com" 
                   className="inline-flex items-center text-primary hover:text-primary/80 font-medium"
                 >
                   Propose a partnership <ArrowRight className="ml-1 h-4 w-4" />
