@@ -6,7 +6,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
 
 // Replace with your email service provider details
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") || ""
-const FROM_EMAIL = "contact@safarioverland.com"
+const FROM_EMAIL = "onboarding@resend.dev"
 const TO_EMAIL = "info@safarioverland.com" // Change this to your email address
 
 // Function to send email using Resend API

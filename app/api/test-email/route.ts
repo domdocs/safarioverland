@@ -24,7 +24,7 @@ async function sendTestEmail() {
         'Authorization': `Bearer ${process.env.RESEND_API_KEY}`
       },
       body: JSON.stringify({
-        from: 'contact@safarioverland.com',
+        from: 'onboarding@resend.dev',
         to: notificationEmail,
         subject: `Test Email from Safari Overland`,
         html: `

@@ -33,7 +33,7 @@ async function sendEmailNotification(data: {
     console.log("Preparing to send email via Resend API...")
     
     const emailPayload = {
-      from: 'contact@safarioverland.com',
+      from: 'onboarding@resend.dev',
       to: notificationEmail,
       subject: `New Contact Form Submission: ${data.subject}`,
       html: `
