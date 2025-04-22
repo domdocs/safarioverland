@@ -18,8 +18,7 @@ export default function HistoryPage() {
       <div className="max-w-3xl mx-auto text-center mb-12">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">Our History</h1>
         <p className="text-lg text-muted-foreground">
-          From humble beginnings in Victoria Falls to becoming Africa's leading safari directory, our journey has been
-          driven by passion for wildlife, conservation, and authentic travel experiences.
+        Born from a life lived across Africa and fueled by a deep passion for self-drive overlanding on the continent, our journey reflects a commitment to authentic exploration and adventure.
         </p>
       </div>
 
@@ -42,13 +41,13 @@ export default function HistoryPage() {
           <div>
             <h2 className="text-3xl font-bold mb-6">The Founding Story</h2>
             <p className="text-muted-foreground mb-4">
-              Safari Overland was founded in 2018 by Tendai Moyo, a professional safari guide with 15 years of
-              experience across Southern and East Africa. After years of connecting travelers with safari operators
-              informally, Tendai recognized the need for a comprehensive, trustworthy resource that would bring together
+              Safari Overland was founded in 2018, the team are a group of professionals who have enjoyed safari, camping and overlanding 
+               across Southern, Western and Eastern Africa. After years of connecting travelers with safari operators
+              informally, we recognised the need for a comprehensive, trustworthy resource that would bring together
               the best safari experiences across the continent.
             </p>
             <p className="text-muted-foreground mb-4">
-              Starting from a small office in Victoria Falls, Zimbabwe – the safari capital of Africa – Tendai and a
+              Starting from a small office in Victoria Falls, Zimbabwe – the safari capital of Africa – a
               small team of passionate safari experts began building relationships with operators across the continent,
               personally vetting each one for quality, authenticity, and commitment to responsible tourism practices.
             </p>
@@ -78,7 +77,7 @@ export default function HistoryPage() {
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-2">2018: The Beginning</h3>
                   <p className="text-muted-foreground">
-                    Safari Overland was founded in Victoria Falls, Zimbabwe by Tendai Moyo. The initial directory
+                    The Safari Overland concept started in Botswana before our move to Victoria Falls, Zimbabwe. The initial directory
                     features 50 personally vetted safari operators across Zimbabwe, Botswana, and Zambia.
                   </p>
                 </CardContent>
@@ -96,7 +95,7 @@ export default function HistoryPage() {
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-2">2019: Southern Africa Expansion</h3>
                   <p className="text-muted-foreground">
-                    The directory expands to cover South Africa and Namibia, growing to over 200 listings. The company
+                    The directory expands to cover South Africa and Namibia, growing to the listings. The company
                     establishes its conservation commitment program, requiring all listed operators to demonstrate
                     responsible tourism practices.
                   </p>
@@ -169,9 +168,8 @@ export default function HistoryPage() {
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-2">2023: Africa's Leading Directory</h3>
                   <p className="text-muted-foreground">
-                    Safari Overland becomes the largest curated safari directory in Africa, featuring over 500 vetted
-                    operators across 12 countries. The company expands its headquarters in Victoria Falls and launches
-                    its community tourism certification program.
+                    Safari Overland aims to become the largest curated safari directory in Africa, featuring over 500 vetted
+                    operators across 12 countries. The company expands its headquarters in Victoria Falls.
                   </p>
                 </CardContent>
               </Card>
@@ -187,7 +185,7 @@ export default function HistoryPage() {
           <Card>
             <CardContent className="p-6 text-center">
               <div className="text-4xl font-bold text-primary mb-2">500+</div>
-              <p className="font-medium">Vetted Safari Operators</p>
+              <p className="font-medium">Vetted Safari Service Providers</p>
             </CardContent>
           </Card>
           <Card>
@@ -198,13 +196,13 @@ export default function HistoryPage() {
           </Card>
           <Card>
             <CardContent className="p-6 text-center">
-              <div className="text-4xl font-bold text-primary mb-2">50,000+</div>
+              <div className="text-4xl font-bold text-primary mb-2">1,000+</div>
               <p className="font-medium">Travelers Connected</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-6 text-center">
-              <div className="text-4xl font-bold text-primary mb-2">$250K</div>
+              <div className="text-4xl font-bold text-primary mb-2">$$$</div>
               <p className="font-medium">Conservation Contributions</p>
             </CardContent>
           </Card>
