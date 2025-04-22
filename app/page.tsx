@@ -43,7 +43,7 @@ export default function HomePage() {
                 <Button
                   variant="default"
                   size="lg"
-                  className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/40 transition-all w-full sm:w-auto"
+                  className="bg-primary hover:bg-primary/90 text-white transition-all w-full sm:w-auto"
                   asChild
                 >
                   <Link
@@ -56,7 +56,7 @@ export default function HomePage() {
                 <Button
                   variant="default"
                   size="lg"
-                  className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/40 transition-all w-full sm:w-auto"
+                  className="bg-secondary hover:bg-secondary/90 text-white transition-all w-full sm:w-auto"
                   asChild
                 >
                   <Link
