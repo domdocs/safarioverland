@@ -10,6 +10,54 @@ const contactFormSchema = z.object({
   message: z.string().min(10),
 })
 
+// Function to send email notification
+async function sendEmailNotification(data: {
+  name: string
+  email: string
+  subject: string
+  message: string
+}) {
+  // Option 1: Use a third-party email service like Resend.com
+  if (process.env.RESEND_API_KEY) {
+    try {
+      const response = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.RESEND_API_KEY}`
+        },
+        body: JSON.stringify({
+          from: 'contact@safarioverland.com',
+          to: process.env.NOTIFICATION_EMAIL || 'info@safarioverland.com', // Update this to your email
+          subject: `New Contact Form Submission: ${data.subject}`,
+          html: `
+            <h2>New Contact Message from ${data.name}</h2>
+            <p><strong>From:</strong> ${data.name} (${data.email})</p>
+            <p><strong>Subject:</strong> ${data.subject}</p>
+            <p><strong>Message:</strong></p>
+            <div style="padding: 15px; border-left: 4px solid #ddd; margin: 10px 0;">
+              ${data.message.replace(/\n/g, '<br />')}
+            </div>
+          `
+        })
+      })
+      
+      if (!response.ok) {
+        throw new Error(`Failed to send email notification: ${response.statusText}`)
+      }
+      
+      return true
+    } catch (error) {
+      console.error('Email notification error:', error)
+      return false
+    }
+  }
+  
+  // Option 2: For development, just log it
+  console.log('Contact form submission (would send email):', data)
+  return true
+}
+
 export async function POST(request: NextRequest) {
   try {
     // Parse and validate the request body
@@ -61,8 +109,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Send notification email to admin (could be implemented with a third-party email service)
-    // This is left as a TODO since it requires additional setup
+    // Send email notification
+    await sendEmailNotification({ name, email, subject, message })
 
     return NextResponse.json({ success: true })
     
