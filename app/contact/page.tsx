@@ -90,13 +90,13 @@ export default function ContactPage() {
               <CardContent className="p-6">
                 <h3 className="text-lg font-bold mb-2">How can I update my existing listing?</h3>
                 <p className="text-muted-foreground mb-4">
-                  Log in to your account and navigate to 'Dashboard' {'>'} 'My Listings' to edit your business information. Alternatively, contact our support team for assistance.
+                  Contact our support team directly via email or phone for any changes needed to your business listing. Our team will assist you promptly with updates to your information.
                 </p>
                 <Link 
-                  href="/dashboard" 
+                  href="mailto:info@safarioverland.com" 
                   className="inline-flex items-center text-primary hover:text-primary/80 font-medium"
                 >
-                  Go to dashboard <ArrowRight className="ml-1 h-4 w-4" />
+                  Contact support <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </CardContent>
             </Card>
