@@ -19,7 +19,7 @@ export default async function AdventureActivitiesPage() {
     <CategoryLayout
       title="Adventure Activities"
       description="Add excitement to your safari with thrilling adventure activities, from hot air balloon rides to white water rafting."
-      image="/placeholder.svg?height=400&width=800&text=Adventure+Activities"
+      image="/images/category-img/adventure-activities.jpg"
     >
       <PaginatedListingsGrid
         initialListings={initialListings}

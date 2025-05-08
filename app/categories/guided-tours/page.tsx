@@ -19,7 +19,7 @@ export default async function GuidedToursPage() {
     <CategoryLayout
       title="Guided Tours"
       description="Join expert guides on unforgettable safari tours across Africa's most spectacular wildlife destinations."
-      image="/placeholder.svg?height=400&width=800&text=Guided+Tours"
+      image="/images/category-img/guided-tours.jpg"
     >
       <PaginatedListingsGrid
         initialListings={initialListings}

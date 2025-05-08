@@ -19,7 +19,7 @@ export default async function CampsitesPage() {
     <CategoryLayout
       title="Safari Campsites"
       description="Experience the authentic African wilderness with our selection of safari campsites, from basic bush camps to comfortable glamping sites."
-      image="/placeholder.svg?height=400&width=800&text=Safari+Campsites"
+      image="/images/category-img/campsites.jpg"
     >
       <PaginatedListingsGrid
         initialListings={initialListings}

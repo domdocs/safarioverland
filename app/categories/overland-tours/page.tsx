@@ -19,7 +19,7 @@ export default async function OverlandToursPage() {
     <CategoryLayout
       title="Overland Tours"
       description="Experience the ultimate African adventure with overland tours that take you across multiple countries and diverse landscapes."
-      image="/placeholder.svg?height=400&width=800&text=Overland+Tours"
+      image="/images/category-img/overland-tours.jpg"
     >
       <PaginatedListingsGrid
         initialListings={initialListings}

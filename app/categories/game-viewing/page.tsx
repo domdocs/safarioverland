@@ -19,7 +19,7 @@ export default async function GameViewingPage() {
     <CategoryLayout
       title="Game Viewing"
       description="Discover specialized game viewing experiences with expert guides who know exactly where to find Africa's most iconic wildlife."
-      image="/placeholder.svg?height=400&width=800&text=Game+Viewing"
+      image="/images/category-img/game-viewing.jpg"
     >
       <ListingsGrid
         listings={listings}

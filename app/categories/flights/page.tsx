@@ -19,7 +19,7 @@ export default async function FlightsPage() {
     <CategoryLayout
       title="Safari Flights"
       description="Find scheduled and charter flights to safari destinations across Africa, from bush planes to helicopter transfers."
-      image="/placeholder.svg?height=400&width=800&text=Safari+Flights"
+      image="/images/category-img/flights.jpg"
     >
       <PaginatedListingsGrid
         initialListings={initialListings}

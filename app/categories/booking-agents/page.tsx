@@ -19,7 +19,7 @@ export default async function BookingAgentsPage() {
     <CategoryLayout
       title="Booking Agents"
       description="Connect with specialized safari booking agents who can arrange your perfect African adventure from start to finish."
-      image="/placeholder.svg?height=400&width=800&text=Booking+Agents"
+      image="/images/category-img/booking-agents.jpg"
     >
       <PaginatedListingsGrid
         initialListings={initialListings}
