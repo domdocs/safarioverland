@@ -19,7 +19,7 @@ export default async function LodgesPage() {
     <CategoryLayout
       title="Safari Lodges"
       description="Discover the finest safari lodges across Africa, from luxury tented camps to exclusive private reserves."
-      image="/placeholder.svg?height=400&width=800&text=Safari+Lodges"
+      image="/images/category-img/luxury-safari-lodges.jpg"
     >
       <PaginatedListingsGrid
         initialListings={initialListings}
