@@ -42,13 +42,6 @@ export function MobileNav() {
             Resources
           </Link>
           <Link
-            href="/community"
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent"
-          >
-            <ChevronRight className="h-4 w-4" />
-            Community
-          </Link>
-          <Link
             href="/contact"
             className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent"
           >

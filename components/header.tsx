@@ -51,9 +51,6 @@ export function Header() {
           <Link href="/resources" className="text-sm font-medium hover:text-primary">
             Resources
           </Link>
-          <Link href="/community" className="text-sm font-medium hover:text-primary">
-            Community
-          </Link>
         </nav>
         <div className="flex items-center gap-2">
           <Link href="/search">
@@ -62,12 +59,12 @@ export function Header() {
               <span className="sr-only">Search</span>
             </Button>
           </Link>
-          <Link href="/signin">
+          <Link href="/sign-in">
             <Button variant="outline" size="sm" className="hidden md:flex">
               Sign In
             </Button>
           </Link>
-          <Link href="/register">
+          <Link href="/sign-up">
             <Button size="sm" className="hidden md:flex">
               Register
             </Button>
@@ -81,12 +78,12 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="right">
               <div className="flex flex-col gap-4 py-4">
-                <Link href="/signin">
+                <Link href="/sign-in">
                   <Button variant="outline" className="w-full">
                     Sign In
                   </Button>
                 </Link>
-                <Link href="/register">
+                <Link href="/sign-up">
                   <Button className="w-full">Register</Button>
                 </Link>
               </div>

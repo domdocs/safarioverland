@@ -3,7 +3,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Download, ChevronRight, DollarSign, Luggage, Calendar, Users, Compass } from "lucide-react"
+import { Download, ChevronRight, DollarSign, Luggage, Calendar, Users, Compass, ClipboardCheck } from "lucide-react"
 
 export default function PlanningGuidesPage() {
   return (
@@ -68,7 +68,7 @@ export default function PlanningGuidesPage() {
       {/* Planning Categories */}
       <section className="mb-16">
         <Tabs defaultValue="destinations">
-          <TabsList className="grid grid-cols-2 md:grid-cols-5 mb-8">
+          <TabsList className="grid grid-cols-2 md:grid-cols-6 mb-8">
             <TabsTrigger value="destinations" className="flex items-center gap-2">
               <Compass className="h-4 w-4" /> Destinations
             </TabsTrigger>
@@ -83,6 +83,9 @@ export default function PlanningGuidesPage() {
             </TabsTrigger>
             <TabsTrigger value="travelers" className="flex items-center gap-2">
               <Users className="h-4 w-4" /> Travelers
+            </TabsTrigger>
+            <TabsTrigger value="preparation" className="flex items-center gap-2">
+              <ClipboardCheck className="h-4 w-4" /> Preparation
             </TabsTrigger>
           </TabsList>
 
@@ -273,6 +276,47 @@ export default function PlanningGuidesPage() {
                   excerpt:
                     "Information on safari options for travelers with mobility challenges or other accessibility needs.",
                   link: "/resources/planning-guides/accessible-safaris",
+                },
+              ].map((guide) => (
+                <Card key={guide.title} className="overflow-hidden">
+                  <div className="relative h-48">
+                    <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
+                    <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
+                    <Link href={guide.link} className="text-primary font-medium hover:underline flex items-center">
+                      Read More <ChevronRight className="h-4 w-4 ml-1" />
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="preparation">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                {
+                  title: "Before You Go",
+                  image: "/images/planning-guides/preparation/before-you-go.jpg",
+                  excerpt:
+                    "A pre-departure checklist for African safari travelers — passports, visas, vaccinations, insurance, money, communications and final-week logistics.",
+                  link: "/resources/planning-guides/before-you-go",
+                },
+                {
+                  title: "What to Pack — Quick Reference",
+                  image: "/images/planning-guides/preparation/what-to-pack.jpg",
+                  excerpt:
+                    "The condensed packing reference: must-haves, easy-to-forget items, and what you really don't need to bring.",
+                  link: "/resources/planning-guides/what-to-pack",
+                },
+                {
+                  title: "Hidden Costs of Safari Travel",
+                  image: "/images/planning-guides/budgeting/hidden-costs.jpg",
+                  excerpt:
+                    "Be prepared for all expenses with our guide to the often overlooked costs associated with safari travel.",
+                  link: "/resources/planning-guides/hidden-costs",
                 },
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">

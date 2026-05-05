@@ -12,18 +12,36 @@ export function Footer() {
               Connecting travelers with safari service providers across Africa since 2018.
             </p>
             <div className="flex space-x-4">
-              <Link href="/social/facebook" className="text-white hover:text-primary">
+              <a
+                href="#"
+                aria-label="Facebook"
+                className="text-white hover:text-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Facebook className="h-5 w-5" />
                 <span className="sr-only">Facebook</span>
-              </Link>
-              <Link href="/social/twitter" className="text-white hover:text-primary">
+              </a>
+              <a
+                href="#"
+                aria-label="Twitter"
+                className="text-white hover:text-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Twitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
-              </Link>
-              <Link href="/social/instagram" className="text-white hover:text-primary">
+              </a>
+              <a
+                href="#"
+                aria-label="Instagram"
+                className="text-white hover:text-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Instagram className="h-5 w-5" />
                 <span className="sr-only">Instagram</span>
-              </Link>
+              </a>
             </div>
           </div>
           <div>
@@ -102,11 +120,6 @@ export function Footer() {
               <li>
                 <Link href="/resources/seasonal-guides" className="hover:text-primary">
                   Seasonal Guides
-                </Link>
-              </li>
-              <li>
-                <Link href="/community" className="hover:text-primary">
-                  Community Forum
                 </Link>
               </li>
             </ul>
