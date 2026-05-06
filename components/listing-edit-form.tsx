@@ -141,8 +141,8 @@ export function ListingEditForm({ listing }: ListingEditFormProps) {
       })
 
       if (!response.ok) {
-        const error = await response.json()
-        throw new Error(error.message || 'Failed to approve listing')
+        const body = await response.json().catch(() => ({}))
+        throw new Error(body.error || body.message || `Failed to approve listing (HTTP ${response.status})`)
       }
 
       toast({
@@ -427,7 +427,7 @@ export function ListingEditForm({ listing }: ListingEditFormProps) {
             </div>
 
             <div className="flex justify-end gap-4">
-              {listing.status === "pending" && (
+              {listing.status === "pending" && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(listing.id) && (
                 <Button
                   type="button"
                   onClick={handleApprove}

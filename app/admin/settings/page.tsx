@@ -3,11 +3,24 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
+import { Info } from "lucide-react"
 
 export default function AdminSettingsPage() {
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">Admin Settings</h1>
+
+      <div className="mb-6 flex items-start gap-3 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm">
+        <Info className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
+        <div>
+          <p className="font-medium text-amber-900">Settings are read-only for now</p>
+          <p className="text-amber-800 mt-1">
+            Persistence isn&apos;t wired up yet — saving these values would also need them to be read by the
+            listings, email and submission flows that consume them. Until that&apos;s implemented, treat this page as
+            a preview of the planned settings surface. The values shown are static defaults from code.
+          </p>
+        </div>
+      </div>
 
       <div className="bg-white rounded-lg shadow p-6 mb-6">
         <h2 className="text-xl font-medium mb-4">General Settings</h2>
@@ -84,10 +97,12 @@ export default function AdminSettingsPage() {
       </div>
 
       <div className="mt-6 flex justify-end">
-        <Button variant="outline" className="mr-2">
+        <Button variant="outline" className="mr-2" disabled>
           Cancel
         </Button>
-        <Button>Save Settings</Button>
+        <Button disabled title="Settings persistence not yet implemented">
+          Save Settings
+        </Button>
       </div>
     </div>
   )

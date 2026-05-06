@@ -327,8 +327,10 @@ export async function getListings({
         return mockData
       }
 
-      if (!data || data.length === 0) {
-        console.log("No data returned from Supabase, using mock data")
+      // Empty is a valid result — don't fall back to mock data here, otherwise
+      // mock listings (numeric IDs) would surface in production admin lists
+      // and break downstream operations like approve/edit that expect UUIDs.
+      if (!data) {
         return mockData
       }
 
@@ -558,36 +560,27 @@ function isValidUUID(id: string): boolean {
 // Get a single listing by ID
 export async function getListingById(id: string): Promise<DirectoryListing | null> {
   try {
-    // First check mock data for simple numeric IDs
+    const supabase = getSupabaseServerClient()
+
+    // If Supabase is up and the ID is a valid UUID, the database is the source of truth.
+    if (supabase && isValidUUID(id)) {
+      const { data, error } = await supabase.from("directory_listings").select("*").eq("id", id).single()
+      if (!error && data) return data as DirectoryListing
+      if (error && error.code !== "PGRST116") {
+        // PGRST116 = no rows. Anything else is a real error worth logging.
+        console.error("Error fetching listing by ID from Supabase:", error)
+      }
+    }
+
+    // Fall back to mock data only if Supabase was unreachable or the ID is a mock numeric ID.
     const mockListing =
       mockListings.find((listing) => listing.id === id) || mockPendingListings.find((listing) => listing.id === id)
-
     if (mockListing) {
-      console.log(`Found listing with ID ${id} in mock data`)
+      console.log(`Falling back to mock listing for ID ${id}`)
       return mockListing
     }
 
-    const supabase = getSupabaseServerClient()
-
-    if (!supabase) {
-      console.warn("Supabase client not available, using mock data for single listing")
-      return null
-    }
-
-    // Only query Supabase if the ID looks like a valid UUID
-    if (!isValidUUID(id)) {
-      console.warn(`ID ${id} is not a valid UUID, skipping Supabase query`)
-      return null
-    }
-
-    const { data, error } = await supabase.from("directory_listings").select("*").eq("id", id).single()
-
-    if (error) {
-      console.error("Error fetching listing by ID from Supabase:", error)
-      return null
-    }
-
-    return data as DirectoryListing
+    return null
   } catch (error) {
     console.error("Error in getListingById:", error)
     return null
