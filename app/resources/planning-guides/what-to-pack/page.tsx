@@ -13,6 +13,8 @@ export default function WhatToPackPage() {
     <GuidePage
       backHref="/resources/planning-guides"
       backLabel="Back to Planning Guides"
+      heroImage="/images/planning-guides/packing/packing-list.jpg"
+      heroAlt="Safari packing list essentials"
       title="What to Pack for Safari"
       subtitle="A no-fluff reference: what you actually need, what you'll forget, and what you can leave at home."
       intro={

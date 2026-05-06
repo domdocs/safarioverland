@@ -14,6 +14,8 @@ export default function EducationAwarenessPage() {
     <GuidePage
       backHref="/resources/conservation"
       backLabel="Back to Conservation"
+      heroImage="/images/conservation/community/conservation-education.jpg"
+      heroAlt="Conservation education program in Africa"
       title="Education and Awareness"
       subtitle="The longest-lever investment in conservation is the next generation's understanding of it."
       intro={

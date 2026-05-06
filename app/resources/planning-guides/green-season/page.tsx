@@ -13,6 +13,8 @@ export default function GreenSeasonPage() {
     <GuidePage
       backHref="/resources/planning-guides"
       backLabel="Back to Planning Guides"
+      heroImage="/images/planning-guides/timing/green-season.jpg"
+      heroAlt="Lush African landscape during green season"
       title="Green Season Safari Benefits"
       subtitle="The off-peak case: lower prices, fewer vehicles, and a bush that looks nothing like the postcards."
       intro={

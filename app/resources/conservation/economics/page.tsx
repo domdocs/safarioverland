@@ -14,6 +14,8 @@ export default function EconomicsPage() {
     <GuidePage
       backHref="/resources/conservation"
       backLabel="Back to Conservation"
+      heroImage="/images/conservation/economic/economics-of-conservation.jpg"
+      heroAlt="The economics of African wildlife conservation"
       title="The Economics of Conservation"
       subtitle="Wildlife conservation is, before everything else, a financial problem."
       intro={

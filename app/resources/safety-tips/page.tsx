@@ -3,7 +3,30 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { AlertTriangle, ShieldCheck, Stethoscope, Bug, Sun, ChevronRight } from "lucide-react"
+import {
+  AlertTriangle,
+  ShieldCheck,
+  Stethoscope,
+  Bug,
+  Sun,
+  ChevronRight,
+  Binoculars,
+  PawPrint,
+  CarFront,
+  Syringe,
+  HeartPulse,
+  GlassWater,
+  Tent,
+  Shield,
+  Radio,
+  Pill,
+  SprayCan,
+  Bandage,
+  ThermometerSun,
+  Umbrella,
+  CloudLightning,
+} from "lucide-react"
+import type { LucideIcon } from "lucide-react"
 import { DownloadButton } from "@/components/download-button"
 import { RESOURCES } from "@/lib/downloads/resources"
 
@@ -60,7 +83,13 @@ export default function SafetyTipsPage() {
               </div>
             </div>
             <div className="relative h-64 md:h-auto">
-              <Image src="/placeholder.svg?height=600&width=800" alt="Safari Safety" fill className="object-cover" />
+              <Image
+                src="/images/safety/safety-hero.jpg"
+                alt="A safari guide briefing visitors at sunset, with giraffe and zebra at a safe distance"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+              />
             </div>
           </div>
         </div>
@@ -89,32 +118,32 @@ export default function SafetyTipsPage() {
 
           <TabsContent value="wildlife">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
+              {([
                 {
                   title: "Wildlife Viewing Safety",
-                  image: "/placeholder.svg?height=300&width=500",
+                  icon: Binoculars,
                   excerpt:
                     "Essential guidelines for safe wildlife viewing, including proper behavior around different animal species.",
                   link: "/resources/safety-tips/wildlife-viewing",
                 },
                 {
                   title: "Understanding Animal Behavior",
-                  image: "/placeholder.svg?height=300&width=500",
+                  icon: PawPrint,
                   excerpt:
                     "Learn to recognize animal warning signs and behaviors to ensure safe and respectful wildlife encounters.",
                   link: "/resources/safety-tips/animal-behavior",
                 },
                 {
                   title: "Vehicle Safety on Game Drives",
-                  image: "/placeholder.svg?height=300&width=500",
+                  icon: CarFront,
                   excerpt:
                     "Important safety protocols for game drives, including proper positioning and behavior in safari vehicles.",
                   link: "/resources/safety-tips/vehicle-safety",
                 },
-              ].map((guide) => (
+              ] as { title: string; icon: LucideIcon; excerpt: string; link: string }[]).map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
+                  <div className="h-48 bg-primary/10 flex items-center justify-center">
+                    <guide.icon className="h-16 w-16 text-primary" strokeWidth={1.5} aria-hidden="true" />
                   </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
@@ -130,31 +159,31 @@ export default function SafetyTipsPage() {
 
           <TabsContent value="health">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
+              {([
                 {
                   title: "Vaccinations & Medications",
-                  image: "/placeholder.svg?height=300&width=500",
+                  icon: Syringe,
                   excerpt:
                     "Essential information about required and recommended vaccinations and medications for safari travel.",
                   link: "/resources/safety-tips/vaccinations",
                 },
                 {
                   title: "First Aid on Safari",
-                  image: "/placeholder.svg?height=300&width=500",
+                  icon: HeartPulse,
                   excerpt:
                     "What to include in your safari first aid kit and basic first aid knowledge for wilderness travel.",
                   link: "/resources/safety-tips/first-aid",
                 },
                 {
                   title: "Water & Food Safety",
-                  image: "/placeholder.svg?height=300&width=500",
+                  icon: GlassWater,
                   excerpt: "Guidelines for safe drinking water and food consumption during your safari adventure.",
                   link: "/resources/safety-tips/water-food-safety",
                 },
-              ].map((guide) => (
+              ] as { title: string; icon: LucideIcon; excerpt: string; link: string }[]).map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
+                  <div className="h-48 bg-primary/10 flex items-center justify-center">
+                    <guide.icon className="h-16 w-16 text-primary" strokeWidth={1.5} aria-hidden="true" />
                   </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
@@ -170,31 +199,31 @@ export default function SafetyTipsPage() {
 
           <TabsContent value="general">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
+              {([
                 {
                   title: "Camp & Lodge Safety",
-                  image: "/placeholder.svg?height=300&width=500",
+                  icon: Tent,
                   excerpt: "Safety guidelines for staying in safari camps and lodges, including nighttime protocols.",
                   link: "/resources/safety-tips/camp-safety",
                 },
                 {
                   title: "Travel Insurance for Safaris",
-                  image: "/placeholder.svg?height=300&width=500",
+                  icon: Shield,
                   excerpt:
                     "Understanding the importance of travel insurance and what to look for in a safari-specific policy.",
                   link: "/resources/safety-tips/travel-insurance",
                 },
                 {
                   title: "Communication & Emergency Plans",
-                  image: "/placeholder.svg?height=300&width=500",
+                  icon: Radio,
                   excerpt:
                     "How to stay connected and what emergency plans to have in place for remote safari locations.",
                   link: "/resources/safety-tips/emergency-plans",
                 },
-              ].map((guide) => (
+              ] as { title: string; icon: LucideIcon; excerpt: string; link: string }[]).map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
+                  <div className="h-48 bg-primary/10 flex items-center justify-center">
+                    <guide.icon className="h-16 w-16 text-primary" strokeWidth={1.5} aria-hidden="true" />
                   </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
@@ -210,32 +239,32 @@ export default function SafetyTipsPage() {
 
           <TabsContent value="insects">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
+              {([
                 {
                   title: "Malaria Prevention",
-                  image: "/placeholder.svg?height=300&width=500",
+                  icon: Pill,
                   excerpt:
                     "Comprehensive guide to malaria prevention, including medication options and practical prevention tips.",
                   link: "/resources/safety-tips/malaria-prevention",
                 },
                 {
                   title: "Insect Protection Guide",
-                  image: "/placeholder.svg?height=300&width=500",
+                  icon: SprayCan,
                   excerpt:
                     "Effective strategies for protecting yourself from mosquitoes, tsetse flies, and other insects on safari.",
                   link: "/resources/safety-tips/insect-protection",
                 },
                 {
                   title: "Dealing with Insect Bites & Stings",
-                  image: "/placeholder.svg?height=300&width=500",
+                  icon: Bandage,
                   excerpt:
                     "What to do if you experience insect bites or stings, including identification and treatment options.",
                   link: "/resources/safety-tips/insect-bites",
                 },
-              ].map((guide) => (
+              ] as { title: string; icon: LucideIcon; excerpt: string; link: string }[]).map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
+                  <div className="h-48 bg-primary/10 flex items-center justify-center">
+                    <guide.icon className="h-16 w-16 text-primary" strokeWidth={1.5} aria-hidden="true" />
                   </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
@@ -251,32 +280,32 @@ export default function SafetyTipsPage() {
 
           <TabsContent value="climate">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
+              {([
                 {
                   title: "Heat Safety on Safari",
-                  image: "/placeholder.svg?height=300&width=500",
+                  icon: ThermometerSun,
                   excerpt:
                     "How to stay safe in hot safari climates, including preventing heat exhaustion and dehydration.",
                   link: "/resources/safety-tips/heat-safety",
                 },
                 {
                   title: "Sun Protection Guide",
-                  image: "/placeholder.svg?height=300&width=500",
+                  icon: Umbrella,
                   excerpt:
                     "Comprehensive sun protection strategies for the intense African sun, including clothing and sunscreen recommendations.",
                   link: "/resources/safety-tips/sun-protection",
                 },
                 {
                   title: "Weather Hazards & Precautions",
-                  image: "/placeholder.svg?height=300&width=500",
+                  icon: CloudLightning,
                   excerpt:
                     "Understanding potential weather hazards in different safari regions and how to prepare for them.",
                   link: "/resources/safety-tips/weather-hazards",
                 },
-              ].map((guide) => (
+              ] as { title: string; icon: LucideIcon; excerpt: string; link: string }[]).map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
+                  <div className="h-48 bg-primary/10 flex items-center justify-center">
+                    <guide.icon className="h-16 w-16 text-primary" strokeWidth={1.5} aria-hidden="true" />
                   </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>

@@ -1,19 +1,25 @@
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { MapPin } from "lucide-react"
+import { MapPin, Compass } from "lucide-react"
 
 interface Attraction {
   name: string
   location: string
   description: string
-  image: string
+  image: string | null
   highlights: string[]
   bestTime: string
 }
 
 interface DestinationAttractionsProps {
   attractions: Attraction[]
+}
+
+function isMissingImage(src: string | null | undefined): boolean {
+  if (!src) return true
+  if (src.includes("placeholder.svg")) return true
+  return false
 }
 
 export function DestinationAttractions({ attractions }: DestinationAttractionsProps) {
@@ -24,7 +30,13 @@ export function DestinationAttractions({ attractions }: DestinationAttractionsPr
         {attractions.map((attraction, index) => (
           <Card key={index} className="overflow-hidden h-full hover:shadow-lg transition-shadow">
             <div className="relative h-48">
-              <Image src={attraction.image || "/placeholder.svg"} alt={attraction.name} fill className="object-cover" />
+              {isMissingImage(attraction.image) ? (
+                <div className="h-full w-full bg-primary/10 flex items-center justify-center">
+                  <Compass className="h-12 w-12 text-primary/60" strokeWidth={1.5} aria-hidden="true" />
+                </div>
+              ) : (
+                <Image src={attraction.image as string} alt={attraction.name} fill className="object-cover" />
+              )}
             </div>
             <CardContent className="p-4">
               <div className="flex justify-between items-start mb-2">

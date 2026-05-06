@@ -14,6 +14,8 @@ export default function EthicalOperatorsPage() {
     <GuidePage
       backHref="/resources/conservation"
       backLabel="Back to Conservation"
+      heroImage="/images/conservation/traveler/ethical-operators.jpg"
+      heroAlt="Ethical safari operators leading a tour"
       title="Choosing Ethical Operators"
       subtitle="Every safari brochure now claims to be 'sustainable'. Here's how to tell the real ones from the rest."
       intro={

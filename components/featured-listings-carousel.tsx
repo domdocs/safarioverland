@@ -1,13 +1,13 @@
 "use client"
 
 import { useState, useRef } from "react"
-import Image from "next/image"
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react"
 import type { DirectoryListing } from "@/lib/listings"
+import { ListingImage } from "@/components/listing-image"
 
 interface FeaturedListingsCarouselProps {
   listings: DirectoryListing[]
@@ -81,11 +81,10 @@ export function FeaturedListingsCarousel({
                 className="min-w-[calc(33.333%-1rem)] flex-shrink-0 overflow-hidden hover:shadow-md transition-shadow duration-200"
               >
                 <Link href={`/listings/${listing.id}`} className="relative block h-48">
-                  <Image
-                    src={listing.image_url || "/placeholder.svg?height=300&width=400"}
+                  <ListingImage
+                    src={listing.image_url}
                     alt={listing.listing_name}
-                    fill
-                    className="object-cover"
+                    category={listing.category}
                   />
                   <Badge variant="secondary" className="absolute top-2 right-2 bg-primary text-white">
                     Featured

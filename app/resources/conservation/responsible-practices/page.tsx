@@ -14,6 +14,8 @@ export default function ResponsiblePracticesPage() {
     <GuidePage
       backHref="/resources/conservation"
       backLabel="Back to Conservation"
+      heroImage="/images/conservation/traveler/responsible-safari.jpg"
+      heroAlt="Responsible safari practices in the field"
       title="Responsible Practices"
       subtitle="The day-to-day behaviour that adds up to either an ethical safari industry or one that doesn't deserve to exist."
       intro={

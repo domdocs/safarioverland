@@ -13,6 +13,8 @@ export default function BestTimesPage() {
     <GuidePage
       backHref="/resources/planning-guides"
       backLabel="Back to Planning Guides"
+      heroImage="/images/planning-guides/timing/best-time-to-visit.jpg"
+      heroAlt="Best time to visit African safari destinations"
       title="Best Time to Visit Each Safari Destination"
       subtitle="Timing is the single biggest decision in safari planning. This guide gets you to the right month."
       intro={

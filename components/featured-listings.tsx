@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { getFeaturedListings } from "@/lib/listings"
 import type { DirectoryListing } from "@/lib/listings"
+import { ListingImage } from "@/components/listing-image"
 
 // This is a server component that fetches the data
 export async function FeaturedListings() {
@@ -26,10 +27,11 @@ export async function FeaturedListings() {
           <Link href={`/listings/${listing.id}`} key={listing.id} className="group">
             <Card className="overflow-hidden transition-all duration-200 hover:shadow-md">
               <div className="relative h-48 overflow-hidden">
-                <img
-                  src={listing.image_url || "/placeholder.svg?height=300&width=400"}
+                <ListingImage
+                  src={listing.image_url}
                   alt={listing.listing_name}
-                  className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
+                  category={listing.category}
+                  className="transition-transform duration-200 group-hover:scale-105"
                 />
                 {listing.featured && (
                   <Badge className="absolute right-2 top-2 bg-orange-500 hover:bg-orange-600">Featured</Badge>

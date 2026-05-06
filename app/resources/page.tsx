@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { BookOpen, Shield, Leaf, Calendar, ChevronRight } from "lucide-react"
 import { DownloadButton } from "@/components/download-button"
 import { RESOURCES } from "@/lib/downloads/resources"
+import { NewsletterForm } from "@/components/newsletter-form"
 
 export default function ResourcesPage() {
   return (
@@ -135,9 +136,10 @@ export default function ResourcesPage() {
               </div>
               <div className="relative h-64 md:h-auto">
                 <Image
-                  src="/placeholder.svg?height=600&width=800"
-                  alt="Safari Checklist"
+                  src="/images/planning-guides/packing/packing-list.jpg"
+                  alt="Safari packing list and gear laid out before a trip"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
                 />
               </div>
@@ -153,7 +155,7 @@ export default function ResourcesPage() {
               {
                 title: "What to Pack for Your Safari Adventure",
                 category: "Planning Guides",
-                image: "/placeholder.svg?height=300&width=500",
+                image: "/images/planning-guides/packing/packing-list.jpg",
                 excerpt:
                   "A comprehensive guide to packing for different types of safaris, climates, and destinations across Africa.",
                 link: "/resources/planning-guides/what-to-pack",
@@ -161,7 +163,7 @@ export default function ResourcesPage() {
               {
                 title: "Understanding Wildlife Behavior on Safari",
                 category: "Safety Tips",
-                image: "/placeholder.svg?height=300&width=500",
+                image: "/images/destinations/wildlife/lion.jpg",
                 excerpt:
                   "Learn about animal behavior patterns to enhance your wildlife viewing experience and ensure safety during game drives.",
                 link: "/resources/safety-tips/wildlife-behavior",
@@ -169,7 +171,7 @@ export default function ResourcesPage() {
               {
                 title: "The Great Migration: Timing Your Visit",
                 category: "Seasonal Guides",
-                image: "/placeholder.svg?height=300&width=500",
+                image: "/images/seasonal-guides/kenya-migration.jpg",
                 excerpt:
                   "A month-by-month guide to witnessing the Great Migration across the Serengeti and Masai Mara ecosystems.",
                 link: "/resources/seasonal-guides/great-migration",
@@ -227,9 +229,11 @@ export default function ResourcesPage() {
                 ))}
               </div>
               <div className="mt-8 text-center">
-                <Button variant="secondary" className="bg-white text-secondary hover:bg-white/90">
-                  View All FAQs
-                </Button>
+                <Link href="/resources/faqs">
+                  <Button variant="secondary" className="bg-white text-secondary hover:bg-white/90">
+                    View All FAQs
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -243,14 +247,7 @@ export default function ResourcesPage() {
               Subscribe to our newsletter for the latest safari tips, seasonal updates, and conservation news delivered
               directly to your inbox.
             </p>
-            <div className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="px-4 py-2 rounded-md border border-input bg-background"
-              />
-              <Button>Subscribe</Button>
-            </div>
+            <NewsletterForm />
           </div>
         </section>
       </div>

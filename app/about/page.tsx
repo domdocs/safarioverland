@@ -11,9 +11,10 @@ export default function AboutPage() {
       <section className="relative">
         <div className="relative h-[400px] w-full">
           <Image
-            src="/placeholder.svg?height=800&width=1600"
-            alt="Victoria Falls"
+            src="/images/about/about-hero.jpg"
+            alt="Sunrise over Victoria Falls — Safari Overland's home"
             fill
+            sizes="100vw"
             className="object-cover"
             priority
           />
@@ -102,9 +103,10 @@ export default function AboutPage() {
             </div>
             <div className="relative h-[300px] rounded-lg overflow-hidden">
               <Image
-                src="/placeholder.svg?height=600&width=800"
-                alt="Victoria Falls Office"
+                src="/images/about/about-hero.jpg"
+                alt="Victoria Falls — known locally as Mosi-oa-Tunya, The Smoke That Thunders"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>

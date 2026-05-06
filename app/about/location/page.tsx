@@ -51,7 +51,13 @@ export default function LocationPage() {
             </p>
           </div>
           <div className="relative h-[400px] rounded-lg overflow-hidden">
-            <Image src="/placeholder.svg?height=800&width=600" alt="Victoria Falls" fill className="object-cover" />
+            <Image
+              src="/images/about/about-hero.jpg"
+              alt="Sunrise over Victoria Falls — Safari Overland's home base"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+            />
           </div>
         </div>
       </section>
@@ -149,50 +155,59 @@ export default function LocationPage() {
         </div>
       </section>
 
-      {/* Nearby Safari Destinations */}
+      {/* Where We Operate */}
       <section>
-        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">Nearby Safari Destinations</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-2 text-center">Where We Operate</h2>
+        <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
+          From our base in Victoria Falls we cover four of southern Africa's defining safari countries.
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             {
-              name: "Hwange National Park",
               country: "Zimbabwe",
-              distance: "100 km from Victoria Falls",
-              image: "/placeholder.svg?height=300&width=400",
+              tagline: "Victoria Falls · Hwange · Mana Pools",
+              alt: "Elephants and rainbow at Victoria Falls, Zimbabwe",
+              image: "/images/about/zimbabwe.jpg",
             },
             {
-              name: "Chobe National Park",
-              country: "Botswana",
-              distance: "80 km from Victoria Falls",
-              image: "/placeholder.svg?height=300&width=400",
-            },
-            {
-              name: "Mosi-oa-Tunya National Park",
               country: "Zambia",
-              distance: "Adjacent to Victoria Falls",
-              image: "/placeholder.svg?height=300&width=400",
+              tagline: "Mosi-oa-Tunya · South Luangwa · Lower Zambezi",
+              alt: "Sunset over Victoria Falls from the Zambian side",
+              image: "/images/about/zambia.jpg",
             },
             {
-              name: "Zambezi National Park",
-              country: "Zimbabwe",
-              distance: "5 km from Victoria Falls",
-              image: "/placeholder.svg?height=300&width=400",
+              country: "Botswana",
+              tagline: "Okavango Delta · Chobe · Kalahari",
+              alt: "Elephant herd crossing the Chobe River wetlands at sunset",
+              image: "/images/about/botswana.jpg",
+            },
+            {
+              country: "Namibia",
+              tagline: "Sossusvlei · Etosha · Skeleton Coast",
+              alt: "Sossusvlei dunes and dead trees in Deadvlei, Namibia",
+              image: "/images/about/namibia.jpg",
             },
           ].map((destination) => (
-            <Card key={destination.name} className="overflow-hidden">
-              <div className="relative h-48">
+            <Card key={destination.country} className="overflow-hidden group">
+              <div className="relative h-64">
                 <Image
-                  src={destination.image || "/placeholder.svg"}
-                  alt={destination.name}
+                  src={destination.image}
+                  alt={destination.alt}
                   fill
-                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+                {/* Bottom-up gradient scrim for legibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-4 text-white">
+                  <h3 className="text-2xl font-bold tracking-tight drop-shadow-md">
+                    {destination.country}
+                  </h3>
+                  <p className="text-sm text-white/90 drop-shadow">
+                    {destination.tagline}
+                  </p>
+                </div>
               </div>
-              <CardContent className="p-4">
-                <h3 className="font-bold mb-1">{destination.name}</h3>
-                <p className="text-sm text-muted-foreground mb-1">{destination.country}</p>
-                <p className="text-xs text-muted-foreground">{destination.distance}</p>
-              </CardContent>
             </Card>
           ))}
         </div>

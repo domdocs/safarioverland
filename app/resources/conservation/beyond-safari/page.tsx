@@ -13,6 +13,8 @@ export default function BeyondSafariPage() {
     <GuidePage
       backHref="/resources/conservation"
       backLabel="Back to Conservation"
+      heroImage="/images/conservation/traveler/beyond-your-safari.jpg"
+      heroAlt="Traveler engaging with conservation work beyond a safari"
       title="Beyond Safari"
       subtitle="When game drives aren't enough — travel that actively contributes to conservation work."
       intro={

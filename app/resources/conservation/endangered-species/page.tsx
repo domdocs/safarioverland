@@ -14,6 +14,8 @@ export default function EndangeredSpeciesPage() {
     <GuidePage
       backHref="/resources/conservation"
       backLabel="Back to Conservation"
+      heroImage="/images/conservation/wildlife/endangered-species.jpg"
+      heroAlt="Endangered African species in their habitat"
       title="Endangered Species"
       subtitle="Where Africa's species stand — and what's actually changing the curve."
       intro={

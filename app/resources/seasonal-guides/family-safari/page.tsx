@@ -26,7 +26,7 @@ const FamilySafariSeasonalGuidePage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative h-64 md:h-auto">
             <Image 
-              src="/images/seasonal-guides/family-safari-timing.jpg" 
+              src="/images/planning-guides/travelers/family-safari.jpg" 
               alt="Family enjoying wildlife viewing on safari" 
               fill 
               className="object-cover" 

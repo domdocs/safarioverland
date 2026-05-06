@@ -13,6 +13,8 @@ export default function SoloTravelPage() {
     <GuidePage
       backHref="/resources/planning-guides"
       backLabel="Back to Planning Guides"
+      heroImage="/images/planning-guides/travelers/solo-traveler.jpg"
+      heroAlt="Solo traveler on an African safari"
       title="Solo Traveler Safari Tips"
       subtitle="Solo safari is more popular than the brochures suggest — and arguably the best way to get under the skin of the bush."
       intro={

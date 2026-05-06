@@ -36,7 +36,7 @@ const eastAfricaAttractions = [
     location: "Kenya",
     description:
       "Renowned worldwide for the Great Migration and exceptional big cat sightings, the Masai Mara offers classic safari landscapes and unmatched wildlife encounters. This iconic reserve shares an ecosystem with Tanzania's Serengeti and provides some of Africa's most spectacular game viewing opportunities year-round. The local Maasai communities add a rich cultural dimension to any visit.",
-    image: "/images/destinations/attractions/masai-mara.jpg",
+    image: null as string | null,
     highlights: ["Great Migration", "Big Cat Sightings", "Hot Air Balloon Safaris", "Maasai Cultural Visits"],
     bestTime: "July to October (Migration), January to February (Calving)",
   },
@@ -44,7 +44,7 @@ const eastAfricaAttractions = [
     name: "Serengeti National Park",
     location: "Tanzania",
     description: "Tanzania's crown jewel, the Serengeti spans 14,750 square kilometers of pristine wilderness and hosts the largest terrestrial mammal migration on Earth. The endless plains (which give the park its name in Maasai language) support over 2 million wildebeest, zebra, and gazelle, along with the predators that follow them. Different regions offer unique experiences, from the kopjes of the central Seronera to the remote northern reaches.",
-    image: "/images/destinations/attractions/serengeti.jpg",
+    image: null,
     highlights: ["Great Migration", "Big Five Encounters", "Balloon Safaris", "Luxury Tented Camps"],
     bestTime: "June to September (Dry Season), January to February (Calving)",
   },
@@ -53,7 +53,7 @@ const eastAfricaAttractions = [
     location: "Tanzania",
     description:
       "This UNESCO World Heritage site is the world's largest intact volcanic caldera, forming a natural enclosure for approximately 25,000 animals. The 600-meter deep crater spans 260 square kilometers and contains a remarkable concentration of wildlife, including one of Africa's highest densities of lions and endangered black rhinos. The crater's unique ecology creates a microcosm of East African habitats including plains, forest, and lake ecosystems.",
-    image: "/images/destinations/attractions/ngorongoro.jpg",
+    image: null,
     highlights: ["Big Five in a Single Day", "Panoramic Crater Views", "Ancient Volcanic Ecosystem", "Maasai Cultural Heritage"],
     bestTime: "June to September (Dry Season), December to February (Green Season)",
   },
@@ -62,7 +62,7 @@ const eastAfricaAttractions = [
     location: "Uganda",
     description:
       "Home to nearly half of the world's remaining mountain gorillas, this ancient rainforest is one of Africa's most biologically diverse areas. The challenging terrain that gives the forest its name harbors over 120 mammal species, 350 bird species, and 220 butterfly species. Gorilla trekking here offers a profound wildlife encounter that ranks among the most moving experiences in nature travel.",
-    image: "/images/destinations/attractions/bwindi.jpg",
+    image: null,
     highlights: ["Mountain Gorilla Trekking", "Exceptional Birdwatching", "Batwa Cultural Experiences", "Rainforest Biodiversity"],
     bestTime: "June to August, December to February (Drier Periods)",
   },
@@ -71,7 +71,7 @@ const eastAfricaAttractions = [
     location: "Kenya",
     description:
       "Offering the iconic postcard view of elephants against the backdrop of Mount Kilimanjaro, Amboseli delivers one of Africa's most memorable visual experiences. The park's mix of dried lake bed, wetlands, and savannah supports large elephant herds with some of the largest tuskers remaining in Africa. The clear mountain views and excellent wildlife density make it a photographer's paradise.",
-    image: "/images/destinations/attractions/amboseli.jpg",
+    image: null,
     highlights: ["Elephant Herds", "Mount Kilimanjaro Views", "Wetland Ecosystems", "Exceptional Photography"],
     bestTime: "June to October (Dry Season), January to February (Green Season)",
   },
@@ -80,7 +80,7 @@ const eastAfricaAttractions = [
     location: "Rwanda",
     description:
       "Part of the greater Virunga Conservation Area spanning Rwanda, Uganda, and Congo, this park protects the Rwandan portion of the Virunga Mountains. Beyond its famous mountain gorillas, the park offers treks to see golden monkeys, climbs of the volcanic peaks, and the legacy of Dian Fossey's groundbreaking conservation work. Rwanda's remarkable conservation success story is evident in the careful management and community integration of this precious ecosystem.",
-    image: "/images/destinations/attractions/volcanoes.jpg",
+    image: null,
     highlights: ["Mountain Gorilla Encounters", "Golden Monkey Tracking", "Volcano Hikes", "Dian Fossey's Karisoke Research Center"],
     bestTime: "June to September, December to February (Drier Months)",
   },
@@ -229,7 +229,7 @@ const eastAfricaListings = [
     location: "Masai Mara, Kenya",
     rating: 4.9,
     reviews: 128,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$350/day",
     premium: true,
     description:
@@ -243,7 +243,7 @@ const eastAfricaListings = [
     location: "Serengeti, Tanzania",
     rating: 4.8,
     reviews: 95,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$280/night",
     premium: true,
     description: "Luxury tented camp strategically located along the Great Migration route in the Serengeti.",
@@ -256,7 +256,7 @@ const eastAfricaListings = [
     location: "Bwindi, Uganda",
     rating: 4.9,
     reviews: 76,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$700/person",
     premium: true,
     description: "Once-in-a-lifetime gorilla trekking experience in Uganda's Bwindi Impenetrable Forest.",
@@ -269,7 +269,7 @@ const eastAfricaListings = [
     location: "Ngorongoro, Tanzania",
     rating: 4.7,
     reviews: 112,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$450/night",
     premium: true,
     description:
@@ -283,7 +283,7 @@ const eastAfricaListings = [
     location: "Nairobi, Kenya",
     rating: 4.6,
     reviews: 83,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$120/day",
     description: "Well-maintained 4x4 vehicles for self-drive safaris across Kenya's national parks.",
     features: ["Roof Tent", "GPS", "24/7 Support", "Camping Equipment"],
@@ -295,7 +295,7 @@ const eastAfricaListings = [
     location: "Volcanoes National Park, Rwanda",
     rating: 4.8,
     reviews: 64,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$850/person",
     premium: true,
     description: "Comprehensive primate safari including gorilla and golden monkey trekking in Rwanda.",
@@ -370,7 +370,13 @@ export default function EastAfricaPage() {
           {eastAfricaAttractions.map((attraction) => (
             <Card key={attraction.name} className="overflow-hidden h-full hover:shadow-lg transition-all duration-300">
               <div className="relative h-60">
-                <Image src={attraction.image} alt={attraction.name} fill className="object-cover" />
+                {attraction.image ? (
+                  <Image src={attraction.image} alt={attraction.name} fill className="object-cover" />
+                ) : (
+                  <div className="h-full w-full bg-primary/10 flex items-center justify-center">
+                    <Compass className="h-16 w-16 text-primary/60" strokeWidth={1.5} aria-hidden="true" />
+                  </div>
+                )}
                 <div className="absolute top-4 right-4 bg-white/90 text-black text-xs font-medium py-1 px-2 rounded">
                   {attraction.location}
                 </div>

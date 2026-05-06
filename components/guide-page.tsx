@@ -1,5 +1,6 @@
 import type { ReactNode } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowLeft, ChevronRight } from "lucide-react"
 
 export type GuideSection = {
@@ -23,6 +24,8 @@ export type GuidePageProps = {
   ctaBody?: string
   ctaHref?: string
   ctaLabel?: string
+  heroImage?: string
+  heroAlt?: string
 }
 
 export function GuidePage({
@@ -37,6 +40,8 @@ export function GuidePage({
   ctaBody,
   ctaHref,
   ctaLabel,
+  heroImage,
+  heroAlt,
 }: GuidePageProps) {
   return (
     <div className="container mx-auto px-4 py-12 max-w-4xl">
@@ -51,6 +56,19 @@ export function GuidePage({
         <h1 className="text-4xl sm:text-5xl font-bold text-primary mb-3">{title}</h1>
         <p className="text-xl text-muted-foreground">{subtitle}</p>
       </div>
+
+      {heroImage && (
+        <div className="relative aspect-[16/9] w-full mb-10 overflow-hidden rounded-lg shadow-sm">
+          <Image
+            src={heroImage}
+            alt={heroAlt ?? title}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 900px"
+            className="object-cover"
+            priority
+          />
+        </div>
+      )}
 
       <div className="text-lg leading-relaxed mb-10">{intro}</div>
 

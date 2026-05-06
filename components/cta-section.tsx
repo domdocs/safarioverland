@@ -33,8 +33,8 @@ export function CTASection() {
           <div className="aspect-w-5 aspect-h-3 -mt-6 md:aspect-w-2 md:aspect-h-1">
             <img
               className="translate-x-6 translate-y-6 transform rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20"
-              src="/placeholder.svg?height=400&width=600"
-              alt="Safari guide with tourists"
+              src="/images/home/cta.jpg"
+              alt="Safari vehicle of guests watching a pride of lions at sunset"
             />
           </div>
         </div>

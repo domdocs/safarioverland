@@ -26,7 +26,7 @@ const BudgetTravelSeasonalGuidePage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative h-64 md:h-auto">
             <Image 
-              src="/images/seasonal-guides/budget-safari-timing.jpg" 
+              src="/images/planning-guides/budgeting/safari-budgeting.jpg" 
               alt="Budget safari traveler watching wildlife during green season" 
               fill 
               className="object-cover" 

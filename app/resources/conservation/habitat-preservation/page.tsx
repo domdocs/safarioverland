@@ -14,6 +14,8 @@ export default function HabitatPreservationPage() {
     <GuidePage
       backHref="/resources/conservation"
       backLabel="Back to Conservation"
+      heroImage="/images/conservation/wildlife/habitat-preservation.jpg"
+      heroAlt="Preserved African habitat and wildlife"
       title="Habitat Preservation"
       subtitle="Saving species without saving habitat is a holding action, not a strategy."
       intro={

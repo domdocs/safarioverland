@@ -14,6 +14,8 @@ export default function CulturalPreservationPage() {
     <GuidePage
       backHref="/resources/conservation"
       backLabel="Back to Conservation"
+      heroImage="/images/conservation/community/cultural-preservation.jpg"
+      heroAlt="Cultural preservation in an African community"
       title="Cultural Preservation"
       subtitle="Wildlife conservation cannot be separated from the cultures of the people who share the landscape with it."
       intro={

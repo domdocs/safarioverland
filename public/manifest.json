@@ -1,16 +1,27 @@
 {
   "name": "Safari Overland",
   "short_name": "Safari Overland",
-  "description": "Connect with safari service providers across Africa",
+  "description": "African safari operators, lodges and travel guides.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#FF8C00",
+  "theme_color": "#4D6C7F",
   "icons": [
     {
       "src": "/favicon.ico",
       "sizes": "any",
       "type": "image/x-icon"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }

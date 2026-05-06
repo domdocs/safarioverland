@@ -13,6 +13,8 @@ export default function SeasonalPackingPage() {
     <GuidePage
       backHref="/resources/planning-guides"
       backLabel="Back to Planning Guides"
+      heroImage="/images/planning-guides/packing/seasonal-packing.jpg"
+      heroAlt="Seasonal safari packing essentials"
       title="Seasonal Packing Guide"
       subtitle="One safari packing list won't work for every month. Here's how to adjust by season and region."
       intro={

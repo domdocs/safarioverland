@@ -13,6 +13,8 @@ export default function AntiPoachingPage() {
     <GuidePage
       backHref="/resources/conservation"
       backLabel="Back to Conservation"
+      heroImage="/images/conservation/wildlife/anti-poaching.jpg"
+      heroAlt="Anti-poaching ranger team patrolling African bushland"
       title="Anti-Poaching"
       subtitle="The frontline of African wildlife conservation — and the work most visitors never see."
       intro={

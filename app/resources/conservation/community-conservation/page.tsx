@@ -14,6 +14,8 @@ export default function CommunityConservationPage() {
     <GuidePage
       backHref="/resources/conservation"
       backLabel="Back to Conservation"
+      heroImage="/images/conservation/community/community-conservation.jpg"
+      heroAlt="Local community members participating in conservation"
       title="Community Conservation"
       subtitle="The most important shift in African conservation in fifty years has been giving communities the tools to manage their own wildlife."
       intro={

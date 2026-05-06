@@ -26,7 +26,7 @@ const GorillaTrekkingSeasonalGuidePage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative h-64 md:h-auto">
             <Image 
-              src="/images/seasonal-guides/gorilla-trekking-seasonal.jpg" 
+              src="/images/destinations/wildlife/gorilla.jpg" 
               alt="Mountain gorilla in misty forest" 
               fill 
               className="object-cover" 

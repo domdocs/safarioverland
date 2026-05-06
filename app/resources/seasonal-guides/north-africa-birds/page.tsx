@@ -14,6 +14,8 @@ export default function NorthAfricaBirdsPage() {
     <GuidePage
       backHref="/resources/seasonal-guides"
       backLabel="Back to Seasonal Guides"
+      heroImage="/images/seasonal-guides/travel-guide-north-africa-birds.jpg"
+      heroAlt="North African birdlife in flight"
       title="North Africa Birding"
       subtitle="An under-rated birding region — desert specialists, Palearctic migration bottlenecks and Atlas Mountain endemics in a few hours from Europe."
       intro={

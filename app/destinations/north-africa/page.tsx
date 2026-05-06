@@ -36,7 +36,7 @@ const northAfricaAttractions = [
     location: "Morocco, Tunisia, Egypt",
     description:
       "The world's largest hot desert offers an otherworldly landscape of endless sand dunes, rugged mountains, and scattered oases. The Sahara's unique ecosystem supports specialized wildlife adapted to extreme conditions, while its nomadic peoples maintain ancient traditions. Experience camel treks, 4x4 adventures, and unforgettable nights under the stars in traditional desert camps.",
-    image: "/images/destinations/attractions/sahara-desert.jpg",
+    image: null,
     highlights: ["Erg Chebbi Dunes", "Desert Wildlife", "Berber Culture", "Stargazing"],
     bestTime: "October to April (avoiding summer heat)",
   },
@@ -44,7 +44,7 @@ const northAfricaAttractions = [
     name: "Atlas Mountains",
     location: "Morocco",
     description: "This majestic mountain range stretches 2,500km across Morocco, Algeria, and Tunisia, reaching 4,167m at Toubkal Peak. The diverse ecological zones support unique wildlife, including Barbary macaques, eagles, and the elusive Barbary leopard. Traditional Berber villages dot the valleys, offering authentic cultural experiences, while hiking trails range from gentle valley walks to challenging summit ascents.",
-    image: "/images/destinations/attractions/atlas-mountains.jpg",
+    image: null,
     highlights: ["Mount Toubkal", "Berber Villages", "High Altitude Wildlife", "Spectacular Hiking"],
     bestTime: "April to May, September to October (mild temperatures)",
   },
@@ -53,7 +53,7 @@ const northAfricaAttractions = [
     location: "Egypt",
     description:
       "This remote desert oasis near the Libyan border offers a glimpse into traditional desert life with its mud-brick architecture, natural springs, and ancient temples. Once home to the famous Oracle of Amun consulted by Alexander the Great, Siwa remains culturally distinct with its own Berber language and traditions. The surrounding desert supports fascinating wildlife adapted to the harsh conditions.",
-    image: "/images/destinations/attractions/siwa-oasis.jpg",
+    image: null,
     highlights: ["Desert Salt Lakes", "Shali Fortress", "Natural Springs", "Ancient Temple of the Oracle"],
     bestTime: "October to April (comfortable temperatures)",
   },
@@ -62,7 +62,7 @@ const northAfricaAttractions = [
     location: "Tunisia",
     description:
       "This UNESCO World Heritage site and Ramsar wetland provides critical habitat for hundreds of thousands of migratory birds. Centered around Lake Ichkeul, the park's fluctuating freshwater and saltwater ecosystem creates one of North Africa's most important bird sanctuaries. The adjacent mountain and marshlands support diverse wildlife, including water buffalo introduced in the 1700s.",
-    image: "/images/destinations/attractions/ichkeul.jpg",
+    image: null,
     highlights: ["Bird Migration Spectacle", "Lake Ecosystem", "Wetland Wildlife", "Mountain Hikes"],
     bestTime: "November to March (peak bird migration)",
   },
@@ -71,7 +71,7 @@ const northAfricaAttractions = [
     location: "Egypt",
     description:
       "This triangular peninsula bridging Africa and Asia offers extraordinary diversity: world-class coral reefs along the Red Sea coast, rugged mountain interior with biblical significance, and desert landscapes inhabited by Bedouin tribes. Mount Sinai (biblically where Moses received the Ten Commandments) draws pilgrims and hikers for spectacular sunrise views, while the coastal areas provide exceptional snorkeling and diving.",
-    image: "/images/destinations/attractions/sinai.jpg",
+    image: null,
     highlights: ["Mount Sinai", "Red Sea Reefs", "Bedouin Culture", "Saint Catherine's Monastery"],
     bestTime: "September to November, March to May (mild temperatures)",
   },
@@ -80,7 +80,7 @@ const northAfricaAttractions = [
     location: "Morocco",
     description:
       "The world's largest car-free urban area, this UNESCO-listed medieval city transports visitors back in time with its 9,000+ narrow lanes, ancient mosques, markets, and workshops practicing crafts unchanged for centuries. Founded in the 9th century, Fez houses the world's oldest university and remains Morocco's cultural and spiritual center. The surrounding area offers excellent day trips to Middle Atlas forests and lakes.",
-    image: "/images/destinations/attractions/fez-medina.jpg",
+    image: null,
     highlights: ["Medieval Architecture", "Traditional Craft Workshops", "Cultural Immersion", "Nearby Wildlife Excursions"],
     bestTime: "March to May, September to November (pleasant temperatures)",
   },
@@ -221,7 +221,7 @@ const northAfricaListings = [
     location: "Morocco",
     rating: 4.8,
     reviews: 64,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$180/day",
     premium: true,
     description:
@@ -235,7 +235,7 @@ const northAfricaListings = [
     location: "Morocco",
     rating: 4.7,
     reviews: 58,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$150/day",
     description: "Guided trekking through the Atlas Mountains with wildlife viewing and cultural experiences.",
     features: ["Mountain Trekking", "Wildlife Spotting", "Berber Villages", "Local Cuisine"],
@@ -247,7 +247,7 @@ const northAfricaListings = [
     location: "Egypt",
     rating: 4.6,
     reviews: 42,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$95/day",
     description: "4x4 adventures through Egypt's Western Desert with visits to oases and unique desert formations.",
     features: ["4x4 Vehicle", "Desert Guide", "Camping Equipment", "Route Planning"],
@@ -259,7 +259,7 @@ const northAfricaListings = [
     location: "Egypt",
     rating: 4.9,
     reviews: 38,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$140/day",
     premium: true,
     description: "Immersive experience in the remote Siwa Oasis with desert adventures and wildlife observation.",
@@ -272,7 +272,7 @@ const northAfricaListings = [
     location: "Tunisia",
     rating: 4.8,
     reviews: 36,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$130/day",
     description: "Specialized bird watching tour through Tunisia's wetlands and diverse ecosystems.",
     features: ["Expert Ornithologists", "Multiple Habitats", "Photography Tips", "Small Groups"],
@@ -284,7 +284,7 @@ const northAfricaListings = [
     location: "Morocco",
     rating: 4.7,
     reviews: 32,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$190/day",
     premium: true,
     description: "Photography-focused tour of Morocco's diverse ecosystems with expert wildlife photographers.",
@@ -359,7 +359,13 @@ export default function NorthAfricaPage() {
           {northAfricaAttractions.map((attraction) => (
             <Card key={attraction.name} className="overflow-hidden h-full hover:shadow-lg transition-all duration-300">
               <div className="relative h-60">
-                <Image src={attraction.image} alt={attraction.name} fill className="object-cover" />
+                {attraction.image ? (
+                  <Image src={attraction.image} alt={attraction.name} fill className="object-cover" />
+                ) : (
+                  <div className="h-full w-full bg-primary/10 flex items-center justify-center">
+                    <Compass className="h-16 w-16 text-primary/60" strokeWidth={1.5} aria-hidden="true" />
+                  </div>
+                )}
                 <div className="absolute top-4 right-4 bg-white/90 text-black text-xs font-medium py-1 px-2 rounded">
                   {attraction.location}
                 </div>

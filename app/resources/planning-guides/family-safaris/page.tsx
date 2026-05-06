@@ -13,6 +13,8 @@ export default function FamilySafarisPage() {
     <GuidePage
       backHref="/resources/planning-guides"
       backLabel="Back to Planning Guides"
+      heroImage="/images/planning-guides/travelers/family-safari.jpg"
+      heroAlt="Family on safari in Africa"
       title="Family Safari Guide"
       subtitle="A safari with kids is one of the great family trips — but the wrong lodge choice can make it a long week."
       intro={

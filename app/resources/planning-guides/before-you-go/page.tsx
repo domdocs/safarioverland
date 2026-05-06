@@ -13,6 +13,8 @@ export default function BeforeYouGoPage() {
     <GuidePage
       backHref="/resources/planning-guides"
       backLabel="Back to Planning Guides"
+      heroImage="/images/planning-guides/first-time-safari-guide.jpg"
+      heroAlt="Preparing for a first African safari"
       title="Before You Go"
       subtitle="A pre-departure checklist that will save you a lot of last-minute scrambling."
       intro={

@@ -14,6 +14,8 @@ export default function SustainableTourismPage() {
     <GuidePage
       backHref="/resources/conservation"
       backLabel="Back to Conservation"
+      heroImage="/images/conservation/economic/sustainable-tourism.jpg"
+      heroAlt="Sustainable tourism supporting African communities"
       title="Sustainable Tourism"
       subtitle="The model — and the gaps between the model and the day-to-day reality."
       intro={

@@ -14,6 +14,8 @@ export default function FundingPage() {
     <GuidePage
       backHref="/resources/conservation"
       backLabel="Back to Conservation"
+      heroImage="/images/conservation/economic/conservation-funding.jpg"
+      heroAlt="Conservation funding flowing into protected areas"
       title="Conservation Funding"
       subtitle="Where the money comes from, where it goes, and how to make your contribution count."
       intro={

@@ -4,13 +4,14 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { 
-  MapPin, 
-  Calendar, 
-  Sun, 
-  Cloud, 
-  Thermometer, 
-  CloudRain
+import {
+  MapPin,
+  Calendar,
+  Sun,
+  Cloud,
+  Thermometer,
+  CloudRain,
+  Compass,
 } from "lucide-react"
 import { DestinationHeader } from "@/components/destination-header"
 import { DestinationAttractions } from "@/components/destination-attractions"
@@ -32,7 +33,7 @@ const southernAfricaAttractions = [
     location: "Botswana",
     description:
       "The world's largest inland delta creates an oasis in the Kalahari Desert, attracting enormous concentrations of wildlife. This UNESCO World Heritage site offers a unique ecosystem where seasonal floods transform the landscape, creating islands, channels, and floodplains that support incredible biodiversity.",
-    image: "/images/destinations/attractions/okavango.jpg",
+    image: null,
     highlights: ["Mokoro Excursions", "Island Camping", "Exceptional Wildlife", "Bird Paradise"],
     bestTime: "June to September (peak flood season)",
   },
@@ -40,7 +41,7 @@ const southernAfricaAttractions = [
     name: "Kruger National Park",
     location: "South Africa",
     description: "One of Africa's oldest and largest protected areas, spanning nearly 20,000 square kilometers of diverse habitats. Home to the Big Five and over 500 bird species, Kruger offers exceptional safari experiences with excellent infrastructure ranging from self-drive options to exclusive luxury lodges.",
-    image: "/images/destinations/attractions/kruger.jpg",
+    image: null,
     highlights: ["Big Five Viewing", "Self-Drive Options", "Diverse Ecosystems", "Excellent Infrastructure"],
     bestTime: "May to September (dry season)",
   },
@@ -49,7 +50,7 @@ const southernAfricaAttractions = [
     location: "Zimbabwe/Zambia",
     description:
       "Known locally as 'The Smoke That Thunders,' this UNESCO World Heritage site creates the world's largest curtain of falling water. Beyond the spectacular falls, the surrounding area offers wildlife viewing, adventure activities, and river cruises on the mighty Zambezi.",
-    image: "/images/destinations/attractions/victoria-falls.jpg",
+    image: null,
     highlights: ["Spectacular Waterfall", "Adventure Activities", "Zambezi Cruises", "Border Safari Loop"],
     bestTime: "February to May (highest water volume), June to August (moderate flow)",
   },
@@ -58,7 +59,7 @@ const southernAfricaAttractions = [
     location: "Botswana",
     description:
       "Famous for having one of Africa's highest concentrations of elephants, with herds sometimes exceeding 100 individuals. The Chobe River creates a wildlife magnet during the dry season, offering spectacular boat safaris with unique perspectives on wildlife interactions.",
-    image: "/images/destinations/attractions/chobe.jpg",
+    image: null,
     highlights: ["Elephant Herds", "River Safaris", "Predator Action", "Photography Paradise"],
     bestTime: "May to October (dry season)",
   },
@@ -67,7 +68,7 @@ const southernAfricaAttractions = [
     location: "Namibia",
     description:
       "A salt and clay pan surrounded by towering red dunes in the heart of the Namib Desert. This otherworldly landscape features some of the world's highest sand dunes, creating a photographer's paradise of geometric shapes, shadows, and contrasting colors against blue skies.",
-    image: "/images/destinations/attractions/sossusvlei.jpg",
+    image: null,
     highlights: ["Towering Red Dunes", "Dead Vlei", "Namib Desert Ecology", "Spectacular Photography"],
     bestTime: "April to October (cooler months, clearer skies)",
   },
@@ -76,7 +77,7 @@ const southernAfricaAttractions = [
     location: "Zambia",
     description:
       "The birthplace of walking safaris, offering one of Africa's most authentic wilderness experiences. The Luangwa River sustains exceptional wildlife concentrations, with particularly strong leopard populations and endemic subspecies like Thornicroft's giraffe and Crawshay's zebra.",
-    image: "/images/destinations/attractions/south-luangwa.jpg",
+    image: null,
     highlights: ["Walking Safaris", "Leopard Sightings", "Night Drives", "Authentic Bush Camps"],
     bestTime: "June to October (dry season)",
   },
@@ -225,7 +226,7 @@ const southernAfricaListings = [
     location: "Botswana",
     rating: 4.9,
     reviews: 86,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$450/day",
     premium: true,
     description:
@@ -239,7 +240,7 @@ const southernAfricaListings = [
     location: "South Africa",
     rating: 4.8,
     reviews: 124,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$350/night",
     premium: true,
     description: "Luxury lodge in the greater Kruger ecosystem with exceptional Big Five viewing opportunities.",
@@ -252,7 +253,7 @@ const southernAfricaListings = [
     location: "Namibia",
     rating: 4.7,
     reviews: 58,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$280/day",
     premium: false,
     description: "Explore Namibia's dramatic landscapes and desert-adapted wildlife on this comprehensive tour.",
@@ -265,7 +266,7 @@ const southernAfricaListings = [
     location: "Zimbabwe",
     rating: 4.8,
     reviews: 92,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$200/day",
     premium: false,
     description:
@@ -279,7 +280,7 @@ const southernAfricaListings = [
     location: "South Africa",
     rating: 4.6,
     reviews: 64,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$85/day",
     premium: false,
     description: "Fully-equipped 4x4 vehicles for self-drive safari adventures across South Africa.",
@@ -292,7 +293,7 @@ const southernAfricaListings = [
     location: "Botswana",
     rating: 4.9,
     reviews: 46,
-    image: "/placeholder.svg?height=300&width=400",
+    image: null,
     price: "$750/day",
     premium: true,
     description: "Ultimate luxury safari combining the Okavango Delta, Chobe, and private concessions.",
@@ -372,7 +373,13 @@ export default function SouthernAfricaPage() {
           {southernAfricaAttractions.map((attraction) => (
             <Card key={attraction.name} className="overflow-hidden h-full hover:shadow-lg transition-all duration-300">
               <div className="relative h-60">
-                <Image src={attraction.image} alt={attraction.name} fill className="object-cover" />
+                {attraction.image ? (
+                  <Image src={attraction.image} alt={attraction.name} fill className="object-cover" />
+                ) : (
+                  <div className="h-full w-full bg-primary/10 flex items-center justify-center">
+                    <Compass className="h-16 w-16 text-primary/60" strokeWidth={1.5} aria-hidden="true" />
+                  </div>
+                )}
                 <div className="absolute top-4 right-4 bg-white/90 text-black text-xs font-medium py-1 px-2 rounded">
                   {attraction.location}
                 </div>

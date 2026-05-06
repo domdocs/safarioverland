@@ -14,6 +14,8 @@ export default function SafariBudgetingPage() {
     <GuidePage
       backHref="/resources/planning-guides"
       backLabel="Back to Planning Guides"
+      heroImage="/images/planning-guides/budgeting/safari-budgeting.jpg"
+      heroAlt="Planning a safari budget"
       title="Safari Budgeting Guide"
       subtitle="Where the money actually goes — and how to get the most safari for what you spend."
       intro={

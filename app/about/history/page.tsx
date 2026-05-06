@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -37,28 +36,43 @@ export default function HistoryPage() {
 
       {/* Founding Story */}
       <section className="mb-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl font-bold mb-6">The Founding Story</h2>
-            <p className="text-muted-foreground mb-4">
-              Safari Overland was founded in 2018, the team are a group of professionals who have enjoyed safari, camping and overlanding 
-               across Southern, Western and Eastern Africa. After years of connecting travelers with safari operators
-              informally, we recognised the need for a comprehensive, trustworthy resource that would bring together
-              the best safari experiences across the continent.
-            </p>
-            <p className="text-muted-foreground mb-4">
-              Starting from a small office in Victoria Falls, Zimbabwe – the safari capital of Africa – a
-              small team of passionate safari experts began building relationships with operators across the continent,
-              personally vetting each one for quality, authenticity, and commitment to responsible tourism practices.
-            </p>
-            <p className="text-muted-foreground">
-              The company's strategic location at the crossroads of multiple safari destinations gave it unique insights
-              into the industry and allowed for close relationships with operators across Southern Africa, which later
-              expanded to East Africa and beyond.
-            </p>
-          </div>
-          <div className="relative h-[400px] rounded-lg overflow-hidden">
-            <Image src="/placeholder.svg?height=800&width=600" alt="Founder" fill className="object-cover" />
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold mb-6 text-center">The Founding Story</h2>
+          <p className="text-muted-foreground mb-4">
+            Safari Overland was founded in 2018, the team are a group of professionals who have enjoyed safari, camping and overlanding
+            across Southern, Western and Eastern Africa. After years of connecting travelers with safari operators
+            informally, we recognised the need for a comprehensive, trustworthy resource that would bring together
+            the best safari experiences across the continent.
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Starting from a small office in Victoria Falls, Zimbabwe – the safari capital of Africa – a
+            small team of passionate safari experts began building relationships with operators across the continent,
+            personally vetting each one for quality, authenticity, and commitment to responsible tourism practices.
+          </p>
+          <p className="text-muted-foreground mb-8">
+            The company's strategic location at the crossroads of multiple safari destinations gave it unique insights
+            into the industry and allowed for close relationships with operators across Southern Africa, which later
+            expanded to East Africa and beyond.
+          </p>
+
+          {/* Key facts grid replaces what would otherwise be a portrait */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t">
+            <div>
+              <p className="text-3xl font-bold text-primary">2018</p>
+              <p className="text-sm text-muted-foreground">Founded</p>
+            </div>
+            <div>
+              <p className="text-3xl font-bold text-primary">Vic&nbsp;Falls</p>
+              <p className="text-sm text-muted-foreground">Headquarters</p>
+            </div>
+            <div>
+              <p className="text-3xl font-bold text-primary">4</p>
+              <p className="text-sm text-muted-foreground">Countries covered</p>
+            </div>
+            <div>
+              <p className="text-3xl font-bold text-primary">Africa</p>
+              <p className="text-sm text-muted-foreground">Where we live</p>
+            </div>
           </div>
         </div>
       </section>

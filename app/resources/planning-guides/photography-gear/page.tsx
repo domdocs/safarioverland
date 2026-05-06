@@ -14,6 +14,8 @@ export default function PhotographyGearPage() {
     <GuidePage
       backHref="/resources/planning-guides"
       backLabel="Back to Planning Guides"
+      heroImage="/images/planning-guides/packing/photography-gear.jpg"
+      heroAlt="Photography gear laid out for a safari"
       title="Photography Gear for Safari"
       subtitle="What to bring, what to skip, and how not to wreck your trip carrying it all."
       intro={

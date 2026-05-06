@@ -13,6 +13,8 @@ export default function AccessibleSafarisPage() {
     <GuidePage
       backHref="/resources/planning-guides"
       backLabel="Back to Planning Guides"
+      heroImage="/images/planning-guides/travelers/accessible-safari.jpg"
+      heroAlt="Accessible safari experience for all travelers"
       title="Accessible Safari Options"
       subtitle="A safari is more achievable than most brochures imply — but operators vary widely in what they actually accommodate."
       intro={

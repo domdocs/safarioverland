@@ -11,14 +11,54 @@ import Script from "next/script"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Safari Overland",
-  description: "Connect with safari service providers across Africa",
+  metadataBase: new URL("https://safarioverland.com"),
+  title: {
+    default: "Safari Overland — African safari operators, lodges & travel guides",
+    template: "%s | Safari Overland",
+  },
+  description:
+    "A directory of African safari operators, lodges, and travel resources, with editorial planning guides, seasonal information and conservation content.",
   manifest: "/manifest.json",
-  generator: 'v0.dev'
+  applicationName: "Safari Overland",
+  keywords: [
+    "African safari",
+    "safari operators",
+    "safari lodges",
+    "safari planning",
+    "Africa travel",
+    "wildlife conservation",
+    "safari guides",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://safarioverland.com",
+    siteName: "Safari Overland",
+    title: "Safari Overland — African safari operators, lodges & travel guides",
+    description:
+      "Discover safari operators, lodges and travel resources across Africa. Plan your trip with our editorial guides, seasonal advice, and conservation stories.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Safari Overland — African safari operators, lodges & travel guides",
+    description:
+      "Discover safari operators, lodges and travel resources across Africa. Plan your trip with our editorial guides, seasonal advice, and conservation stories.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  generator: "v0.dev",
 }
 
 export const viewport: Viewport = {
-  themeColor: "#FF8C00",
+  themeColor: "#4D6C7F",
 }
 
 export default function RootLayout({

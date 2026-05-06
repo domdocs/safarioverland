@@ -14,6 +14,8 @@ export default function WildlifeBehaviorPage() {
     <GuidePage
       backHref="/resources/safety-tips"
       backLabel="Back to Safety Tips"
+      heroImage="/images/destinations/wildlife/lion.jpg"
+      heroAlt="Lion observed at a safe distance on safari"
       title="Wildlife Behavior"
       subtitle="The single most useful safety skill on safari is reading what an animal is telling you."
       intro={

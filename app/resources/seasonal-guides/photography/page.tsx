@@ -37,7 +37,7 @@ export default function PhotographyGuidePage() {
       <section className="mb-12">
         <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px]">
           <Image 
-            src="/images/seasonal-guides/photography-hero.jpg" 
+            src="/images/planning-guides/packing/photography-gear.jpg" 
             alt="Wildlife photography on safari" 
             fill 
             className="object-cover" 

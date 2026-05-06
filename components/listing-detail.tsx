@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ListingCard } from "@/components/listing-card"
+import { ListingImage } from "@/components/listing-image"
 
 interface ListingDetailProps {
   listing: any
@@ -59,12 +60,8 @@ export function ListingDetail({ listing, relatedListings = [] }: ListingDetailPr
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* Left column - Main info */}
         <div className="lg:col-span-2">
-          <div className="mb-6 overflow-hidden rounded-lg">
-            <img
-              src={image_url || `/placeholder.svg?height=500&width=800&text=${encodeURIComponent(listing_name || "")}`}
-              alt={listing_name}
-              className="h-[400px] w-full object-cover"
-            />
+          <div className="relative mb-6 h-[400px] overflow-hidden rounded-lg">
+            <ListingImage src={image_url} alt={listing_name} category={category} />
           </div>
 
           <h1 className="mb-4 text-3xl font-bold">{listing_name}</h1>

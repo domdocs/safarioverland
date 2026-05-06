@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { ListingImage } from "@/components/listing-image"
 
 interface ListingCardProps {
   listing: any
@@ -12,7 +13,8 @@ export function ListingCard({ listing }: ListingCardProps) {
     location = "Unknown Location",
     description = "No description available",
     price_info = "Price information unavailable",
-    image_url = "/placeholder.svg?height=300&width=400",
+    image_url = null,
+    category,
   } = listing || {}
 
   // Truncate description to a reasonable length
@@ -22,11 +24,7 @@ export function ListingCard({ listing }: ListingCardProps) {
     <div className="overflow-hidden rounded-lg border bg-white shadow-sm transition-all hover:shadow-md">
       <Link href={`/listings/${id}`}>
         <div className="relative h-48 w-full overflow-hidden">
-          <img
-            src={image_url || "/placeholder.svg?height=300&width=400"}
-            alt={listing_name}
-            className="h-full w-full object-cover"
-          />
+          <ListingImage src={image_url} alt={listing_name} category={category} />
         </div>
         <div className="p-4">
           <h3 className="mb-1 text-lg font-semibold">{listing_name}</h3>
