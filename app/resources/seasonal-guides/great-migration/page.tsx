@@ -4,6 +4,8 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Calendar, ChevronRight, CircleDot, ArrowLeft } from "lucide-react"
+import { DownloadButton } from "@/components/download-button"
+import { RESOURCES } from "@/lib/downloads/resources"
 
 export const metadata: Metadata = {
   title: "Great Migration Seasonal Guide | Safari Overland",
@@ -52,7 +54,13 @@ export default function GreatMigrationGuidePage() {
                 Over 1.5 million wildebeest, 200,000 zebras, and 350,000 gazelles embark on an epic journey across the Serengeti-Mara ecosystem every year in search of fresh grazing and water.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button variant="default">Download Migration Calendar</Button>
+                <DownloadButton
+                  slug="great-migration-calendar"
+                  title={RESOURCES["great-migration-calendar"].title}
+                  description={RESOURCES["great-migration-calendar"].description}
+                  label="Download Migration Calendar"
+                  showIcon={false}
+                />
                 <Button variant="outline" className="bg-white/10 text-white border-white/20 hover:bg-white/20">
                   View Migration Safaris
                 </Button>

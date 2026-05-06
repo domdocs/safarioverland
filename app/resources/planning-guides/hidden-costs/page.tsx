@@ -4,6 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { AlertCircle, ArrowLeft, DollarSign, Info, Check, CreditCard, Coffee, Camera, MapPin, Wifi, Shield, Cloud, Zap, ShoppingBag, Package } from 'lucide-react';
+import { DownloadButton } from "@/components/download-button";
+import { RESOURCES } from "@/lib/downloads/resources";
 
 const HiddenCostsPage = () => {
     return (
@@ -965,12 +967,13 @@ const HiddenCostsPage = () => {
                         </li>
                     </ul>
                     <div className="mt-4">
-                        <a 
-                            href="#" 
-                            className="inline-flex items-center bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 font-medium transition-colors"
-                        >
-                            Download Safari Budget Calculator
-                        </a>
+                        <DownloadButton
+                          slug="safari-budget-calculator"
+                          title={RESOURCES["safari-budget-calculator"].title}
+                          description={RESOURCES["safari-budget-calculator"].description}
+                          label="Download Safari Budget Calculator"
+                          showIcon={false}
+                        />
                     </div>
                 </div>
 

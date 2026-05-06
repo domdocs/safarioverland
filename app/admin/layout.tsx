@@ -37,6 +37,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 Pending Approvals
               </Link>
               <Link
+                href="/admin/subscribers"
+                className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
+              >
+                Subscribers
+              </Link>
+              <Link
                 href="/admin/settings"
                 className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
               >

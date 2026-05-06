@@ -4,6 +4,8 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Calendar, Sun, CloudRain, ChevronRight, CircleDot } from "lucide-react"
+import { DownloadButton } from "@/components/download-button"
+import { RESOURCES } from "@/lib/downloads/resources"
 
 export const metadata: Metadata = {
   title: "Egypt Safari Seasonal Guide | Safari Overland",
@@ -52,7 +54,13 @@ export default function EgyptSeasonalGuidePage() {
                 From the otherworldly landscapes of the White Desert to the lush Siwa Oasis, Egypt offers unique safari experiences beyond the Nile Valley.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button variant="default">Download Egypt Safari Guide</Button>
+                <DownloadButton
+                  slug="egypt-safari-guide"
+                  title={RESOURCES["egypt-safari-guide"].title}
+                  description={RESOURCES["egypt-safari-guide"].description}
+                  label="Download Egypt Safari Guide"
+                  showIcon={false}
+                />
                 <Button variant="outline" className="bg-white/10 text-white border-white/20 hover:bg-white/20">
                   View Safari Packages
                 </Button>

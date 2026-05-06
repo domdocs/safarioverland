@@ -4,6 +4,8 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Calendar, Sun, CloudRain, ChevronRight, CircleDot } from "lucide-react"
+import { DownloadButton } from "@/components/download-button"
+import { RESOURCES } from "@/lib/downloads/resources"
 
 export const metadata: Metadata = {
   title: "Senegal Safari Seasonal Guide | Safari Overland",
@@ -52,7 +54,13 @@ export default function SenegalSeasonalGuidePage() {
                 From migratory birds at Djoudj National Bird Sanctuary to the elusive wildlife of Niokolo-Koba National Park.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button variant="default">Download Senegal Safari Guide</Button>
+                <DownloadButton
+                  slug="senegal-safari-guide"
+                  title={RESOURCES["senegal-safari-guide"].title}
+                  description={RESOURCES["senegal-safari-guide"].description}
+                  label="Download Senegal Safari Guide"
+                  showIcon={false}
+                />
                 <Button variant="outline" className="bg-white/10 text-white border-white/20 hover:bg-white/20">
                   View Safari Packages
                 </Button>

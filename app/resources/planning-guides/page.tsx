@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Download, ChevronRight, DollarSign, Luggage, Calendar, Users, Compass, ClipboardCheck } from "lucide-react"
+import { DownloadButton } from "@/components/download-button"
+import { RESOURCES } from "@/lib/downloads/resources"
 
 export default function PlanningGuidesPage() {
   return (
@@ -47,9 +49,12 @@ export default function PlanningGuidesPage() {
                 choosing the right destination and time of year to budgeting, packing, and preparing for your adventure.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="flex items-center gap-2">
-                  <Download className="h-4 w-4" /> Download Guide
-                </Button>
+                <DownloadButton
+                  slug="first-time-safari-planner"
+                  title={RESOURCES["first-time-safari-planner"].title}
+                  description={RESOURCES["first-time-safari-planner"].description}
+                  label="Download Guide"
+                />
                 <Button variant="outline">Read Online</Button>
               </div>
             </div>
@@ -342,50 +347,34 @@ export default function PlanningGuidesPage() {
         <h2 className="text-2xl md:text-3xl font-bold mb-8">Downloadable Planning Resources</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
-            {
-              title: "Safari Planning Checklist",
-              description: "A comprehensive checklist to ensure you don't miss any important planning steps.",
-              icon: <Download className="h-8 w-8 text-primary" />,
-            },
-            {
-              title: "Safari Budget Calculator",
-              description: "An Excel spreadsheet to help you estimate and track your safari expenses.",
-              icon: <DollarSign className="h-8 w-8 text-primary" />,
-            },
-            {
-              title: "Ultimate Packing List",
-              description: "A printable packing list customized for safari travel in different regions and seasons.",
-              icon: <Luggage className="h-8 w-8 text-primary" />,
-            },
-            {
-              title: "Safari Calendar Planner",
-              description: "A calendar tool to help you identify the best times for specific wildlife experiences.",
-              icon: <Calendar className="h-8 w-8 text-primary" />,
-            },
-            {
-              title: "Destination Comparison Chart",
-              description: "A detailed comparison of major safari destinations to help you choose the right one.",
-              icon: <Compass className="h-8 w-8 text-primary" />,
-            },
-            {
-              title: "Family Safari Planner",
-              description: "A specialized planning guide for families traveling with children of different ages.",
-              icon: <Users className="h-8 w-8 text-primary" />,
-            },
-          ].map((resource) => (
-            <Card key={resource.title} className="hover:shadow-md transition-shadow">
-              <CardContent className="p-6 flex flex-col items-center text-center">
-                <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
-                  {resource.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-2">{resource.title}</h3>
-                <p className="text-muted-foreground mb-4">{resource.description}</p>
-                <Button variant="outline" className="mt-auto">
-                  Download
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+            { slug: "safari-planning-checklist", icon: <Download className="h-8 w-8 text-primary" /> },
+            { slug: "safari-budget-calculator", icon: <DollarSign className="h-8 w-8 text-primary" /> },
+            { slug: "ultimate-packing-list", icon: <Luggage className="h-8 w-8 text-primary" /> },
+            { slug: "safari-calendar-planner", icon: <Calendar className="h-8 w-8 text-primary" /> },
+            { slug: "destination-comparison-chart", icon: <Compass className="h-8 w-8 text-primary" /> },
+            { slug: "family-safari-planner", icon: <Users className="h-8 w-8 text-primary" /> },
+          ].map(({ slug, icon }) => {
+            const resource = RESOURCES[slug]
+            return (
+              <Card key={slug} className="hover:shadow-md transition-shadow">
+                <CardContent className="p-6 flex flex-col items-center text-center">
+                  <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                    {icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">{resource.title}</h3>
+                  <p className="text-muted-foreground mb-4">{resource.description}</p>
+                  <DownloadButton
+                    slug={slug}
+                    title={resource.title}
+                    description={resource.description}
+                    variant="outline"
+                    className="mt-auto"
+                    showIcon={false}
+                  />
+                </CardContent>
+              </Card>
+            )
+          })}
         </div>
       </section>
 

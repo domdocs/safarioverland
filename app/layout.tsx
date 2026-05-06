@@ -5,6 +5,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { SupabaseProvider } from "@/components/supabase-provider"
+import { DownloadGateProvider } from "@/components/download-gate-provider"
 import Script from "next/script"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -43,8 +44,10 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <SupabaseProvider>
-            {children}
-            <Toaster />
+            <DownloadGateProvider>
+              {children}
+              <Toaster />
+            </DownloadGateProvider>
           </SupabaseProvider>
         </ThemeProvider>
       </body>

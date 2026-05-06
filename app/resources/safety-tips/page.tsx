@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { AlertTriangle, ShieldCheck, Stethoscope, Bug, Sun, ChevronRight } from "lucide-react"
+import { DownloadButton } from "@/components/download-button"
+import { RESOURCES } from "@/lib/downloads/resources"
 
 export default function SafetyTipsPage() {
   return (
@@ -47,7 +49,13 @@ export default function SafetyTipsPage() {
                 you can focus on enjoying your adventure with peace of mind.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button>Download Safety Guide</Button>
+                <DownloadButton
+                  slug="safari-safety-guide"
+                  title={RESOURCES["safari-safety-guide"].title}
+                  description={RESOURCES["safari-safety-guide"].description}
+                  label="Download Safety Guide"
+                  showIcon={false}
+                />
                 <Button variant="outline">Watch Safety Video</Button>
               </div>
             </div>

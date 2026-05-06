@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Calendar, Sun, CloudRain, ChevronRight } from "lucide-react"
+import { DownloadButton } from "@/components/download-button"
+import { RESOURCES } from "@/lib/downloads/resources"
 
 export default function SeasonalGuidesPage() {
   return (
@@ -48,7 +50,13 @@ export default function SeasonalGuidesPage() {
                 you choose the perfect time for your safari based on your interests and preferences.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button>Download Seasonal Calendar</Button>
+                <DownloadButton
+                  slug="seasonal-calendar"
+                  title={RESOURCES["seasonal-calendar"].title}
+                  description={RESOURCES["seasonal-calendar"].description}
+                  label="Download Seasonal Calendar"
+                  showIcon={false}
+                />
                 <Button variant="outline">View Wildlife Events</Button>
               </div>
             </div>

@@ -31,6 +31,9 @@ pnpm-debug.log*
 # vercel
 .vercel
 
+# locally generated downloadable resources — uploaded to Supabase Storage
+/generated-pdfs/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -2,7 +2,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { BookOpen, Shield, Leaf, Calendar, Download, ChevronRight } from "lucide-react"
+import { BookOpen, Shield, Leaf, Calendar, ChevronRight } from "lucide-react"
+import { DownloadButton } from "@/components/download-button"
+import { RESOURCES } from "@/lib/downloads/resources"
 
 export default function ResourcesPage() {
   return (
@@ -122,9 +124,12 @@ export default function ResourcesPage() {
                   prepared for your journey.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button className="flex items-center gap-2">
-                    <Download className="h-4 w-4" /> Download Checklist
-                  </Button>
+                  <DownloadButton
+                    slug="safari-planning-checklist"
+                    title={RESOURCES["safari-planning-checklist"].title}
+                    description={RESOURCES["safari-planning-checklist"].description}
+                    label="Download Checklist"
+                  />
                   <Button variant="outline">View All Checklists</Button>
                 </div>
               </div>
