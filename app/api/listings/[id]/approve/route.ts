@@ -8,13 +8,13 @@ function isValidUUID(id: string): boolean {
 
 export async function POST(
   request: Request,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = context.params
+    const { id } = await context.params
 
     // Initialize Supabase client
-    const supabase = await getSupabaseServerClient()
+    const supabase = getSupabaseServerClient()
 
     if (!supabase) {
       return NextResponse.json(

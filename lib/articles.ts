@@ -89,7 +89,7 @@ export async function getArticleBySlug(slug: string) {
 
 export async function createArticle(article: ArticleInput) {
   // Try browser client first, fall back to server client
-  const supabase = getSupabaseBrowserClient() || getSupabaseServerClient()
+  const supabase = (await getSupabaseBrowserClient()) || getSupabaseServerClient()
   if (!supabase) {
     throw new Error("Supabase client not available")
   }

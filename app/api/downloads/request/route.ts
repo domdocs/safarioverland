@@ -118,6 +118,11 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  if (!subscriberId) {
+    // Should be unreachable — every branch above either sets it or returns early.
+    return NextResponse.json({ error: "subscriber_resolve_failed" }, { status: 500 })
+  }
+
   // Log the download event.
   const headers = request.headers
   await supabase.from("download_events").insert({

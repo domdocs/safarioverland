@@ -18,14 +18,19 @@ export function useSupabase() {
 
 // Provider component to wrap the application
 export function SupabaseProvider({ children }: { children: React.ReactNode }) {
-  const [supabase] = useState(() => getSupabaseBrowserClient())
-  const [isClient, setIsClient] = useState(false)
+  const [supabase, setSupabase] = useState<SupabaseClient | undefined>(undefined)
 
   useEffect(() => {
-    setIsClient(true)
+    let cancelled = false
+    getSupabaseBrowserClient().then((client) => {
+      if (!cancelled && client) setSupabase(client)
+    })
+    return () => {
+      cancelled = true
+    }
   }, [])
 
-  if (!isClient) {
+  if (!supabase) {
     return null // or a loading spinner
   }
 

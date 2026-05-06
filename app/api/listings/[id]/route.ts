@@ -3,11 +3,11 @@ import { getSupabaseServerClient } from "@/lib/supabase"
 
 export async function PUT(
   request: Request,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = await Promise.resolve(context.params.id)
-    const supabase = await getSupabaseServerClient()
+    const { id } = await context.params
+    const supabase = getSupabaseServerClient()
 
     if (!supabase) {
       return NextResponse.json(

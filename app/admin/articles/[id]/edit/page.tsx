@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { ArticleForm } from "@/components/article-form"
 import type { Article, ArticleInput } from "@/lib/articles"
 
@@ -36,20 +36,26 @@ const mockArticles = {
 } as Record<string, Article>
 
 interface EditArticlePageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export default function EditArticlePage({ params }: EditArticlePageProps) {
   const router = useRouter()
-  const article = mockArticles[params.id]
+  const [id, setId] = useState<string | null>(null)
 
   useEffect(() => {
-    if (!article) {
+    params.then((p) => setId(p.id))
+  }, [params])
+
+  const article = id ? mockArticles[id] : undefined
+
+  useEffect(() => {
+    if (id !== null && !article) {
       router.push("/admin/articles")
     }
-  }, [article, router])
+  }, [id, article, router])
 
   if (!article) {
     return null

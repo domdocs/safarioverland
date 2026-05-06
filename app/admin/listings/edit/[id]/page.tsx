@@ -3,13 +3,13 @@ import { getListingById } from "@/lib/listings"
 import { notFound } from "next/navigation"
 
 interface EditListingPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export default async function EditListingPage({ params }: EditListingPageProps) {
-  const id = await Promise.resolve(params.id)
+  const { id } = await params
   const listing = await getListingById(id)
 
   if (!listing) {

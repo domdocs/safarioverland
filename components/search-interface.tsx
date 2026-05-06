@@ -85,7 +85,7 @@ export function SearchInterface() {
     }
   }, [searchParams])
 
-  const performSearch = (query) => {
+  const performSearch = (query: string) => {
     setIsLoading(true)
 
     // Simulate API call with setTimeout
@@ -104,7 +104,7 @@ export function SearchInterface() {
     }, 800)
   }
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     // Update URL with search query
@@ -119,7 +119,7 @@ export function SearchInterface() {
     performSearch(searchQuery)
   }
 
-  const filterByCategory = (category) => {
+  const filterByCategory = (category: string) => {
     setActiveTab(category)
 
     if (category === "all") {
@@ -303,7 +303,7 @@ export function SearchInterface() {
         ) : searchResults.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {searchResults.map((result) => (
-              <ListingCard key={result.id} {...result} />
+              <ListingCard key={result.id} listing={result} />
             ))}
           </div>
         ) : (

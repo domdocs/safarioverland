@@ -26,6 +26,13 @@ export async function POST(request: Request) {
 
     const supabase = getSupabaseServerClient()
 
+    if (!supabase) {
+      return NextResponse.json(
+        { error: "Database client initialization failed" },
+        { status: 500 }
+      )
+    }
+
     // Check if a listing with the same name already exists
     const { data: existingListing } = await supabase
       .from("directory_listings")

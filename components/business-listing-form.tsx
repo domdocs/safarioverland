@@ -120,8 +120,8 @@ const formSchema = z.object({
   openingHours: z.string().min(2, {
     message: "Please provide opening hours.",
   }),
-  acceptTerms: z.literal(true, {
-    errorMap: () => ({ message: "You must accept the terms and conditions." }),
+  acceptTerms: z.boolean().refine((value) => value === true, {
+    message: "You must accept the terms and conditions.",
   }),
 })
 

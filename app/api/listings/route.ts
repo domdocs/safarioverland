@@ -11,6 +11,7 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get("status") || undefined;
     const page = parseInt(searchParams.get("page") || "1");
     const limit = parseInt(searchParams.get("limit") || "10");
+    const offset = (Math.max(page, 1) - 1) * limit;
 
     const listings = await getListings({
       category,
@@ -18,8 +19,8 @@ export async function GET(request: NextRequest) {
       country,
       featured,
       status,
-      page,
       limit,
+      offset,
     });
 
     return NextResponse.json(listings);

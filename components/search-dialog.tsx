@@ -6,12 +6,13 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Search } from "lucide-react"
+import type { ReactNode } from "react"
 
-export function SearchDialog({ trigger }) {
+export function SearchDialog({ trigger }: { trigger: ReactNode }) {
   const [searchQuery, setSearchQuery] = useState("")
   const router = useRouter()
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (searchQuery.trim()) {
       router.push(`/search?q=${encodeURIComponent(searchQuery)}`)

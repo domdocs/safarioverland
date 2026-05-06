@@ -25,7 +25,7 @@ export function ImageUploader({ images, onChange, maxImages = 10 }: ImageUploade
   const [uploading, setUploading] = useState(false)
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
-    const supabase = getSupabaseBrowserClient()
+    const supabase = await getSupabaseBrowserClient()
     if (!supabase) {
       toast.error("Storage service not available")
       return
@@ -100,7 +100,7 @@ export function ImageUploader({ images, onChange, maxImages = 10 }: ImageUploade
   }
 
   const removeImage = async (index: number) => {
-    const supabase = getSupabaseBrowserClient()
+    const supabase = await getSupabaseBrowserClient()
     const imageToRemove = images[index]
     
     try {

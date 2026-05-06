@@ -6,21 +6,21 @@ import { Footer } from "@/components/footer"
 import type { Metadata, ResolvingMetadata } from "next"
 
 interface ListingPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
-  searchParams: { [key: string]: string | string[] | undefined }
+  }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export async function generateMetadata(
-  { params, searchParams }: ListingPageProps,
+  { params }: ListingPageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   // Properly await the parent metadata
-  const previousMetadata = await parent
-  
+  await parent
+
   // Fetch the listing data
-  const id = await Promise.resolve(params.id)
+  const { id } = await params
   const listing = await getListingById(id)
 
   if (!listing) {
@@ -44,10 +44,9 @@ export async function generateMetadata(
 
 export default async function ListingPage({
   params,
-  searchParams,
 }: ListingPageProps) {
   // Fetch the listing data
-  const id = await Promise.resolve(params.id)
+  const { id } = await params
   const listing = await getListingById(id)
 
   if (!listing) {

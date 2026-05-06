@@ -20,7 +20,7 @@ export default function DatabaseViewerPage() {
       setError(null)
 
       try {
-        const supabase = getSupabaseBrowserClient()
+        const supabase = await getSupabaseBrowserClient()
         if (!supabase) {
           throw new Error("Supabase client not initialized")
         }
@@ -34,7 +34,7 @@ export default function DatabaseViewerPage() {
 
         if (error) throw error
 
-        const tableNames = data.map((t) => t.table_name)
+        const tableNames = data.map((t: { table_name: string }) => t.table_name)
         setTables(tableNames)
 
         if (tableNames.length > 0) {
@@ -59,7 +59,7 @@ export default function DatabaseViewerPage() {
       setError(null)
 
       try {
-        const supabase = getSupabaseBrowserClient()
+        const supabase = await getSupabaseBrowserClient()
         if (!supabase) {
           throw new Error("Supabase client not initialized")
         }
