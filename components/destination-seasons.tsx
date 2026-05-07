@@ -1,7 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Badge } from "@/components/ui/badge"
+import { Eyebrow } from "@/components/editorial/eyebrow"
 import { Sun, Cloud, CloudRain, Thermometer } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
 
 interface Season {
   name: string
@@ -19,73 +18,87 @@ interface DestinationSeasonsProps {
   seasons: Season[]
 }
 
+const ICONS: Record<Season["icon"], LucideIcon> = {
+  sun: Sun,
+  cloud: Cloud,
+  rain: CloudRain,
+  thermometer: Thermometer,
+}
+
 export function DestinationSeasons({ seasons }: DestinationSeasonsProps) {
   return (
-    <div className="mb-16">
-      <h2 className="text-2xl md:text-3xl font-bold mb-8">Best Time to Visit</h2>
-      <Card>
-        <CardHeader>
-          <CardTitle>Seasonal Guide</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Tabs defaultValue={seasons[0].name.toLowerCase().replace(/\s+/g, "-")}>
-            <TabsList className="grid grid-cols-2 md:grid-cols-4 mb-4">
-              {seasons.map((season) => (
-                <TabsTrigger key={season.name} value={season.name.toLowerCase().replace(/\s+/g, "-")}>
-                  {season.icon === "sun" && <Sun className="h-4 w-4 mr-2" />}
-                  {season.icon === "cloud" && <Cloud className="h-4 w-4 mr-2" />}
-                  {season.icon === "rain" && <CloudRain className="h-4 w-4 mr-2" />}
-                  {season.icon === "thermometer" && <Thermometer className="h-4 w-4 mr-2" />}
-                  {season.name}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-            {seasons.map((season) => (
-              <TabsContent key={season.name} value={season.name.toLowerCase().replace(/\s+/g, "-")}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <div className="grid grid-cols-2 gap-4 mb-4">
-                      <div>
-                        <p className="text-sm font-medium mb-1">Months</p>
-                        <p className="text-muted-foreground">{season.months}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium mb-1">Weather</p>
-                        <p className="text-muted-foreground">{season.weather}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium mb-1">Wildlife</p>
-                        <p className="text-muted-foreground">{season.wildlife}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium mb-1">Crowds & Costs</p>
-                        <p className="text-muted-foreground">{season.crowds}</p>
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-4">
-                      {season.pros.map((pro, index) => (
-                        <Badge key={index} variant="outline" className="bg-green-50 text-green-700 border-green-200">
-                          {pro}
-                        </Badge>
-                      ))}
-                    </div>
+    <section className="border-t border-rule bg-ink py-20">
+      <div className="container">
+        <Eyebrow>When to go</Eyebrow>
+        <h2 className="mt-4 mb-12 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance max-w-3xl">
+          The same park reads differently in every season.
+        </h2>
+
+        <div className="space-y-12">
+          {seasons.map((season, idx) => {
+            const Icon = ICONS[season.icon]
+            return (
+              <article
+                key={season.name}
+                className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12 border-t border-rule pt-8"
+              >
+                <div className="lg:col-span-4">
+                  <div className="flex items-baseline gap-3 mb-3">
+                    <span className="mono text-amber" aria-hidden>
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                    <Icon className="h-4 w-4 text-amber" aria-hidden />
+                    <span className="eyebrow">{season.months}</span>
                   </div>
-                  <div>
-                    <p className="text-sm font-medium mb-2">Considerations</p>
-                    <ul className="space-y-2">
-                      {season.cons.map((con, index) => (
-                        <li key={index} className="text-sm text-muted-foreground">
-                          • {con}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <h3 className="font-serif text-h3-fluid text-bone leading-tight">
+                    {season.name}
+                  </h3>
+                  <p className="mt-3 font-serif italic text-lg text-bone-mute leading-snug">
+                    {season.weather}
+                  </p>
                 </div>
-              </TabsContent>
-            ))}
-          </Tabs>
-        </CardContent>
-      </Card>
-    </div>
+
+                <dl className="lg:col-span-8 grid sm:grid-cols-2 gap-x-12 gap-y-6">
+                  <div>
+                    <dt className="eyebrow mb-2">Wildlife</dt>
+                    <dd className="text-bone-mute leading-relaxed">{season.wildlife}</dd>
+                  </div>
+                  <div>
+                    <dt className="eyebrow mb-2">Crowds & costs</dt>
+                    <dd className="text-bone-mute leading-relaxed">{season.crowds}</dd>
+                  </div>
+                  <div>
+                    <dt className="eyebrow mb-2">Why it works</dt>
+                    <dd>
+                      <ul className="space-y-1.5 text-bone leading-relaxed">
+                        {season.pros.map((pro, i) => (
+                          <li key={i} className="flex items-baseline gap-2">
+                            <span className="mono text-moss">+</span>
+                            <span>{pro}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="eyebrow mb-2">What to consider</dt>
+                    <dd>
+                      <ul className="space-y-1.5 text-bone-mute leading-relaxed">
+                        {season.cons.map((con, i) => (
+                          <li key={i} className="flex items-baseline gap-2">
+                            <span className="mono text-flame">−</span>
+                            <span>{con}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </dd>
+                  </div>
+                </dl>
+              </article>
+            )
+          })}
+        </div>
+      </div>
+    </section>
   )
 }

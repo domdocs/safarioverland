@@ -1,199 +1,182 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { MapPin } from "lucide-react"
+import type { Metadata } from "next"
 
-const regions = [
+import { Eyebrow } from "@/components/editorial/eyebrow"
+import { SectionRule } from "@/components/editorial/section-rule"
+
+export const metadata: Metadata = {
+  title: "Atlas | Safari Overland",
+  description:
+    "An atlas of African safari regions — East, Southern, West and North. Field-noted by region.",
+}
+
+const REGIONS = [
   {
-    name: "East Africa",
     slug: "east-africa",
-    description:
-      "Home to the Serengeti, Masai Mara, and the Great Migration, East Africa offers classic safari landscapes and incredible wildlife density.",
+    label: "East Africa",
     image: "/images/destinations/east-africa.jpg",
-    countries: ["Kenya", "Tanzania", "Uganda", "Rwanda"],
-    highlights: ["Great Migration", "Gorilla Trekking", "Serengeti", "Ngorongoro Crater"],
+    countries: "Kenya · Tanzania · Uganda · Rwanda",
+    lede: "Open plains, big cats, the Great Migration. The classic safari image — and where most first-timers go.",
+    highlights: ["Migration", "Gorilla trekking", "Serengeti", "Ngorongoro"],
+    tagline: "Big country, big herds, big distances.",
   },
   {
-    name: "Southern Africa",
     slug: "southern-africa",
-    description:
-      "From the Okavango Delta to Kruger National Park, Southern Africa combines diverse ecosystems with excellent infrastructure.",
+    label: "Southern Africa",
     image: "/images/destinations/southern-africa.jpg",
-    countries: ["South Africa", "Botswana", "Namibia", "Zimbabwe", "Zambia"],
-    highlights: ["Okavango Delta", "Kruger National Park", "Victoria Falls", "Namib Desert"],
+    countries: "Botswana · South Africa · Namibia · Zimbabwe · Zambia",
+    lede: "From the Okavango to the Namib. Walking-led safaris, malaria-free reserves, and the most varied scenery in Africa.",
+    highlights: ["Okavango Delta", "Walking safaris", "Victoria Falls", "Namib desert"],
+    tagline: "More variety, more value, fewer crowds.",
   },
   {
-    name: "West Africa",
     slug: "west-africa",
-    description:
-      "Less traveled but rich in culture and wildlife, West Africa offers unique safari experiences and vibrant cultural encounters.",
+    label: "West Africa",
     image: "/images/destinations/west-africa.jpg",
-    countries: ["Ghana", "Senegal", "Nigeria", "Benin"],
-    highlights: ["Mole National Park", "Pendjari National Park", "Cultural Experiences", "Coastal Reserves"],
+    countries: "Ghana · Senegal · Nigeria · Benin",
+    lede: "Less-traveled, culturally rich. Coastal reserves, forest elephants, and birding that punches well above its weight.",
+    highlights: ["Mole NP", "Pendjari NP", "Coastal reserves", "Cultural depth"],
+    tagline: "The continent's most under-rated safari corridor.",
   },
   {
-    name: "North Africa",
     slug: "north-africa",
-    description:
-      "Combining desert adventures with historical sites, North Africa offers unique wildlife and stunning landscapes.",
+    label: "North Africa",
     image: "/images/destinations/north-africa.jpg",
-    countries: ["Morocco", "Egypt", "Tunisia"],
-    highlights: ["Sahara Desert", "Atlas Mountains", "Desert Wildlife", "Oasis Ecosystems"],
+    countries: "Morocco · Egypt · Tunisia",
+    lede: "Desert and antiquity. Sahara expeditions, oasis ecosystems, Atlas raptors and Mediterranean migration corridors.",
+    highlights: ["Sahara", "Atlas Mountains", "Birding migrations", "Desert wildlife"],
+    tagline: "Wildlife in landscapes that read more ancient than wild.",
   },
-]
+] as const
 
-export default function DestinationsPage() {
+export default function DestinationsAtlasPage() {
   return (
-    <div className="container mx-auto py-12 px-4">
-      <div className="max-w-4xl mx-auto mb-12 text-center">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">Safari Destinations</h1>
-        <p className="text-lg text-muted-foreground">
-          Explore Africa's diverse safari regions, each offering unique wildlife, landscapes, and experiences.
-        </p>
-      </div>
+    <>
+      {/* ─── Atlas opening ─────────────────────────────────────── */}
+      <section className="container py-24 md:py-32">
+        <div className="max-w-3xl">
+          <Eyebrow withRule>Atlas — 04 regions</Eyebrow>
+          <h1 className="mt-6 font-serif text-display-fluid text-bone leading-[0.96] tracking-tighter text-balance">
+            The continent, by{" "}
+            <span className="italic text-amber">region</span>.
+          </h1>
+          <p className="mt-8 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
+            Africa is not one safari. It&apos;s four — each with its own season, its own
+            rhythm, its own answer to the same question. Pick where you&apos;re drawn.
+          </p>
+        </div>
+      </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-        {regions.map((region) => (
-          <Link key={region.slug} href={`/destinations/${region.slug}`}>
-            <Card className="overflow-hidden h-full hover:shadow-lg transition-shadow">
-              <div className="relative h-64">
-                <Image src={region.image} alt={region.name} fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <h2 className="text-2xl font-bold mb-1">{region.name}</h2>
-                  <div className="flex flex-wrap gap-1 mb-2">
-                    {region.countries.map((country) => (
-                      <Badge key={country} variant="secondary" className="bg-primary text-white">
-                        {country}
-                      </Badge>
+      <SectionRule className="container" />
+
+      {/* ─── Region cards (full-bleed) ─────────────────────────── */}
+      <section>
+        {REGIONS.map((region, i) => (
+          <Link
+            key={region.slug}
+            href={`/destinations/${region.slug}`}
+            className="group block relative overflow-hidden border-t border-rule"
+          >
+            <div className="relative h-[60vh] min-h-[420px] w-full">
+              <Image
+                src={region.image}
+                alt={region.label}
+                fill
+                priority={i === 0}
+                sizes="100vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-gradient-to-r from-night/85 via-night/40 to-night/0"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-night"
+              />
+
+              <div className="container relative h-full flex flex-col justify-end pb-14 md:pb-20">
+                <div className="max-w-2xl">
+                  <div className="flex items-baseline gap-4 mb-4">
+                    <span className="mono text-amber" aria-hidden>
+                      {String(i + 1).padStart(2, "0")} / {String(REGIONS.length).padStart(2, "0")}
+                    </span>
+                    <span className="eyebrow">{region.countries}</span>
+                  </div>
+                  <h2 className="font-serif text-h1-fluid text-bone leading-[0.96] tracking-tighter text-balance group-hover:text-amber transition-colors">
+                    {region.label}
+                  </h2>
+                  <p className="mt-4 font-serif italic text-h4-fluid text-bone-mute leading-snug max-w-xl">
+                    {region.tagline}
+                  </p>
+                  <p className="mt-4 text-bone-mute leading-relaxed max-w-xl hidden md:block">
+                    {region.lede}
+                  </p>
+                  <div className="mt-6 flex flex-wrap items-center gap-3">
+                    {region.highlights.map((h) => (
+                      <span
+                        key={h}
+                        className="mono text-bone-mute border border-rule px-2 py-1"
+                      >
+                        {h}
+                      </span>
                     ))}
                   </div>
+                  <p className="mt-8 mono text-amber transition-colors group-hover:text-amber-deep">
+                    Open the chapter →
+                  </p>
                 </div>
               </div>
-              <CardContent className="p-4">
-                <p className="text-muted-foreground mb-4">{region.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {region.highlights.map((highlight) => (
-                    <Badge key={highlight} variant="outline">
-                      {highlight}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            </div>
           </Link>
         ))}
-      </div>
+      </section>
 
-      <div className="bg-muted rounded-lg p-8 mb-16">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-4">Planning Your Safari</h2>
-          <p className="mb-6">
-            Each African region offers unique safari experiences, wildlife viewing opportunities, and cultural
-            encounters. Consider factors like wildlife interests, travel season, budget, and desired activities when
-            choosing your destination.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-            <div className="bg-white p-4 rounded-lg shadow-sm">
-              <h3 className="font-semibold mb-2">Best for First-Timers</h3>
-              <p className="text-sm">Kenya, Tanzania, South Africa</p>
+      {/* ─── Practical companion ──────────────────────────────── */}
+      <section className="border-t border-rule bg-ink py-24 md:py-32">
+        <div className="container">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-5">
+              <Eyebrow>Plan with the calendar</Eyebrow>
+              <h2 className="mt-4 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
+                When to go is a bigger decision than where.
+              </h2>
+              <p className="mt-6 text-bone-mute leading-relaxed max-w-xl">
+                The same park can be exceptional in July and underwhelming in March.
+                We track conditions month-by-month so you&apos;re not guessing.
+              </p>
+              <div className="mt-8">
+                <Link
+                  href="/resources/seasonal-guides"
+                  className="mono text-amber hover:text-amber-deep transition-colors"
+                >
+                  Seasonal guides →
+                </Link>
+              </div>
             </div>
-            <div className="bg-white p-4 rounded-lg shadow-sm">
-              <h3 className="font-semibold mb-2">Best for Luxury</h3>
-              <p className="text-sm">Botswana, Tanzania, South Africa</p>
-            </div>
-            <div className="bg-white p-4 rounded-lg shadow-sm">
-              <h3 className="font-semibold mb-2">Best Value</h3>
-              <p className="text-sm">Namibia, Uganda, Zimbabwe</p>
+            <div className="lg:col-span-7">
+              <ul className="space-y-0">
+                {[
+                  ["Dry season", "Jun–Oct", "Animals at water. Best big-game viewing. Premium pricing."],
+                  ["Green season", "Nov–Apr", "Lush, dramatic, fewer vehicles. Some camps closed."],
+                  ["Migration peak", "Jul–Oct", "Mara crossings. Book 9–12 months ahead."],
+                  ["Shoulder", "May & Nov", "Best balance of price, weather, and viewing."],
+                ].map(([when, months, body]) => (
+                  <li
+                    key={when}
+                    className="grid grid-cols-1 sm:grid-cols-12 gap-4 border-t border-rule py-6"
+                  >
+                    <p className="font-serif text-2xl italic text-amber sm:col-span-3">{when}</p>
+                    <p className="mono text-bone-mute sm:col-span-2">{months}</p>
+                    <p className="text-bone-mute leading-relaxed sm:col-span-7">{body}</p>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className="col-span-1 md:col-span-2">
-          <h2 className="text-2xl font-bold mb-6">Popular Safari Countries</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {[
-              {
-                name: "Kenya",
-                image: "/images/destinations/east-africa.jpg",
-                highlights: ["Masai Mara", "Amboseli", "Great Migration"],
-              },
-              {
-                name: "Tanzania",
-                image: "/images/destinations/east-africa.jpg",
-                highlights: ["Serengeti", "Ngorongoro", "Zanzibar"],
-              },
-              {
-                name: "South Africa",
-                image: "/images/destinations/southern-africa.jpg",
-                highlights: ["Kruger", "Cape Town", "Garden Route"],
-              },
-              {
-                name: "Botswana",
-                image: "/images/destinations/southern-africa.jpg",
-                highlights: ["Okavango Delta", "Chobe", "Kalahari"],
-              },
-            ].map((country) => (
-              <div key={country.name} className="flex gap-4 items-start">
-                <div className="relative w-24 h-24 flex-shrink-0">
-                  <Image
-                    src={country.image}
-                    alt={country.name}
-                    fill
-                    className="object-cover rounded-md"
-                  />
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg mb-1">{country.name}</h3>
-                  <ul className="text-sm text-muted-foreground">
-                    {country.highlights.map((highlight) => (
-                      <li key={highlight} className="flex items-center gap-1 mb-1">
-                        <MapPin className="h-3 w-3 text-primary" />
-                        {highlight}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-bold mb-6">When to Go</h2>
-          <div className="bg-white rounded-lg shadow-sm p-4">
-            <div className="space-y-4">
-              <div>
-                <h3 className="font-semibold mb-1">Dry Season (Jun-Oct)</h3>
-                <p className="text-sm text-muted-foreground">
-                  Best for wildlife viewing as animals gather around water sources. Peak season with higher prices.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-1">Green Season (Nov-May)</h3>
-                <p className="text-sm text-muted-foreground">
-                  Lush landscapes, bird watching, and newborn animals. Lower prices and fewer crowds.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-1">Migration (Jul-Oct)</h3>
-                <p className="text-sm text-muted-foreground">
-                  Witness the Great Migration in Kenya and Tanzania. Book well in advance.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-1">Shoulder Season (May, Nov)</h3>
-                <p className="text-sm text-muted-foreground">
-                  Good balance of wildlife viewing, weather, and value. Recommended for budget travelers.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      </section>
+    </>
   )
 }
