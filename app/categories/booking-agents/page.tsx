@@ -1,32 +1,34 @@
 import type { Metadata } from "next"
 import { getListingsByCategory } from "@/lib/listings"
-import { CategoryLayout } from "@/components/category-layout"
-import { PaginatedListingsGrid } from "@/components/paginated-listings-grid"
+import { CategoryPageShell } from "@/components/editorial/category-page-shell"
+import { PaginatedListingsGridEditorial } from "@/components/editorial/paginated-listings-grid-editorial"
 
 export const metadata: Metadata = {
-  title: "Booking Agents | Safari Overland Directory",
+  title: "Booking Agents | Safari Overland",
   description:
-    "Connect with specialized safari booking agents who can arrange your perfect African adventure from start to finish.",
+    "Specialised safari booking agents who arrange the trip from start to finish.",
 }
 
 export const dynamic = "force-dynamic"
 
 export default async function BookingAgentsPage() {
-  // Get initial listings
   const initialListings = await getListingsByCategory("booking-agents", 6)
 
   return (
-    <CategoryLayout
-      title="Booking Agents"
-      description="Connect with specialized safari booking agents who can arrange your perfect African adventure from start to finish."
+    <CategoryPageShell
+      activeSlug="booking-agents"
+      index={9}
+      total={9}
+      title="Booking agents"
+      description="Specialised agents who plan and book the whole trip — useful when the logistics outweigh the appetite for self-arranging."
       image="/images/category-img/booking-agents.jpg"
     >
-      <PaginatedListingsGrid
+      <PaginatedListingsGridEditorial
         initialListings={initialListings}
-        category="Booking Agents"
         categorySlug="booking-agents"
-        emptyMessage="No booking agent listings available at the moment"
+        eyebrow="Booking agent"
+        emptyMessage="No booking agents listed yet — submissions open under /submit."
       />
-    </CategoryLayout>
+    </CategoryPageShell>
   )
 }

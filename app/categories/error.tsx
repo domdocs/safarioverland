@@ -2,6 +2,7 @@
 
 import { useEffect } from "react"
 import { Button } from "@/components/ui/button"
+import { Eyebrow } from "@/components/editorial/eyebrow"
 
 export default function Error({
   error,
@@ -11,22 +12,29 @@ export default function Error({
   reset: () => void
 }) {
   useEffect(() => {
-    // Log the error to an error reporting service
     console.error(error)
   }, [error])
 
   return (
-    <div className="container mx-auto px-4 py-12 text-center">
-      <h2 className="text-2xl font-bold mb-4">Something went wrong!</h2>
-      <p className="mb-6 text-gray-600">We encountered an error while loading this page. Please try again.</p>
-      <Button
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }
-      >
-        Try again
-      </Button>
-    </div>
+    <section className="container py-24 md:py-32">
+      <div className="max-w-2xl">
+        <Eyebrow withRule>Error — directory</Eyebrow>
+        <h2 className="mt-6 font-serif text-h1-fluid text-bone leading-tight tracking-tight text-balance">
+          Something didn&apos;t load.
+        </h2>
+        <p className="mt-6 font-serif italic text-h4-fluid text-bone-mute max-w-xl">
+          The directory hit an issue rendering this page. Try again, or browse another category.
+        </p>
+        <div className="mt-12">
+          <Button
+            onClick={() => reset()}
+            size="lg"
+            className="rounded-none px-8 py-6 mono"
+          >
+            Try again
+          </Button>
+        </div>
+      </div>
+    </section>
   )
 }

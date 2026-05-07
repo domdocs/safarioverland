@@ -1,32 +1,34 @@
 import type { Metadata } from "next"
 import { getListingsByCategory } from "@/lib/listings"
-import { CategoryLayout } from "@/components/category-layout"
-import { PaginatedListingsGrid } from "@/components/paginated-listings-grid"
+import { CategoryPageShell } from "@/components/editorial/category-page-shell"
+import { PaginatedListingsGridEditorial } from "@/components/editorial/paginated-listings-grid-editorial"
 
 export const metadata: Metadata = {
-  title: "Safari Flights | Safari Overland Directory",
+  title: "Safari Flights | Safari Overland",
   description:
-    "Find scheduled and charter flights to safari destinations across Africa, from bush planes to helicopter transfers.",
+    "Scheduled and charter flights to safari destinations — bush planes, helicopter transfers, regional airlines.",
 }
 
 export const dynamic = "force-dynamic"
 
 export default async function FlightsPage() {
-  // Get initial listings
   const initialListings = await getListingsByCategory("flights", 6)
 
   return (
-    <CategoryLayout
-      title="Safari Flights"
-      description="Find scheduled and charter flights to safari destinations across Africa, from bush planes to helicopter transfers."
+    <CategoryPageShell
+      activeSlug="flights"
+      index={8}
+      total={9}
+      title="Safari flights"
+      description="Scheduled and charter flights to safari destinations — bush planes, helicopter transfers, regional airlines."
       image="/images/category-img/flights.jpg"
     >
-      <PaginatedListingsGrid
+      <PaginatedListingsGridEditorial
         initialListings={initialListings}
-        category="Safari Flights"
         categorySlug="flights"
-        emptyMessage="No flight listings available at the moment"
+        eyebrow="Flight"
+        emptyMessage="No flight operators listed yet — submissions open under /submit."
       />
-    </CategoryLayout>
+    </CategoryPageShell>
   )
 }

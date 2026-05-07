@@ -1,32 +1,34 @@
 import type { Metadata } from "next"
 import { getListingsByCategory } from "@/lib/listings"
-import { CategoryLayout } from "@/components/category-layout"
-import { PaginatedListingsGrid } from "@/components/paginated-listings-grid"
+import { CategoryPageShell } from "@/components/editorial/category-page-shell"
+import { PaginatedListingsGridEditorial } from "@/components/editorial/paginated-listings-grid-editorial"
 
 export const metadata: Metadata = {
-  title: "4x4 Rentals | Safari Overland Directory",
+  title: "4×4 Rentals | Safari Overland",
   description:
-    "Find the perfect 4x4 vehicle for your self-drive safari adventure, fully equipped with everything you need for off-road exploration.",
+    "Self-drive 4×4 rentals — fully equipped vehicles for off-road exploration.",
 }
 
 export const dynamic = "force-dynamic"
 
 export default async function FourByFourRentalsPage() {
-  // Get initial listings
   const initialListings = await getListingsByCategory("4x4-rentals", 6)
 
   return (
-    <CategoryLayout
-      title="4x4 Rentals"
-      description="Find the perfect 4x4 vehicle for your self-drive safari adventure, fully equipped with everything you need for off-road exploration."
+    <CategoryPageShell
+      activeSlug="4x4-rentals"
+      index={5}
+      total={9}
+      title="4×4 rentals"
+      description="Fully equipped self-drive vehicles for off-road exploration. Roof tents, fridges, recovery kit included."
       image="/rentals.jpg"
     >
-      <PaginatedListingsGrid
+      <PaginatedListingsGridEditorial
         initialListings={initialListings}
-        category="4x4 Rentals"
         categorySlug="4x4-rentals"
-        emptyMessage="No 4x4 rental listings available at the moment"
+        eyebrow="4×4 rental"
+        emptyMessage="No 4×4 rentals listed yet — submissions open under /submit."
       />
-    </CategoryLayout>
+    </CategoryPageShell>
   )
 }

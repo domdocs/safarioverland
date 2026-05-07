@@ -1,32 +1,34 @@
 import type { Metadata } from "next"
 import { getListingsByCategory } from "@/lib/listings"
-import { CategoryLayout } from "@/components/category-layout"
-import { PaginatedListingsGrid } from "@/components/paginated-listings-grid"
+import { CategoryPageShell } from "@/components/editorial/category-page-shell"
+import { PaginatedListingsGridEditorial } from "@/components/editorial/paginated-listings-grid-editorial"
 
 export const metadata: Metadata = {
-  title: "Safari Lodges | Safari Overland Directory",
+  title: "Safari Lodges | Safari Overland",
   description:
-    "Discover the finest safari lodges across Africa, from luxury tented camps to exclusive private reserves.",
+    "Safari lodges across Africa — from luxury tented camps to exclusive private reserves.",
 }
 
 export const dynamic = "force-dynamic"
 
 export default async function LodgesPage() {
-  // Get initial listings
   const initialListings = await getListingsByCategory("lodges", 6)
 
   return (
-    <CategoryLayout
-      title="Safari Lodges"
-      description="Discover the finest safari lodges across Africa, from luxury tented camps to exclusive private reserves."
+    <CategoryPageShell
+      activeSlug="lodges"
+      index={1}
+      total={9}
+      title="Safari lodges"
+      description="From luxury tented camps to exclusive private reserves. Curated, reviewed, and reachable on the directory."
       image="/images/category-img/luxury-safari-lodges.jpg"
     >
-      <PaginatedListingsGrid
+      <PaginatedListingsGridEditorial
         initialListings={initialListings}
-        category="Safari Lodges"
         categorySlug="lodges"
-        emptyMessage="No lodge listings available at the moment"
+        eyebrow="Lodge"
+        emptyMessage="No lodges listed yet — submissions open under /submit."
       />
-    </CategoryLayout>
+    </CategoryPageShell>
   )
 }

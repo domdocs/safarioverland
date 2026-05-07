@@ -1,32 +1,34 @@
 import type { Metadata } from "next"
 import { getListingsByCategory } from "@/lib/listings"
-import { CategoryLayout } from "@/components/category-layout"
-import { PaginatedListingsGrid } from "@/components/paginated-listings-grid"
+import { CategoryPageShell } from "@/components/editorial/category-page-shell"
+import { PaginatedListingsGridEditorial } from "@/components/editorial/paginated-listings-grid-editorial"
 
 export const metadata: Metadata = {
-  title: "Guided Tours | Safari Overland Directory",
+  title: "Guided Tours | Safari Overland",
   description:
-    "Join expert guides on unforgettable safari tours across Africa's most spectacular wildlife destinations.",
+    "Expert-led safari tours across Africa's most spectacular wildlife destinations.",
 }
 
 export const dynamic = "force-dynamic"
 
 export default async function GuidedToursPage() {
-  // Get initial listings
   const initialListings = await getListingsByCategory("guided-tours", 6)
 
   return (
-    <CategoryLayout
-      title="Guided Tours"
-      description="Join expert guides on unforgettable safari tours across Africa's most spectacular wildlife destinations."
+    <CategoryPageShell
+      activeSlug="guided-tours"
+      index={3}
+      total={9}
+      title="Guided tours"
+      description="Expert-led tours across Africa's most spectacular wildlife destinations."
       image="/images/category-img/guided-tours.jpg"
     >
-      <PaginatedListingsGrid
+      <PaginatedListingsGridEditorial
         initialListings={initialListings}
-        category="Guided Tours"
         categorySlug="guided-tours"
-        emptyMessage="No guided tour listings available at the moment"
+        eyebrow="Guided tour"
+        emptyMessage="No guided tours listed yet — submissions open under /submit."
       />
-    </CategoryLayout>
+    </CategoryPageShell>
   )
 }

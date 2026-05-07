@@ -1,31 +1,34 @@
 import type { Metadata } from "next"
 import { getListingsByCategory } from "@/lib/listings"
-import { CategoryLayout } from "@/components/category-layout"
-import { ListingsGrid } from "@/components/listings-grid"
+import { CategoryPageShell } from "@/components/editorial/category-page-shell"
+import { PaginatedListingsGridEditorial } from "@/components/editorial/paginated-listings-grid-editorial"
 
 export const metadata: Metadata = {
-  title: "Game Viewing | Safari Overland Directory",
+  title: "Game Viewing | Safari Overland",
   description:
-    "Discover specialized game viewing experiences with expert guides who know exactly where to find Africa's most iconic wildlife.",
+    "Specialised game viewing with expert guides — predator behaviour, birding, photography hides.",
 }
 
 export const dynamic = "force-dynamic"
 
 export default async function GameViewingPage() {
-  // Use the async function to get real data from Supabase
-  const listings = await getListingsByCategory("game-viewing", 6)
+  const initialListings = await getListingsByCategory("game-viewing", 6)
 
   return (
-    <CategoryLayout
-      title="Game Viewing"
-      description="Discover specialized game viewing experiences with expert guides who know exactly where to find Africa's most iconic wildlife."
+    <CategoryPageShell
+      activeSlug="game-viewing"
+      index={7}
+      total={9}
+      title="Game viewing"
+      description="Specialised wildlife experiences with expert guides — predator behaviour, birding, photography hides."
       image="/images/category-img/game-viewing.jpg"
     >
-      <ListingsGrid
-        listings={listings}
-        category="Game Viewing"
-        emptyMessage="No game viewing listings available at the moment"
+      <PaginatedListingsGridEditorial
+        initialListings={initialListings}
+        categorySlug="game-viewing"
+        eyebrow="Game viewing"
+        emptyMessage="No game viewing listed yet — submissions open under /submit."
       />
-    </CategoryLayout>
+    </CategoryPageShell>
   )
 }

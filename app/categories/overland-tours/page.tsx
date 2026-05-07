@@ -1,32 +1,34 @@
 import type { Metadata } from "next"
 import { getListingsByCategory } from "@/lib/listings"
-import { CategoryLayout } from "@/components/category-layout"
-import { PaginatedListingsGrid } from "@/components/paginated-listings-grid"
+import { CategoryPageShell } from "@/components/editorial/category-page-shell"
+import { PaginatedListingsGridEditorial } from "@/components/editorial/paginated-listings-grid-editorial"
 
 export const metadata: Metadata = {
-  title: "Overland Tours | Safari Overland Directory",
+  title: "Overland Tours | Safari Overland",
   description:
-    "Experience the ultimate African adventure with overland tours that take you across multiple countries and diverse landscapes.",
+    "Multi-country overland adventures across diverse African landscapes.",
 }
 
 export const dynamic = "force-dynamic"
 
 export default async function OverlandToursPage() {
-  // Get initial listings
   const initialListings = await getListingsByCategory("overland-tours", 6)
 
   return (
-    <CategoryLayout
-      title="Overland Tours"
-      description="Experience the ultimate African adventure with overland tours that take you across multiple countries and diverse landscapes."
+    <CategoryPageShell
+      activeSlug="overland-tours"
+      index={4}
+      total={9}
+      title="Overland tours"
+      description="Multi-country expeditions across the continent — long-form, ground-bound, and ambitious."
       image="/images/category-img/overland-tours.jpg"
     >
-      <PaginatedListingsGrid
+      <PaginatedListingsGridEditorial
         initialListings={initialListings}
-        category="Overland Tours"
         categorySlug="overland-tours"
-        emptyMessage="No overland tour listings available at the moment"
+        eyebrow="Overland"
+        emptyMessage="No overland tours listed yet — submissions open under /submit."
       />
-    </CategoryLayout>
+    </CategoryPageShell>
   )
 }

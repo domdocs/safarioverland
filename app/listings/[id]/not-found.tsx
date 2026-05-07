@@ -1,29 +1,37 @@
 import Link from "next/link"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
+import { EditorialHeader } from "@/components/editorial/editorial-header"
+import { EditorialFooter } from "@/components/editorial/editorial-footer"
 import { Button } from "@/components/ui/button"
+import { Eyebrow } from "@/components/editorial/eyebrow"
 
 export default function ListingNotFound() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-1 container mx-auto px-4 py-12">
-        <div className="text-center max-w-2xl mx-auto">
-          <h1 className="text-3xl font-bold mb-4">Listing Not Found</h1>
-          <p className="text-muted-foreground mb-8">
-            The safari listing you're looking for doesn't exist or may have been removed.
+    <div className="flex min-h-screen flex-col bg-night text-bone">
+      <EditorialHeader variant="floating" />
+
+      <main className="flex-1 container py-24 md:py-32">
+        <div className="max-w-2xl">
+          <Eyebrow withRule>404 — not in the directory</Eyebrow>
+          <h1 className="mt-6 font-serif text-h1-fluid text-bone leading-tight text-balance">
+            That listing isn&apos;t here.
+          </h1>
+          <p className="mt-6 font-serif italic text-h4-fluid text-bone-mute max-w-xl">
+            It may have been removed, renamed, or it never existed. The directory
+            still has plenty to explore.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild>
-              <Link href="/">Return Home</Link>
+
+          <div className="mt-12 flex flex-col gap-4 sm:flex-row">
+            <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
+              <Link href="/categories">Browse categories</Link>
             </Button>
-            <Button variant="outline" asChild>
-              <Link href="/categories">Browse Categories</Link>
+            <Button size="lg" variant="outline" className="rounded-none px-8 py-6 mono" asChild>
+              <Link href="/destinations">Browse by region</Link>
             </Button>
           </div>
         </div>
       </main>
-      <Footer />
+
+      <EditorialFooter />
     </div>
   )
 }
