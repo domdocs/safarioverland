@@ -34,29 +34,32 @@ export function SafariFAQ() {
   ]
 
   return (
-    <section className="bg-white py-12 sm:py-16 lg:py-20">
+    <section className="py-12 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Frequently Asked Questions</h2>
-          <p className="mt-4 text-lg text-gray-500">
-            Get answers to common questions about safari experiences in Africa
+          <p className="eyebrow mb-3">FAQ</p>
+          <h2 className="font-serif text-bone sm:text-h2-fluid">
+            Frequently asked questions
+          </h2>
+          <p className="mt-4 text-lg text-bone-mute">
+            Common questions about safari experiences in Africa
           </p>
         </div>
         <div className="mt-12 mx-auto max-w-3xl">
           {faqs.map((faq, index) => (
-            <div key={index} className="border-b border-gray-200">
+            <div key={index} className="border-b border-rule">
               <button
                 className="flex w-full items-center justify-between py-6 text-left"
                 onClick={() => setOpenItem(openItem === index ? null : index)}
               >
-                <span className="text-lg font-medium text-gray-900">{faq.question}</span>
+                <span className="text-lg font-medium text-bone">{faq.question}</span>
                 <span className="ml-6 flex-shrink-0">
                   {openItem === index ? (
-                    <svg className="h-6 w-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-6 w-6 text-amber" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                     </svg>
                   ) : (
-                    <svg className="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-6 w-6 text-bone-mute" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   )}
@@ -64,7 +67,7 @@ export function SafariFAQ() {
               </button>
               {openItem === index && (
                 <div className="pb-6">
-                  <p className="text-base text-gray-500">{faq.answer}</p>
+                  <p className="text-base text-bone-mute">{faq.answer}</p>
                 </div>
               )}
             </div>

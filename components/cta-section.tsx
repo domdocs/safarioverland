@@ -3,16 +3,17 @@ import { Button } from "@/components/ui/button"
 
 export function CTASection() {
   return (
-    <section className="bg-orange-600">
+    <section className="bg-ink border border-rule">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="overflow-hidden rounded-lg bg-orange-700 shadow-xl lg:grid lg:grid-cols-2 lg:gap-4">
+        <div className="overflow-hidden bg-card border border-rule lg:grid lg:grid-cols-2 lg:gap-4">
           <div className="px-6 pt-10 pb-12 sm:px-16 sm:pt-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
             <div className="lg:self-center">
-              <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              <p className="eyebrow mb-4">For operators</p>
+              <h2 className="font-serif text-bone sm:text-h2-fluid">
                 <span className="block">Ready to list your</span>
-                <span className="block">safari business?</span>
+                <span className="block italic text-amber">safari business?</span>
               </h2>
-              <p className="mt-4 text-lg leading-6 text-white">
+              <p className="mt-4 text-lg leading-6 text-bone-mute">
                 Join our directory of trusted safari service providers and connect with travelers from around the world.
                 Increase your visibility and grow your business.
               </p>

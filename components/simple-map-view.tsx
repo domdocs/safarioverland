@@ -53,10 +53,12 @@ export function SimpleMapView() {
                 <p className="text-sm text-white/80">{region.description}</p>
               </div>
             </div>
-            <div className="bg-white p-4">
+            <div className="bg-card border-t border-rule p-4">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-500">{region.count} listings</span>
-                <span className="text-sm font-medium text-orange-600 group-hover:underline">Explore region</span>
+                <span className="mono text-bone-mute">{region.count} listings</span>
+                <span className="text-sm font-medium text-amber transition-colors group-hover:text-amber-deep">
+                  Explore region →
+                </span>
               </div>
             </div>
           </div>

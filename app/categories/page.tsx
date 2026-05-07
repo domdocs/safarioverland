@@ -25,8 +25,8 @@ export default async function CategoriesPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-3xl mx-auto mb-10 text-center">
-        <h1 className="text-3xl font-bold mb-4">Safari Categories</h1>
-        <p className="text-gray-600">
+        <h1 className="font-serif text-bone mb-4">Safari Categories</h1>
+        <p className="text-bone-mute">
           Browse our comprehensive directory of African safari services and accommodations by category.
         </p>
       </div>
@@ -36,15 +36,19 @@ export default async function CategoriesPage() {
           <Link
             key={category.slug}
             href={`/categories/${category.slug}`}
-            className="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
+            className="group block p-6 bg-card border border-rule transition-colors hover:border-amber"
           >
-            <h2 className="text-xl font-semibold mb-2">{category.name}</h2>
-            <p className="text-gray-600 mb-4">{category.description}</p>
+            <h2 className="text-xl font-serif text-amber mb-2 transition-colors group-hover:text-amber-deep">
+              {category.name}
+            </h2>
+            <p className="text-bone-mute mb-4">{category.description}</p>
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-500">
+              <span className="mono text-bone-mute">
                 {category.count !== undefined ? `${category.count} listings` : "Browse listings"}
               </span>
-              <span className="text-green-600 font-medium">View &rarr;</span>
+              <span className="text-amber font-medium transition-colors group-hover:text-amber-deep">
+                View &rarr;
+              </span>
             </div>
           </Link>
         ))}

@@ -81,7 +81,7 @@ export function CategoryGrid() {
         <Link
           key={category.slug}
           href={`/categories/${category.slug}`}
-          className="flex flex-col items-center p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow text-center"
+          className="group flex flex-col items-center p-4 bg-card border border-rule transition-colors hover:border-amber text-center"
         >
           <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-3 text-primary">
             {categoryIcons[category.slug as keyof typeof categoryIcons]}

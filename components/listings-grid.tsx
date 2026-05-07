@@ -21,8 +21,8 @@ export function ListingsGrid({ listings = [], category, emptyMessage = "No listi
           ))}
         </div>
       ) : (
-        <div className="p-8 text-center bg-gray-50 rounded-lg">
-          <p className="text-gray-500">{emptyMessage}</p>
+        <div className="p-8 text-center bg-card border border-rule">
+          <p className="text-bone-mute">{emptyMessage}</p>
         </div>
       )}
     </div>

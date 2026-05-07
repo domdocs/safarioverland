@@ -7,60 +7,71 @@ import { MobileNav } from "@/components/mobile-nav"
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full py-2 px-4">
-      <div
-        className="container flex h-16 items-center justify-between rounded-lg shadow-lg"
-        style={{ backgroundColor: "#4F6D7A" }}
-      >
+    <header className="sticky top-0 z-50 w-full bg-night/95 backdrop-blur border-b border-rule">
+      <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden text-bone hover:bg-card hover:text-amber"
+              >
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="pr-0">
+            <SheetContent side="left" className="pr-0 bg-night text-bone border-rule">
               <MobileNav />
             </SheetContent>
           </Sheet>
           <Link href="/" className="flex items-center space-x-2">
-            <div className="relative w-10 h-10 overflow-hidden rounded-full bg-white flex items-center justify-center border border-gray-200">
+            <div className="relative w-9 h-9 overflow-hidden rounded-full bg-bone flex items-center justify-center border border-rule">
               <Image
                 src="/images/logo.png"
                 alt="Safari Overland Logo"
-                width={40}
-                height={40}
+                width={36}
+                height={36}
                 className="object-contain"
                 priority
               />
             </div>
-            <span className="font-medium text-sm hidden sm:inline-block text-white">Safari Overland</span>
+            <span className="font-serif text-lg italic hidden sm:inline-block text-bone">
+              Safari Overland
+            </span>
           </Link>
         </div>
-        <nav className="hidden md:flex items-center gap-6 text-white">
-          <Link href="/categories" className="text-sm font-medium hover:text-primary">
+        <nav className="hidden md:flex items-center gap-8 mono text-bone-mute">
+          <Link href="/categories" className="transition-colors hover:text-amber">
             Categories
           </Link>
-          <Link href="/destinations" className="text-sm font-medium hover:text-primary">
+          <Link href="/destinations" className="transition-colors hover:text-amber">
             Destinations
           </Link>
-          <Link href="/about" className="text-sm font-medium hover:text-primary">
+          <Link href="/about" className="transition-colors hover:text-amber">
             About
           </Link>
-          <Link href="/resources" className="text-sm font-medium hover:text-primary">
+          <Link href="/resources" className="transition-colors hover:text-amber">
             Resources
           </Link>
         </nav>
         <div className="flex items-center gap-2">
           <Link href="/search">
-            <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-bone-mute hover:bg-card hover:text-amber"
+            >
               <Search className="h-5 w-5" />
               <span className="sr-only">Search</span>
             </Button>
           </Link>
           <Link href="/sign-in">
-            <Button variant="outline" size="sm" className="hidden md:flex">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="hidden md:flex text-bone-mute hover:bg-card hover:text-amber"
+            >
               Sign In
             </Button>
           </Link>
@@ -71,12 +82,16 @@ export function Header() {
           </Link>
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden text-white hover:bg-white/20">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden text-bone-mute hover:bg-card hover:text-amber"
+              >
                 <User className="h-5 w-5" />
                 <span className="sr-only">User menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right">
+            <SheetContent side="right" className="bg-night text-bone border-rule">
               <div className="flex flex-col gap-4 py-4">
                 <Link href="/sign-in">
                   <Button variant="outline" className="w-full">

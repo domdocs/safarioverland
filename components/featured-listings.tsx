@@ -16,7 +16,7 @@ export async function FeaturedListings() {
       console.log('No featured listings found')
       return (
         <div className="text-center py-8">
-          <p className="text-gray-500">No featured listings available at the moment.</p>
+          <p className="text-bone-mute">No featured listings available at the moment.</p>
         </div>
       )
     }
@@ -25,7 +25,7 @@ export async function FeaturedListings() {
       <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
         {listings.map((listing) => (
           <Link href={`/listings/${listing.id}`} key={listing.id} className="group">
-            <Card className="overflow-hidden transition-all duration-200 hover:shadow-md">
+            <Card className="overflow-hidden border-rule transition-colors duration-200 hover:border-amber">
               <div className="relative h-48 overflow-hidden">
                 <ListingImage
                   src={listing.image_url}
@@ -34,21 +34,23 @@ export async function FeaturedListings() {
                   className="transition-transform duration-200 group-hover:scale-105"
                 />
                 {listing.featured && (
-                  <Badge className="absolute right-2 top-2 bg-orange-500 hover:bg-orange-600">Featured</Badge>
+                  <Badge className="absolute right-2 top-2 bg-primary text-primary-foreground hover:bg-amber-deep">
+                    Featured
+                  </Badge>
                 )}
               </div>
               <CardContent className="p-4">
-                <h3 className="line-clamp-1 text-lg font-semibold text-gray-900 group-hover:text-orange-600">
+                <h3 className="line-clamp-1 text-lg font-serif text-bone transition-colors group-hover:text-amber">
                   {listing.listing_name}
                 </h3>
-                <p className="line-clamp-1 text-sm text-gray-500">
+                <p className="line-clamp-1 text-sm text-bone-mute">
                   {listing.location}, {listing.country}
                 </p>
                 <div className="mt-2 flex items-center">
-                  <Badge variant="outline" className="text-xs">
+                  <Badge variant="outline" className="text-xs border-rule text-bone-mute">
                     {listing.category}
                   </Badge>
-                  <div className="ml-auto text-sm font-medium text-gray-900">
+                  <div className="ml-auto text-sm font-medium text-bone">
                     {listing.price_info ? `${listing.price_info.substring(0, 20)}...` : "Contact for pricing"}
                   </div>
                 </div>
@@ -62,7 +64,7 @@ export async function FeaturedListings() {
     console.error('Error in FeaturedListings:', error)
     return (
       <div className="text-center py-8">
-        <p className="text-gray-500">Unable to load featured listings. Please try again later.</p>
+        <p className="text-bone-mute">Unable to load featured listings. Please try again later.</p>
       </div>
     )
   }

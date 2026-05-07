@@ -9,6 +9,7 @@ import {
   Utensils,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
+import { ListingImageWithFallback } from "./listing-image-with-fallback"
 
 /**
  * Treat empty strings, nulls, and our legacy placeholder.svg URLs as "no image".
@@ -43,36 +44,50 @@ type ListingImageProps = {
 }
 
 /**
- * Renders a listing's image, or — when the URL is missing or a legacy
- * placeholder — a tinted icon block themed to the listing category.
+ * Renders a listing's image, or — when the URL is missing, points at a legacy
+ * placeholder, OR the image fails to load at runtime — a tinted icon block
+ * themed to the listing category.
  *
  * Always renders inside a parent that already has explicit width/height
  * (e.g. `relative h-48`); this component fills the parent.
+ *
+ * Server Component: chooses the icon at render time, then either emits the
+ * fallback block directly or hands off to a tiny client component that can
+ * react to `onError` if the URL exists but 404s/CORS-fails at fetch time.
  */
 export function ListingImage({ src, alt, category, className }: ListingImageProps) {
+  const Icon = iconForCategory(category)
+
   if (isMissing(src)) {
-    const Icon = iconForCategory(category)
-    return (
-      <div
-        role="img"
-        aria-label={alt}
-        className={`flex h-full w-full items-center justify-center bg-primary/10 ${className ?? ""}`}
-      >
-        <Icon
-          className="h-12 w-12 text-primary/70"
-          strokeWidth={1.5}
-          aria-hidden="true"
-        />
-      </div>
-    )
+    return <Fallback Icon={Icon} alt={alt} className={className} />
   }
 
-  // eslint-disable-next-line @next/next/no-img-element
   return (
-    <img
+    <ListingImageWithFallback
       src={src as string}
       alt={alt}
-      className={`h-full w-full object-cover ${className ?? ""}`}
+      className={className}
+      fallback={<Fallback Icon={Icon} alt={alt} className={className} />}
     />
+  )
+}
+
+function Fallback({
+  Icon,
+  alt,
+  className,
+}: {
+  Icon: LucideIcon
+  alt: string
+  className?: string
+}) {
+  return (
+    <div
+      role="img"
+      aria-label={alt}
+      className={`flex h-full w-full items-center justify-center bg-primary/10 ${className ?? ""}`}
+    >
+      <Icon className="h-12 w-12 text-primary/70" strokeWidth={1.5} aria-hidden="true" />
+    </div>
   )
 }

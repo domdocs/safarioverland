@@ -50,9 +50,7 @@ export default function ResourcesPage() {
                     Comprehensive guides to help you plan every aspect of your safari adventure, from budgeting to
                     packing.
                   </p>
-                  <Button variant="outline" className="mt-auto">
-                    View Guides
-                  </Button>
+                  <Button className="mt-auto">View Guides</Button>
                 </CardContent>
               </Card>
             </Link>
@@ -68,9 +66,7 @@ export default function ResourcesPage() {
                     Essential safety information to ensure a secure and enjoyable safari experience in the African
                     wilderness.
                   </p>
-                  <Button variant="outline" className="mt-auto">
-                    Learn More
-                  </Button>
+                  <Button className="mt-auto">Learn More</Button>
                 </CardContent>
               </Card>
             </Link>
@@ -86,9 +82,7 @@ export default function ResourcesPage() {
                     Information about wildlife conservation efforts across Africa and how responsible tourism can make a
                     positive impact.
                   </p>
-                  <Button variant="outline" className="mt-auto">
-                    Explore
-                  </Button>
+                  <Button className="mt-auto">Explore</Button>
                 </CardContent>
               </Card>
             </Link>
@@ -104,9 +98,7 @@ export default function ResourcesPage() {
                     Detailed information about the best times to visit different safari destinations based on wildlife
                     viewing and weather.
                   </p>
-                  <Button variant="outline" className="mt-auto">
-                    View Guides
-                  </Button>
+                  <Button className="mt-auto">View Guides</Button>
                 </CardContent>
               </Card>
             </Link>
