@@ -203,6 +203,12 @@ export default async function HomePage() {
                     className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
+                  {/* Editorial blend: dark at top + bottom, near-transparent middle.
+                      Slight overall dim. Pointer-events-none so it doesn't block hover. */}
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgb(var(--night)/0.7)_0%,rgb(var(--night)/0.15)_35%,rgb(var(--night)/0.15)_65%,rgb(var(--night)/0.7)_100%)]"
+                  />
                 </div>
                 <div className="flex items-baseline gap-3 mb-3">
                   <span className="mono text-amber">{String(i + 1).padStart(2, "0")}</span>

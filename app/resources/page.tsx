@@ -196,6 +196,10 @@ export default function ResourcesPage() {
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgb(var(--night)/0.7)_0%,rgb(var(--night)/0.15)_35%,rgb(var(--night)/0.15)_65%,rgb(var(--night)/0.7)_100%)]"
+                />
               </div>
               <div className="flex items-baseline gap-3 mb-3">
                 <span className="mono text-amber" aria-hidden>
