@@ -51,18 +51,20 @@ export function EditorialHeader({ variant = "standard", className }: EditorialHe
     <header className={wrapperClass}>
       <div className="container flex h-16 items-center justify-between gap-6">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative h-9 w-9 overflow-hidden rounded-full bg-bone flex items-center justify-center border border-rule">
-            <Image
-              src="/images/logo.png"
-              alt="Safari Overland"
-              width={36}
-              height={36}
-              className="object-contain"
-              priority
-            />
-          </div>
-          <span className="font-serif text-lg italic text-bone group-hover:text-amber transition-colors">
+        <Link
+          href="/"
+          className="flex items-center gap-3 group"
+          aria-label="Safari Overland — home"
+        >
+          <Image
+            src="/images/logo/safari-overland-mark-256.webp"
+            alt=""
+            width={40}
+            height={40}
+            className="h-10 w-10"
+            priority
+          />
+          <span className="font-serif text-xl tracking-tight text-bone group-hover:text-amber transition-colors">
             Safari Overland
           </span>
         </Link>

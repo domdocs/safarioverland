@@ -4,8 +4,8 @@
   "description": "African safari operators, lodges and travel guides.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#4D6C7F",
+  "background_color": "#0E110F",
+  "theme_color": "#0E110F",
   "icons": [
     {
       "src": "/favicon.ico",

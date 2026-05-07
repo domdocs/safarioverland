@@ -25,18 +25,20 @@ export function Header() {
               <MobileNav />
             </SheetContent>
           </Sheet>
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="relative w-9 h-9 overflow-hidden rounded-full bg-bone flex items-center justify-center border border-rule">
-              <Image
-                src="/images/logo.png"
-                alt="Safari Overland Logo"
-                width={36}
-                height={36}
-                className="object-contain"
-                priority
-              />
-            </div>
-            <span className="font-serif text-lg italic hidden sm:inline-block text-bone">
+          <Link
+            href="/"
+            className="flex items-center gap-3"
+            aria-label="Safari Overland — home"
+          >
+            <Image
+              src="/images/logo/safari-overland-mark-256.webp"
+              alt=""
+              width={40}
+              height={40}
+              priority
+              className="h-10 w-10"
+            />
+            <span className="font-serif text-xl tracking-tight hidden sm:inline-block text-bone">
               Safari Overland
             </span>
           </Link>

@@ -8,7 +8,14 @@ export function MobileNav() {
     <div className="flex flex-col h-full">
       <div className="flex items-center h-16 px-6 border-b">
         <Link href="/" className="flex items-center gap-2">
-          <Image src="/images/logo.png" alt="Safari Overland Logo" width={150} height={40} className="h-8 w-auto" />
+          <Image
+            src="/images/logo/safari-overland-mark-256.webp"
+            alt=""
+            width={32}
+            height={32}
+            className="h-8 w-8"
+          />
+          <span className="font-serif text-lg tracking-tight text-bone">Safari Overland</span>
         </Link>
       </div>
       <div className="flex-1 overflow-auto py-2">

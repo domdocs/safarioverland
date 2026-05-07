@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Safari Overland — flat-gold wordmark SVG.
+
+  This is a TEXT-BASED approximation of the brand wordmark, NOT a literal
+  vectorisation of the metallic-gold raster master. Use for:
+    - footer / email-signature contexts where vector + small file matters
+    - monochrome contexts (override `fill` via CSS)
+    - very small sizes (16-32px) where the metallic texture wouldn't show
+
+  For hero use (header, OG image, social profiles), use the raster masters
+  in this folder — they preserve the metallic gold leaf look.
+
+  Renders best with Cinzel (Google Fonts, free) installed or imported in CSS.
+  Falls back to a generic serif on systems without Cinzel.
+-->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 800 200"
+  role="img"
+  aria-label="Safari Overland"
+>
+  <title>Safari Overland</title>
+  <desc>Safari Overland — established 2018. Wordmark logo in gold.</desc>
+
+  <style>
+    .wordmark {
+      font-family: "Cinzel", "Trajan Pro", "Cormorant Garamond", "Times New Roman", serif;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      fill: #D6A24A;
+    }
+    .est {
+      font-family: "Cinzel", "Trajan Pro", "Cormorant Garamond", "Times New Roman", serif;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      fill: #D6A24A;
+    }
+  </style>
+
+  <text x="400" y="100" text-anchor="middle" class="wordmark" font-size="72">
+    “SAFARI OVERLAND”
+  </text>
+  <text x="400" y="155" text-anchor="middle" class="est" font-size="22">
+    EST. 2018
+  </text>
+</svg>
