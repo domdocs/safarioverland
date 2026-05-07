@@ -1,59 +1,53 @@
 import type React from "react"
+import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import Link from "next/link"
 
+const NAV = [
+  { href: "/admin", label: "Overview" },
+  { href: "/admin/briefs", label: "Briefs" },
+  { href: "/admin/articles", label: "Articles" },
+  { href: "/admin/listings", label: "Manage Listings" },
+  { href: "/admin/pending", label: "Pending Approvals" },
+  { href: "/admin/subscribers", label: "Subscribers" },
+  { href: "/admin/settings", label: "Settings" },
+] as const
+
+/**
+ * Admin layout — wrapped in `.light` per the locked design decision.
+ * The CSS variables in app/globals.css `.light` block flip --background,
+ * --foreground, --card and --primary to a warm-bone / near-black scheme,
+ * so admin reads as a back-office tool rather than the cinematic dark site.
+ *
+ * Marketing site Header/Footer chrome remain (still useful for "go back to
+ * the public site" navigation), retoned via tokens.
+ */
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-      <div className="container mx-auto flex-1 py-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-[250px_1fr]">
-          <aside className="space-y-4 rounded-lg border bg-card p-4 shadow-sm">
-            <h2 className="text-xl font-bold">Admin Dashboard</h2>
-            <nav className="space-y-2">
-              <Link
-                href="/admin"
-                className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
-              >
-                Overview
-              </Link>
-              <Link
-                href="/admin/articles"
-                className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
-              >
-                Articles
-              </Link>
-              <Link
-                href="/admin/listings"
-                className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
-              >
-                Manage Listings
-              </Link>
-              <Link
-                href="/admin/pending"
-                className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
-              >
-                Pending Approvals
-              </Link>
-              <Link
-                href="/admin/subscribers"
-                className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
-              >
-                Subscribers
-              </Link>
-              <Link
-                href="/admin/settings"
-                className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
-              >
-                Settings
-              </Link>
-            </nav>
-          </aside>
-          <main className="min-h-[50vh]">{children}</main>
+    <div className="light bg-background text-foreground">
+      <div className="flex min-h-screen flex-col">
+        <Header />
+        <div className="container mx-auto flex-1 py-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-[220px_1fr]">
+            <aside className="space-y-4 rounded-md border border-border bg-card p-4 shadow-sm">
+              <h2 className="text-lg font-semibold tracking-tight">Admin</h2>
+              <nav className="space-y-1">
+                {NAV.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-foreground hover:bg-foreground/5"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+            </aside>
+            <main className="min-h-[50vh]">{children}</main>
+          </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   )
 }
