@@ -1,7 +1,7 @@
 // ============================================================================
-// Safari Overland — Tailwind config
+// Safari Overland — Tailwind config patch
 //
-// Source: handoff/tailwind.config.ts (Phase 0 of the redesign).
+// Replace your existing tailwind.config.ts with this file.
 //
 // Notable changes from the v0-generated default:
 //   • Colour palette is now driven by CSS variables in app/globals.css
@@ -43,6 +43,7 @@ const config = {
         // Token-driven — change in tokens.css, propagates everywhere.
         night:      "rgb(var(--night) / <alpha-value>)",
         ink:        "rgb(var(--ink) / <alpha-value>)",
+        card:       "rgb(var(--card) / <alpha-value>)",
         rule:       "rgb(var(--rule) / <alpha-value>)",
         bone:       "rgb(var(--bone) / <alpha-value>)",
         "bone-mute":"rgb(var(--bone-mute) / <alpha-value>)",
@@ -78,18 +79,9 @@ const config = {
           DEFAULT:    "rgb(var(--destructive) / <alpha-value>)",
           foreground: "rgb(var(--destructive-foreground) / <alpha-value>)",
         },
-        // shadcn card + popover need both DEFAULT and foreground.
-        card: {
-          DEFAULT:    "rgb(var(--card) / <alpha-value>)",
-          foreground: "rgb(var(--card-foreground) / <alpha-value>)",
-        },
-        popover: {
-          DEFAULT:    "rgb(var(--popover) / <alpha-value>)",
-          foreground: "rgb(var(--popover-foreground) / <alpha-value>)",
-        },
       },
       fontFamily: {
-        // Wired to next/font in app/layout.tsx via CSS variables.
+        // Wire to next/font in app/layout.tsx — see brief.
         sans:  ["var(--font-sans)"],
         serif: ["var(--font-serif)"],
         mono:  ["var(--font-mono)"],

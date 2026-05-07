@@ -2,9 +2,15 @@
    Safari Overland — Design Tokens
    Phase 0 of the redesign rollout.
 
-   Sourced from handoff/tokens.css. Do not edit ad-hoc — change the source
-   in handoff/ first, then sync. shadcn primitives inherit via the
-   --background / --foreground / --primary / etc. mappings below.
+   How to use:
+   1. Replace the contents of `app/globals.css` with this file (keeping your
+      @tailwind directives at the top).
+   2. Apply the matching `tailwind.config.ts` patch (see handoff/tailwind.config.ts).
+   3. Add the fonts to `app/layout.tsx` via next/font (see brief).
+
+   Once these three things are in place, every shadcn component on the site
+   inherits the new colour system automatically — no other code changes needed
+   to ship Phase 0.
    ========================================================================== */
 
 @tailwind base;
@@ -48,15 +54,9 @@
     --input:        var(--rule);
     --ring:         var(--amber);
     --radius:       0;              /* editorial = no rounding by default */
-    /* Required by shadcn primitives (card, popover, hover-card, dropdown-menu,
-       tooltip, command, menubar, navigation-menu) — derived from the editorial
-       surface tokens above. */
-    --card-foreground: var(--bone);
-    --popover:      var(--card);
-    --popover-foreground: var(--bone);
 
     /* ── Typography stacks ───────────────────────────────────── */
-    /* Wired to next/font in app/layout.tsx — variables come from there. */
+    /* Wire these to next/font in layout.tsx — see brief. */
     --font-serif:   "GT Sectra", "Tiempos Headline", "Cormorant Garamond", Georgia, serif;
     --font-sans:    "Söhne", "Inter Tight", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;

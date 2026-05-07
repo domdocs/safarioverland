@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
+import { Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
@@ -8,7 +8,26 @@ import { SupabaseProvider } from "@/components/supabase-provider"
 import { DownloadGateProvider } from "@/components/download-gate-provider"
 import Script from "next/script"
 
-const inter = Inter({ subsets: ["latin"] })
+// Editorial typography — wired via CSS variables, picked up in tailwind.config.ts
+// and globals.css (--font-serif / --font-sans / --font-mono).
+// Cormorant Garamond is the free fallback for the licensed serif (GT Sectra /
+// Tiempos Headline) — the variable stays the same when the licensed woff2 lands.
+const serif = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-serif",
+  display: "swap",
+})
+const sans = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+})
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://safarioverland.com"),
@@ -58,7 +77,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#4D6C7F",
+  themeColor: "#0E110F", // night — matches the cinematic dark theme
 }
 
 export default function RootLayout({
@@ -67,7 +86,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${serif.variable} ${sans.variable} ${mono.variable}`}
+    >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         {/* Google Analytics */}
@@ -81,8 +104,8 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={inter.className} suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+      <body suppressHydrationWarning>
+        <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
           <SupabaseProvider>
             <DownloadGateProvider>
               {children}
@@ -94,6 +117,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-
-import './globals.css'
