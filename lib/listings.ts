@@ -80,6 +80,20 @@ export type DirectoryListing = {
   editor_notes?: string | null
 }
 
+/**
+ * Mock fallback policy.
+ *
+ * `true` only in local development. In production a missing Supabase
+ * client or a failed query surfaces as an empty list (or `0` for counts)
+ * plus a server-side error log — *not* as a render of mock rows that
+ * have non-UUID IDs and would break downstream admin operations
+ * (approve / edit) which expect real database rows.
+ *
+ * The mock data block below is preserved for offline / no-network dev,
+ * just gated behind this flag at every fallback site.
+ */
+const USE_MOCK_FALLBACK = process.env.NODE_ENV === "development"
+
 // Mock data that will be used as fallback if Supabase is unavailable
 const mockListings: DirectoryListing[] = [
   {
@@ -339,13 +353,16 @@ export async function getListings({
   offset?: number
 } = {}): Promise<DirectoryListing[]> {
   try {
-    // First, get the mock data as a fallback
-    const mockData = filterMockListings({ category, region, country, featured, status, limit, offset })
+    // Mock data fallback — only computed when USE_MOCK_FALLBACK is true.
+    // In production this is `[]` so a Supabase outage surfaces as empty.
+    const mockData: DirectoryListing[] = USE_MOCK_FALLBACK
+      ? filterMockListings({ category, region, country, featured, status, limit, offset })
+      : []
 
     // Try to get the Supabase client
     const supabase = getSupabaseServerClient()
     if (!supabase) {
-      console.warn("Supabase client not available, using mock data")
+      console.error("getListings: Supabase client not available")
       return mockData
     }
 
@@ -385,11 +402,11 @@ export async function getListings({
         return mockData
       }
 
-      // Empty is a valid result — don't fall back to mock data here, otherwise
-      // mock listings (numeric IDs) would surface in production admin lists
-      // and break downstream operations like approve/edit that expect UUIDs.
+      // Null data without an error → treat as empty. (We deliberately don't
+      // fall back to mock data here — mock numeric IDs would surface in
+      // production admin lists and break approve/edit which expect UUIDs.)
       if (!data) {
-        return mockData
+        return []
       }
 
       console.log(`Successfully fetched ${data.length} listings from Supabase`)
@@ -443,20 +460,27 @@ export async function getListings({
     }
   } catch (error) {
     console.error("Error in getListings:", error)
-    return filterMockListings({ category, region, country, featured, status, limit, offset })
+    return USE_MOCK_FALLBACK
+      ? filterMockListings({ category, region, country, featured, status, limit, offset })
+      : []
   }
 }
 
 // Get featured listings
 export async function getFeaturedListings(limit = 6): Promise<DirectoryListing[]> {
+  // Mock fallback (dev only). In prod this is always [].
+  const mockFallback = (): DirectoryListing[] => {
+    if (!USE_MOCK_FALLBACK) return []
+    const featured = mockListings.filter((l) => l.featured)
+    return [...featured].sort(() => Math.random() - 0.5).slice(0, limit)
+  }
+
   try {
     const supabase = getSupabaseServerClient()
-    
+
     if (!supabase) {
-      console.error("Supabase client not available")
-      const mockFeatured = mockListings.filter((listing) => listing.featured)
-      const shuffled = [...mockFeatured].sort(() => Math.random() - 0.5)
-      return shuffled.slice(0, limit)
+      console.error("getFeaturedListings: Supabase client not available")
+      return mockFallback()
     }
 
     const { data: allFeatured, error } = await supabase
@@ -467,17 +491,12 @@ export async function getFeaturedListings(limit = 6): Promise<DirectoryListing[]
 
     if (error) {
       console.error("Error fetching featured listings:", error)
-      // Fallback to mock data
-      const mockFeatured = mockListings.filter((listing) => listing.featured)
-      const shuffled = [...mockFeatured].sort(() => Math.random() - 0.5)
-      return shuffled.slice(0, limit)
+      return mockFallback()
     }
 
+    // Empty is a valid result — return [] rather than masking with mocks.
     if (!allFeatured || allFeatured.length === 0) {
-      // Fallback to mock data if no featured listings found
-      const mockFeatured = mockListings.filter((listing) => listing.featured)
-      const shuffled = [...mockFeatured].sort(() => Math.random() - 0.5)
-      return shuffled.slice(0, limit)
+      return []
     }
 
     // Randomly shuffle the featured listings and take the requested number
@@ -485,10 +504,7 @@ export async function getFeaturedListings(limit = 6): Promise<DirectoryListing[]
     return shuffled.slice(0, limit)
   } catch (error) {
     console.error("Error in getFeaturedListings:", error)
-    // Fallback to mock data
-    const mockFeatured = mockListings.filter((listing) => listing.featured)
-    const shuffled = [...mockFeatured].sort(() => Math.random() - 0.5)
-    return shuffled.slice(0, limit)
+    return mockFallback()
   }
 }
 
@@ -501,11 +517,14 @@ export async function getListingsByCategory(
   try {
     console.log(`Fetching listings for category: ${category} with limit: ${limit} and offset: ${offset}`)
 
+    const mockFallback = () =>
+      USE_MOCK_FALLBACK ? getListingsByCategorySync(category, limit) : []
+
     // Try to get the Supabase client
     const supabase = getSupabaseServerClient()
     if (!supabase) {
-      console.warn("Supabase client not available, using mock data for category")
-      return getListingsByCategorySync(category, limit)
+      console.error(`getListingsByCategory(${category}): Supabase client not available`)
+      return mockFallback()
     }
 
     try {
@@ -520,12 +539,14 @@ export async function getListingsByCategory(
 
       if (error) {
         console.error(`Error fetching listings for category ${category}:`, error)
-        return getListingsByCategorySync(category, limit)
+        return mockFallback()
       }
 
+      // Empty is a valid result — return [] (the empty-state UI is wired).
+      // We deliberately do not fall back to mock data here, even in dev,
+      // because mock numeric IDs leak into the public listings pages.
       if (!data || data.length === 0) {
-        console.log(`No data returned from Supabase for category ${category}, using mock data`)
-        return getListingsByCategorySync(category, limit)
+        return []
       }
 
       console.log(`Successfully fetched ${data.length} listings for category ${category}`)
@@ -575,28 +596,36 @@ export async function getListingsByCategory(
       }))
     } catch (queryError) {
       console.error(`Error executing Supabase query for category ${category}:`, queryError)
-      return getListingsByCategorySync(category, limit)
+      return USE_MOCK_FALLBACK ? getListingsByCategorySync(category, limit) : []
     }
   } catch (error) {
     console.error(`Error in getListingsByCategory for ${category}:`, error)
-    return getListingsByCategorySync(category, limit)
+    return USE_MOCK_FALLBACK ? getListingsByCategorySync(category, limit) : []
   }
 }
 
 // Get listings by region
+//
+// NOTE: this function predates the Supabase wire-up and was never converted
+// — it always returned mock data. The mock branch is now gated to dev only;
+// in production it returns []. A real Supabase query for this function is
+// out of scope for the admin wire-up sprint (Stream C). Track separately
+// if /destinations/[region] starts shipping live.
 export async function getListingsByRegion(region: string, limit = 12): Promise<DirectoryListing[]> {
-  // Always return mock data to ensure the page renders
-  return getListingsSync({ region, limit })
+  return USE_MOCK_FALLBACK ? getListingsSync({ region, limit }) : []
 }
 
 // Get pending listings
 export async function getPendingListings(limit = 10): Promise<DirectoryListing[]> {
+  const mockFallback = () =>
+    USE_MOCK_FALLBACK ? getListingsSync({ status: "pending", limit }) : []
+
   try {
     const supabase = getSupabaseServerClient()
 
     if (!supabase) {
-      console.warn("Supabase client not available, using mock data for pending listings")
-      return getListingsSync({ status: "pending", limit })
+      console.error("getPendingListings: Supabase client not available")
+      return mockFallback()
     }
 
     const { data, error } = await supabase
@@ -608,25 +637,29 @@ export async function getPendingListings(limit = 10): Promise<DirectoryListing[]
 
     if (error) {
       console.error("Error fetching pending listings from Supabase:", error)
-      return getListingsSync({ status: "pending", limit })
+      return mockFallback()
     }
 
-    return data as DirectoryListing[]
+    return (data ?? []) as DirectoryListing[]
   } catch (error) {
     console.error("Error in getPendingListings:", error)
-    return getListingsSync({ status: "pending", limit })
+    return mockFallback()
   }
 }
 
 // Get listing count
 export async function getListingCount(category?: string, status = "approved"): Promise<number> {
+  const mockCount = () =>
+    USE_MOCK_FALLBACK
+      ? filterMockListings({ category, status, limit: 1000 }).length
+      : 0
+
   try {
     const supabase = getSupabaseServerClient()
 
     if (!supabase) {
-      console.warn("Supabase client not available, using mock data for count")
-      const listings = filterMockListings({ category, status, limit: 1000 })
-      return listings.length
+      console.error("getListingCount: Supabase client not available")
+      return mockCount()
     }
 
     let query = supabase.from("directory_listings").select("id", { count: "exact" })
@@ -643,15 +676,13 @@ export async function getListingCount(category?: string, status = "approved"): P
 
     if (error) {
       console.error("Error fetching listing count from Supabase:", error)
-      const listings = filterMockListings({ category, status, limit: 1000 })
-      return listings.length
+      return mockCount()
     }
 
     return count || 0
   } catch (error) {
     console.error("Error in getListingCount:", error)
-    const listings = filterMockListings({ category, status, limit: 1000 })
-    return listings.length
+    return mockCount()
   }
 }
 
@@ -676,12 +707,15 @@ export async function getListingById(id: string): Promise<DirectoryListing | nul
       }
     }
 
-    // Fall back to mock data only if Supabase was unreachable or the ID is a mock numeric ID.
-    const mockListing =
-      mockListings.find((listing) => listing.id === id) || mockPendingListings.find((listing) => listing.id === id)
-    if (mockListing) {
-      console.log(`Falling back to mock listing for ID ${id}`)
-      return mockListing
+    // Fall back to mock data only in dev (mock numeric IDs only exist there).
+    if (USE_MOCK_FALLBACK) {
+      const mockListing =
+        mockListings.find((listing) => listing.id === id) ||
+        mockPendingListings.find((listing) => listing.id === id)
+      if (mockListing) {
+        console.log(`Falling back to mock listing for ID ${id}`)
+        return mockListing
+      }
     }
 
     return null
@@ -784,25 +818,27 @@ export async function getCategories() {
 export async function getRegions(): Promise<{ name: string; count: number }[]> {
   const regions = ["East Africa", "Southern Africa", "North Africa", "West Africa", "Multiple Regions"]
 
+  const mockOrEmpty = () =>
+    regions.map((region) => ({
+      name: region,
+      count: USE_MOCK_FALLBACK
+        ? filterMockListings({ region, limit: 1000 }).length
+        : 0,
+    }))
+
   try {
     const supabase = getSupabaseServerClient()
 
     if (!supabase) {
-      console.warn("Supabase client not available, using mock data for regions")
-      return regions.map((region) => ({
-        name: region,
-        count: filterMockListings({ region, limit: 1000 }).length,
-      }))
+      console.error("getRegions: Supabase client not available")
+      return mockOrEmpty()
     }
 
     const { data, error } = await supabase.from("directory_listings").select("region").eq("status", "approved")
 
     if (error) {
       console.error("Error fetching regions from Supabase:", error)
-      return regions.map((region) => ({
-        name: region,
-        count: filterMockListings({ region, limit: 1000 }).length,
-      }))
+      return mockOrEmpty()
     }
 
     // Count listings by region
@@ -818,27 +854,36 @@ export async function getRegions(): Promise<{ name: string; count: number }[]> {
     }))
   } catch (error) {
     console.error("Error in getRegions:", error)
-    return regions.map((region) => ({
-      name: region,
-      count: filterMockListings({ region, limit: 1000 }).length,
-    }))
+    return mockOrEmpty()
   }
 }
 
 // Update a listing
+//
+// NOTE: this function is no longer called from the app — /api/listings/[id]
+// PUT does its own Supabase update inline (Stream A). It's preserved for
+// the Auto-flow tests that still import it. The in-memory fallback is
+// dev-only; in production a write failure throws so the caller surfaces
+// the error rather than silently lying about success.
 export async function updateListing(updatedListing: DirectoryListing): Promise<DirectoryListing> {
+  const mockUpdateOrThrow = (reason: string): DirectoryListing => {
+    if (USE_MOCK_FALLBACK) {
+      console.warn(`updateListing: ${reason} — using in-memory update`)
+      return updateListingInMemory(updatedListing)
+    }
+    throw new Error(`updateListing failed: ${reason}`)
+  }
+
   try {
     const supabase = getSupabaseServerClient()
 
     if (!supabase) {
-      console.warn("Supabase client not available, using in-memory update")
-      return updateListingInMemory(updatedListing)
+      return mockUpdateOrThrow("Supabase client not available")
     }
 
     // Only try to update in Supabase if the ID looks like a valid UUID
     if (!isValidUUID(updatedListing.id)) {
-      console.warn(`ID ${updatedListing.id} is not a valid UUID, using in-memory update`)
-      return updateListingInMemory(updatedListing)
+      return mockUpdateOrThrow(`ID ${updatedListing.id} is not a valid UUID`)
     }
 
     const { data, error } = await supabase
@@ -866,13 +911,17 @@ export async function updateListing(updatedListing: DirectoryListing): Promise<D
 
     if (error) {
       console.error("Error updating listing in Supabase:", error)
-      return updateListingInMemory(updatedListing)
+      return mockUpdateOrThrow("Supabase update returned error")
     }
 
     return data as DirectoryListing
   } catch (error) {
+    if (error instanceof Error && error.message.startsWith("updateListing failed:")) {
+      // The throw from mockUpdateOrThrow — re-raise rather than swallow.
+      throw error
+    }
     console.error("Error in updateListing:", error)
-    return updateListingInMemory(updatedListing)
+    return mockUpdateOrThrow("threw before reaching DB")
   }
 }
 
