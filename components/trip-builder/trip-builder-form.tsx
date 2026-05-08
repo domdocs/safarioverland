@@ -180,12 +180,12 @@ export function TripBuilderForm() {
         <p className="mt-6 text-bone-mute leading-relaxed">
           A confirmation has gone to{" "}
           <span className="text-bone">{state.contact_email || "your inbox"}</span>.
-          A planner will reply with three options at different price points.
+          A planner will come back with three routes within 48 hours.
           If you remember anything else worth knowing, just reply to that email.
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
           <Button asChild size="lg" className="rounded-none px-8 py-6 mono">
-            <Link href="/categories">Browse the directory</Link>
+            <Link href="/categories">Open the collection</Link>
           </Button>
           <Button
             asChild

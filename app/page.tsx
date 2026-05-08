@@ -17,16 +17,16 @@ export const revalidate = 60
 
 const PILLARS = [
   {
-    title: "Curated, not crowdsourced.",
-    body: "Every operator is reviewed before publication. We list the people we'd send our friends to, not whoever paid for placement.",
+    title: "Curation, not catalogue.",
+    body: "We list the lodges and operators we'd send our friends to. Each one earns a place by the depth of the experience it offers — not by paying for one.",
   },
   {
-    title: "Honest about tradeoffs.",
-    body: "Crowded crossings, shoulder-season risks, hidden costs — we say it on the page rather than after you've booked.",
+    title: "Trips that leave a mark.",
+    body: "We are drawn to stays that ask something of you: a slower pace, a closer look, a moment to listen. The kind that linger long after the dust settles.",
   },
   {
-    title: "On the ground, year-round.",
-    body: "Our editors visit, walk, and write from the parks themselves. The notes are field notes, not press releases.",
+    title: "Travel with consequence.",
+    body: "Every operator here contributes to conservation, community, or both. Your booking is part of the work that keeps these places wild.",
   },
 ]
 
@@ -78,17 +78,17 @@ export default async function HomePage() {
 
           <div className="container relative h-full flex flex-col justify-end pb-20 md:pb-28">
             <div className="max-w-4xl">
-              <Eyebrow withRule>A directory of African safari operators</Eyebrow>
+              <Eyebrow withRule>African safaris, reconsidered</Eyebrow>
               <h1 className="mt-6 font-serif text-display-fluid text-bone leading-[0.96] tracking-tighter text-balance">
                 Africa, <span className="italic text-amber">slowly</span>.
               </h1>
               <p className="mt-8 max-w-2xl font-serif italic text-h4-fluid text-bone-mute leading-snug">
-                Curated lodges, operators, and field notes from across the continent.
-                The kind of trips we&apos;d want to take ourselves.
+                A small collection of lodges and operators chosen for what the wild does to you
+                — not just what it shows you.
               </p>
               <div className="mt-10 flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
-                  <Link href="/categories">Browse the directory →</Link>
+                  <Link href="/categories">Open the collection →</Link>
                 </Button>
                 <Button
                   size="lg"
@@ -109,7 +109,7 @@ export default async function HomePage() {
         {/* ─── Three-pillar manifesto ────────────────────────────── */}
         <section className="container py-24 md:py-32">
           <div className="max-w-3xl mb-16">
-            <Eyebrow withRule>What this directory is for</Eyebrow>
+            <Eyebrow withRule>What this collection is for</Eyebrow>
             <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
               Three things we promise to do
               <span className="italic text-amber"> properly</span>.
@@ -129,7 +129,7 @@ export default async function HomePage() {
             <div className="container">
               <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
                 <div className="max-w-2xl">
-                  <Eyebrow>This week in the directory</Eyebrow>
+                  <Eyebrow>This week on the collection</Eyebrow>
                   <h2 className="mt-4 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
                     A few we&apos;d send our friends to.
                   </h2>
@@ -138,7 +138,7 @@ export default async function HomePage() {
                   href="/categories"
                   className="mono text-amber hover:text-amber-deep transition-colors"
                 >
-                  All listings →
+                  Open the collection →
                 </Link>
               </div>
               <div>
@@ -225,14 +225,14 @@ export default async function HomePage() {
         <section className="container py-24 md:py-32">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
-              <Eyebrow withRule>Trip builder — open</Eyebrow>
+              <Eyebrow withRule>By hand — open</Eyebrow>
               <h2 className="mt-6 font-serif text-h1-fluid text-bone leading-tight tracking-tight text-balance">
-                Tell us what you want from a safari. We&apos;ll send back{" "}
-                <span className="italic text-amber">three options</span> in 48 hours.
+                A safari, drawn{" "}
+                <span className="italic text-amber">by hand</span>.
               </h2>
               <p className="mt-8 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
-                Free, no commitment. The brief is short — five questions about the months you can travel,
-                the rhythm you want, and the budget you&apos;re working to.
+                Tell us what you&apos;re chasing — the months, the rhythm, the kind of quiet you want.
+                We&apos;ll come back with three routes within 48 hours.
               </p>
               <div className="mt-12 flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
@@ -244,18 +244,18 @@ export default async function HomePage() {
                   className="rounded-none px-8 py-6 mono border-rule text-bone hover:border-amber hover:text-amber"
                   asChild
                 >
-                  <Link href="/contact">Talk to a planner</Link>
+                  <Link href="/contact">Speak to a planner</Link>
                 </Button>
               </div>
             </div>
 
             <div className="lg:col-span-5 lg:border-l lg:border-rule lg:pl-12">
-              <p className="eyebrow mb-6">How it works</p>
+              <p className="eyebrow mb-6">How it works — in three steps</p>
               <ol className="space-y-6">
                 {[
                   ["01", "You tell us the months, the regions, and the rhythm."],
-                  ["02", "We draft three options at different price points."],
-                  ["03", "You pick one, we hand you off to the operator."],
+                  ["02", "We draft three routes — at different rhythms and budgets."],
+                  ["03", "You pick one, we make the introduction."],
                 ].map(([n, t]) => (
                   <li key={n} className="flex gap-5 border-t border-rule pt-6">
                     <span className="mono text-amber pt-1 shrink-0" aria-hidden>

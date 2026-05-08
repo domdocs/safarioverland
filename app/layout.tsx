@@ -32,11 +32,11 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://safarioverland.com"),
   title: {
-    default: "Safari Overland — African safari operators, lodges & travel guides",
+    default: "Safari Overland — A small collection of African safaris, by hand",
     template: "%s | Safari Overland",
   },
   description:
-    "A directory of African safari operators, lodges, and travel resources, with editorial planning guides, seasonal information and conservation content.",
+    "A small, opinionated collection of African lodges and operators chosen for what the wild does to you — not just what it shows you. Curated from Victoria Falls.",
   manifest: "/manifest.json",
   applicationName: "Safari Overland",
   keywords: [
@@ -53,15 +53,15 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://safarioverland.com",
     siteName: "Safari Overland",
-    title: "Safari Overland — African safari operators, lodges & travel guides",
+    title: "Safari Overland — A small collection of African safaris, by hand",
     description:
-      "Discover safari operators, lodges and travel resources across Africa. Plan your trip with our editorial guides, seasonal advice, and conservation stories.",
+      "A curated collection of African lodges and operators — chosen for what the wild does to you, not just what it shows you. Field notes, planning briefs, and an honest second opinion. From Victoria Falls.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Safari Overland — African safari operators, lodges & travel guides",
+    title: "Safari Overland — A small collection of African safaris, by hand",
     description:
-      "Discover safari operators, lodges and travel resources across Africa. Plan your trip with our editorial guides, seasonal advice, and conservation stories.",
+      "A curated collection of African lodges and operators — chosen for what the wild does to you, not just what it shows you. From Victoria Falls.",
   },
   robots: {
     index: true,

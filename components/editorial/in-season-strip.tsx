@@ -28,9 +28,7 @@ export function InSeasonStrip() {
           <Eyebrow as="p">
             <span id="in-season-heading">In season — right now</span>
           </Eyebrow>
-          <p className="mono text-bone-mute">
-            {CURRENT_CONDITIONS.length} destinations
-          </p>
+          <p className="mono text-bone-mute">What the wild is doing this week</p>
         </div>
         <ul className="-mx-1 flex gap-4 overflow-x-auto scrollbar-none pb-2">
           {CURRENT_CONDITIONS.map((c) => {

@@ -81,7 +81,7 @@ export default async function AdminBriefsPage() {
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
           <h1 className="text-3xl font-bold">Briefs</h1>
-          <p className="text-stone-600 mt-1">Trip Builder submissions from /plan.</p>
+          <p className="text-stone-600 mt-1">Brief submissions from /plan (the &ldquo;by hand&rdquo; planning service).</p>
         </div>
         <Button asChild>
           <a href="/api/admin/briefs/export">
