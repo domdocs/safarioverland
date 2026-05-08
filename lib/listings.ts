@@ -2,6 +2,23 @@ import { getSupabaseServerClient } from "./supabase"
 
 export type ListingStatus = "pending" | "approved" | "rejected"
 
+export type PriceTier = "budget" | "mid" | "luxury" | "exclusive"
+
+export type TravellerQuote = {
+  quote: string
+  attributed_to: string
+  trip_year?: number
+}
+
+export type ExternalRating = {
+  source: string
+  rating: number
+  max?: number
+  count?: number
+  url?: string
+  fetched_at?: string
+}
+
 export type DirectoryListing = {
   id: string
   listing_name: string
@@ -20,6 +37,47 @@ export type DirectoryListing = {
   status: ListingStatus
   created_at: string
   updated_at: string
+
+  // ── Editorial / transformational layer ────────────────────────────────
+  // All nullable. Populated case-by-case during the country-by-country audit.
+  /** One-sentence "we'd send this here" line. Editorial voice. */
+  verdict?: string | null
+  /** The single thing that makes this stay distinctive. */
+  signature_experience?: string | null
+  /** ~200 chars on conservation work funded by stays here. */
+  conservation_summary?: string | null
+  /** ~200 chars on community / local-employment commitments. */
+  community_summary?: string | null
+  /** Wellness offerings: spa, yoga, sound bath, etc. */
+  wellness_offerings?: string[] | null
+  /** Activities: walking, mokoro, sleep-out, etc. */
+  activities?: string[] | null
+
+  // ── Owner / founder story ────────────────────────────────────────────
+  founder_name?: string | null
+  founder_note?: string | null
+  founder_image_url?: string | null
+
+  // ── Social proof ─────────────────────────────────────────────────────
+  traveller_quotes?: TravellerQuote[] | null
+  external_ratings?: ExternalRating[] | null
+
+  // ── Photography ──────────────────────────────────────────────────────
+  gallery_urls?: string[] | null
+
+  // ── Practical ────────────────────────────────────────────────────────
+  max_guests?: number | null
+  best_time_to_visit?: string | null
+  price_tier?: PriceTier | null
+  latitude?: number | null
+  longitude?: number | null
+
+  // ── Cross-references ─────────────────────────────────────────────────
+  /** Slugs of Field Notes articles that mention this stay. */
+  field_notes_slugs?: string[] | null
+
+  // ── Internal-only ────────────────────────────────────────────────────
+  editor_notes?: string | null
 }
 
 // Mock data that will be used as fallback if Supabase is unavailable
@@ -336,7 +394,9 @@ export async function getListings({
 
       console.log(`Successfully fetched ${data.length} listings from Supabase`)
 
-      // Map the data to match our DirectoryListing type
+      // Map the data to match our DirectoryListing type. Editorial fields
+      // are passed through as-is (all nullable; rows that don't yet have
+      // them populated still render fine).
       return data.map((item: any) => ({
         id: item.id || String(item.id),
         listing_name: item.listing_name || "",
@@ -355,6 +415,27 @@ export async function getListings({
         status: item.status || "approved",
         created_at: item.created_at || new Date().toISOString(),
         updated_at: item.updated_at || new Date().toISOString(),
+
+        // Editorial / transformational layer (all nullable)
+        verdict: item.verdict ?? null,
+        signature_experience: item.signature_experience ?? null,
+        conservation_summary: item.conservation_summary ?? null,
+        community_summary: item.community_summary ?? null,
+        wellness_offerings: item.wellness_offerings ?? null,
+        activities: item.activities ?? null,
+        founder_name: item.founder_name ?? null,
+        founder_note: item.founder_note ?? null,
+        founder_image_url: item.founder_image_url ?? null,
+        traveller_quotes: item.traveller_quotes ?? null,
+        external_ratings: item.external_ratings ?? null,
+        gallery_urls: item.gallery_urls ?? null,
+        max_guests: item.max_guests ?? null,
+        best_time_to_visit: item.best_time_to_visit ?? null,
+        price_tier: item.price_tier ?? null,
+        latitude: item.latitude ?? null,
+        longitude: item.longitude ?? null,
+        field_notes_slugs: item.field_notes_slugs ?? null,
+        editor_notes: item.editor_notes ?? null,
       }))
     } catch (queryError) {
       console.error("Error executing Supabase query:", queryError)
@@ -449,7 +530,9 @@ export async function getListingsByCategory(
 
       console.log(`Successfully fetched ${data.length} listings for category ${category}`)
 
-      // Map the data to match our DirectoryListing type
+      // Map the data to match our DirectoryListing type. Editorial fields
+      // are passed through as-is (all nullable; rows that don't yet have
+      // them populated still render fine).
       return data.map((item: any) => ({
         id: item.id || String(item.id),
         listing_name: item.listing_name || "",
@@ -468,6 +551,27 @@ export async function getListingsByCategory(
         status: item.status || "approved",
         created_at: item.created_at || new Date().toISOString(),
         updated_at: item.updated_at || new Date().toISOString(),
+
+        // Editorial / transformational layer (all nullable)
+        verdict: item.verdict ?? null,
+        signature_experience: item.signature_experience ?? null,
+        conservation_summary: item.conservation_summary ?? null,
+        community_summary: item.community_summary ?? null,
+        wellness_offerings: item.wellness_offerings ?? null,
+        activities: item.activities ?? null,
+        founder_name: item.founder_name ?? null,
+        founder_note: item.founder_note ?? null,
+        founder_image_url: item.founder_image_url ?? null,
+        traveller_quotes: item.traveller_quotes ?? null,
+        external_ratings: item.external_ratings ?? null,
+        gallery_urls: item.gallery_urls ?? null,
+        max_guests: item.max_guests ?? null,
+        best_time_to_visit: item.best_time_to_visit ?? null,
+        price_tier: item.price_tier ?? null,
+        latitude: item.latitude ?? null,
+        longitude: item.longitude ?? null,
+        field_notes_slugs: item.field_notes_slugs ?? null,
+        editor_notes: item.editor_notes ?? null,
       }))
     } catch (queryError) {
       console.error(`Error executing Supabase query for category ${category}:`, queryError)

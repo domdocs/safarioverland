@@ -50,23 +50,17 @@ export function DebugSupabase() {
               {result.connectionStatus || "Connection failed"}
             </p>
 
-            {result.tables && (
+            {result.knownTables && (
               <>
-                <h3 className="text-lg font-semibold mt-4 mb-2">Available Tables:</h3>
+                <h3 className="text-lg font-semibold mt-4 mb-2">Known tables:</h3>
                 <ul className="list-disc pl-5">
-                  {result.tables.map((table: string, index: number) => (
+                  {result.knownTables.map((table: string, index: number) => (
                     <li key={index}>{table}</li>
                   ))}
                 </ul>
-              </>
-            )}
-
-            {result.sampleData && (
-              <>
-                <h3 className="text-lg font-semibold mt-4 mb-2">Sample Data:</h3>
-                <pre className="bg-gray-100 p-4 rounded-md overflow-auto max-h-60 text-sm">
-                  {JSON.stringify(result.sampleData, null, 2)}
-                </pre>
+                <p className="text-xs text-stone-500 mt-2">
+                  These are the tables our migrations create. To browse rows, use the Supabase dashboard.
+                </p>
               </>
             )}
 

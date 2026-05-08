@@ -1,124 +1,133 @@
-# Listings audit — staff playbook
+# Listings curation playbook
 
-A delegable workflow for curating safarioverland.com from a directory of
-many to a small collection of right.
+Curating safarioverland.com from a directory-of-many to a small
+collection of properties we know personally.
 
----
+We are not running a scoring rubric. The cull is editorial judgement,
+country by country. The work is:
 
-## Why we're doing this
-
-The site is repositioning from "directory of African safari operators" to
-"small, opinionated collection." The voice on the homepage now says, *we
-list the lodges and operators we'd send our friends to. Each one earns a
-place by the depth of the experience it offers — not by paying for one.*
-The listings need to back that claim up.
-
-We are starting hyperlocal — Victoria Falls and the lodges/operators
-within reach of our home — and widening outward. The goal is **20–40
-properties for soft launch**, not 200.
+1. Decide: keep this listing or remove it.
+2. For the ones we keep, enrich the database row with the editorial
+   fields the new listing template surfaces (verdict, signature
+   experience, conservation, community, wellness, founder note,
+   traveller quotes, external ratings, gallery, coordinates, best
+   time to visit).
+3. The front end takes care of the rest.
 
 ---
 
-## The rubric
+## Where we start
 
-Score every existing listing on six criteria. Total out of 50.
+Victoria Falls and the corridor we work from. Then outward — Hwange,
+Lower Zambezi, South Luangwa, the Okavango, the Cape, Sabi Sands,
+the Mara, Serengeti. One country / one region at a time. We are not
+in a rush.
 
-| # | Criterion | What we're scoring | Range |
-|---|---|---|---|
-| 1 | **Conservation depth** | Documented, named conservation programmes — anti-poaching units, habitat management, science partnerships, lease payments to conservancies. Not "we love wildlife" boilerplate; verifiable, on-the-ground work. | 0–10 |
-| 2 | **Community involvement** | Local employment percentage, community-owned land arrangements, named community projects, education or healthcare programmes funded by tourism revenue. Operators who hire and source locally score high. | 0–10 |
-| 3 | **Guest density** | Fewer guests = more transformative experience. <16 rooms = 10 pts. 16–32 = 5 pts. >32 = 0 pts. Camps with multiple "branded" satellite properties at the same address count cumulatively. | 0–10 |
-| 4 | **Pace & immersion** | Walking safaris, multi-day stays as default, no-Wi-Fi or low-tech options, slow itineraries, sleep-outs, sundowner-only-on-foot, mokoro days. Anything that signals slow, intentional time outdoors. | 0–10 |
-| 5 | **Wellness & restoration** | Yoga, spa, sound baths, gym, calisthenics, intentional design (light, sound, materials), guided silence, structured time-without-screens. | 0–5 |
-| 6 | **Editorial presence** | Has an existing Field Notes feature, a notable founder story, a signature experience worth writing about (e.g., a particular guide, a particular ritual, a unique habitat access). | 0–5 |
-
-**Score interpretation**
-
-| Score | Bucket | Action |
-|---|---|---|
-| 35–50 | **Featured** | Earns the curated collection. Full editorial write-up, home-page rotation eligibility, founder note + traveller quote requested. |
-| 25–34 | **Listed** | Present in `/categories` and `/listings/[id]`, but not promoted on home or in Field Notes. |
-| 15–24 | **Borderline** | Manual editor review needed. Default to listed unless something specific disqualifies. |
-| 0–14 | **Removed** | Politely email and remove. See template below. |
+The current `directory_listings` table holds 24 seed rows imported
+from `public/directory_listings_rows.csv`. Most of them are 4×4
+rentals and booking agents — not the lodges and operators the new
+positioning is built around. Expect more cuts than keeps in the first
+pass; the seed was directory-era.
 
 ---
 
 ## Workflow
 
-### Week 1 — score every existing listing
+### 1. Filter to one country at a time
 
-Open each existing listing on safarioverland.com (or in the Supabase
-`directory_listings` table) and fill in the scoring sheet (template
-below). Aim for ~20 listings per day. Don't agonise — first-pass scores
-are fine.
+In the admin (`/admin/listings`), filter by country. Start with
+Zimbabwe. Work through every row.
 
-**Inputs to use**: the operator's own website, any photography you can
-find, TripAdvisor / Booking.com / Google reviews (read for tone, not
-star count), the current listing copy itself, any past correspondence we
-have with the operator.
+### 2. For each row, decide keep or cull
 
-**When in doubt**: ask. Editorial judgment is the point. The score is
-just a shortlist machine.
+The decision is editorial. Some questions that help:
 
-### Week 2 — manual editorial pass on top scorers
+- Have we stayed there or visited it on a recce?
+- Do we know the operator, by name or by reputation, well enough to
+  send a friend?
+- Does it sit in a place we cover (hyperlocal first; widening)?
+- Does it embody the kind of trip we're now writing about — slower
+  pace, immersion, conservation work, intentional design — or is it
+  in the mass-market lane?
 
-Take the 35+ scorers and read each listing personally. The score will
-get you 60% of the right answer; the remaining 40% is feel.
+If yes-ish across the board, keep. If no, cull. There's no third
+option for now.
 
-For each top scorer, decide:
-- Does this place "feel right"?
-- Does the language of the brand voice fit?
-- Would I send a discerning friend?
-- Is the photography we have for them strong enough for the editorial template, or do we need to ask for more?
+**To cull**: in the edit form, set `status = 'rejected'`. We don't
+delete rows — we keep the history. Rejected rows fall out of the
+public site automatically (the `getListings` data layer filters on
+`status = 'approved'` by default).
 
-Collect a list of asks per featured operator: stronger photography (2–3
-hero-quality shots), a 50-word founder's note, optional traveller quote
-with attribution.
+**To keep**: leave `status = 'approved'`. If it's home-page rotation
+worthy, also tick `featured`.
 
-### Week 3 — outreach
+### 3. For the ones we keep, enrich the row
 
-Three template emails below. Send each at the right moment.
+This is where the editorial layer gets attached. Open the listing
+edit form (`/admin/listings/edit/[id]`) and fill in as many of the
+editorial fields as you can. None are required, but the more you fill
+the richer the listing detail page renders.
 
-### Week 4 — bring it into the data
+| Field | What it is | Where it surfaces |
+|---|---|---|
+| `verdict` | One sentence. The "we'd send this here" line. | Top of listing detail page, italic. |
+| `signature_experience` | One paragraph. The single thing that makes this stay distinctive. | Listing detail body. |
+| `conservation_summary` | Editorial paragraph (~200 chars) on what they do. | Listing detail conservation block. |
+| `community_summary` | Same shape, community side. | Listing detail community block. |
+| `wellness_offerings` | Array — yoga, spa, sound bath, gym, calisthenics, silent walks. | Listing detail wellness block. |
+| `activities` | Array — walking safari, mokoro, night drive, balloon, sleep-out. | Listing detail activities block. |
+| `founder_name`, `founder_note`, `founder_image_url` | Owner story. Italic blockquote with attribution. | Listing detail "from the founder" pull-quote. |
+| `traveller_quotes` | Array of `{quote, attributed_to, trip_year}`. | Listing detail pull-quote rail. |
+| `external_ratings` | Array of `{source, rating, max, count, url, fetched_at}`. | Small mono-style block on the listing detail. |
+| `gallery_urls` | Additional photography (operator-supplied). | Gallery on listing detail. |
+| `max_guests` | Integer. Useful for editorial framing. | Mono-style fact in the meta column. |
+| `best_time_to_visit` | Free text or short prose. | Practical sidebar. |
+| `price_tier` | budget / mid / luxury / exclusive. | A cleaner version of the existing `price_info` text. |
+| `latitude` / `longitude` | Numeric coords. | Small map module. |
+| `field_notes_slugs` | Slugs of articles that mention this stay. | "Read more in our notes from …" block. |
+| `editor_notes` | Free text — internal only. | Not shown publicly. |
 
-For featured listings, capture the new fields (see "Database fields" below).
+### 4. Source the supporting material
 
----
+Most of the editorial fields rely on operator-supplied or
+externally-gathered content. For each kept listing, the gathering
+work is:
 
-## Scoring sheet — template
+- **Verdict**: write yourself. One sentence in the brand voice.
+- **Signature experience, conservation, community summaries**: ideally
+  written by us after a stay or a thorough call. Failing that, lift
+  cleanly from the operator's own materials and tighten.
+- **Wellness offerings, activities**: read the operator's site. Tick
+  off what's actually on the ground.
+- **Founder story**: ask. Most operators will give you 50–500 words on
+  request.
+- **Traveller quotes**: ask the operator for permission to pull two or
+  three from their guest book or testimonials page. Always with
+  attribution and year.
+- **External ratings**: TripAdvisor, Google Maps, Booking.com. Note
+  the rating, the count of reviews, the URL, and the date you
+  fetched it. Re-check quarterly.
+- **Gallery**: ask the operator for two or three high-resolution
+  photos (~3000px wide) that we have permission to use.
+- **Coordinates**: Google Maps right-click → copy lat/long. 6 decimal
+  places is fine.
+- **Best time to visit**: short prose. *Late June to October —
+  walking-safari season; the river runs high, the bush thins out.*
+- **Field Notes links**: as we write articles featuring the property,
+  add the article slug here.
 
-A Google Sheet or Notion database with these columns:
+### 5. Move on
 
-```
-listing_id          (Supabase UUID)
-listing_name        (string)
-location            (string, free text — Vic Falls, Mara, Okavango etc)
-country             (string)
-website             (URL)
-category            (lodges | campsites | guided-tours | …)
-score_conservation  (0-10)
-score_community     (0-10)
-score_density       (0-10)
-score_pace          (0-10)
-score_wellness      (0-5)
-score_editorial     (0-5)
-total_score         (computed sum, 0-50)
-bucket              (featured | listed | borderline | removed)
-notes               (free text — anything the score doesn't capture)
-photo_quality       (good | needs-work | none)
-follow_ups          (free text — what we're going to ask the operator for)
-audited_by          (initials)
-audited_on          (date)
-```
-
-If you'd rather work in Supabase: add the matching columns to the
-`directory_listings` table and update via the admin UI.
+When the country is done — every row reviewed, kept rows enriched,
+culled rows marked `status='rejected'` — pick the next country.
 
 ---
 
 ## Outreach templates
 
-### Template A — featured (good news)
+Three short emails for the operators. Adapt names and signatures.
+
+### Template A — featured (we're keeping it, here's what we'd love)
 
 Subject: **A short note from Safari Overland**
 
@@ -129,17 +138,18 @@ Subject: **A short note from Safari Overland**
 > wild does to you, not just what it shows you. Fewer names than
 > before, but each one written up properly.
 >
-> [Lodge name] is in. We'd like to feature it on the home page rotation,
-> in our planning briefs, and in our Field Notes coverage.
+> [Lodge name] is staying. We'd like to feature it on our home page
+> rotation, in our planning briefs, and in our Field Notes coverage.
 >
-> Two small asks, and only when convenient:
+> Three small asks, only when convenient:
 >
 > 1. Two or three high-resolution photographs (~3000px wide) we can
 >    use across the site. Anything atmospheric — guests interacting
->    with the bush, not posed property shots.
-> 2. A short note from you — fifty words or so — on what makes a
->    stay at [lodge] different. Written as you'd say it, not as
->    marketing.
+>    with the bush, the camp at last light, the textures and details.
+> 2. Fifty words from you or your founder on what makes a stay at
+>    [lodge] different. Written as you'd say it, not as marketing.
+> 3. Permission to pull two or three traveller quotes from your guest
+>    book / testimonials page, with attribution.
 >
 > No commitments either way; we'll keep the listing live with what we
 > have. But if you have time, the better the source material, the
@@ -149,16 +159,16 @@ Subject: **A short note from Safari Overland**
 > [your name]
 > Safari Overland · Victoria Falls
 
-### Template B — listed (no news, kept)
+### Template B — kept but not featured (no news, kept)
 
 > Dear [name],
 >
-> A short update. Safari Overland is becoming a smaller, more
-> deliberately curated collection of African lodges and operators.
-> [Lodge name] continues to be listed in the directory and is
-> findable through the categories pages. We are not going to lead
-> with it — that space is for a small handful of properties this
-> season — but it remains in the collection in good standing.
+> A short update. Safari Overland is becoming a more deliberately
+> curated collection of African lodges and operators. [Lodge name]
+> continues to be listed in the directory and is findable through
+> the categories pages. We are not going to lead with it — that
+> space is for a small handful of properties this season — but it
+> remains in the collection in good standing.
 >
 > If anything material changes at [lodge] over the next year
 > (significant conservation work, new wellness programming, a
@@ -169,7 +179,7 @@ Subject: **A short note from Safari Overland**
 > [your name]
 > Safari Overland
 
-### Template C — removed (politely)
+### Template C — culled (politely)
 
 > Dear [name],
 >
@@ -194,55 +204,30 @@ Subject: **A short note from Safari Overland**
 
 ---
 
-## Database fields to add
-
-When the audit is done and we have a featured set, the schema needs
-these additions on `directory_listings`. (This is engineering work —
-flag it, don't try to do it yourself.)
-
-```
-curation_score        int           -- from the rubric
-featured_collection   boolean       -- true = on home rotation
-max_guests            int           -- for guest-density signal
-signature_experience  text          -- one thing that makes this stay distinctive
-conservation_summary  text          -- ~200 chars, editorial-ready
-community_summary     text          -- ~200 chars, editorial-ready
-wellness_offerings    text[]        -- ['yoga', 'spa', 'sound bath', …]
-founder_note          text          -- operator-supplied, ~500 chars
-field_notes_links     text[]        -- slugs of articles featuring this stay
-traveller_quotes      jsonb         -- [{quote, attributed_to, trip_year}]
-```
-
-Plus consider new tables for `traveller_stories` and
-`signature_experiences` if scope grows.
-
----
-
 ## A few asides
 
-**On removed operators.** Be patient and gracious. The directory was
-making them money before; some won't take it well. Template C does
-its best to soften the blow without bullshit. Don't argue.
+**On photos.** The single biggest lever for how a listing detail page
+feels is operator photography. A kept listing without good photography
+falls back to the gold-icon block — clean, but cold. Push featured
+operators for two or three strong shots; everyone else, work with
+what you can get.
 
-**On photos.** The single biggest lever for how the site feels is
-operator photography. A featured listing without good photography
-falls back to the icon-only template — clean, but cold. Push featured
-operators for two or three strong shots; everyone else, work with what
-they give you.
-
-**On the score.** It's a tool, not a verdict. You will sometimes score
-a place at 32 and feel certain it should be featured. Trust the feel —
-the score is to triage, not decide. Note it in the audit sheet so we
-can refine the rubric later.
+**On rejected rows.** Be patient and gracious with the cull-emails.
+The directory was making them money before; some won't take it well.
+Template C does its best to soften the blow without bullshit. Don't
+argue.
 
 **On widening the circle.** Once Vic Falls + Hwange + the Zambezi
-corridor are properly curated, we move outward: Lower Zambezi → South
-Luangwa → Linyanti → Okavango → Kruger → Sabi Sands → Mara → Serengeti.
-One region at a time. We're not in a rush.
+corridor are properly curated, move outward. Lower Zambezi, then
+South Luangwa, then Linyanti, then Okavango, then Kruger, then Sabi
+Sands, then the Mara, then Serengeti. One region at a time. We're
+not in a rush.
 
 ---
 
-## Questions
+## Questions that come up
 
-When you hit them, write them down here in the doc. We'll work through
-them together.
+Write them at the bottom of this doc as you hit them. Editorial
+calls we should make collectively rather than individually:
+threshold for rejection, treatment of operators we have a personal
+relationship with, what to do when an operator stops responding, etc.

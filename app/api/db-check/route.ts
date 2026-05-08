@@ -1,85 +1,75 @@
 import { getSupabaseServerClient } from "@/lib/supabase"
 import { NextResponse } from "next/server"
 
-export async function GET(request: Request) {
+/**
+ * Connection debugger endpoint — used by /admin (the `DebugSupabase`
+ * widget on the dashboard).
+ *
+ * The previous implementation queried `information_schema.tables` to
+ * enumerate the schema. That endpoint is blocked by default in PostgREST,
+ * which made the debugger always report "Failed to connect to Supabase"
+ * on a perfectly healthy connection.
+ *
+ * This version pings a known table (`directory_listings`) for a count,
+ * which is the actual signal we care about: can the server-side service-
+ * role key reach the database. We list known tables as a hardcoded
+ * constant — those are the tables our migrations create.
+ */
+
+const KNOWN_TABLES = [
+  "directory_listings",
+  "subscribers",
+  "download_events",
+  "briefs",
+  "articles",
+  "app_settings",
+  "contact_messages",
+] as const
+
+export async function GET() {
   try {
     const supabase = getSupabaseServerClient()
 
     if (!supabase) {
       return NextResponse.json(
         {
-          error: "Supabase client not initialized",
           success: false,
           connectionStatus: "Failed to initialize Supabase client",
+          error: "Supabase client not initialized",
         },
         { status: 500 },
       )
     }
 
-    // Test the connection with a simple query
-    const { data: testData, error: testError } = await supabase
+    const { count, error } = await supabase
       .from("directory_listings")
-      .select("count(*)", { count: "exact" })
-      .limit(1)
+      .select("id", { count: "exact", head: true })
 
-    if (testError) {
+    if (error) {
       return NextResponse.json(
         {
-          error: testError.message,
           success: false,
-          connectionStatus: "Failed to connect to Supabase: " + testError.message,
+          connectionStatus: `Failed to connect: ${error.message}`,
+          error: error.message,
         },
         { status: 500 },
       )
-    }
-
-    // Get list of tables
-    const { data: tables, error: tablesError } = await supabase
-      .from("information_schema.tables")
-      .select("table_name")
-      .eq("table_schema", "public")
-
-    if (tablesError) {
-      return NextResponse.json(
-        {
-          error: tablesError.message,
-          success: false,
-          connectionStatus: "Connected but failed to fetch tables: " + tablesError.message,
-          tables: [],
-        },
-        { status: 500 },
-      )
-    }
-
-    // Get sample data from directory_listings if it exists
-    let listingsData = null
-    let listingsError = null
-
-    const tableNames = tables.map((t) => t.table_name)
-
-    if (tableNames.includes("directory_listings")) {
-      const response = await supabase.from("directory_listings").select("*").limit(5)
-
-      listingsData = response.data
-      listingsError = response.error
     }
 
     return NextResponse.json({
       success: true,
-      tables: tableNames,
-      connectionStatus: "Connected to Supabase successfully",
-      sampleData: listingsData,
-      errors: {
-        listings: listingsError ? listingsError.message : null,
-      },
+      connectionStatus: `Connected. ${count ?? 0} listings in directory_listings.`,
+      knownTables: KNOWN_TABLES,
+      directoryListingsCount: count ?? 0,
     })
-  } catch (error) {
-    console.error("API route error:", error)
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Unknown error"
+    console.error("/api/db-check error:", err)
     return NextResponse.json(
       {
-        error: error instanceof Error ? error.message : "Unknown error",
         success: false,
-        connectionStatus: "Error in API route: " + (error instanceof Error ? error.message : "Unknown error"),
+        connectionStatus: `Error in API route: ${message}`,
+        error: message,
       },
       { status: 500 },
     )
