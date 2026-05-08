@@ -87,13 +87,33 @@
   }
 
   /* Optional: keep a light mode for admin / dashboard surfaces.
-     The marketing site is dark-first, but admin reads better light. */
+     The marketing site is dark-first, but admin reads better light.
+     Applied via the .light wrapper in app/admin/layout.tsx — every
+     shadcn primitive nested inside (Card, Popover, Dialog, Table, Input,
+     Button etc.) inherits these tokens, so we have to override the full
+     semantic surface here, not just --background / --foreground. Anything
+     omitted falls through to the dark-mode value above and renders
+     bone-on-bone (invisible) inside the admin section. */
   .light, [data-theme="light"] {
     --background:   250 247 240;    /* warm bone */
     --foreground:   31 26 20;       /* near-black ink */
     --card:         244 239 230;
+    --card-foreground: 31 26 20;
+    --popover:      244 239 230;
+    --popover-foreground: 31 26 20;
+    --secondary:    244 239 230;
+    --secondary-foreground: 31 26 20;
+    --muted:        232 226 213;    /* slightly recessed bone — table headers, inactive bg */
+    --muted-foreground: 90 80 65;   /* warm dark gray — readable but recessed (~12:1 contrast) */
+    --accent:       232 226 213;
+    --accent-foreground: 31 26 20;
     --rule:         217 208 189;
+    --border:       217 208 189;
+    --input:        217 208 189;
     --primary:      var(--amber-deep);
+    --primary-foreground: 250 247 240;
+    --destructive-foreground: 250 247 240;
+    --ring:         var(--amber-deep);
   }
 }
 
