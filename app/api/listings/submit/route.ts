@@ -1,4 +1,5 @@
 import { getSupabaseServerClient } from "@/lib/supabase"
+import { getSettings } from "@/lib/settings"
 import { NextResponse } from "next/server"
 import { z } from "zod"
 
@@ -47,13 +48,17 @@ export async function POST(request: Request) {
       )
     }
 
+    // Honour the auto-approve setting from /admin/settings.
+    const settings = await getSettings()
+    const submissionStatus = settings.auto_approve_listings ? "approved" : "pending"
+
     // Insert the new listing
     const { data, error } = await supabase
       .from("directory_listings")
       .insert([
         {
           ...body,
-          status: "pending", // Always set status to pending for new submissions
+          status: submissionStatus,
           featured: false, // Default to not featured
         },
       ])

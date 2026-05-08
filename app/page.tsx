@@ -12,6 +12,7 @@ import { BlendOverlay } from "@/components/editorial/blend-overlay"
 import { EditorialImage } from "@/components/editorial/editorial-image"
 import { Button } from "@/components/ui/button"
 import { getFeaturedListings } from "@/lib/listings"
+import { getSettings } from "@/lib/settings"
 
 export const revalidate = 60
 
@@ -55,7 +56,10 @@ const FIELD_NOTES = [
 ]
 
 export default async function HomePage() {
-  const featured = await getFeaturedListings(3)
+  const settings = await getSettings()
+  const featured = settings.show_featured_on_home
+    ? await getFeaturedListings(3)
+    : []
 
   return (
     <div className="flex min-h-screen flex-col bg-night text-bone">

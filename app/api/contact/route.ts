@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 import { getSupabaseServerClient } from "@/lib/supabase"
+import { getSettings } from "@/lib/settings"
 
 // Form validation schema
 const contactFormSchema = z.object({
@@ -25,8 +26,13 @@ async function sendEmailNotification(data: {
     return false
   }
   
-  // Get notification email (with fallback)
-  const notificationEmail = process.env.NOTIFICATION_EMAIL || 'info@safarioverland.com'
+  // Resolve notification address: app_settings.notification_email wins,
+  // env var is the fallback, hardcoded address is last resort.
+  const settings = await getSettings()
+  const notificationEmail =
+    settings.notification_email ||
+    process.env.NOTIFICATION_EMAIL ||
+    'info@safarioverland.com'
   console.log(`Will send notification to: ${notificationEmail}`)
   
   try {

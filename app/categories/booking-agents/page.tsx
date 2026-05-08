@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { getListingsByCategory } from "@/lib/listings"
+import { getSettings } from "@/lib/settings"
 import { CategoryPageShell } from "@/components/editorial/category-page-shell"
 import { PaginatedListingsGridEditorial } from "@/components/editorial/paginated-listings-grid-editorial"
 
@@ -12,7 +13,9 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic"
 
 export default async function BookingAgentsPage() {
-  const initialListings = await getListingsByCategory("booking-agents", 6)
+  const settings = await getSettings()
+  const pageSize = settings.listings_per_page
+  const initialListings = await getListingsByCategory("booking-agents", pageSize)
 
   return (
     <CategoryPageShell
@@ -26,6 +29,7 @@ export default async function BookingAgentsPage() {
       <PaginatedListingsGridEditorial
         initialListings={initialListings}
         categorySlug="booking-agents"
+        pageSize={pageSize}
         eyebrow="Booking agent"
         emptyMessage="No booking agents listed yet — submissions open under /submit."
       />

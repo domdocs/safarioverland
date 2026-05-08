@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { getListingsByCategory } from "@/lib/listings"
+import { getSettings } from "@/lib/settings"
 import { CategoryPageShell } from "@/components/editorial/category-page-shell"
 import { PaginatedListingsGridEditorial } from "@/components/editorial/paginated-listings-grid-editorial"
 
@@ -12,7 +13,9 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic"
 
 export default async function OverlandToursPage() {
-  const initialListings = await getListingsByCategory("overland-tours", 6)
+  const settings = await getSettings()
+  const pageSize = settings.listings_per_page
+  const initialListings = await getListingsByCategory("overland-tours", pageSize)
 
   return (
     <CategoryPageShell
@@ -26,6 +29,7 @@ export default async function OverlandToursPage() {
       <PaginatedListingsGridEditorial
         initialListings={initialListings}
         categorySlug="overland-tours"
+        pageSize={pageSize}
         eyebrow="Overland"
         emptyMessage="No overland tours listed yet — submissions open under /submit."
       />

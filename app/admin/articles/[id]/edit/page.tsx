@@ -1,76 +1,102 @@
 "use client"
 
-import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+
 import { ArticleForm } from "@/components/article-form"
 import type { Article, ArticleInput } from "@/lib/articles"
 
-// Mock data for development
-const mockArticles = {
-  "1": {
-    id: "1",
-    title: "Safari Planning Guide",
-    subtitle: "Essential tips for planning your African safari",
-    slug: "safari-planning-guide",
-    content: "This is a comprehensive guide to planning your safari...",
-    category: "Planning Guides",
-    status: "draft",
-    images: [],
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-    published_at: new Date().toISOString()
-  },
-  "2": {
-    id: "2",
-    title: "Wildlife Photography Tips",
-    subtitle: "Capture amazing wildlife moments",
-    slug: "wildlife-photography-tips",
-    content: "Learn how to take stunning wildlife photographs...",
-    category: "Travel Tips",
-    status: "published",
-    images: [],
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-    published_at: new Date().toISOString()
-  }
-} as Record<string, Article>
-
 interface EditArticlePageProps {
-  params: Promise<{
-    id: string
-  }>
+  params: Promise<{ id: string }>
 }
 
 export default function EditArticlePage({ params }: EditArticlePageProps) {
   const router = useRouter()
   const [id, setId] = useState<string | null>(null)
+  const [article, setArticle] = useState<Article | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     params.then((p) => setId(p.id))
   }, [params])
 
-  const article = id ? mockArticles[id] : undefined
-
   useEffect(() => {
-    if (id !== null && !article) {
-      router.push("/admin/articles")
+    if (!id) return
+    let cancelled = false
+    ;(async () => {
+      setLoading(true)
+      try {
+        const res = await fetch(`/api/admin/articles/${id}`, { cache: "no-store" })
+        if (res.status === 404) {
+          if (!cancelled) {
+            setError("Not found")
+            setLoading(false)
+            router.replace("/admin/articles")
+          }
+          return
+        }
+        const body = await res.json()
+        if (!res.ok) throw new Error(body.message || body.error || `HTTP ${res.status}`)
+        if (!cancelled) {
+          setArticle(body.article)
+          setLoading(false)
+        }
+      } catch (e) {
+        if (!cancelled) {
+          setError(e instanceof Error ? e.message : "Failed to load article")
+          setLoading(false)
+        }
+      }
+    })()
+    return () => {
+      cancelled = true
     }
-  }, [id, article, router])
-
-  if (!article) {
-    return null
-  }
+  }, [id, router])
 
   async function handleSubmit(data: ArticleInput) {
-    // For now, just log the update
-    console.log("Updating article:", data)
-    router.push("/admin/articles")
+    if (!id) return
+    const res = await fetch(`/api/admin/articles/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+    const body = await res.json().catch(() => ({}))
+    if (!res.ok) {
+      throw new Error(body.message || body.error || `HTTP ${res.status}`)
+    }
+  }
+
+  async function handleDelete() {
+    if (!id) return
+    const res = await fetch(`/api/admin/articles/${id}`, { method: "DELETE" })
+    const body = await res.json().catch(() => ({}))
+    if (!res.ok) {
+      throw new Error(body.message || body.error || `HTTP ${res.status}`)
+    }
+  }
+
+  if (loading) {
+    return <div className="text-stone-500">Loading…</div>
+  }
+  if (error || !article) {
+    return (
+      <div className="text-red-700 bg-red-50 border border-red-200 rounded p-4">
+        {error || "Article not found"}
+      </div>
+    )
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Edit Article</h1>
-      <ArticleForm article={article} onSubmit={handleSubmit} />
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-3xl font-bold">Edit article</h1>
+        <p className="text-stone-600 mt-1">
+          /{article.slug} ·{" "}
+          <span className="uppercase tracking-wider text-xs">{article.status}</span>
+        </p>
+      </div>
+      <ArticleForm article={article} onSubmit={handleSubmit} onDelete={handleDelete} />
     </div>
   )
-} 
+}

@@ -15,8 +15,20 @@ function fromAddress(): string {
   return process.env.RESEND_FROM_ADDRESS || "onboarding@resend.dev"
 }
 
-function plannerInbox(): string | null {
-  return process.env.PLANNER_INBOX || process.env.NOTIFICATION_EMAIL || null
+async function plannerInbox(): Promise<string | null> {
+  // Resolution order:
+  //   1. PLANNER_INBOX env var (deliberate per-env override)
+  //   2. app_settings.notification_email (admin-tunable)
+  //   3. NOTIFICATION_EMAIL env var (legacy fallback)
+  if (process.env.PLANNER_INBOX) return process.env.PLANNER_INBOX
+  try {
+    const { getSettings } = await import("@/lib/settings")
+    const settings = await getSettings()
+    if (settings.notification_email) return settings.notification_email
+  } catch {
+    /* ignore — fall through to env */
+  }
+  return process.env.NOTIFICATION_EMAIL || null
 }
 
 function siteUrl(): string {
@@ -118,7 +130,7 @@ export async function sendBriefReceived(brief: Brief): Promise<{ ok: boolean }> 
  * Email 2 — to the planner inbox. Contains the full brief and a link to admin.
  */
 export async function sendBriefNotify(brief: Brief): Promise<{ ok: boolean }> {
-  const inbox = plannerInbox()
+  const inbox = await plannerInbox()
   if (!inbox) {
     console.warn("No PLANNER_INBOX/NOTIFICATION_EMAIL set — skipping planner notify")
     return { ok: false }

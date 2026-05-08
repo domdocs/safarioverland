@@ -1,71 +1,76 @@
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Plus } from "lucide-react"
 
-// Temporary mock data until we set up proper data storage
-const mockArticles = [
-  {
-    id: "1",
-    title: "Safari Planning Guide",
-    status: "draft",
-    category: "Planning Guides",
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: "2",
-    title: "Wildlife Photography Tips",
-    status: "published",
-    category: "Travel Tips",
-    updated_at: new Date().toISOString()
-  }
-]
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { getArticles, type Article } from "@/lib/articles"
 
-export default function ArticlesPage() {
+export const dynamic = "force-dynamic"
+
+const STATUS_TONE: Record<Article["status"], string> = {
+  published: "bg-emerald-100 text-emerald-800",
+  draft: "bg-amber-100 text-amber-800",
+  archived: "bg-stone-200 text-stone-700",
+}
+
+export default async function ArticlesPage() {
+  const articles = await getArticles({ status: "all", limit: 200 })
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Articles</h1>
-        <Link href="/admin/articles/new">
-          <Button>
+    <div className="space-y-6">
+      <div className="flex flex-wrap justify-between items-center gap-4">
+        <div>
+          <h1 className="text-3xl font-bold">Articles</h1>
+          <p className="text-stone-600 mt-1">
+            Long-form Field Notes content. {articles.length} total.
+          </p>
+        </div>
+        <Button asChild>
+          <Link href="/admin/articles/new">
             <Plus className="h-4 w-4 mr-2" />
-            New Article
-          </Button>
-        </Link>
-      </div>
-
-      <div className="grid gap-6">
-        {mockArticles.map((article) => (
-          <Link key={article.id} href={`/admin/articles/${article.id}/edit`}>
-            <Card className="hover:shadow-md transition-shadow">
-              <CardHeader>
-                <CardTitle className="flex justify-between items-center">
-                  <span>{article.title}</span>
-                  <span className={`text-sm px-2 py-1 rounded ${
-                    article.status === "published" 
-                      ? "bg-green-100 text-green-800" 
-                      : "bg-yellow-100 text-yellow-800"
-                  }`}>
-                    {article.status}
-                  </span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm text-muted-foreground">
-                  <p>Category: {article.category}</p>
-                  <p>Last updated: {new Date(article.updated_at).toLocaleDateString()}</p>
-                </div>
-              </CardContent>
-            </Card>
+            New article
           </Link>
-        ))}
-
-        {mockArticles.length === 0 && (
-          <div className="text-center py-12 text-muted-foreground">
-            No articles yet. Click "New Article" to create one.
-          </div>
-        )}
+        </Button>
       </div>
+
+      {articles.length === 0 ? (
+        <Card>
+          <CardContent className="py-12 text-center text-stone-500">
+            No articles yet. Click <strong>New article</strong> to write the first.
+          </CardContent>
+        </Card>
+      ) : (
+        <div className="grid gap-4">
+          {articles.map((article) => (
+            <Link key={article.id} href={`/admin/articles/${article.id}/edit`}>
+              <Card className="hover:shadow-md transition-shadow">
+                <CardHeader className="pb-3">
+                  <CardTitle className="flex flex-wrap justify-between items-center gap-3">
+                    <span>{article.title}</span>
+                    <span
+                      className={`text-xs uppercase tracking-wider px-2 py-1 rounded ${STATUS_TONE[article.status]}`}
+                    >
+                      {article.status}
+                    </span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm text-stone-600 space-y-1">
+                  {article.excerpt && (
+                    <p className="line-clamp-2 text-stone-700">{article.excerpt}</p>
+                  )}
+                  <p className="text-xs text-stone-500 pt-1">
+                    <span>/{article.slug}</span>
+                    {article.category && <> · {article.category}</>}
+                    {article.read_minutes && <> · {article.read_minutes} min read</>}
+                    {article.author_name && <> · {article.author_name}</>}
+                    <> · updated {new Date(article.updated_at).toLocaleDateString()}</>
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   )
-} 
+}
