@@ -1,33 +1,42 @@
 import Link from "next/link"
 import type { Metadata } from "next"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
+import { EditorialHeader } from "@/components/editorial/editorial-header"
+import { EditorialFooter } from "@/components/editorial/editorial-footer"
 import { SignInForm } from "@/components/sign-in-form"
+import { Eyebrow } from "@/components/editorial/eyebrow"
 
 export const metadata: Metadata = {
   title: "Sign In | Safari Overland",
-  description: "Sign in to your Safari Overland account",
+  description: "Sign in to your Safari Overland account.",
 }
 
 export default function SignInPage() {
   return (
-    <>
-      <Header />
-      <main className="container flex-1 py-10 md:py-16">
-        <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-          <div className="flex flex-col space-y-2 text-center">
-            <h1 className="text-2xl font-semibold tracking-tight">Welcome back</h1>
-            <p className="text-sm text-muted-foreground">Enter your credentials to access your account</p>
+    <div className="flex min-h-screen flex-col bg-night text-bone">
+      <EditorialHeader variant="floating" />
+      <main className="flex-1 container py-24 md:py-32">
+        <div className="mx-auto flex w-full max-w-md flex-col gap-8">
+          <div>
+            <Eyebrow withRule>Sign in</Eyebrow>
+            <h1 className="mt-6 font-serif text-h1-fluid text-bone leading-tight tracking-tight text-balance">
+              Welcome back.
+            </h1>
+            <p className="mt-4 font-serif italic text-h4-fluid text-bone-mute leading-snug">
+              Enter your credentials to access your account.
+            </p>
           </div>
           <SignInForm />
-          <p className="px-8 text-center text-sm text-muted-foreground">
-            <Link href="/sign-up" className="hover:text-brand underline underline-offset-4">
-              Don&apos;t have an account? Sign up
+          <p className="text-center mono text-bone-mute">
+            <Link
+              href="/sign-up"
+              className="hover:text-amber transition-colors"
+            >
+              Don&apos;t have an account? Sign up →
             </Link>
           </p>
         </div>
       </main>
-      <Footer />
-    </>
+      <EditorialFooter />
+    </div>
   )
 }

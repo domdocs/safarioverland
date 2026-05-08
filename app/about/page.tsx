@@ -1,195 +1,192 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Compass, Users, History, MapPin, ChevronRight } from "lucide-react"
+
+import { Eyebrow } from "@/components/editorial/eyebrow"
+import { SectionRule } from "@/components/editorial/section-rule"
+import { NumberedList } from "@/components/editorial/numbered-list"
+
+const PRINCIPLES = [
+  {
+    title: "We curate.",
+    body: "Every operator is reviewed before publication. We list the people we'd send our friends to, not whoever paid for placement.",
+  },
+  {
+    title: "We are honest.",
+    body: "Crowded crossings, shoulder-season risks, hidden costs — we say it on the page rather than after you've booked.",
+  },
+  {
+    title: "We are on the ground.",
+    body: "Our editors visit, walk, and write from the parks themselves. The notes are field notes, not press releases.",
+  },
+]
+
+const VALUES = [
+  {
+    title: "Authenticity over volume.",
+    body: "Genuine, immersive trips with operators who know their patch — not mass-market product. We'd rather list fewer, better.",
+  },
+  {
+    title: "Communities, then visitors.",
+    body: "We favour operators who work closely with local communities, where tourism revenue stays in the place it was earned.",
+  },
+  {
+    title: "Conservation as a brief.",
+    body: "Field-level conservation is the long game. The operators we feature take it seriously — anti-poaching levies, habitat management, science partnerships, all on the page.",
+  },
+]
 
 export default function AboutPage() {
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="relative">
-        <div className="relative h-[400px] w-full">
-          <Image
-            src="/images/about/about-hero.jpg"
-            alt="Sunrise over Victoria Falls — Safari Overland's home"
-            fill
-            sizes="100vw"
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-        </div>
+    <>
+      {/* ─── Hero ─────────────────────────────────────────────── */}
+      <section className="relative h-[78vh] min-h-[600px] w-full overflow-hidden bg-night">
+        <Image
+          src="/images/about/about-hero.jpg"
+          alt="Sunrise over Victoria Falls — Safari Overland's home"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-gradient-to-b from-night/40 via-night/30 to-night"
+        />
 
-        <div className="container mx-auto px-4">
-          <div className="relative -mt-40 mb-12 text-white z-10">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">About Safari Overland</h1>
-            <p className="text-lg md:text-xl max-w-3xl">
-              Connecting travelers with exceptional safari experiences across Africa since 2018, from our headquarters
-              in the safari capital of Africa: Victoria Falls, Zimbabwe.
+        <div className="container relative h-full flex flex-col justify-end pb-20 md:pb-28">
+          <div className="max-w-3xl">
+            <Eyebrow withRule>About</Eyebrow>
+            <h1 className="mt-6 font-serif text-display-fluid text-bone leading-[0.96] tracking-tighter text-balance">
+              A directory{" "}
+              <span className="italic text-amber">written from the bush</span>.
+            </h1>
+            <p className="mt-8 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
+              Safari Overland is a small, opinionated directory of African safari operators,
+              lodges, campsites, and the long-form planning notes we wish we&apos;d had on our
+              first trip. Headquartered in Victoria Falls.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-12">
-        {/* About Navigation */}
-        <div className="flex flex-wrap gap-4 mb-12">
-          <Link href="/about">
-            <Button variant="default">Overview</Button>
-          </Link>
-          <Link href="/about/history">
-            <Button variant="outline">Our History</Button>
-          </Link>
-          <Link href="/about/location">
-            <Button variant="outline">Our Location</Button>
-          </Link>
+      {/* ─── Principles manifesto ─────────────────────────────── */}
+      <section className="container py-24 md:py-32">
+        <div className="max-w-3xl mb-16">
+          <Eyebrow withRule>What we promise to do properly</Eyebrow>
+          <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
+            Three things,
+            <span className="italic text-amber"> always</span>.
+          </h2>
         </div>
+        <NumberedList
+          items={PRINCIPLES.map((p) => ({ title: p.title, body: p.body }))}
+          twoColumn={false}
+          className="max-w-4xl"
+        />
+      </section>
 
-        {/* Mission & Vision */}
-        <section className="mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                To connect travelers with authentic, responsible safari experiences across Africa, while supporting
-                conservation efforts and local communities.
-              </p>
-              <p className="text-muted-foreground">
-                At Safari Overland, we believe that exceptional safari experiences should be accessible to all
-                travelers, while ensuring the protection of Africa's wildlife and ecosystems. Our comprehensive
-                directory brings together the best safari providers across the continent, from luxury lodges to
-                budget-friendly camping options, all vetted for quality and commitment to sustainable practices.
-              </p>
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Our Vision</h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                To be the most trusted resource for safari planning in Africa, known for our commitment to conservation,
-                community development, and exceptional travel experiences.
-              </p>
-              <p className="text-muted-foreground">
-                We envision a future where safari tourism serves as a powerful force for conservation and community
-                development across Africa. By connecting travelers with responsible operators, we aim to ensure that
-                tourism benefits both wildlife and local communities, creating a sustainable model for the future of
-                African safaris.
-              </p>
-            </div>
+      <SectionRule className="container" />
+
+      {/* ─── Mission + Vision (two-column editorial) ──────────── */}
+      <section className="container py-24 md:py-32">
+        <div className="grid gap-16 lg:grid-cols-12 lg:gap-20">
+          <div className="lg:col-span-6">
+            <Eyebrow>Mission</Eyebrow>
+            <h2 className="mt-4 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
+              Connect travellers with safaris that stand up to scrutiny.
+            </h2>
+            <p className="mt-6 font-serif italic text-h4-fluid text-bone-mute leading-snug">
+              Authentic, responsible safari experiences across Africa — and the candid
+              planning information that makes them work.
+            </p>
+            <p className="mt-6 text-bone-mute leading-relaxed">
+              We believe exceptional safaris should be accessible to travellers at every
+              budget tier, while protecting Africa&apos;s wildlife and the people who live
+              alongside it. The directory brings together operators we&apos;ve walked through
+              ourselves, vetted for quality and committed to sustainable practice.
+            </p>
           </div>
-        </section>
-
-        {/* Why Victoria Falls */}
-        <section className="mb-16 bg-muted rounded-lg p-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Our Home: Victoria Falls</h2>
-              <p className="text-muted-foreground mb-4">
-                Safari Overland is proudly headquartered in Victoria Falls, Zimbabwe – the safari capital of Africa.
-                This strategic location at the crossroads of Southern Africa gives us unique insights into the safari
-                industry and allows us to maintain close relationships with operators across the continent.
-              </p>
-              <p className="text-muted-foreground mb-4">
-                Known locally as "Mosi-oa-Tunya" (The Smoke That Thunders), Victoria Falls is not only one of the
-                world's most spectacular natural wonders but also a hub for safari activities across multiple countries.
-                Our location gives us direct access to the safari circuits of Zimbabwe, Zambia, Botswana, Namibia, and
-                South Africa.
-              </p>
-              <Link href="/about/location">
-                <Button variant="outline" className="mt-2">
-                  Learn more about our location <ChevronRight className="h-4 w-4 ml-1" />
-                </Button>
-              </Link>
-            </div>
-            <div className="relative h-[300px] rounded-lg overflow-hidden">
-              <Image
-                src="/images/about/about-hero.jpg"
-                alt="Victoria Falls — known locally as Mosi-oa-Tunya, The Smoke That Thunders"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </div>
+          <div className="lg:col-span-6 lg:border-l lg:border-rule lg:pl-12">
+            <Eyebrow>Vision</Eyebrow>
+            <h2 className="mt-4 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
+              The most trusted independent safari resource on the continent.
+            </h2>
+            <p className="mt-6 font-serif italic text-h4-fluid text-bone-mute leading-snug">
+              A future where safari tourism is a real force for conservation and
+              community development — not a marketing claim.
+            </p>
+            <p className="mt-6 text-bone-mute leading-relaxed">
+              By steering travellers toward operators who do the work, we want the
+              economics of the directory to point in the same direction as the conservation
+              we care about. Visitors fund anti-poaching, communities, habitat management.
+              The trip is the means.
+            </p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Our Values */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">Our Values</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card>
-              <CardContent className="pt-6">
-                <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                  <Compass className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Authenticity</h3>
-                <p className="text-muted-foreground">
-                  We believe in authentic safari experiences that connect travelers with the real Africa – its wildlife,
-                  landscapes, and people. We prioritize operators who offer genuine, immersive experiences over
-                  mass-market tourism.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="pt-6">
-                <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                  <Users className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Community</h3>
-                <p className="text-muted-foreground">
-                  We support safari operators who work closely with local communities, ensuring that tourism benefits
-                  the people who live alongside wildlife. We believe that successful conservation depends on community
-                  involvement and benefit-sharing.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="pt-6">
-                <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                  <MapPin className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Conservation</h3>
-                <p className="text-muted-foreground">
-                  We are committed to wildlife conservation and environmental protection. We prioritize operators who
-                  demonstrate a clear commitment to conservation efforts, sustainable practices, and minimizing their
-                  environmental footprint.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* Quick Links */}
-        <section>
-          <h2 className="text-3xl font-bold mb-8 text-center">Explore More About Us</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Link href="/about/history">
-              <div className="bg-primary text-white p-6 rounded-lg hover:bg-primary/90 transition-colors">
-                <History className="h-8 w-8 mb-4" />
-                <h3 className="text-xl font-bold mb-2">Our History</h3>
-                <p className="mb-4">
-                  Discover how Safari Overland grew from a small startup to Africa's leading safari resource.
-                </p>
-                <div className="flex items-center text-sm font-medium">
-                  Learn more <ChevronRight className="h-4 w-4 ml-1" />
-                </div>
+      {/* ─── Our home: Victoria Falls ─────────────────────────── */}
+      <section className="border-t border-rule bg-ink py-24 md:py-32">
+        <div className="container">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-7">
+              <Eyebrow withRule>Our home</Eyebrow>
+              <h2 className="mt-6 font-serif text-h1-fluid text-bone leading-tight tracking-tight text-balance">
+                Victoria Falls,
+                <br />
+                <span className="italic text-amber">Mosi-oa-Tunya</span>.
+              </h2>
+              <p className="mt-8 font-serif italic text-h4-fluid text-bone-mute leading-snug max-w-2xl">
+                The smoke that thunders. We chose to be based here — not London, not
+                New York — because it puts us at the crossroads of the safari continent.
+              </p>
+              <p className="mt-6 text-bone-mute leading-relaxed max-w-2xl">
+                From Victoria Falls we&apos;re a short flight from the Okavango, an
+                afternoon&apos;s drive into Hwange, and within easy reach of the safari
+                circuits of Zimbabwe, Zambia, Botswana, Namibia and South Africa. Most of
+                our writers and operator visits start from this airfield. The directory is
+                not a desk job.
+              </p>
+              <div className="mt-10">
+                <Link
+                  href="/about/location"
+                  className="mono text-amber hover:text-amber-deep transition-colors"
+                >
+                  More on the headquarters →
+                </Link>
               </div>
-            </Link>
-            <Link href="/about/location">
-              <div className="bg-secondary text-white p-6 rounded-lg hover:bg-secondary/90 transition-colors">
-                <MapPin className="h-8 w-8 mb-4" />
-                <h3 className="text-xl font-bold mb-2">Visit Our Headquarters</h3>
-                <p className="mb-4">
-                  Learn more about our Victoria Falls headquarters and why we chose the safari capital of Africa.
-                </p>
-                <div className="flex items-center text-sm font-medium">
-                  Learn more <ChevronRight className="h-4 w-4 ml-1" />
-                </div>
+            </div>
+            <div className="lg:col-span-5">
+              <div className="relative aspect-[4/5] overflow-hidden bg-card">
+                <Image
+                  src="/images/about/about-hero.jpg"
+                  alt="Victoria Falls — Mosi-oa-Tunya, the smoke that thunders"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover"
+                />
               </div>
-            </Link>
+            </div>
           </div>
-        </section>
-      </div>
-    </div>
+        </div>
+      </section>
+
+      {/* ─── Values ───────────────────────────────────────────── */}
+      <section className="container py-24 md:py-32">
+        <div className="max-w-3xl mb-16">
+          <Eyebrow withRule>What we stand for</Eyebrow>
+          <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
+            Three values we screen
+            <span className="italic text-amber"> every operator </span>
+            against.
+          </h2>
+        </div>
+        <NumberedList
+          items={VALUES.map((v) => ({ title: v.title, body: v.body }))}
+          twoColumn={false}
+          className="max-w-4xl"
+        />
+      </section>
+    </>
   )
 }

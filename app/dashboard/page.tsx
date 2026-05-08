@@ -1,52 +1,53 @@
 import type { Metadata } from "next"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
+import { EditorialHeader } from "@/components/editorial/editorial-header"
+import { EditorialFooter } from "@/components/editorial/editorial-footer"
+import { Eyebrow } from "@/components/editorial/eyebrow"
 
 export const metadata: Metadata = {
   title: "Dashboard | Safari Overland",
-  description: "Manage your Safari Overland account and listings",
+  description: "Manage your Safari Overland account and listings.",
 }
 
 export default function DashboardPage() {
   return (
-    <>
-      <Header />
-      <main className="container py-10">
-        <div className="flex flex-col space-y-6">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-            <p className="text-muted-foreground">Welcome to your Safari Overland dashboard</p>
-          </div>
+    <div className="flex min-h-screen flex-col bg-night text-bone">
+      <EditorialHeader variant="floating" />
+      <main className="flex-1 container py-24 md:py-32">
+        <div className="mb-12 max-w-3xl">
+          <Eyebrow withRule>Your account</Eyebrow>
+          <h1 className="mt-6 font-serif text-h1-fluid text-bone leading-tight tracking-tight text-balance">
+            Dashboard.
+          </h1>
+          <p className="mt-4 font-serif italic text-h4-fluid text-bone-mute leading-snug">
+            Welcome to your Safari Overland account.
+          </p>
+        </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <div className="rounded-lg border bg-card p-6 shadow-sm">
-              <h3 className="text-lg font-medium">Your Listings</h3>
-              <p className="text-sm text-muted-foreground">Manage your safari listings and services</p>
-              <p className="mt-4 text-2xl font-bold">0</p>
+        <div className="grid gap-6 md:grid-cols-3">
+          {[
+            { label: "Your listings", body: "Manage your safari listings and services.", value: "0" },
+            { label: "Messages", body: "View and respond to customer inquiries.", value: "0" },
+            { label: "Analytics", body: "View your listing performance.", value: "—" },
+          ].map((tile) => (
+            <div key={tile.label} className="border border-rule bg-card p-6">
+              <p className="eyebrow mb-2">{tile.label}</p>
+              <p className="font-serif text-display-fluid text-amber tabular-nums leading-none">
+                {tile.value}
+              </p>
+              <p className="mt-3 text-bone-mute leading-relaxed">{tile.body}</p>
             </div>
+          ))}
+        </div>
 
-            <div className="rounded-lg border bg-card p-6 shadow-sm">
-              <h3 className="text-lg font-medium">Messages</h3>
-              <p className="text-sm text-muted-foreground">View and respond to customer inquiries</p>
-              <p className="mt-4 text-2xl font-bold">0</p>
-            </div>
-
-            <div className="rounded-lg border bg-card p-6 shadow-sm">
-              <h3 className="text-lg font-medium">Analytics</h3>
-              <p className="text-sm text-muted-foreground">View your listing performance</p>
-              <p className="mt-4 text-2xl font-bold">-</p>
-            </div>
-          </div>
-
-          <div className="rounded-lg border bg-card p-6 shadow-sm">
-            <h3 className="text-lg font-medium">Account Information</h3>
-            <p className="text-sm text-muted-foreground">
-              This is a placeholder for user account information that will be populated once connected to Supabase.
-            </p>
-          </div>
+        <div className="mt-12 border border-rule p-6 max-w-3xl">
+          <p className="eyebrow mb-3">Account information</p>
+          <p className="text-bone-mute leading-relaxed">
+            Account details will appear here once your profile is connected. Until then,
+            head over to the directory or open a planning brief.
+          </p>
         </div>
       </main>
-      <Footer />
-    </>
+      <EditorialFooter />
+    </div>
   )
 }

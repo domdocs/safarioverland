@@ -1,20 +1,17 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Compass, DollarSign, ShieldCheck, Plane, Binoculars } from "lucide-react"
+import type { ReactNode } from "react"
+import { ChevronDown } from "lucide-react"
+
+import { Eyebrow } from "@/components/editorial/eyebrow"
+import { SectionRule } from "@/components/editorial/section-rule"
 import { NewsletterForm } from "@/components/newsletter-form"
+import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
   title: "Frequently Asked Questions | Safari Overland",
   description:
-    "Practical answers to the most common questions about planning an African safari — covering costs, safety, logistics, and what to expect on the ground. Built for first-time and returning safari travelers.",
+    "Practical answers to the most common questions about planning an African safari — covering costs, safety, logistics, and what to expect on the ground.",
   keywords: [
     "safari FAQs",
     "African safari planning",
@@ -24,7 +21,7 @@ export const metadata: Metadata = {
   ],
 }
 
-type Faq = { q: string; a: React.ReactNode }
+type Faq = { q: string; a: ReactNode }
 
 const planningFaqs: Faq[] = [
   {
@@ -36,7 +33,7 @@ const planningFaqs: Faq[] = [
         easier to travel. The green season (November to April in most regions) brings dramatic skies, newborn animals,
         excellent birding, and noticeably lower rates, with the trade-off of taller grass and occasional washouts. For a
         country-by-country breakdown, our{" "}
-        <Link href="/resources/seasonal-guides" className="text-primary hover:underline">
+        <Link href="/resources/seasonal-guides" className="text-amber hover:text-amber-deep transition-colors">
           seasonal guides
         </Link>{" "}
         explain what each month looks like across the major destinations.
@@ -72,9 +69,9 @@ const planningFaqs: Faq[] = [
     a: (
       <>
         Yes, but the destination matters. Many private reserves in South Africa welcome children from any age and run
-        dedicated kids' programs, while some classic East African camps set minimums of 6, 8, or even 12 years old for
+        dedicated kids&apos; programs, while some classic East African camps set minimums of 6, 8, or even 12 years old for
         game drives. Family-friendly lodges typically offer interconnecting rooms, shorter activities, and child-suited
-        meals. If you're traveling with children under 12, ask about minimum ages before falling in love with a
+        meals. If you&apos;re traveling with children under 12, ask about minimum ages before falling in love with a
         specific camp.
       </>
     ),
@@ -95,7 +92,7 @@ const planningFaqs: Faq[] = [
     a: (
       <>
         Permits are issued by the national parks authorities in Rwanda (currently the most expensive), Uganda (more
-        affordable, with longer treks), and the DRC. They're limited daily and bookable through licensed operators
+        affordable, with longer treks), and the DRC. They&apos;re limited daily and bookable through licensed operators
         well in advance — 6 to 12 months for high-season dates is sensible. Permits are tied to a specific date and
         non-transferable, so build them into your itinerary first and shape the rest of the trip around them.
       </>
@@ -106,7 +103,7 @@ const planningFaqs: Faq[] = [
     a: (
       <>
         Aim for at least 7 nights on the ground, ideally split across two or three different camps or ecosystems.
-        Anything shorter and you'll spend a disproportionate share of the trip on transfers and arrival admin. Ten to
+        Anything shorter and you&apos;ll spend a disproportionate share of the trip on transfers and arrival admin. Ten to
         fourteen nights is the sweet spot for a classic multi-park itinerary, leaving room for a coastal or Victoria
         Falls extension at the end.
       </>
@@ -154,7 +151,7 @@ const costFaqs: Faq[] = [
       <>
         Operators typically take a 25 to 30% deposit at booking and the balance 60 to 90 days before travel. Inside
         that final window, cancellation penalties step up sharply, often reaching 100% in the last 30 days. Gorilla
-        permits and some flight tickets are non-refundable from the moment they're issued. This is one of the strongest
+        permits and some flight tickets are non-refundable from the moment they&apos;re issued. This is one of the strongest
         arguments for comprehensive trip-cancellation insurance.
       </>
     ),
@@ -165,7 +162,7 @@ const costFaqs: Faq[] = [
       <>
         Tipping norms vary, but a common guideline is USD 10 to 20 per guest per day for your guide, USD 5 to 10 per
         guest per day for camp staff via a communal tip box, and a separate gratuity for any private trackers or
-        butlers. Tips are usually given in USD cash at the end of your stay. Your operator's pre-trip notes will give
+        butlers. Tips are usually given in USD cash at the end of your stay. Your operator&apos;s pre-trip notes will give
         you their specific recommendations.
       </>
     ),
@@ -190,7 +187,7 @@ const safetyFaqs: Faq[] = [
       <>
         Most classic safari areas in East and Southern Africa are malaria zones, with the main exceptions being
         higher-altitude parts of South Africa, Namibia, and the Eastern Cape. Speak to a travel-medicine clinic well
-        before you fly — they'll match your itinerary and medical history to the right prophylaxis. In addition, plan
+        before you fly — they&apos;ll match your itinerary and medical history to the right prophylaxis. In addition, plan
         on long sleeves at dusk, repellent with DEET or picaridin, and the insecticide-treated nets that virtually
         every camp provides.
       </>
@@ -201,7 +198,7 @@ const safetyFaqs: Faq[] = [
     a: (
       <>
         Routine vaccinations should be up to date, and yellow fever is mandatory for entry to several countries if
-        you're arriving from a yellow-fever-risk country (the certificate is checked at the border). Hepatitis A,
+        you&apos;re arriving from a yellow-fever-risk country (the certificate is checked at the border). Hepatitis A,
         typhoid, and tetanus are commonly recommended; rabies is sometimes added for longer trips or remote routing.
         Always confirm with a travel clinic 6 to 8 weeks before departure, since some vaccines require multiple doses.
       </>
@@ -212,9 +209,9 @@ const safetyFaqs: Faq[] = [
     a: (
       <>
         Serious incidents on guided safaris are rare. The two simple rules that account for most safety on game drives
-        are stay in the vehicle and follow your guide's instructions without exception. In camp, never walk between
-        rooms after dark without an escort, keep doors and tent zips closed, and don't leave food in the open. Our{" "}
-        <Link href="/resources/safety-tips" className="text-primary hover:underline">
+        are stay in the vehicle and follow your guide&apos;s instructions without exception. In camp, never walk between
+        rooms after dark without an escort, keep doors and tent zips closed, and don&apos;t leave food in the open. Our{" "}
+        <Link href="/resources/safety-tips" className="text-amber hover:text-amber-deep transition-colors">
           safety tips
         </Link>{" "}
         section covers wildlife behavior in more depth.
@@ -226,7 +223,7 @@ const safetyFaqs: Faq[] = [
     a: (
       <>
         As a default, drink bottled or filtered water. Most lodges provide unlimited filtered or sealed bottled water
-        and many now refill reusable bottles to cut plastic. Use bottled water for brushing teeth in cities you're
+        and many now refill reusable bottles to cut plastic. Use bottled water for brushing teeth in cities you&apos;re
         unfamiliar with, and be cautious with ice, salads, and raw vegetables outside reputable lodges and restaurants.
       </>
     ),
@@ -237,7 +234,7 @@ const safetyFaqs: Faq[] = [
       <>
         The major safari countries — Kenya, Tanzania, Botswana, South Africa, Namibia, Zambia, Zimbabwe, Rwanda, and
         Uganda — are generally stable for tourism, with safari areas typically far from any political flashpoints.
-        Always check your government's travel advisory close to departure, and rely on your operator's local
+        Always check your government&apos;s travel advisory close to departure, and rely on your operator&apos;s local
         intelligence for region-specific issues.
       </>
     ),
@@ -258,7 +255,7 @@ const safetyFaqs: Faq[] = [
     a: (
       <>
         Reputable camps have established evacuation procedures: a satellite or radio call brings in a light aircraft or
-        helicopter, usually flown by a service like AMREF Flying Doctors, and you're taken to the nearest equipped
+        helicopter, usually flown by a service like AMREF Flying Doctors, and you&apos;re taken to the nearest equipped
         hospital. Confirm before booking that your camp has a clear evacuation plan, and make sure your insurance will
         actually pay the bill rather than expecting you to claim it back later.
       </>
@@ -307,7 +304,7 @@ const logisticsFaqs: Faq[] = [
       <>
         Cell coverage in towns and on main roads is usually solid, with cheap local SIMs widely available. In national
         parks, signal can be patchy or non-existent. Most lodges now offer Wi-Fi in main areas, though it may be slow
-        or capped, and some deliberately offline camps don't offer it at all. If you need to stay connected for work,
+        or capped, and some deliberately offline camps don&apos;t offer it at all. If you need to stay connected for work,
         confirm connectivity expectations before booking.
       </>
     ),
@@ -321,7 +318,7 @@ const logisticsFaqs: Faq[] = [
         hat, sunglasses, high-SPF sunscreen, repellent, a fleece or light down jacket, and a small daypack. Our full{" "}
         <Link
           href="/resources/planning-guides/what-to-pack"
-          className="text-primary hover:underline"
+          className="text-amber hover:text-amber-deep transition-colors"
         >
           packing guide
         </Link>{" "}
@@ -336,7 +333,7 @@ const logisticsFaqs: Faq[] = [
         US dollars in clean, post-2013 notes are the most useful catch-all currency for park fees, tips, and gorilla
         permits. Local currency (Kenyan or Tanzanian shillings, South African rand, Zambian kwacha) is best for small
         purchases at markets and town shops. Major lodges accept Visa and Mastercard, but bring more cash than you
-        think you'll need — ATM access in remote areas is limited.
+        think you&apos;ll need — ATM access in remote areas is limited.
       </>
     ),
   },
@@ -346,7 +343,7 @@ const logisticsFaqs: Faq[] = [
       <>
         English is widely spoken across the lodge industry in Kenya, Tanzania, Uganda, Rwanda, Zambia, Zimbabwe,
         Botswana, Namibia, and South Africa, so you can travel comfortably with English alone. Learning a handful of
-        Swahili greetings (jambo, asante, karibu) is genuinely appreciated in East Africa, but it isn't a practical
+        Swahili greetings (jambo, asante, karibu) is genuinely appreciated in East Africa, but it isn&apos;t a practical
         requirement.
       </>
     ),
@@ -370,7 +367,7 @@ const experienceFaqs: Faq[] = [
     a: (
       <>
         Game drives are usually 3 to 4 hours in an open or semi-open 4x4, with a guide and sometimes a tracker. Sightings
-        are unscripted — there's no zoo schedule — and a great deal of wildlife watching is patient observation rather
+        are unscripted — there&apos;s no zoo schedule — and a great deal of wildlife watching is patient observation rather
         than constant action. Bring a camera, binoculars, layered clothing, and water; your guide will handle radio
         calls between vehicles to share notable sightings.
       </>
@@ -391,7 +388,7 @@ const experienceFaqs: Faq[] = [
     q: "Are there age limits for children on safari?",
     a: (
       <>
-        Yes, and they vary by camp and country. Many private reserves accept any age and run children's programs,
+        Yes, and they vary by camp and country. Many private reserves accept any age and run children&apos;s programs,
         whereas some classic East African and Botswana camps set minimums of 6, 8, or even 12 years old for game
         drives. Walking safaris and gorilla trekking commonly require travelers to be 15 or 16+. Always confirm minimum
         ages with your operator before booking.
@@ -403,7 +400,7 @@ const experienceFaqs: Faq[] = [
     a: (
       <>
         Almost all lodges handle vegetarian, vegan, gluten-free, halal, kosher, and most allergies well — provided you
-        flag requirements at the time of booking, not on arrival. Remote camps order food in advance and can't easily
+        flag requirements at the time of booking, not on arrival. Remote camps order food in advance and can&apos;t easily
         adjust on the day. The more specific you are in writing up front, the better the experience on the ground.
       </>
     ),
@@ -413,8 +410,8 @@ const experienceFaqs: Faq[] = [
     a: (
       <>
         Safari is fundamentally informal: practical, neutral-colored clothing during the day and smart-casual at
-        dinner. There's no need for formalwear, even at high-end lodges. Avoid camo and military-pattern clothing —
-        it's restricted or banned in several countries — and skip strong perfumes and aftershaves, which can spook
+        dinner. There&apos;s no need for formalwear, even at high-end lodges. Avoid camo and military-pattern clothing —
+        it&apos;s restricted or banned in several countries — and skip strong perfumes and aftershaves, which can spook
         wildlife.
       </>
     ),
@@ -422,20 +419,21 @@ const experienceFaqs: Faq[] = [
 ]
 
 type Category = {
-  value: string
+  slug: string
   label: string
   heading: string
-  icon: typeof Compass
   faqs: Faq[]
 }
 
-const categories: Category[] = [
-  { value: "planning", label: "Planning", heading: "Planning your safari", icon: Compass, faqs: planningFaqs },
-  { value: "costs", label: "Costs", heading: "Costs & budgeting", icon: DollarSign, faqs: costFaqs },
-  { value: "safety", label: "Safety", heading: "Safety & health", icon: ShieldCheck, faqs: safetyFaqs },
-  { value: "logistics", label: "Logistics", heading: "Travel & logistics", icon: Plane, faqs: logisticsFaqs },
-  { value: "experience", label: "Experience", heading: "On safari", icon: Binoculars, faqs: experienceFaqs },
+const CATEGORIES: Category[] = [
+  { slug: "planning", label: "Planning", heading: "Planning your safari", faqs: planningFaqs },
+  { slug: "costs", label: "Costs", heading: "Costs & budgeting", faqs: costFaqs },
+  { slug: "safety", label: "Safety", heading: "Safety & health", faqs: safetyFaqs },
+  { slug: "logistics", label: "Logistics", heading: "Travel & logistics", faqs: logisticsFaqs },
+  { slug: "experience", label: "Experience", heading: "On safari", faqs: experienceFaqs },
 ]
+
+const TOTAL_FAQS = CATEGORIES.reduce((n, c) => n + c.faqs.length, 0)
 
 function slugify(input: string): string {
   return input
@@ -446,101 +444,124 @@ function slugify(input: string): string {
 
 export default function FaqsPage() {
   return (
-    <div className="container mx-auto px-4 py-12">
-      {/* Page Header */}
-      <div className="max-w-3xl mx-auto text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h1>
-        <p className="text-lg text-muted-foreground">
-          Comprehensive answers to the questions we hear most often — written for first-timers planning their first
-          African safari and for returning travelers refining a more ambitious itinerary.
-        </p>
-      </div>
+    <>
+      {/* ─── Opening ───────────────────────────────────────── */}
+      <section className="container py-24 md:py-32">
+        <div className="max-w-3xl">
+          <Eyebrow withRule>Frequently asked — {TOTAL_FAQS} answers</Eyebrow>
+          <h1 className="mt-6 font-serif text-display-fluid text-bone leading-[0.96] tracking-tighter text-balance">
+            The questions we hear
+            <br />
+            <span className="italic text-amber">most</span>.
+          </h1>
+          <p className="mt-8 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
+            Built for first-time travellers planning their first African safari, and for
+            returning travellers refining a more ambitious itinerary. Direct, opinionated,
+            updated as conditions change.
+          </p>
+        </div>
 
-      {/* Resource Navigation */}
-      <div className="flex flex-wrap gap-4 justify-center mb-12">
-        <Link href="/resources">
-          <Button variant="outline">All Resources</Button>
-        </Link>
-        <Link href="/resources/planning-guides">
-          <Button variant="outline">Planning Guides</Button>
-        </Link>
-        <Link href="/resources/safety-tips">
-          <Button variant="outline">Safety Tips</Button>
-        </Link>
-        <Link href="/resources/conservation">
-          <Button variant="outline">Conservation</Button>
-        </Link>
-        <Link href="/resources/seasonal-guides">
-          <Button variant="outline">Seasonal Guides</Button>
-        </Link>
-        <Link href="/resources/faqs">
-          <Button variant="default">FAQs</Button>
-        </Link>
-      </div>
-
-      {/* Categorized FAQs */}
-      <section className="mb-16">
-        <Tabs defaultValue="planning">
-          <TabsList className="grid grid-cols-2 md:grid-cols-5 mb-8 h-auto md:h-10">
-            {categories.map((category) => {
-              const Icon = category.icon
-              return (
-                <TabsTrigger key={category.value} value={category.value} className="flex items-center gap-2">
-                  <Icon className="h-4 w-4" /> {category.label}
-                </TabsTrigger>
-              )
-            })}
-          </TabsList>
-
-          {categories.map((category) => (
-            <TabsContent key={category.value} value={category.value}>
-              <div className="max-w-3xl mx-auto">
-                <h2 className="text-2xl md:text-3xl font-bold mb-6">{category.heading}</h2>
-                <Accordion type="single" collapsible className="w-full">
-                  {category.faqs.map((faq, index) => (
-                    <AccordionItem key={slugify(faq.q)} value={`${category.value}-${index}-${slugify(faq.q)}`}>
-                      <AccordionTrigger className="text-left">{faq.q}</AccordionTrigger>
-                      <AccordionContent className="text-base text-muted-foreground leading-relaxed">
-                        {faq.a}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
-            </TabsContent>
+        {/* In-page nav: jump to category */}
+        <nav aria-label="FAQ categories" className="mt-12 flex flex-wrap gap-x-6 gap-y-3 border-t border-rule pt-8">
+          {CATEGORIES.map((c, i) => (
+            <Link
+              key={c.slug}
+              href={`#${c.slug}`}
+              className="mono text-bone-mute hover:text-amber transition-colors"
+            >
+              <span className="text-amber" aria-hidden>
+                {String(i + 1).padStart(2, "0")}
+              </span>{" "}
+              {c.label}
+            </Link>
           ))}
-        </Tabs>
+        </nav>
       </section>
 
-      {/* Bottom CTA */}
-      <section className="mb-16">
-        <div className="bg-primary text-white p-8 md:p-12 rounded-lg">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Still have questions?</h2>
-            <p className="mb-6">
-              If your question isn't covered here, we're happy to point you toward the right operator, lodge, or
-              resource in the directory.
-            </p>
-            <Link href="/contact">
-              <Button variant="secondary" size="lg">
-                Get in touch
-              </Button>
-            </Link>
+      <SectionRule className="container" />
+
+      {/* ─── Categorised FAQs ─────────────────────────────── */}
+      <section className="container max-w-4xl py-16 md:py-20 space-y-20">
+        {CATEGORIES.map((category, ci) => (
+          <section key={category.slug} id={category.slug} className="scroll-mt-24">
+            <div className="flex items-baseline gap-4 mb-2">
+              <span className="mono text-amber" aria-hidden>
+                {String(ci + 1).padStart(2, "0")} / {String(CATEGORIES.length).padStart(2, "0")}
+              </span>
+              <span className="eyebrow">{category.label}</span>
+            </div>
+            <h2 className="mt-2 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
+              {category.heading}
+            </h2>
+
+            <div className="mt-10">
+              {category.faqs.map((faq) => (
+                <details
+                  key={slugify(faq.q)}
+                  className="group border-t border-rule [&_svg]:open:rotate-180 last:border-b last:border-rule"
+                >
+                  <summary className="flex items-baseline gap-6 py-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                    <span className="font-serif text-h4-fluid text-bone leading-snug flex-1 transition-colors group-hover:text-amber">
+                      {faq.q}
+                    </span>
+                    <ChevronDown
+                      className="h-5 w-5 text-amber shrink-0 mt-2 transition-transform"
+                      aria-hidden
+                    />
+                  </summary>
+                  <div className="pb-8 pr-12 text-bone-mute leading-relaxed text-[17px] max-w-prose">
+                    {faq.a}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        ))}
+      </section>
+
+      {/* ─── Still have questions ─────────────────────────── */}
+      <section className="border-t border-rule bg-ink py-24 md:py-32">
+        <div className="container max-w-3xl">
+          <Eyebrow withRule>Didn&apos;t find your answer?</Eyebrow>
+          <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
+            Tell us what you&apos;re trying to figure out.
+          </h2>
+          <p className="mt-6 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
+            If your question isn&apos;t covered, drop us a note. We&apos;ll point you at
+            the right operator, lodge, or field note in the directory.
+          </p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <Button asChild size="lg" className="rounded-none px-8 py-6 mono">
+              <Link href="/contact">Get in touch →</Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="rounded-none px-8 py-6 mono border-rule text-bone hover:border-amber hover:text-amber"
+            >
+              <Link href="/plan">Start a planning brief</Link>
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* Newsletter */}
-      <section>
-        <div className="bg-primary/10 rounded-lg p-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Stay updated with safari insights</h2>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Subscribe to our newsletter for the latest safari tips, seasonal updates, and conservation news delivered
-            directly to your inbox.
+      {/* ─── Newsletter ───────────────────────────────────── */}
+      <section className="border-t border-rule py-24">
+        <div className="container max-w-3xl">
+          <Eyebrow>The dispatch</Eyebrow>
+          <h2 className="mt-4 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
+            Field notes, monthly.
+          </h2>
+          <p className="mt-6 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
+            One email a month. Seasonal picks, new field notes, the occasional unsolicited
+            opinion. Unsubscribe in one click.
           </p>
-          <NewsletterForm />
+          <div className="mt-10">
+            <NewsletterForm />
+          </div>
         </div>
       </section>
-    </div>
+    </>
   )
 }

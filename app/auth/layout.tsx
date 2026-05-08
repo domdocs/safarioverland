@@ -2,8 +2,8 @@
 
 import type React from "react"
 import { useState, useEffect } from "react"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
+import { EditorialHeader } from "@/components/editorial/editorial-header"
+import { EditorialFooter } from "@/components/editorial/editorial-footer"
 
 export default function AuthLayout({
   children,
@@ -22,14 +22,12 @@ export default function AuthLayout({
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-      <div className="flex-1 flex items-center justify-center">
-        <div className="w-full max-w-md">
-          {children}
-        </div>
+    <div className="flex min-h-screen flex-col bg-night text-bone">
+      <EditorialHeader variant="floating" />
+      <div className="flex-1 flex items-center justify-center container py-24">
+        <div className="w-full max-w-md">{children}</div>
       </div>
-      <Footer />
+      <EditorialFooter />
     </div>
   )
-} 
+}
