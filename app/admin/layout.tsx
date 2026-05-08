@@ -1,7 +1,7 @@
 import type React from "react"
 import Link from "next/link"
 import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
+import { EditorialFooter } from "@/components/editorial/editorial-footer"
 
 const NAV = [
   { href: "/admin", label: "Overview" },
@@ -19,15 +19,20 @@ const NAV = [
  * --foreground, --card and --primary to a warm-bone / near-black scheme,
  * so admin reads as a back-office tool rather than the cinematic dark site.
  *
- * Marketing site Header/Footer chrome remain (still useful for "go back to
- * the public site" navigation), retoned via tokens.
+ * Marketing site Header is retained at the top — useful for "go back to
+ * the public site" navigation. The footer is the editorial dark footer
+ * (replacing the legacy components/footer.tsx with its stale
+ * "Connecting travelers" copy and stale Resources links).
  */
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="light bg-background text-foreground">
-      <div className="flex min-h-screen flex-col">
-        <Header />
-        <div className="container mx-auto flex-1 py-8">
+    <div className="flex min-h-screen flex-col">
+      {/* .light only wraps the admin chrome + content. Header and Footer
+          render in their native dark tones (Header is retoned by .light
+          parents elsewhere; Footer is the editorial dark surface). */}
+      <Header />
+      <div className="light bg-background text-foreground flex-1">
+        <div className="container mx-auto py-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-[220px_1fr]">
             <aside className="space-y-4 rounded-md border border-border bg-card p-4 shadow-sm">
               <h2 className="text-lg font-semibold tracking-tight">Admin</h2>
@@ -46,8 +51,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <main className="min-h-[50vh]">{children}</main>
           </div>
         </div>
-        <Footer />
       </div>
+      <EditorialFooter />
     </div>
   )
 }
