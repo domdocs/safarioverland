@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Leaf, Users, DollarSign, Footprints, ChevronRight } from "lucide-react"
+import { EditorialImage } from "@/components/editorial/editorial-image"
+import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export default function ConservationPage() {
   return (
@@ -57,14 +59,13 @@ export default function ConservationPage() {
               </p>
               <Button>Our Conservation Commitment</Button>
             </div>
-            <div className="relative h-64 md:h-auto">
-              <Image 
+            <div className="relative h-64 md:h-auto overflow-hidden">
+            <EditorialImage 
                 src="/images/conservation/conservation-overview.jpg" 
                 alt="Conservation rangers monitoring wildlife in a protected area" 
-                fill 
-                className="object-cover" 
-              />
-            </div>
+                className="object-cover" />
+            <BlendOverlay />
+          </div>
           </div>
         </div>
       </section>
@@ -113,14 +114,13 @@ export default function ConservationPage() {
                 },
               ].map((article) => (
                 <Card key={article.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image
+                  <div className="relative h-48 overflow-hidden">
+            <EditorialImage
                       src={article.image || "/placeholder.svg"}
                       alt={article.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
+                      className="object-cover" />
+            <BlendOverlay />
+          </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{article.title}</h3>
                     <p className="text-muted-foreground mb-4">{article.excerpt}</p>
@@ -159,14 +159,13 @@ export default function ConservationPage() {
                 },
               ].map((article) => (
                 <Card key={article.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image
+                  <div className="relative h-48 overflow-hidden">
+            <EditorialImage
                       src={article.image || "/placeholder.svg"}
                       alt={article.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
+                      className="object-cover" />
+            <BlendOverlay />
+          </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{article.title}</h3>
                     <p className="text-muted-foreground mb-4">{article.excerpt}</p>
@@ -205,14 +204,13 @@ export default function ConservationPage() {
                 },
               ].map((article) => (
                 <Card key={article.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image
+                  <div className="relative h-48 overflow-hidden">
+            <EditorialImage
                       src={article.image || "/placeholder.svg"}
                       alt={article.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
+                      className="object-cover" />
+            <BlendOverlay />
+          </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{article.title}</h3>
                     <p className="text-muted-foreground mb-4">{article.excerpt}</p>
@@ -249,14 +247,13 @@ export default function ConservationPage() {
                 },
               ].map((article) => (
                 <Card key={article.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image
+                  <div className="relative h-48 overflow-hidden">
+            <EditorialImage
                       src={article.image || "/placeholder.svg"}
                       alt={article.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
+                      className="object-cover" />
+            <BlendOverlay />
+          </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{article.title}</h3>
                     <p className="text-muted-foreground mb-4">{article.excerpt}</p>
@@ -311,9 +308,10 @@ export default function ConservationPage() {
           ].map((story) => (
             <Card key={story.title} className="overflow-hidden">
               <div className="grid grid-cols-1 sm:grid-cols-2">
-                <div className="relative h-48 sm:h-auto">
-                  <Image src={story.image || "/placeholder.svg"} alt={story.title} fill className="object-cover" />
-                </div>
+                <div className="relative h-48 sm:h-auto overflow-hidden">
+            <EditorialImage src={story.image || "/placeholder.svg"} alt={story.title} className="object-cover" />
+            <BlendOverlay />
+          </div>
                 <CardContent className="p-6">
                   <div className="text-sm text-primary font-medium mb-1">{story.location}</div>
                   <h3 className="text-xl font-bold mb-2">{story.title}</h3>

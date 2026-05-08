@@ -6,6 +6,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Download, ChevronRight, DollarSign, Luggage, Calendar, Users, Compass, ClipboardCheck } from "lucide-react"
 import { DownloadButton } from "@/components/download-button"
 import { RESOURCES } from "@/lib/downloads/resources"
+import { EditorialImage } from "@/components/editorial/editorial-image"
+import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export default function PlanningGuidesPage() {
   return (
@@ -58,14 +60,13 @@ export default function PlanningGuidesPage() {
                 <Button variant="outline">Read Online</Button>
               </div>
             </div>
-            <div className="relative h-64 md:h-auto">
-              <Image
+            <div className="relative h-64 md:h-auto overflow-hidden">
+            <EditorialImage
                 src="/images/planning-guides/first-time-safari-guide.jpg"
                 alt="First-Time Safari Guide showing excited travelers on a safari vehicle"
-                fill
-                className="object-cover"
-              />
-            </div>
+                className="object-cover" />
+            <BlendOverlay />
+          </div>
           </div>
         </div>
       </section>
@@ -120,9 +121,10 @@ export default function PlanningGuidesPage() {
                 },
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
-                  </div>
+                  <div className="relative h-48 overflow-hidden">
+            <EditorialImage src={guide.image || "/placeholder.svg"} alt={guide.title} className="object-cover" />
+            <BlendOverlay />
+          </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
                     <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
@@ -161,9 +163,10 @@ export default function PlanningGuidesPage() {
                 },
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
-                  </div>
+                  <div className="relative h-48 overflow-hidden">
+            <EditorialImage src={guide.image || "/placeholder.svg"} alt={guide.title} className="object-cover" />
+            <BlendOverlay />
+          </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
                     <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
@@ -202,9 +205,10 @@ export default function PlanningGuidesPage() {
                 },
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
-                  </div>
+                  <div className="relative h-48 overflow-hidden">
+            <EditorialImage src={guide.image || "/placeholder.svg"} alt={guide.title} className="object-cover" />
+            <BlendOverlay />
+          </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
                     <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
@@ -243,9 +247,10 @@ export default function PlanningGuidesPage() {
                 },
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
-                  </div>
+                  <div className="relative h-48 overflow-hidden">
+            <EditorialImage src={guide.image || "/placeholder.svg"} alt={guide.title} className="object-cover" />
+            <BlendOverlay />
+          </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
                     <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
@@ -284,9 +289,10 @@ export default function PlanningGuidesPage() {
                 },
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
-                  </div>
+                  <div className="relative h-48 overflow-hidden">
+            <EditorialImage src={guide.image || "/placeholder.svg"} alt={guide.title} className="object-cover" />
+            <BlendOverlay />
+          </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
                     <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
@@ -325,9 +331,10 @@ export default function PlanningGuidesPage() {
                 },
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
-                  </div>
+                  <div className="relative h-48 overflow-hidden">
+            <EditorialImage src={guide.image || "/placeholder.svg"} alt={guide.title} className="object-cover" />
+            <BlendOverlay />
+          </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
                     <p className="text-muted-foreground mb-4">{guide.excerpt}</p>

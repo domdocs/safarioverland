@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, CalendarDays, Sun, Cloud, CloudRain, Thermometer, Users, School } from 'lucide-react';
 import { Metadata } from 'next';
+import { EditorialImage } from "@/components/editorial/editorial-image"
+import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
   title: 'Family Safari Guide | Best Seasons for Children | Safari Overland',
@@ -24,13 +26,12 @@ const FamilySafariSeasonalGuidePage = () => {
       {/* Hero Section */}
       <div className="bg-muted rounded-lg overflow-hidden mb-12">
         <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="relative h-64 md:h-auto">
-            <Image 
+          <div className="relative h-64 md:h-auto overflow-hidden">
+            <EditorialImage 
               src="/images/planning-guides/travelers/family-safari.jpg" 
               alt="Family enjoying wildlife viewing on safari" 
-              fill 
-              className="object-cover" 
-            />
+              className="object-cover" />
+            <BlendOverlay />
           </div>
           <div className="p-8 md:p-12 flex flex-col justify-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Planning Your Family Safari</h2>

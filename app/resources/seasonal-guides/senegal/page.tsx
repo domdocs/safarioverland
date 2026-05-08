@@ -6,6 +6,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Calendar, Sun, CloudRain, ChevronRight, CircleDot } from "lucide-react"
 import { DownloadButton } from "@/components/download-button"
 import { RESOURCES } from "@/lib/downloads/resources"
+import { EditorialImage } from "@/components/editorial/editorial-image"
+import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
   title: "Senegal Safari Seasonal Guide | Safari Overland",
@@ -242,14 +244,13 @@ export default function SenegalSeasonalGuidePage() {
 
             <div className="bg-muted rounded-lg overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className="relative h-64 md:h-auto md:order-1">
-                  <Image 
+                <div className="relative h-64 md:h-auto md:order-1 overflow-hidden">
+            <EditorialImage 
                     src="/images/seasonal-guides/djoudj-bird-sanctuary.jpg" 
                     alt="Migratory birds at Djoudj National Bird Sanctuary, Senegal" 
-                    fill 
-                    className="object-cover" 
-                  />
-                </div>
+                    className="object-cover" />
+            <BlendOverlay />
+          </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">Djoudj National Bird Sanctuary</h3>
                   <p className="text-muted-foreground mb-4">
@@ -277,14 +278,13 @@ export default function SenegalSeasonalGuidePage() {
                     <p><span className="font-medium">Avoid:</span> No major season to avoid, though midday heat from March to May can be intense.</p>
                   </div>
                 </div>
-                <div className="relative h-64 md:h-auto">
-                  <Image 
+                <div className="relative h-64 md:h-auto overflow-hidden">
+            <EditorialImage 
                     src="/images/seasonal-guides/bandia-reserve.jpg" 
                     alt="Giraffes in Bandia Reserve, Senegal" 
-                    fill 
-                    className="object-cover" 
-                  />
-                </div>
+                    className="object-cover" />
+            <BlendOverlay />
+          </div>
               </div>
             </div>
           </div>

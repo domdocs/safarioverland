@@ -6,6 +6,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Calendar, Sun, CloudRain, ChevronRight, CircleDot } from "lucide-react"
 import { DownloadButton } from "@/components/download-button"
 import { RESOURCES } from "@/lib/downloads/resources"
+import { EditorialImage } from "@/components/editorial/editorial-image"
+import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
   title: "Egypt Safari Seasonal Guide | Safari Overland",
@@ -242,14 +244,13 @@ export default function EgyptSeasonalGuidePage() {
 
             <div className="bg-muted rounded-lg overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className="relative h-64 md:h-auto md:order-1">
-                  <Image 
+                <div className="relative h-64 md:h-auto md:order-1 overflow-hidden">
+            <EditorialImage 
                     src="/images/seasonal-guides/siwa-oasis.jpg" 
                     alt="Lush palm trees and traditional buildings at Siwa Oasis, Egypt" 
-                    fill 
-                    className="object-cover" 
-                  />
-                </div>
+                    className="object-cover" />
+            <BlendOverlay />
+          </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">Siwa Oasis</h3>
                   <p className="text-muted-foreground mb-4">
@@ -277,14 +278,13 @@ export default function EgyptSeasonalGuidePage() {
                     <p><span className="font-medium">Avoid:</span> Summer months (June-August) due to excessive heat.</p>
                   </div>
                 </div>
-                <div className="relative h-64 md:h-auto">
-                  <Image 
+                <div className="relative h-64 md:h-auto overflow-hidden">
+            <EditorialImage 
                     src="/images/seasonal-guides/fayoum-lake.jpg" 
                     alt="Lake Qarun in Fayoum Oasis, Egypt with birds and wetlands" 
-                    fill 
-                    className="object-cover" 
-                  />
-                </div>
+                    className="object-cover" />
+            <BlendOverlay />
+          </div>
               </div>
             </div>
           </div>

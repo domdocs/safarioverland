@@ -1,5 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
+import { EditorialImage } from "@/components/editorial/editorial-image"
+import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 const NamibiaConservanciesPage = () => {
     return (
@@ -15,14 +17,13 @@ const NamibiaConservanciesPage = () => {
             {/* Hero Section */}
             <div className="bg-muted rounded-lg overflow-hidden mb-12">
                 <div className="grid grid-cols-1 md:grid-cols-2">
-                    <div className="relative h-64 md:h-auto">
-                        <Image 
+                    <div className="relative h-64 md:h-auto overflow-hidden">
+            <EditorialImage 
                             src="/images/success-stories/namib-community.jpg" 
                             alt="Community conservancy rangers in Namibia" 
-                            fill 
-                            className="object-cover" 
-                        />
-                    </div>
+                            className="object-cover" />
+            <BlendOverlay />
+          </div>
                     <div className="p-8 md:p-12 flex flex-col justify-center">
                         <h2 className="text-2xl md:text-3xl font-bold mb-4">A Revolutionary Approach</h2>
                         <p className="text-muted-foreground mb-4">

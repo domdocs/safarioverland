@@ -6,6 +6,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Calendar, Sun, CloudRain, ChevronRight } from "lucide-react"
 import { DownloadButton } from "@/components/download-button"
 import { RESOURCES } from "@/lib/downloads/resources"
+import { EditorialImage } from "@/components/editorial/editorial-image"
+import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export default function SeasonalGuidesPage() {
   return (
@@ -60,9 +62,10 @@ export default function SeasonalGuidesPage() {
                 <Button variant="outline">View Wildlife Events</Button>
               </div>
             </div>
-            <div className="relative h-64 md:h-auto">
-              <Image src="/images/seasonal-guides/safari-seasons.jpg" alt="Safari Seasons" fill className="object-cover" />
-            </div>
+            <div className="relative h-64 md:h-auto overflow-hidden">
+            <EditorialImage src="/images/seasonal-guides/safari-seasons.jpg" alt="Safari Seasons" className="object-cover" />
+            <BlendOverlay />
+          </div>
           </div>
         </div>
       </section>
@@ -196,9 +199,10 @@ export default function SeasonalGuidesPage() {
                 },
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image src={guide.image} alt={guide.title} fill className="object-cover" />
-                  </div>
+                  <div className="relative h-48 overflow-hidden">
+            <EditorialImage src={guide.image} alt={guide.title} className="object-cover"/>
+            <BlendOverlay />
+          </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
                     <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
@@ -237,9 +241,10 @@ export default function SeasonalGuidesPage() {
                 },
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image src={guide.image} alt={guide.title} fill className="object-cover" />
-                  </div>
+                  <div className="relative h-48 overflow-hidden">
+            <EditorialImage src={guide.image} alt={guide.title} className="object-cover"/>
+            <BlendOverlay />
+          </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
                     <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
@@ -278,9 +283,10 @@ export default function SeasonalGuidesPage() {
                 },
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image src={guide.image} alt={guide.title} fill className="object-cover" />
-                  </div>
+                  <div className="relative h-48 overflow-hidden">
+            <EditorialImage src={guide.image} alt={guide.title} className="object-cover"/>
+            <BlendOverlay />
+          </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
                     <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
@@ -317,9 +323,10 @@ export default function SeasonalGuidesPage() {
                 },
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image src={guide.image} alt={guide.title} fill className="object-cover" />
-                  </div>
+                  <div className="relative h-48 overflow-hidden">
+            <EditorialImage src={guide.image} alt={guide.title} className="object-cover"/>
+            <BlendOverlay />
+          </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
                     <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
@@ -444,9 +451,10 @@ export default function SeasonalGuidesPage() {
             },
           ].map((guide) => (
             <Card key={guide.title} className="overflow-hidden">
-              <div className="relative h-48">
-                <Image src={guide.image} alt={guide.title} fill className="object-cover" />
-              </div>
+              <div className="relative h-48 overflow-hidden">
+            <EditorialImage src={guide.image} alt={guide.title} className="object-cover"/>
+            <BlendOverlay />
+          </div>
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
                 <p className="text-muted-foreground mb-4">{guide.excerpt}</p>

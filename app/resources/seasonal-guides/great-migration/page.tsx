@@ -6,6 +6,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Calendar, ChevronRight, CircleDot, ArrowLeft } from "lucide-react"
 import { DownloadButton } from "@/components/download-button"
 import { RESOURCES } from "@/lib/downloads/resources"
+import { EditorialImage } from "@/components/editorial/editorial-image"
+import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
   title: "Great Migration Seasonal Guide | Safari Overland",
@@ -222,9 +224,10 @@ export default function GreatMigrationGuidePage() {
             ].map((month) => (
               <Card key={month.months} className="overflow-hidden">
                 <div className="grid grid-cols-1 sm:grid-cols-2">
-                  <div className="relative h-48 sm:h-auto">
-                    <Image src={month.image} alt={`Great Migration in ${month.months}`} fill className="object-cover" />
-                  </div>
+                  <div className="relative h-48 sm:h-auto overflow-hidden">
+            <EditorialImage src={month.image} alt={`Great Migration in ${month.months}`} className="object-cover"/>
+            <BlendOverlay />
+          </div>
                   <CardContent className="p-6">
                     <div className="text-xl font-bold text-primary mb-2">{month.months}</div>
                     <div className="text-sm font-medium mb-1">Location:</div>

@@ -6,6 +6,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Calendar, Sun, CloudRain, ChevronRight, CircleDot } from "lucide-react"
 import { DownloadButton } from "@/components/download-button"
 import { RESOURCES } from "@/lib/downloads/resources"
+import { EditorialImage } from "@/components/editorial/editorial-image"
+import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
   title: "Morocco Safari Seasonal Guide | Safari Overland",
@@ -242,14 +244,13 @@ export default function MoroccoSeasonalGuidePage() {
 
             <div className="bg-muted rounded-lg overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className="relative h-64 md:h-auto md:order-1">
-                  <Image 
+                <div className="relative h-64 md:h-auto md:order-1 overflow-hidden">
+            <EditorialImage 
                     src="/images/seasonal-guides/high-atlas.jpg" 
                     alt="High Atlas Mountains in Morocco with diverse flora and fauna" 
-                    fill 
-                    className="object-cover" 
-                  />
-                </div>
+                    className="object-cover" />
+            <BlendOverlay />
+          </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">Atlas Mountain Ecosystems</h3>
                   <p className="text-muted-foreground mb-4">
@@ -277,14 +278,13 @@ export default function MoroccoSeasonalGuidePage() {
                     <p><span className="font-medium">Avoid:</span> No major season to avoid, though summer (June-August) has fewer migratory species.</p>
                   </div>
                 </div>
-                <div className="relative h-64 md:h-auto">
-                  <Image 
+                <div className="relative h-64 md:h-auto overflow-hidden">
+            <EditorialImage 
                     src="/images/seasonal-guides/morocco-coast.jpg" 
                     alt="Coastal wetlands in Morocco with diverse bird species" 
-                    fill 
-                    className="object-cover" 
-                  />
-                </div>
+                    className="object-cover" />
+            <BlendOverlay />
+          </div>
               </div>
             </div>
           </div>
@@ -320,14 +320,13 @@ export default function MoroccoSeasonalGuidePage() {
                       </li>
                     </ul>
                   </div>
-                  <div className="relative h-48 md:h-auto">
-                    <Image 
+                  <div className="relative h-48 md:h-auto overflow-hidden">
+            <EditorialImage 
                       src="/images/seasonal-guides/northern-bald-ibis.jpg" 
                       alt="Northern Bald Ibis in Morocco" 
-                      fill 
-                      className="object-cover rounded-md" 
-                    />
-                  </div>
+                      className="object-cover rounded-md" />
+            <BlendOverlay />
+          </div>
                 </div>
               </CardContent>
             </Card>
@@ -336,14 +335,13 @@ export default function MoroccoSeasonalGuidePage() {
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold mb-4">Atlas Mountains Spring Bloom</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="relative h-48 md:h-auto order-2 md:order-1">
-                    <Image 
+                  <div className="relative h-48 md:h-auto order-2 md:order-1 overflow-hidden">
+            <EditorialImage 
                       src="/images/seasonal-guides/atlas-spring.jpg" 
                       alt="Spring flowers in Atlas Mountains of Morocco" 
-                      fill 
-                      className="object-cover rounded-md" 
-                    />
-                  </div>
+                      className="object-cover rounded-md" />
+            <BlendOverlay />
+          </div>
                   <div className="col-span-2 order-1 md:order-2">
                     <p className="text-muted-foreground mb-4">
                       The Atlas Mountains transform during spring when snow melt nurtures a spectacular bloom of wildflowers, attracting numerous pollinators and creating ideal wildlife viewing conditions.
@@ -382,14 +380,13 @@ export default function MoroccoSeasonalGuidePage() {
                       </li>
                     </ul>
                   </div>
-                  <div className="relative h-48 md:h-auto">
-                    <Image 
+                  <div className="relative h-48 md:h-auto overflow-hidden">
+            <EditorialImage 
                       src="/images/seasonal-guides/desert-bloom.jpg" 
                       alt="Desert bloom after rainfall in Morocco" 
-                      fill 
-                      className="object-cover rounded-md" 
-                    />
-                  </div>
+                      className="object-cover rounded-md" />
+            <BlendOverlay />
+          </div>
                 </div>
               </CardContent>
             </Card>

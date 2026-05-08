@@ -29,6 +29,8 @@ import {
 import type { LucideIcon } from "lucide-react"
 import { DownloadButton } from "@/components/download-button"
 import { RESOURCES } from "@/lib/downloads/resources"
+import { EditorialImage } from "@/components/editorial/editorial-image"
+import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export default function SafetyTipsPage() {
   return (
@@ -82,15 +84,14 @@ export default function SafetyTipsPage() {
                 <Button variant="outline">Watch Safety Video</Button>
               </div>
             </div>
-            <div className="relative h-64 md:h-auto">
-              <Image
+            <div className="relative h-64 md:h-auto overflow-hidden">
+            <EditorialImage
                 src="/images/safety/safety-hero.jpg"
                 alt="A safari guide briefing visitors at sunset, with giraffe and zebra at a safe distance"
-                fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </div>
+                className="object-cover" />
+            <BlendOverlay />
+          </div>
           </div>
         </div>
       </section>

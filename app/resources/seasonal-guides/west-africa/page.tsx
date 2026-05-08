@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, CalendarDays, Sun, Cloud, CloudRain, Thermometer, Compass } from 'lucide-react';
 import { Metadata } from 'next';
+import { EditorialImage } from "@/components/editorial/editorial-image"
+import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
   title: 'West Africa Safari Seasonal Guide | Safari Overland',
@@ -24,13 +26,12 @@ const WestAfricaSeasonalGuidePage = () => {
       {/* Hero Section */}
       <div className="bg-muted rounded-lg overflow-hidden mb-12">
         <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="relative h-64 md:h-auto">
-            <Image 
+          <div className="relative h-64 md:h-auto overflow-hidden">
+            <EditorialImage 
               src="/images/seasonal-guides/travel-guide-west-africa-birds.jpg" 
               alt="Birding and wildlife in West Africa" 
-              fill 
-              className="object-cover" 
-            />
+              className="object-cover" />
+            <BlendOverlay />
           </div>
           <div className="p-8 md:p-12 flex flex-col justify-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">When to Visit West Africa</h2>

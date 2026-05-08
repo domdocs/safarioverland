@@ -4,6 +4,8 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Camera, Sun, Cloud, ChevronRight, ArrowLeft } from "lucide-react";
+import { EditorialImage } from "@/components/editorial/editorial-image"
+import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
   title: "Photography Seasonal Guide | Safari Overland",
@@ -177,9 +179,10 @@ export default function PhotographyGuidePage() {
                 },
               ].map((period) => (
                 <Card key={period.season} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image src={period.image} alt={`East Africa during ${period.season}`} fill className="object-cover" />
-                  </div>
+                  <div className="relative h-48 overflow-hidden">
+            <EditorialImage src={period.image} alt={`East Africa during ${period.season}`} className="object-cover"/>
+            <BlendOverlay />
+          </div>
                   <CardContent className="p-4">
                     <h4 className="font-bold text-lg text-primary">{period.season}</h4>
                     <p className="font-medium text-sm mb-2">{period.highlight}</p>
@@ -223,9 +226,10 @@ export default function PhotographyGuidePage() {
                 },
               ].map((period) => (
                 <Card key={period.season} className="overflow-hidden">
-                  <div className="relative h-48">
-                    <Image src={period.image} alt={`Southern Africa during ${period.season}`} fill className="object-cover" />
-                  </div>
+                  <div className="relative h-48 overflow-hidden">
+            <EditorialImage src={period.image} alt={`Southern Africa during ${period.season}`} className="object-cover"/>
+            <BlendOverlay />
+          </div>
                   <CardContent className="p-4">
                     <h4 className="font-bold text-lg text-primary">{period.season}</h4>
                     <p className="font-medium text-sm mb-2">{period.highlight}</p>
@@ -278,9 +282,10 @@ export default function PhotographyGuidePage() {
               ].map((specialty) => (
                 <Card key={specialty.type} className="overflow-hidden">
                   <div className="grid grid-cols-1 sm:grid-cols-2">
-                    <div className="relative h-48 sm:h-auto">
-                      <Image src={specialty.image} alt={specialty.type} fill className="object-cover" />
-                    </div>
+                    <div className="relative h-48 sm:h-auto overflow-hidden">
+            <EditorialImage src={specialty.image} alt={specialty.type} className="object-cover"/>
+            <BlendOverlay />
+          </div>
                     <CardContent className="p-4">
                       <h4 className="font-bold text-lg">{specialty.type}</h4>
                       <p className="text-primary font-medium text-sm mb-2">{specialty.season}</p>

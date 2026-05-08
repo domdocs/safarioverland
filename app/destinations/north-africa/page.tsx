@@ -22,6 +22,8 @@ import { DestinationWildlife } from "@/components/destination-wildlife"
 import { DestinationSeasons } from "@/components/destination-seasons"
 import { DestinationMap } from "@/components/destination-map"
 import { ListingsGrid } from "@/components/listings-grid"
+import { EditorialImage } from "@/components/editorial/editorial-image"
+import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
   title: "North Africa Safaris & Adventures | Morocco, Egypt & Tunisia",
@@ -399,8 +401,9 @@ export default function NorthAfricaPage() {
           {northAfricaWildlife.map((animal) => (
             <div key={animal.name} className="text-center">
               <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
-                <Image src={animal.image} alt={animal.name} fill className="object-cover" />
-              </div>
+            <EditorialImage src={animal.image} alt={animal.name} className="object-cover"/>
+            <BlendOverlay />
+          </div>
               <h3 className="font-bold mb-1">{animal.name}</h3>
               <p className="text-xs text-muted-foreground line-clamp-3">{animal.description}</p>
             </div>

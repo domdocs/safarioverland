@@ -4,6 +4,8 @@ import Link from "next/link"
 import { Eyebrow } from "@/components/editorial/eyebrow"
 import { SectionRule } from "@/components/editorial/section-rule"
 import { NumberedList } from "@/components/editorial/numbered-list"
+import { EditorialImage } from "@/components/editorial/editorial-image"
+import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 const PRINCIPLES = [
   {
@@ -158,14 +160,13 @@ export default function AboutPage() {
             </div>
             <div className="lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden bg-card">
-                <Image
+            <EditorialImage
                   src="/images/about/about-hero.jpg"
                   alt="Victoria Falls — Mosi-oa-Tunya, the smoke that thunders"
-                  fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover"
-                />
-              </div>
+                  className="object-cover" />
+            <BlendOverlay />
+          </div>
             </div>
           </div>
         </div>

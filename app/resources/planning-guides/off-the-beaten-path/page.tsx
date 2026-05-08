@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, MapPin, Compass, Quote, Check } from 'lucide-react';
 import { Metadata } from 'next';
+import { EditorialImage } from "@/components/editorial/editorial-image"
+import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
   title: 'Off-the-Beaten-Path Safari Destinations | Safari Overland',
@@ -58,12 +60,11 @@ const OffTheBeatenPathPage = () => {
           </p>
           
           <div className="relative h-[300px] rounded-xl overflow-hidden my-8">
-            <Image 
+            <EditorialImage 
               src="/images/stories/mosque-timbuktu.jpg" 
-              alt="Ancient mud-brick mosques of Timbuktu with desert sand streets" 
-              fill
-              className="object-cover"
-            />
+              alt="Ancient mud-brick mosques of Timbuktu with desert sand streets"
+              className="object-cover" />
+            <BlendOverlay />
           </div>
           
           <p className="leading-relaxed">
@@ -115,12 +116,11 @@ const OffTheBeatenPathPage = () => {
           </p>
           
           <div className="relative h-[300px] rounded-xl overflow-hidden my-8">
-            <Image 
+            <EditorialImage 
               src="/images/stories/mahale-mountains.jpg" 
-              alt="The lush forests of Mahale Mountains with Lake Tanganyika in the distance" 
-              fill
-              className="object-cover"
-            />
+              alt="The lush forests of Mahale Mountains with Lake Tanganyika in the distance"
+              className="object-cover" />
+            <BlendOverlay />
           </div>
           
           <p className="leading-relaxed">
@@ -171,12 +171,11 @@ const OffTheBeatenPathPage = () => {
           </p>
           
           <div className="relative h-[300px] rounded-xl overflow-hidden my-8">
-            <Image 
+            <EditorialImage 
               src="/images/resources/indri-lemur.jpg" 
-              alt="An Indri lemur in the rainforests of Madagascar" 
-              fill
-              className="object-cover"
-            />
+              alt="An Indri lemur in the rainforests of Madagascar"
+              className="object-cover" />
+            <BlendOverlay />
           </div>
           
           <p className="leading-relaxed">

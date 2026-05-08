@@ -6,6 +6,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Calendar, Sun, CloudRain, ChevronRight, CircleDot } from "lucide-react"
 import { DownloadButton } from "@/components/download-button"
 import { RESOURCES } from "@/lib/downloads/resources"
+import { EditorialImage } from "@/components/editorial/editorial-image"
+import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
   title: "Ghana Safari Seasonal Guide | Safari Overland",
@@ -229,27 +231,26 @@ export default function GhanaSeasonalGuidePage() {
                     <p><span className="font-medium">Avoid:</span> July-September when roads can be difficult.</p>
                   </div>
                 </div>
-                <div className="relative h-64 md:h-auto">
-                  <Image 
-                    src="/images/seasonal-guides/mole-national-park.jpg" 
-                    alt="Elephants in Mole National Park, Ghana" 
-                    fill 
-                    className="object-cover" 
+                <div className="relative h-64 md:h-auto overflow-hidden">
+                  <EditorialImage
+                    src="/images/seasonal-guides/mole-national-park.jpg"
+                    alt="Elephants in Mole National Park, Ghana"
+                    className="object-cover"
                   />
+                  <BlendOverlay />
                 </div>
               </div>
             </div>
 
             <div className="bg-muted rounded-lg overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className="relative h-64 md:h-auto md:order-1">
-                  <Image 
+                <div className="relative h-64 md:h-auto md:order-1 overflow-hidden">
+            <EditorialImage 
                     src="/images/seasonal-guides/kakum-national-park.jpg" 
                     alt="Canopy walkway in Kakum National Park, Ghana" 
-                    fill 
-                    className="object-cover" 
-                  />
-                </div>
+                    className="object-cover" />
+            <BlendOverlay />
+          </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">Kakum National Park</h3>
                   <p className="text-muted-foreground mb-4">
@@ -277,14 +278,13 @@ export default function GhanaSeasonalGuidePage() {
                     <p><span className="font-medium">Avoid:</span> May-July when trails become muddy and difficult.</p>
                   </div>
                 </div>
-                <div className="relative h-64 md:h-auto">
-                  <Image 
+                <div className="relative h-64 md:h-auto overflow-hidden">
+            <EditorialImage 
                     src="/images/seasonal-guides/bia-national-park.jpg" 
                     alt="Rainforest in Bia National Park, Ghana" 
-                    fill 
-                    className="object-cover" 
-                  />
-                </div>
+                    className="object-cover" />
+            <BlendOverlay />
+          </div>
               </div>
             </div>
           </div>
