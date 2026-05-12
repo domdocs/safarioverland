@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-import Link from "next/link"
+import { useRouter, useSearchParams } from "next/navigation"
 import { Check, ChevronLeft, ChevronRight, Loader2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -10,51 +10,90 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Eyebrow } from "@/components/editorial/eyebrow"
 import {
-  BUDGET_OPTIONS,
-  CHAPTER_OPTIONS,
+  BUDGET_TIER_OPTIONS,
+  DURATION_OPTIONS,
+  INTENT_MAX,
+  INTENT_OPTIONS,
   MONTH_OPTIONS,
-  RHYTHM_OPTIONS,
-  type BudgetOption,
-  type ChapterOption,
+  PACE_OPTIONS,
+  QUIET_OPTIONS,
+  SEASON_OPTIONS,
+  WILDLIFE_OPTIONS,
+  labelFor,
+  type BudgetTierOption,
+  type DurationOption,
+  type IntentOption,
   type MonthOption,
-  type RhythmOption,
+  type PaceOption,
+  type QuietOption,
+  type SeasonOption,
+  type WildlifeOption,
 } from "@/lib/briefs/options"
 import { cn } from "@/lib/utils"
 
+// ── Form state ──────────────────────────────────────────────────────────
+
 type FormState = {
+  // Step 01
   months: MonthOption[]
-  chapters: ChapterOption[]
-  rhythm: RhythmOption | ""
-  nights: string
-  travelers: string
-  budget_per_person: BudgetOption | ""
-  notes: string
+  flexible_months: boolean
+  // Step 02
+  intent: IntentOption[]
+  intent_other: string
+  // Step 03
+  pace: PaceOption | ""
+  // Step 04
+  quiet_markers: QuietOption[]
+  // Step 05
+  wildlife_priorities: WildlifeOption[]
+  rare_specialist_text: string
+  // Step 06
+  duration: DurationOption | ""
+  // Step 07
+  season_preference: SeasonOption | ""
+  // Step 08
+  budget_tier: BudgetTierOption | ""
+  // Step 09 — contact + free text
   contact_name: string
   contact_email: string
   contact_phone: string
+  free_text: string
 }
 
 const EMPTY: FormState = {
   months: [],
-  chapters: [],
-  rhythm: "",
-  nights: "",
-  travelers: "2",
-  budget_per_person: "",
-  notes: "",
+  flexible_months: false,
+  intent: [],
+  intent_other: "",
+  pace: "",
+  quiet_markers: [],
+  wildlife_priorities: [],
+  rare_specialist_text: "",
+  duration: "",
+  season_preference: "",
+  budget_tier: "",
   contact_name: "",
   contact_email: "",
   contact_phone: "",
+  free_text: "",
 }
 
-const STORAGE_KEY = "so_trip_builder_v1"
+const STORAGE_KEY = "so_intake_v2"
+const HANDOFF_KEY = "so_intake_handoff_v2"
+
+// ── Step list ───────────────────────────────────────────────────────────
 
 const STEPS = [
-  { key: "when", title: "When can you travel?", lede: "Pick the months that work. You can choose more than one." },
-  { key: "where", title: "Where are you drawn to?", lede: "Pick one or more regions. We'll narrow inside the brief." },
-  { key: "rhythm", title: "What rhythm?", lede: "How do you want to spend the days?" },
-  { key: "shape", title: "How long, how many?", lede: "Nights and travelers — your honest working budget." },
-  { key: "you", title: "Who shall we get back to?", lede: "Name + email at minimum. Reply within 48 hours." },
+  { key: "when", title: "When could you travel?", lede: "Months shape season, game-viewing, climate." },
+  { key: "intent", title: "What kind of trip are you chasing?", lede: `Pick up to ${INTENT_MAX}.` },
+  { key: "pace", title: "The rhythm.", lede: "How busy should the days feel?" },
+  { key: "quiet", title: "The kind of quiet you want.", lede: "Optional. The texture more than the substance." },
+  { key: "wildlife", title: "The wildlife or landscape you're after.", lede: "The specifics anchor everything." },
+  { key: "duration", title: "How long, give or take?", lede: "Rough is fine — we'll narrow on the call." },
+  { key: "season", title: "Season preference, if any.", lede: "Different months read different ways on the ground." },
+  { key: "budget", title: "A comfortable budget, per person per night.", lede: "Honest is more useful than aspirational." },
+  { key: "you", title: "Who shall we get back to?", lede: "Name + email. We'll reply within 48 hours." },
+  { key: "review", title: "A last look.", lede: "Everything in one place. Edit anything before sending." },
 ] as const
 
 type StepKey = (typeof STEPS)[number]["key"]
@@ -62,25 +101,42 @@ type StepKey = (typeof STEPS)[number]["key"]
 function isStepValid(step: StepKey, s: FormState): boolean {
   switch (step) {
     case "when":
-      return s.months.length > 0
-    case "where":
-      return s.chapters.length > 0
-    case "rhythm":
-      return !!s.rhythm
-    case "shape":
-      return !!s.nights && Number(s.nights) > 0 && Number(s.travelers) > 0
+      return s.months.length > 0 || s.flexible_months
+    case "intent":
+      return s.intent.length > 0 && s.intent.length <= INTENT_MAX
+    case "pace":
+      return !!s.pace
+    case "quiet":
+      return true // optional
+    case "wildlife":
+      return s.wildlife_priorities.length > 0
+    case "duration":
+      return !!s.duration
+    case "season":
+      return !!s.season_preference
+    case "budget":
+      return !!s.budget_tier
     case "you":
-      return s.contact_name.trim().length >= 2 && /\S+@\S+\.\S+/.test(s.contact_email)
+      return (
+        s.contact_name.trim().length >= 2 && /\S+@\S+\.\S+/.test(s.contact_email)
+      )
+    case "review":
+      return true
   }
 }
 
+// ── Component ───────────────────────────────────────────────────────────
+
 export function TripBuilderForm() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const sourceListingId = searchParams.get("listing")
+
   const [stepIdx, setStepIdx] = useState(0)
   const [state, setState] = useState<FormState>(EMPTY)
   const [hydrated, setHydrated] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [submittedId, setSubmittedId] = useState<string | null>(null)
 
   // Hydrate from localStorage on mount.
   useEffect(() => {
@@ -108,35 +164,60 @@ export function TripBuilderForm() {
 
   const step = STEPS[stepIdx]
   const stepValid = useMemo(() => isStepValid(step.key, state), [step.key, state])
-  const isLast = stepIdx === STEPS.length - 1
+  const isLast = step.key === "review"
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setState((s) => ({ ...s, [key]: value }))
   }
 
-  function toggleArray<T extends string>(key: "months" | "chapters", value: T) {
+  function toggleArray<T extends string>(
+    key: "months" | "intent" | "quiet_markers" | "wildlife_priorities",
+    value: T,
+    max?: number,
+  ) {
     setState((s) => {
       const current = s[key] as readonly string[]
-      const next = current.includes(value)
-        ? current.filter((v) => v !== value)
-        : [...current, value]
-      return { ...s, [key]: next as FormState[typeof key] }
+      if (current.includes(value)) {
+        return { ...s, [key]: current.filter((v) => v !== value) as FormState[typeof key] }
+      }
+      if (max && current.length >= max) return s
+      return { ...s, [key]: [...current, value] as FormState[typeof key] }
     })
   }
 
+  function buildNotes(): string | undefined {
+    const parts: string[] = []
+    if (state.intent.includes("other") && state.intent_other.trim()) {
+      parts.push(`Other trip type: ${state.intent_other.trim()}`)
+    }
+    if (
+      state.wildlife_priorities.includes("rare-specialist") &&
+      state.rare_specialist_text.trim()
+    ) {
+      parts.push(`Rare / specialist sightings: ${state.rare_specialist_text.trim()}`)
+    }
+    if (state.free_text.trim()) {
+      parts.push(state.free_text.trim())
+    }
+    return parts.length ? parts.join("\n\n") : undefined
+  }
+
   async function handleSubmit() {
-    if (!stepValid) return
+    if (submitting) return
     setSubmitting(true)
     setError(null)
     try {
       const payload = {
-        chapters: state.chapters,
-        months: state.months,
-        rhythm: state.rhythm || undefined,
-        nights: state.nights ? Number(state.nights) : undefined,
-        travelers: state.travelers ? Number(state.travelers) : undefined,
-        budget_per_person: state.budget_per_person || undefined,
-        notes: state.notes || undefined,
+        months: state.flexible_months ? [] : state.months,
+        intent: state.intent,
+        pace: state.pace || undefined,
+        quiet_markers: state.quiet_markers,
+        wildlife_priorities: state.wildlife_priorities,
+        duration: state.duration || undefined,
+        season_preference: state.season_preference || undefined,
+        budget_tier: state.budget_tier || undefined,
+        notes: buildNotes(),
+        source_listing_id: sourceListingId || undefined,
         contact_name: state.contact_name.trim(),
         contact_email: state.contact_email.trim(),
         contact_phone: state.contact_phone.trim() || undefined,
@@ -153,52 +234,44 @@ export function TripBuilderForm() {
         setSubmitting(false)
         return
       }
-      setSubmittedId(data.brief?.id || "ok")
+
+      // Hand off a snapshot for /plan/sent. No PII in the URL.
       try {
+        sessionStorage.setItem(
+          HANDOFF_KEY,
+          JSON.stringify({
+            criteria: {
+              wildlife_priorities: payload.wildlife_priorities,
+              budget_tier: payload.budget_tier ?? null,
+              season_preference: payload.season_preference ?? null,
+            },
+            summary: {
+              months: payload.months,
+              flexible: state.flexible_months,
+              intent: payload.intent,
+              pace: payload.pace ?? null,
+              quiet_markers: payload.quiet_markers,
+              wildlife_priorities: payload.wildlife_priorities,
+              duration: payload.duration ?? null,
+              season_preference: payload.season_preference ?? null,
+              budget_tier: payload.budget_tier ?? null,
+              contact_email: data.brief?.contact_email ?? state.contact_email,
+            },
+          }),
+        )
         localStorage.removeItem(STORAGE_KEY)
       } catch {
         /* ignore */
       }
+
+      router.push("/plan/sent")
     } catch {
       setError("Network error. Try again?")
       setSubmitting(false)
     }
   }
 
-  // ─── Success state ─────────────────────────────────────────
-  if (submittedId) {
-    return (
-      <div className="border border-rule bg-card p-10 max-w-2xl">
-        <div className="flex items-baseline gap-3 mb-4">
-          <Check className="h-5 w-5 text-amber" aria-hidden />
-          <span className="eyebrow">Brief received</span>
-        </div>
-        <h2 className="font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
-          Thanks. We&apos;ll be in touch within{" "}
-          <span className="italic text-amber">48 hours</span>.
-        </h2>
-        <p className="mt-6 text-bone-mute leading-relaxed">
-          A confirmation has gone to{" "}
-          <span className="text-bone">{state.contact_email || "your inbox"}</span>.
-          A planner will come back with three routes within 48 hours.
-          If you remember anything else worth knowing, just reply to that email.
-        </p>
-        <div className="mt-8 flex flex-wrap gap-4">
-          <Button asChild size="lg" className="rounded-none px-8 py-6 mono">
-            <Link href="/categories">Open the collection</Link>
-          </Button>
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="rounded-none px-8 py-6 mono border-rule text-bone hover:border-amber hover:text-amber"
-          >
-            <Link href="/destinations">Open the atlas</Link>
-          </Button>
-        </div>
-      </div>
-    )
-  }
+  // ── Render ───────────────────────────────────────────────────────────
 
   return (
     <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
@@ -206,7 +279,7 @@ export function TripBuilderForm() {
       <aside className="lg:col-span-4">
         <div className="sticky top-24">
           <Eyebrow withRule>
-            Brief — {String(stepIdx + 1).padStart(2, "0")} of {String(STEPS.length).padStart(2, "0")}
+            Brief — {String(stepIdx + 1).padStart(2, "0")} / {String(STEPS.length).padStart(2, "0")}
           </Eyebrow>
           <ol className="mt-8 space-y-3">
             {STEPS.map((s, i) => {
@@ -233,7 +306,7 @@ export function TripBuilderForm() {
                     </span>
                     <span
                       className={cn(
-                        "font-serif text-lg leading-tight",
+                        "font-serif text-base leading-tight",
                         i === stepIdx
                           ? "text-bone"
                           : done
@@ -258,7 +331,9 @@ export function TripBuilderForm() {
 
       {/* Step body */}
       <div className="lg:col-span-8">
-        <p className="eyebrow">{`Step ${String(stepIdx + 1).padStart(2, "0")}`}</p>
+        <p className="eyebrow">
+          {step.key === "review" ? "Final look" : `Step ${String(stepIdx + 1).padStart(2, "0")} / 08`}
+        </p>
         <h2 className="mt-4 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
           {step.title}
         </h2>
@@ -268,71 +343,117 @@ export function TripBuilderForm() {
 
         <div className="mt-12">
           {step.key === "when" && (
-            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2">
-              {MONTH_OPTIONS.map((m) => {
-                const selected = state.months.includes(m)
-                return (
-                  <button
-                    key={m}
-                    type="button"
-                    onClick={() => toggleArray("months", m)}
-                    aria-pressed={selected}
-                    className={cn(
-                      "border px-3 py-4 mono transition-colors",
-                      selected
-                        ? "bg-amber text-night border-amber"
-                        : "border-rule text-bone-mute hover:border-amber hover:text-amber",
-                    )}
-                  >
-                    {m}
-                  </button>
-                )
-              })}
+            <div className="space-y-6">
+              <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2">
+                {MONTH_OPTIONS.map((m) => {
+                  const selected = state.months.includes(m)
+                  return (
+                    <button
+                      key={m}
+                      type="button"
+                      onClick={() => {
+                        if (state.flexible_months) update("flexible_months", false)
+                        toggleArray("months", m)
+                      }}
+                      aria-pressed={selected}
+                      className={cn(
+                        "border px-3 py-4 mono transition-colors",
+                        selected
+                          ? "bg-amber text-night border-amber"
+                          : "border-rule text-bone-mute hover:border-amber hover:text-amber",
+                      )}
+                    >
+                      {m}
+                    </button>
+                  )
+                })}
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  const next = !state.flexible_months
+                  update("flexible_months", next)
+                  if (next) update("months", [])
+                }}
+                aria-pressed={state.flexible_months}
+                className={cn(
+                  "block w-full text-left border p-5 transition-colors",
+                  state.flexible_months
+                    ? "border-amber bg-amber/10"
+                    : "border-rule hover:border-amber",
+                )}
+              >
+                <span className="font-serif text-lg text-bone">
+                  Open to suggestions
+                </span>
+                <p className="mono text-bone-mute mt-1">
+                  We&apos;re flexible — anywhere in the next twelve months.
+                </p>
+              </button>
             </div>
           )}
 
-          {step.key === "where" && (
-            <ul className="grid sm:grid-cols-2 gap-4">
-              {CHAPTER_OPTIONS.map((c) => {
-                const selected = (state.chapters as string[]).includes(c.value)
+          {step.key === "intent" && (
+            <ul className="space-y-3">
+              {INTENT_OPTIONS.map((opt) => {
+                const selected = (state.intent as string[]).includes(opt.value)
+                const atLimit = state.intent.length >= INTENT_MAX && !selected
                 return (
-                  <li key={c.value}>
+                  <li key={opt.value}>
                     <button
                       type="button"
-                      onClick={() => toggleArray("chapters", c.value as ChapterOption)}
+                      onClick={() => toggleArray("intent", opt.value, INTENT_MAX)}
                       aria-pressed={selected}
+                      disabled={atLimit}
                       className={cn(
-                        "block w-full text-left border p-6 transition-colors",
+                        "block w-full text-left border px-5 py-4 transition-colors",
                         selected
                           ? "border-amber bg-amber/10"
                           : "border-rule hover:border-amber",
+                        atLimit && "opacity-40 cursor-not-allowed",
                       )}
                     >
-                      <div className="flex items-baseline justify-between gap-3 mb-2">
-                        <span className="font-serif text-h4-fluid text-bone leading-tight">
-                          {c.value}
+                      <div className="flex items-baseline justify-between gap-3">
+                        <span className="font-serif text-lg text-bone">
+                          {opt.label}
                         </span>
                         {selected && (
                           <Check className="h-4 w-4 text-amber shrink-0" aria-hidden />
                         )}
                       </div>
-                      <p className="mono text-bone-mute">{c.lede}</p>
                     </button>
                   </li>
                 )
               })}
+              {state.intent.includes("other") && (
+                <li>
+                  <Label htmlFor="intent_other" className="eyebrow block mb-2 mt-4">
+                    Tell us more
+                  </Label>
+                  <Input
+                    id="intent_other"
+                    value={state.intent_other}
+                    onChange={(e) => update("intent_other", e.target.value)}
+                    placeholder="Something specific we should know"
+                    className="rounded-none bg-card border-rule text-bone"
+                  />
+                </li>
+              )}
+              <li className="mono text-bone-mute text-xs pt-2">
+                {state.intent.length} / {INTENT_MAX} selected
+              </li>
             </ul>
           )}
 
-          {step.key === "rhythm" && (
+          {step.key === "pace" && (
             <ul className="space-y-3">
-              {RHYTHM_OPTIONS.map((r) => {
-                const selected = state.rhythm === r.value
+              {PACE_OPTIONS.map((opt) => {
+                const selected = state.pace === opt.value
                 return (
-                  <li key={r.value}>
+                  <li key={opt.value}>
                     <button
                       type="button"
-                      onClick={() => update("rhythm", r.value as RhythmOption)}
+                      onClick={() => update("pace", opt.value)}
                       aria-pressed={selected}
                       className={cn(
                         "block w-full text-left border p-5 transition-colors",
@@ -348,13 +469,13 @@ export function TripBuilderForm() {
                             selected ? "text-amber" : "text-bone",
                           )}
                         >
-                          {r.value}
+                          {opt.label}
                         </span>
                         {selected && (
                           <Check className="h-4 w-4 text-amber ml-auto shrink-0" aria-hidden />
                         )}
                       </div>
-                      <p className="mt-1 text-bone-mute">{r.lede}</p>
+                      <p className="mt-1 text-bone-mute">{opt.lede}</p>
                     </button>
                   </li>
                 )
@@ -362,72 +483,184 @@ export function TripBuilderForm() {
             </ul>
           )}
 
-          {step.key === "shape" && (
-            <div className="space-y-8 max-w-xl">
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <Label htmlFor="nights" className="eyebrow block mb-3">
-                    Nights on safari
-                  </Label>
-                  <Input
-                    id="nights"
-                    type="number"
-                    min={1}
-                    max={120}
-                    inputMode="numeric"
-                    value={state.nights}
-                    onChange={(e) => update("nights", e.target.value)}
-                    placeholder="10"
-                    className="rounded-none bg-card border-rule text-bone"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="travelers" className="eyebrow block mb-3">
-                    Travelers
-                  </Label>
-                  <Input
-                    id="travelers"
-                    type="number"
-                    min={1}
-                    max={20}
-                    inputMode="numeric"
-                    value={state.travelers}
-                    onChange={(e) => update("travelers", e.target.value)}
-                    placeholder="2"
-                    className="rounded-none bg-card border-rule text-bone"
-                  />
-                </div>
-              </div>
+          {step.key === "quiet" && (
+            <ul className="grid sm:grid-cols-2 gap-3">
+              {QUIET_OPTIONS.map((opt) => {
+                const selected = (state.quiet_markers as string[]).includes(opt.value)
+                return (
+                  <li key={opt.value}>
+                    <button
+                      type="button"
+                      onClick={() => toggleArray("quiet_markers", opt.value)}
+                      aria-pressed={selected}
+                      className={cn(
+                        "block w-full text-left border px-4 py-4 transition-colors",
+                        selected
+                          ? "border-amber bg-amber/10"
+                          : "border-rule hover:border-amber",
+                      )}
+                    >
+                      <div className="flex items-baseline gap-3">
+                        <span className="font-serif text-base text-bone leading-snug">
+                          {opt.label}
+                        </span>
+                        {selected && (
+                          <Check className="h-4 w-4 text-amber shrink-0 ml-auto" aria-hidden />
+                        )}
+                      </div>
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          )}
 
-              <div>
-                <p className="eyebrow mb-3">Working budget per person</p>
-                <ul className="grid sm:grid-cols-2 gap-2">
-                  {BUDGET_OPTIONS.map((b) => {
-                    const selected = state.budget_per_person === b
-                    return (
-                      <li key={b}>
-                        <button
-                          type="button"
-                          onClick={() => update("budget_per_person", b)}
-                          aria-pressed={selected}
+          {step.key === "wildlife" && (
+            <div className="space-y-4">
+              <ul className="grid sm:grid-cols-2 gap-3">
+                {WILDLIFE_OPTIONS.map((opt) => {
+                  const selected = (state.wildlife_priorities as string[]).includes(opt.value)
+                  return (
+                    <li key={opt.value}>
+                      <button
+                        type="button"
+                        onClick={() => toggleArray("wildlife_priorities", opt.value)}
+                        aria-pressed={selected}
+                        className={cn(
+                          "block w-full h-full text-left border px-4 py-4 transition-colors",
+                          selected
+                            ? "border-amber bg-amber/10"
+                            : "border-rule hover:border-amber",
+                        )}
+                      >
+                        <div className="flex items-baseline gap-3">
+                          <span className="font-serif text-base text-bone leading-snug">
+                            {opt.label}
+                          </span>
+                          {selected && (
+                            <Check className="h-4 w-4 text-amber shrink-0 ml-auto" aria-hidden />
+                          )}
+                        </div>
+                      </button>
+                    </li>
+                  )
+                })}
+              </ul>
+              {state.wildlife_priorities.includes("rare-specialist") && (
+                <div>
+                  <Label htmlFor="rare_specialist" className="eyebrow block mb-2 mt-4">
+                    Which sightings?
+                  </Label>
+                  <Input
+                    id="rare_specialist"
+                    value={state.rare_specialist_text}
+                    onChange={(e) => update("rare_specialist_text", e.target.value)}
+                    placeholder="Pangolin, aardvark, painted dog…"
+                    className="rounded-none bg-card border-rule text-bone"
+                  />
+                </div>
+              )}
+            </div>
+          )}
+
+          {step.key === "duration" && (
+            <ul className="space-y-3 max-w-xl">
+              {DURATION_OPTIONS.map((opt) => {
+                const selected = state.duration === opt.value
+                return (
+                  <li key={opt.value}>
+                    <button
+                      type="button"
+                      onClick={() => update("duration", opt.value)}
+                      aria-pressed={selected}
+                      className={cn(
+                        "block w-full text-left border px-5 py-4 transition-colors",
+                        selected
+                          ? "border-amber bg-amber/10"
+                          : "border-rule hover:border-amber",
+                      )}
+                    >
+                      <div className="flex items-baseline gap-3">
+                        <span className="font-serif text-lg text-bone">{opt.label}</span>
+                        {selected && (
+                          <Check className="h-4 w-4 text-amber ml-auto shrink-0" aria-hidden />
+                        )}
+                      </div>
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          )}
+
+          {step.key === "season" && (
+            <ul className="space-y-3 max-w-2xl">
+              {SEASON_OPTIONS.map((opt) => {
+                const selected = state.season_preference === opt.value
+                return (
+                  <li key={opt.value}>
+                    <button
+                      type="button"
+                      onClick={() => update("season_preference", opt.value)}
+                      aria-pressed={selected}
+                      className={cn(
+                        "block w-full text-left border p-5 transition-colors",
+                        selected
+                          ? "border-amber bg-amber/10"
+                          : "border-rule hover:border-amber",
+                      )}
+                    >
+                      <div className="flex items-baseline gap-3">
+                        <span
                           className={cn(
-                            "w-full text-left border px-4 py-3 mono transition-colors",
-                            selected
-                              ? "bg-amber text-night border-amber"
-                              : "border-rule text-bone-mute hover:border-amber hover:text-amber",
+                            "font-serif text-lg leading-tight",
+                            selected ? "text-amber" : "text-bone",
                           )}
                         >
-                          {b}
-                        </button>
-                      </li>
-                    )
-                  })}
-                </ul>
-                <p className="mt-3 text-sm text-bone-mute">
-                  Honest is more useful than aspirational. We&apos;ll suggest options on either side.
-                </p>
-              </div>
-            </div>
+                          {opt.label}
+                        </span>
+                        {selected && (
+                          <Check className="h-4 w-4 text-amber ml-auto shrink-0" aria-hidden />
+                        )}
+                      </div>
+                      <p className="mt-1 text-bone-mute">{opt.lede}</p>
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          )}
+
+          {step.key === "budget" && (
+            <ul className="space-y-3 max-w-2xl">
+              {BUDGET_TIER_OPTIONS.map((opt) => {
+                const selected = state.budget_tier === opt.value
+                return (
+                  <li key={opt.value}>
+                    <button
+                      type="button"
+                      onClick={() => update("budget_tier", opt.value)}
+                      aria-pressed={selected}
+                      className={cn(
+                        "block w-full text-left border px-5 py-4 transition-colors",
+                        selected
+                          ? "border-amber bg-amber/10"
+                          : "border-rule hover:border-amber",
+                      )}
+                    >
+                      <div className="flex items-baseline gap-3">
+                        <span className="font-serif text-lg text-bone leading-snug">
+                          {opt.label}
+                        </span>
+                        {selected && (
+                          <Check className="h-4 w-4 text-amber ml-auto shrink-0" aria-hidden />
+                        )}
+                      </div>
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
           )}
 
           {step.key === "you" && (
@@ -476,19 +709,23 @@ export function TripBuilderForm() {
                 />
               </div>
               <div>
-                <Label htmlFor="notes" className="eyebrow block mb-3">
-                  Anything else?
+                <Label htmlFor="free_text" className="eyebrow block mb-3">
+                  Anything else we should know?
                 </Label>
                 <Textarea
-                  id="notes"
-                  value={state.notes}
-                  onChange={(e) => update("notes", e.target.value)}
-                  placeholder="Honeymoon, kids' ages, mobility considerations, parks already in mind…"
+                  id="free_text"
+                  value={state.free_text}
+                  onChange={(e) => update("free_text", e.target.value)}
+                  placeholder="Anniversaries, mobility, dietary, allergies, the trip that lodged in your head ten years ago — anything."
                   rows={5}
                   className="rounded-none bg-card border-rule text-bone"
                 />
               </div>
             </div>
+          )}
+
+          {step.key === "review" && (
+            <ReviewSummary state={state} onJump={(i) => setStepIdx(i)} />
           )}
         </div>
 
@@ -520,19 +757,116 @@ export function TripBuilderForm() {
           ) : (
             <Button
               type="button"
-              disabled={!stepValid || submitting}
+              disabled={submitting}
               onClick={handleSubmit}
               className="rounded-none px-8 py-5 mono ml-auto"
             >
               {submitting ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
-                <>Send brief →</>
+                <>Send the brief →</>
               )}
             </Button>
           )}
         </div>
       </div>
     </div>
+  )
+}
+
+// ── Review summary ──────────────────────────────────────────────────────
+
+function ReviewSummary({
+  state,
+  onJump,
+}: {
+  state: FormState
+  onJump: (i: number) => void
+}) {
+  const rows: Array<{ label: string; value: string | null; stepIdx: number }> = [
+    {
+      label: "When",
+      value: state.flexible_months
+        ? "Open to suggestions"
+        : state.months.length
+          ? state.months.join(" · ")
+          : null,
+      stepIdx: 0,
+    },
+    {
+      label: "Trip",
+      value: state.intent.length
+        ? state.intent.map((v) => labelFor(INTENT_OPTIONS, v)).filter(Boolean).join(", ")
+        : null,
+      stepIdx: 1,
+    },
+    {
+      label: "Rhythm",
+      value: labelFor(PACE_OPTIONS, state.pace),
+      stepIdx: 2,
+    },
+    {
+      label: "Quiet",
+      value: state.quiet_markers.length
+        ? state.quiet_markers.map((v) => labelFor(QUIET_OPTIONS, v)).filter(Boolean).join(", ")
+        : "—",
+      stepIdx: 3,
+    },
+    {
+      label: "Wildlife",
+      value: state.wildlife_priorities.length
+        ? state.wildlife_priorities
+            .map((v) => labelFor(WILDLIFE_OPTIONS, v))
+            .filter(Boolean)
+            .join(", ")
+        : null,
+      stepIdx: 4,
+    },
+    {
+      label: "Duration",
+      value: labelFor(DURATION_OPTIONS, state.duration),
+      stepIdx: 5,
+    },
+    {
+      label: "Season",
+      value: labelFor(SEASON_OPTIONS, state.season_preference),
+      stepIdx: 6,
+    },
+    {
+      label: "Budget",
+      value: labelFor(BUDGET_TIER_OPTIONS, state.budget_tier),
+      stepIdx: 7,
+    },
+    {
+      label: "From",
+      value:
+        state.contact_name && state.contact_email
+          ? `${state.contact_name} · ${state.contact_email}`
+          : null,
+      stepIdx: 8,
+    },
+  ]
+
+  return (
+    <dl className="border-t border-rule">
+      {rows.map((row) => (
+        <div
+          key={row.label}
+          className="flex items-start gap-6 border-b border-rule py-4"
+        >
+          <dt className="eyebrow w-32 shrink-0 pt-1">{row.label}</dt>
+          <dd className="flex-1 text-bone leading-relaxed">
+            {row.value ?? <span className="text-bone-mute">—</span>}
+          </dd>
+          <button
+            type="button"
+            onClick={() => onJump(row.stepIdx)}
+            className="mono text-bone-mute hover:text-amber transition-colors text-xs shrink-0"
+          >
+            Edit
+          </button>
+        </div>
+      ))}
+    </dl>
   )
 }

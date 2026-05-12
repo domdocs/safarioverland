@@ -8,16 +8,35 @@ import type { Brief } from "@/lib/briefs/types"
 export const dynamic = "force-dynamic"
 
 const submissionSchema = z.object({
-  chapters: z.array(z.string().max(40)).max(8).default([]),
-  rhythm: z.string().max(80).optional(),
+  // Step 01
   months: z.array(z.string().max(12)).max(12).default([]),
-  nights: z.number().int().min(1).max(120).optional(),
-  travelers: z.number().int().min(1).max(20).optional(),
-  budget_per_person: z.string().max(80).optional(),
+  // Step 02
+  intent: z.array(z.string().max(40)).max(11).default([]),
+  // Step 03
+  pace: z.enum(["slow", "mixed", "active"]).optional(),
+  // Step 04
+  quiet_markers: z.array(z.string().max(40)).max(10).default([]),
+  // Step 05
+  wildlife_priorities: z.array(z.string().max(40)).max(10).default([]),
+  // Step 06
+  duration: z.string().max(20).optional(),
+  // Step 07
+  season_preference: z.string().max(40).optional(),
+  // Step 08
+  budget_tier: z
+    .enum(["budget", "mid", "luxury", "exclusive", "discuss"])
+    .optional(),
+
+  // Free text + listing context
   notes: z.string().max(4000).optional(),
+  source_listing_id: z.string().uuid().optional(),
+
+  // Contact
   contact_name: z.string().min(2).max(120),
   contact_email: z.string().email().max(200),
   contact_phone: z.string().max(40).optional(),
+
+  // Attribution
   source_url: z.string().max(500).optional(),
   utm: z.record(z.string()).optional(),
 })
@@ -25,9 +44,9 @@ const submissionSchema = z.object({
 /**
  * POST /api/briefs/submit
  *
- * Public endpoint. Inserts a brief into Supabase, fires two transactional
- * emails (confirmation to user, notify to planner inbox), and returns the
- * id so the client can show a confirmation state.
+ * Public endpoint. Inserts a structured intake brief into Supabase, fires
+ * two transactional emails (confirmation to user, notify to planner
+ * inbox), and returns the id so the client can hand off to /plan/sent.
  */
 export async function POST(request: NextRequest) {
   let body: unknown
@@ -48,14 +67,19 @@ export async function POST(request: NextRequest) {
 
   // Light spam guard — require at least one substantive field beyond contact.
   const hasContent =
-    input.chapters.length > 0 ||
     input.months.length > 0 ||
-    !!input.rhythm ||
-    !!input.nights ||
+    input.intent.length > 0 ||
+    !!input.pace ||
+    input.wildlife_priorities.length > 0 ||
+    !!input.duration ||
+    !!input.budget_tier ||
     !!input.notes
   if (!hasContent) {
     return NextResponse.json(
-      { error: "empty_brief", message: "Tell us at least one thing about the trip you're picturing." },
+      {
+        error: "empty_brief",
+        message: "Tell us at least one thing about the trip you're picturing.",
+      },
       { status: 400 },
     )
   }
@@ -66,16 +90,24 @@ export async function POST(request: NextRequest) {
   }
 
   const insertPayload = {
-    chapters: input.chapters,
-    rhythm: input.rhythm ?? null,
+    // New structured fields
     months: input.months,
-    nights: input.nights ?? null,
-    travelers: input.travelers ?? null,
-    budget_per_person: input.budget_per_person ?? null,
+    intent: input.intent,
+    pace: input.pace ?? null,
+    quiet_markers: input.quiet_markers,
+    wildlife_priorities: input.wildlife_priorities,
+    duration: input.duration ?? null,
+    season_preference: input.season_preference ?? null,
+    budget_tier: input.budget_tier ?? null,
+    source_listing_id: input.source_listing_id ?? null,
+
+    // Free text + contact
     notes: input.notes ?? null,
     contact_name: input.contact_name.trim(),
     contact_email: input.contact_email.trim().toLowerCase(),
     contact_phone: input.contact_phone ?? null,
+
+    // Attribution
     source_url: input.source_url ?? null,
     utm: input.utm ?? null,
   }

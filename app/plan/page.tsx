@@ -20,7 +20,7 @@ export default function PlanPage() {
         {/* ─── Opening ───────────────────────────────────────── */}
         <section className="container py-24 md:py-32 border-b border-rule">
           <div className="max-w-3xl">
-            <Eyebrow withRule>By hand — five short questions</Eyebrow>
+            <Eyebrow withRule>By hand — eight short questions</Eyebrow>
             <h1 className="mt-6 font-serif text-display-fluid text-bone leading-[0.96] tracking-tighter text-balance">
               A safari, drawn{" "}
               <span className="italic text-amber">by hand</span>.
@@ -30,7 +30,7 @@ export default function PlanPage() {
               We&apos;ll come back with three routes within 48 hours.
             </p>
             <p className="mt-4 mono text-bone-mute">
-              Free, no commitment. The brief takes about three minutes. Saved locally — return any time.
+              Free, no commitment. About five minutes. Saved locally — return any time.
             </p>
           </div>
         </section>

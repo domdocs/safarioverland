@@ -16,6 +16,7 @@ type BriefRowData = {
   contact_name: string
   contact_email: string
   contact_phone: string | null
+  // Legacy fields (pre-Phase-2 rows)
   chapters: string[]
   months: string[]
   rhythm: string | null
@@ -23,6 +24,16 @@ type BriefRowData = {
   travelers: number | null
   budget_per_person: string | null
   notes: string | null
+  // Phase 2 structured intake
+  intent: string[] | null
+  pace: "slow" | "mixed" | "active" | null
+  quiet_markers: string[] | null
+  wildlife_priorities: string[] | null
+  duration: string | null
+  season_preference: string | null
+  budget_tier: "budget" | "mid" | "luxury" | "exclusive" | "discuss" | null
+  source_listing_id: string | null
+  // Triage
   status: BriefStatus
   assigned_to: string | null
   internal_notes: string | null
@@ -35,7 +46,7 @@ async function loadData() {
   const { data, error } = await supabase
     .from("briefs")
     .select(
-      "id, created_at, contact_name, contact_email, contact_phone, chapters, months, rhythm, nights, travelers, budget_per_person, notes, status, assigned_to, internal_notes",
+      "id, created_at, contact_name, contact_email, contact_phone, chapters, months, rhythm, nights, travelers, budget_per_person, notes, intent, pace, quiet_markers, wildlife_priorities, duration, season_preference, budget_tier, source_listing_id, status, assigned_to, internal_notes",
     )
     .order("created_at", { ascending: false })
     .limit(500)
@@ -108,9 +119,9 @@ export default async function AdminBriefsPage() {
               <thead className="bg-stone-100">
                 <tr>
                   <Th>From</Th>
-                  <Th>Regions</Th>
+                  <Th>Intent</Th>
                   <Th>Months</Th>
-                  <Th>Trip</Th>
+                  <Th>Rhythm</Th>
                   <Th>Budget</Th>
                   <Th>Status</Th>
                   <Th>Received</Th>
