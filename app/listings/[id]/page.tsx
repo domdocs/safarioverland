@@ -57,9 +57,9 @@ export default async function ListingPage({ params }: ListingPageProps) {
       <EditorialFooter />
 
       <StickyCTA
-        href={`/plan?ref=${listing.id}`}
+        href={`/plan?listing=${listing.id}`}
         price={listing.price_info || undefined}
-        label="Add to plan"
+        label="Add to a brief"
       />
     </div>
   )

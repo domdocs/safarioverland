@@ -3,6 +3,7 @@ import type { ReactNode } from "react"
 
 import { ListingImage } from "@/components/listing-image"
 import { Button } from "@/components/ui/button"
+import { PlannerCallTrigger } from "@/components/planner-call/planner-call-trigger"
 import { ListingCardEditorial } from "./listing-card-editorial"
 import type { DirectoryListing } from "@/lib/listings"
 
@@ -227,12 +228,19 @@ export function ListingDetail({ listing, related }: ListingDetailProps) {
               </dl>
 
               {/* Desktop CTA — mobile gets the StickyCTA island */}
-              <div className="mt-12 hidden lg:block">
-                <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
-                  <Link href={`/plan?ref=${listing.id}`}>
-                    Add to a planning brief →
+              <div className="mt-12 hidden lg:flex flex-wrap gap-4">
+                <Button
+                  size="lg"
+                  className="rounded-none px-8 py-6 mono bg-amber text-night hover:bg-amber-deep"
+                  asChild
+                >
+                  <Link href={`/plan?listing=${listing.id}`}>
+                    Add this to a brief →
                   </Link>
                 </Button>
+                <PlannerCallTrigger size="lg">
+                  Speak to a planner →
+                </PlannerCallTrigger>
               </div>
             </section>
           )}

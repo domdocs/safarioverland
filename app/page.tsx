@@ -9,6 +9,7 @@ import { NumberedList } from "@/components/editorial/numbered-list"
 import { ListingCardEditorial } from "@/components/editorial/listing-card-editorial"
 import { InSeasonStrip } from "@/components/editorial/in-season-strip"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
+import { PlannerCallTrigger } from "@/components/planner-call/planner-call-trigger"
 import { EditorialImage } from "@/components/editorial/editorial-image"
 import { Button } from "@/components/ui/button"
 import { getFeaturedListings } from "@/lib/listings"
@@ -242,14 +243,9 @@ export default async function HomePage() {
                 <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
                   <Link href="/plan">Start a brief →</Link>
                 </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="rounded-none px-8 py-6 mono border-rule text-bone hover:border-amber hover:text-amber"
-                  asChild
-                >
-                  <Link href="/contact">Speak to a planner</Link>
-                </Button>
+                <PlannerCallTrigger size="lg">
+                  Speak to a planner
+                </PlannerCallTrigger>
               </div>
             </div>
 

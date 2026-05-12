@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react"
 
 import { Eyebrow } from "@/components/editorial/eyebrow"
 import { Button } from "@/components/ui/button"
+import { PlannerCallInline } from "@/components/planner-call/planner-call-inline"
 import {
   BUDGET_TIER_OPTIONS,
   DURATION_OPTIONS,
@@ -278,6 +279,9 @@ export function PlanSent() {
           </div>
         )}
       </section>
+
+      {/* ── Call slot ───────────────────────────────────────────── */}
+      <PlannerCallInline className="container py-16 md:py-24 border-b border-rule" />
 
       {/* ── What happens next ───────────────────────────────────── */}
       <section className="container py-16 md:py-24">

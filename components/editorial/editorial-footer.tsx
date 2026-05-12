@@ -6,10 +6,9 @@ const COLUMNS = [
   {
     label: "Categories",
     links: [
-      { href: "/categories/booking-agents", label: "Booking agents" },
-      { href: "/categories/campsites", label: "Campsites" },
       { href: "/categories/lodges", label: "Lodges" },
       { href: "/categories/guided-tours", label: "Guided tours" },
+      { href: "/categories/game-viewing", label: "Game viewing" },
     ],
   },
   {

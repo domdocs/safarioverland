@@ -13,6 +13,7 @@ type EditorialHeaderProps = {
 const PRIMARY: DrawerLink[] = [
   { href: "/categories", label: "Categories" },
   { href: "/destinations", label: "Destinations" },
+  { href: "/plan", label: "By hand" },
   { href: "/resources", label: "Field notes" },
   { href: "/about", label: "About" },
 ]
