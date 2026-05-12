@@ -15,7 +15,7 @@ export async function GET() {
   const { data, error } = await supabase
     .from("briefs")
     .select(
-      "contact_name, contact_email, contact_phone, chapters, months, rhythm, nights, travelers, budget_per_person, notes, status, assigned_to, internal_notes, source_url, created_at",
+      "contact_name, contact_email, contact_phone, months, intent, pace, quiet_markers, wildlife_priorities, duration, season_preference, budget_tier, source_listing_id, chapters, rhythm, nights, travelers, budget_per_person, notes, status, assigned_to, internal_notes, source_url, created_at",
     )
     .order("created_at", { ascending: false })
 
@@ -27,8 +27,16 @@ export async function GET() {
     "contact_name",
     "contact_email",
     "contact_phone",
-    "chapters",
     "months",
+    "intent",
+    "pace",
+    "quiet_markers",
+    "wildlife_priorities",
+    "duration",
+    "season_preference",
+    "budget_tier",
+    "source_listing_id",
+    "chapters",
     "rhythm",
     "nights",
     "travelers",

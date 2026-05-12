@@ -6,6 +6,16 @@ import { ChevronDown, ChevronUp, Loader2 } from "lucide-react"
 
 import type { BriefStatus } from "@/lib/briefs/types"
 import { STATUS_LABELS } from "@/lib/briefs/types"
+import {
+  BUDGET_TIER_OPTIONS,
+  DURATION_OPTIONS,
+  INTENT_OPTIONS,
+  PACE_OPTIONS,
+  QUIET_OPTIONS,
+  SEASON_OPTIONS,
+  WILDLIFE_OPTIONS,
+  labelFor,
+} from "@/lib/briefs/options"
 import { cn } from "@/lib/utils"
 
 type Brief = {
@@ -14,6 +24,7 @@ type Brief = {
   contact_name: string
   contact_email: string
   contact_phone: string | null
+  // Legacy
   chapters: string[]
   months: string[]
   rhythm: string | null
@@ -21,6 +32,16 @@ type Brief = {
   travelers: number | null
   budget_per_person: string | null
   notes: string | null
+  // Phase 2
+  intent: string[] | null
+  pace: "slow" | "mixed" | "active" | null
+  quiet_markers: string[] | null
+  wildlife_priorities: string[] | null
+  duration: string | null
+  season_preference: string | null
+  budget_tier: "budget" | "mid" | "luxury" | "exclusive" | "discuss" | null
+  source_listing_id: string | null
+  // Triage
   status: BriefStatus
   assigned_to: string | null
   internal_notes: string | null
@@ -34,6 +55,17 @@ const STATUS_TONE: Record<BriefStatus, string> = {
 }
 
 const STATUS_OPTIONS: BriefStatus[] = ["new", "reviewing", "sent", "closed"]
+
+function listFromOptions(
+  values: string[] | null,
+  options: readonly { value: string; label: string }[],
+): string | null {
+  if (!values || values.length === 0) return null
+  return values
+    .map((v) => labelFor(options, v))
+    .filter((x): x is string => !!x)
+    .join(", ")
+}
 
 export function BriefRow({ brief: initial }: { brief: Brief }) {
   const router = useRouter()
@@ -54,12 +86,20 @@ export function BriefRow({ brief: initial }: { brief: Brief }) {
       const data = await res.json().catch(() => ({}))
       if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`)
       if (data.brief) setBrief(data.brief)
-      // Refresh the server page so KPI tiles re-count.
       startTransition(() => router.refresh())
     } catch (err) {
       setError(err instanceof Error ? err.message : "Update failed")
     }
   }
+
+  const intentLine = listFromOptions(brief.intent, INTENT_OPTIONS)
+  const wildlifeLine = listFromOptions(brief.wildlife_priorities, WILDLIFE_OPTIONS)
+  const quietLine = listFromOptions(brief.quiet_markers, QUIET_OPTIONS)
+  const paceLine = labelFor(PACE_OPTIONS, brief.pace) ?? brief.rhythm
+  const durationLine = labelFor(DURATION_OPTIONS, brief.duration)
+  const seasonLine = labelFor(SEASON_OPTIONS, brief.season_preference)
+  const budgetLine =
+    labelFor(BUDGET_TIER_OPTIONS, brief.budget_tier) ?? brief.budget_per_person
 
   return (
     <>
@@ -76,16 +116,19 @@ export function BriefRow({ brief: initial }: { brief: Brief }) {
           <p className="mt-1 text-xs text-stone-500">{brief.contact_email}</p>
         </td>
         <td className="px-4 py-3 align-top text-stone-700">
-          {brief.chapters.join(", ") || <span className="text-stone-400">—</span>}
+          {intentLine || brief.chapters.join(", ") || (
+            <span className="text-stone-400">—</span>
+          )}
         </td>
         <td className="px-4 py-3 align-top text-stone-700">
           {brief.months.join(", ") || <span className="text-stone-400">—</span>}
         </td>
-        <td className="px-4 py-3 align-top tabular-nums text-stone-700">
-          {brief.nights ?? "—"}
-          {brief.travelers ? ` · ${brief.travelers}p` : ""}
+        <td className="px-4 py-3 align-top text-stone-700">
+          {paceLine || <span className="text-stone-400">—</span>}
         </td>
-        <td className="px-4 py-3 align-top text-stone-700">{brief.budget_per_person ?? "—"}</td>
+        <td className="px-4 py-3 align-top text-stone-700">
+          {budgetLine || <span className="text-stone-400">—</span>}
+        </td>
         <td className="px-4 py-3 align-top">
           <select
             value={brief.status}
@@ -117,12 +160,21 @@ export function BriefRow({ brief: initial }: { brief: Brief }) {
             <div className="grid gap-6 md:grid-cols-2 max-w-5xl">
               <div className="space-y-3 text-sm">
                 <Field label="Phone" value={brief.contact_phone} />
-                <Field label="Rhythm" value={brief.rhythm} />
+                <Field label="Wildlife / landscape" value={wildlifeLine} multiline />
+                <Field label="Quiet markers" value={quietLine} multiline />
+                <Field label="Duration" value={durationLine} />
+                <Field label="Season" value={seasonLine} />
                 <Field
                   label="Notes from traveller"
                   value={brief.notes}
                   multiline
                 />
+                {brief.source_listing_id && (
+                  <Field
+                    label="Source listing"
+                    value={brief.source_listing_id}
+                  />
+                )}
                 <Field label="Assigned to" value={brief.assigned_to} />
               </div>
               <div>

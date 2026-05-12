@@ -1,4 +1,57 @@
+import {
+  BUDGET_TIER_OPTIONS,
+  DURATION_OPTIONS,
+  INTENT_OPTIONS,
+  PACE_OPTIONS,
+  QUIET_OPTIONS,
+  SEASON_OPTIONS,
+  WILDLIFE_OPTIONS,
+  labelFor,
+} from "./options"
 import type { Brief } from "./types"
+
+/**
+ * Resolve the human-readable lines we want to show in the email for a
+ * brief, preferring new structured fields and falling back to legacy
+ * ones for any pre-Phase-2 rows that still get notified for some reason.
+ */
+function briefLines(brief: Brief): Array<[string, string | null]> {
+  const intentLine = brief.intent?.length
+    ? brief.intent
+        .map((v) => labelFor(INTENT_OPTIONS, v))
+        .filter(Boolean)
+        .join(", ")
+    : null
+
+  const wildlifeLine = brief.wildlife_priorities?.length
+    ? brief.wildlife_priorities
+        .map((v) => labelFor(WILDLIFE_OPTIONS, v))
+        .filter(Boolean)
+        .join(", ")
+    : null
+
+  const quietLine = brief.quiet_markers?.length
+    ? brief.quiet_markers
+        .map((v) => labelFor(QUIET_OPTIONS, v))
+        .filter(Boolean)
+        .join(", ")
+    : null
+
+  return [
+    ["Months", brief.months?.join(", ") || null],
+    ["Trip", intentLine],
+    ["Rhythm", labelFor(PACE_OPTIONS, brief.pace) ?? brief.rhythm],
+    ["Wildlife / landscape", wildlifeLine],
+    ["Quiet markers", quietLine],
+    ["Duration", labelFor(DURATION_OPTIONS, brief.duration)],
+    ["Season", labelFor(SEASON_OPTIONS, brief.season_preference)],
+    [
+      "Budget",
+      labelFor(BUDGET_TIER_OPTIONS, brief.budget_tier) ??
+        brief.budget_per_person,
+    ],
+  ]
+}
 
 /**
  * Brief lifecycle emails — match the existing Resend HTTP fetch pattern
@@ -91,18 +144,9 @@ export async function sendBriefReceived(brief: Brief): Promise<{ ok: boolean }> 
   const greeting = brief.contact_name?.split(" ")[0] || "there"
   const summary = `
     <table cellpadding="0" cellspacing="0" border="0" style="width:100%;font-family:system-ui,-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif;">
-      ${listBlock("Months", brief.months.join(", ") || null)}
-      ${listBlock("Regions", brief.chapters.join(", ") || null)}
-      ${listBlock("Rhythm", brief.rhythm)}
-      ${listBlock(
-        "Length",
-        brief.nights !== null && brief.travelers !== null
-          ? `${brief.nights} nights · ${brief.travelers} travellers`
-          : brief.nights !== null
-            ? `${brief.nights} nights`
-            : null,
-      )}
-      ${listBlock("Budget", brief.budget_per_person)}
+      ${briefLines(brief)
+        .map(([label, value]) => listBlock(label, value))
+        .join("")}
     </table>
   `
 
@@ -142,16 +186,9 @@ export async function sendBriefNotify(brief: Brief): Promise<{ ok: boolean }> {
     <table cellpadding="0" cellspacing="0" border="0" style="width:100%;font-family:system-ui,-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif;">
       ${listBlock("From", `${brief.contact_name} <${brief.contact_email}>`)}
       ${listBlock("Phone", brief.contact_phone)}
-      ${listBlock("Months", brief.months.join(", ") || null)}
-      ${listBlock("Regions", brief.chapters.join(", ") || null)}
-      ${listBlock("Rhythm", brief.rhythm)}
-      ${listBlock(
-        "Length",
-        brief.nights !== null && brief.travelers !== null
-          ? `${brief.nights} nights · ${brief.travelers} travellers`
-          : null,
-      )}
-      ${listBlock("Budget", brief.budget_per_person)}
+      ${briefLines(brief)
+        .map(([label, value]) => listBlock(label, value))
+        .join("")}
     </table>
   `
 
@@ -183,9 +220,7 @@ export async function sendBriefNotify(brief: Brief): Promise<{ ok: boolean }> {
   return send({
     from: fromAddress(),
     to: inbox,
-    subject: `New brief: ${brief.contact_name} · ${
-      brief.chapters.join(", ") || "no region"
-    }`,
+    subject: `New brief: ${brief.contact_name}`,
     html,
     reply_to: brief.contact_email,
   })
