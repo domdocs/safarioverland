@@ -62,14 +62,7 @@ founder_note: null
 founder_image_url: null
 
 traveller_quotes: []
-external_ratings:
-  - source: "TripAdvisor Travellers' Choice"
-    rating: null
-    max: null
-    count: null
-    url: null
-    fetched_at: "2026-05-12"
-    note: "Named in Africa's Best Small & Boutique Hotels — top 1% globally"
+external_ratings: []
 
 gallery_urls: []
 
@@ -91,7 +84,10 @@ editor_notes: |
   ("thoughtfully designed suites"); training-data memory says 12
   but operator outreach should confirm. Wild Star Sleepout is the
   distinctive editorial detail and a strong signature element if
-  Dom has personal experience. The Victoria Falls Wildlife Trust
+  Dom has personal experience.
+  Recognition (informal — fetch numeric rating from TripAdvisor for
+  external_ratings): "TripAdvisor Travellers' Choice — named in
+  Africa's Best Small & Boutique Hotels, top 1% globally." The Victoria Falls Wildlife Trust
   is the named conservation partner per the public page; named NGO
   programmes (painted-dog conservation, elephant rescue) referenced
   in industry coverage but not surfaced on the operator's own

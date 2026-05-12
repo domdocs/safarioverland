@@ -80,7 +80,16 @@ traveller_quotes: []
 #     trip_year: 2024
 
 external_ratings: []
-# Example shape when filled:
+# Example shape when filled. STRICT RULE: every entry must have all
+# four numeric/string fields populated — rating, max, count, url. The
+# import API rejects partial entries with null placeholders. If you
+# only have a recognition award or affiliation (CNT Readers' Choice,
+# Relais & Châteaux, Travellers' Choice designation, Virtuoso member,
+# etc.) without a numeric rating, leave external_ratings empty and
+# put the award detail in editor_notes — graduate it into
+# external_ratings once you've looked up the actual rating + review
+# count + URL.
+#
 # external_ratings:
 #   - source: "TripAdvisor"
 #     rating: 4.9
@@ -235,7 +244,34 @@ The API rejects the import if:
   listings get flipped to approved in admin, not at import)
 - `latitude` / `longitude` are present but out of valid range
 - `traveller_quotes` or `external_ratings` don't match their JSONB
-  shape
+  shape — see below
+
+### `external_ratings` strict shape
+
+Every entry in the array must have all four of these populated as
+the correct types:
+
+- `rating` — number
+- `max` — number
+- `count` — number
+- `url` — string
+
+`fetched_at` (string ISO date) is also expected. Partial entries with
+null placeholders **will be rejected**.
+
+If you have a recognition award or affiliation without a numeric
+rating (CNT Readers' Choice, Relais & Châteaux, Virtuoso, TripAdvisor
+Travellers' Choice designation, Mr & Mrs Smith member, etc.), do
+**not** put a stub entry in `external_ratings`. Leave the array empty
+and capture the recognition in `editor_notes` so it's preserved for
+the human reviewer. Graduate it into `external_ratings` later, only
+when you've looked up the actual numeric rating + review count + URL.
+
+### `traveller_quotes` strict shape
+
+Every entry must have `quote` (string), `attributed_to` (string), and
+`trip_year` (number). Partial entries will be rejected. Empty array
+is always valid.
 
 The body of the markdown (everything after the closing `---`) is
 copied verbatim into `editor_notes`, replacing whatever's in the

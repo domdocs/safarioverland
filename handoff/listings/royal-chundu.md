@@ -59,14 +59,7 @@ founder_note: null
 founder_image_url: null
 
 traveller_quotes: []
-external_ratings:
-  - source: "Condé Nast Traveler"
-    rating: null
-    max: null
-    count: null
-    url: null
-    fetched_at: "2026-05-12"
-    note: "4th Best Resort in Africa, 9th Best Resort in the World (2018 Readers' Choice)"
+external_ratings: []
 
 gallery_urls: []
 
@@ -84,6 +77,11 @@ longitude: null
 field_notes_slugs: []
 
 editor_notes: |
+  Recognition (informal — fetch numeric ratings from CNT / Relais &
+  Châteaux for external_ratings): "Condé Nast Traveler Readers'
+  Choice 2018 — 4th Best Resort in Africa, 9th Best Resort in the
+  World. Zambia's first and only Relais & Châteaux property."
+
   Family-owned and run — public site doesn't name the family, but
   Dom's earlier note mentioned Bekker. Operator outreach should
   confirm. 14 units total: 10 River Lodge suites + 4 Island Lodge

@@ -139,6 +139,26 @@ Field-by-field guidance:
 - **price_tier:** one of `budget / mid / luxury / exclusive`. If
   rates aren't public, infer from Virtuoso / Mr & Mrs Smith
   affiliations, capacity, market positioning. State the inference.
+- **external_ratings[]:** STRICT — either an empty array or entries
+  with all of `rating` (number), `max` (number), `count` (number),
+  `url` (string), and `fetched_at` (ISO date string) populated. The
+  import API rejects partial entries with null placeholders. Don't
+  invent ratings. If the property is recognised via an award or
+  affiliation without a numeric rating attached (CNT Readers' Choice,
+  Relais & Châteaux, Virtuoso, Travellers' Choice, Mr & Mrs Smith,
+  XO Private, etc.), leave `external_ratings` empty and put the
+  award detail in `editor_notes` instead. It graduates into
+  `external_ratings` only when the actual numeric rating + count +
+  URL have been fetched.
+- **traveller_quotes[]:** STRICT — either empty or entries with
+  `quote` (string), `attributed_to` (string), and `trip_year`
+  (number) all populated. Wait for operator permission before
+  populating; don't infer or invent quotes from review aggregators.
+- **founder_name / founder_note / founder_image_url:** all three
+  null in initial drafts. Filled only after operator outreach
+  returns the family/founder material with permission.
+- **gallery_urls[]:** empty in initial drafts. Operator-supplied
+  photographs go here after permission is given.
 
 ### Step 3 — Outstanding gaps + operator outreach
 
