@@ -9,7 +9,6 @@ const COLUMNS = [
       { href: "/categories/booking-agents", label: "Booking agents" },
       { href: "/categories/campsites", label: "Campsites" },
       { href: "/categories/lodges", label: "Lodges" },
-      { href: "/categories/4x4-rentals", label: "4×4 rentals" },
       { href: "/categories/guided-tours", label: "Guided tours" },
     ],
   },
@@ -62,11 +61,11 @@ export function EditorialFooter() {
           <div className="lg:col-span-5 max-w-md">
             <p className="eyebrow mb-4">Safari Overland</p>
             <p className="font-serif text-h3-fluid text-bone leading-tight mb-6">
-              A directory of operators, lodges, and field notes from across Africa.
+              A small collection of African safaris, by hand.
             </p>
             <p className="text-bone-mute leading-relaxed">
-              Connecting travelers with safari service providers since 2018.
-              Every listing reviewed before publication.
+              Lodges and operators chosen for what the wild does to you —
+              not just what it shows you. From Victoria Falls.
             </p>
           </div>
 
