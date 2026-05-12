@@ -21,7 +21,9 @@ The new gold-on-black brand identity. Use these instead of the legacy
 
 - `safari-overland-horizontal-master.png` — original AI-generated horizontal layout (1360×768).
 - `safari-overland-square-master.png` — original square layout with prominent elephant (1024×1024).
-- `safari-overland-mark-master.png` — elephant-only crop, upscaled to 1024×1024 for re-encoding clean assets.
+- `safari-overland-mark-master.png` — **upgraded May 2026.** Cleaned elephant-only mark from
+  `_uploads/safari_overland_logo.svg`, padded square (1296×1296), transparent background.
+  Source of truth for all elephant-mark variants. Re-encode mark assets from this file.
 
 ### Horizontal logo — wordmark + EST. 2018 + small elephant
 
@@ -37,9 +39,12 @@ The new gold-on-black brand identity. Use these instead of the legacy
 
 ### Mark — elephant only, no text
 
+**Upgraded May 2026** to the cleaned-up gold elephant on transparent canvas.
+The WebPs preserve transparency; the JPGs bake the mark on `#0E110F` (--night).
+
 - `safari-overland-mark-1024.{jpg,webp}` — large mark for hero placements.
 - `safari-overland-mark-512.{jpg,webp}` — medium.
-- `safari-overland-mark-256.{jpg,webp}` — what `components/header.tsx` uses (40×40 in the navbar).
+- `safari-overland-mark-256.{jpg,webp}` — what `components/editorial/editorial-header.tsx` uses (40×40 in the navbar).
 
 ### Wordmark SVG (flat gold, no elephant)
 
@@ -53,12 +58,31 @@ The new gold-on-black brand identity. Use these instead of the legacy
 ## Next.js convention files (auto-served, don't reference manually)
 
 - `/app/icon.png` (512×512) — elephant-only mark; Next.js builds it into
-  `<link rel="icon">` automatically.
+  `<link rel="icon">` automatically. **Upgraded May 2026** — uses the new
+  cleaned mark.
 - `/app/apple-icon.png` (180×180) — full square logo; Apple home-screen tile.
+  Still the older lockup; needs the upgraded full-logo to be re-encoded.
 - `/app/opengraph-image.jpg` (1200×630) — horizontal logo on black + amber
-  tagline; Slack/Twitter/Facebook share preview.
-- `/app/twitter-image.jpg` — same image, served as `twitter:image`.
+  tagline; Slack/Twitter/Facebook share preview. Still the older lockup.
+- `/app/twitter-image.jpg` — same image, served as `twitter:image`. Still
+  the older lockup.
 - `/public/favicon.ico` — multi-size (16/32/48) elephant-only; browser tab.
+  **Upgraded May 2026.**
+
+## Pending re-encode — full logo lockup
+
+The elephant mark was upgraded in May 2026. The full-logo lockup (wordmark
+above the elephant + EST. 2018) hasn't been upgraded yet — `_uploads/`
+only contained the elephant mark as a file. When the upgraded full lockup
+arrives as a PNG, re-encode these from it:
+
+- `safari-overland-square-{1024,512,256}.{jpg,webp}`
+- `safari-overland-horizontal-{1200,600,300}.{jpg,webp}`
+- `safari-overland-square-master.png`
+- `safari-overland-horizontal-master.png`
+- `/app/apple-icon.png` (180×180)
+- `/app/opengraph-image.jpg` (1200×630 — needs the horizontal layout)
+- `/app/twitter-image.jpg`
 
 ## Brand colors (matches `app/globals.css` tokens)
 
