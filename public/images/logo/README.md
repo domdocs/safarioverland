@@ -19,7 +19,10 @@ The new gold-on-black brand identity. Use these instead of the legacy
 
 ### Masters (don't ship to clients — for re-encoding only)
 
-- `safari-overland-horizontal-master.png` — original AI-generated horizontal layout (1360×768).
+- `safari-overland-horizontal-master.png` — **upgraded May 2026.** Cleaned
+  horizontal lockup (elephant left, wordmark right with EST./2018 framing) from
+  `_uploads/safari_overland_horizontal2.png`, 2400×900, transparent background.
+  Source of truth for all horizontal-logo variants.
 - `safari-overland-square-master.png` — **upgraded May 2026.** Cleaned full lockup
   (wordmark + EST. 2018 + elephant) from `_uploads/safari_overland_logo_main.png`,
   1024×1024, transparent background. Source of truth for all square-logo variants.
@@ -27,11 +30,18 @@ The new gold-on-black brand identity. Use these instead of the legacy
   `_uploads/safari_overland_logo.svg`, padded square (1296×1296), transparent background.
   Source of truth for all elephant-mark variants. Re-encode mark assets from this file.
 
-### Horizontal logo — wordmark + EST. 2018 + small elephant
+### Horizontal logo — elephant left, wordmark right with EST./2018 framing
 
-- `safari-overland-horizontal-1200.{jpg,webp}` — large; hero/about-page use.
-- `safari-overland-horizontal-600.{jpg,webp}` — default header use.
-- `safari-overland-horizontal-300.{jpg,webp}` — mobile / small contexts.
+**Upgraded May 2026** from the cleaned horizontal lockup PNG. WebPs and PNGs
+preserve transparency; JPGs bake on `#0E110F` (--night). At 300px wide the
+wordmark is at the edge of legibility — use the elephant mark or the square
+lockup for anything smaller.
+
+- `safari-overland-horizontal-1200.{jpg,webp,png}` — large; hero/about-page use.
+- `safari-overland-horizontal-600.{jpg,webp,png}` — default header use.
+- `safari-overland-horizontal-300.{jpg,webp,png}` — mobile / small contexts.
+- `safari-overland-horizontal.png` and `safari-overland-horizontal@2x.png` —
+  aliases for the 1200px variant; some older imports reference these names.
 
 ### Square logo — wordmark above large elephant
 
@@ -78,20 +88,20 @@ The WebPs preserve transparency; the JPGs bake the mark on `#0E110F` (--night).
 - `/public/favicon.ico` — multi-size (16/32/48) elephant-only; browser tab.
   **Upgraded May 2026.**
 
-## Pending re-encode — horizontal lockup only
+## All logo variants upgraded — May 2026
 
-The elephant mark and the square lockup were both upgraded in May 2026.
-The horizontal lockup (wordmark and elephant side-by-side, with EST. 2018)
-hasn't been upgraded — `_uploads/` only contained the square version.
+The May 2026 logo refresh is complete in three passes:
 
-When the upgraded horizontal layout arrives as a PNG (~1600×600 or
-similar wide aspect ratio), re-encode these from it:
+1. **Elephant mark** (favicon, header mark, mark-* variants) — from
+   `_uploads/safari_overland_logo.svg`.
+2. **Square lockup** (square-* variants, apple-icon, OG/Twitter cards) — from
+   `_uploads/safari_overland_logo_main.png`.
+3. **Horizontal lockup** (horizontal-* variants) — from
+   `_uploads/safari_overland_horizontal2.png`.
 
-- `safari-overland-horizontal-{1200,600,300}.{jpg,webp}`
-- `safari-overland-horizontal-master.png`
-
-The horizontal variants are used in the editorial header and a few
-hero placements; not blocking but worth doing when the asset arrives.
+No pending re-encodes. If the source files change in `_uploads/`, regenerate
+each pass from the relevant master rather than ad-hoc edits in the output
+folder.
 
 ## Brand colors (matches `app/globals.css` tokens)
 
