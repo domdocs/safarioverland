@@ -91,9 +91,14 @@ export default async function PendingListingsPage({
             Review submissions and approve or reject inline.
           </p>
         </div>
-        <Button variant="outline" asChild>
-          <Link href="/admin/listings">View all listings</Link>
-        </Button>
+        <div className="flex flex-wrap items-center gap-3">
+          <Button asChild>
+            <Link href="/admin/listings/import">+ Import records</Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link href="/admin/listings">View all listings</Link>
+          </Button>
+        </div>
       </div>
 
       <ListingsTableClient
