@@ -26,7 +26,6 @@ const AUTH: DrawerLink[] = [
 const SECONDARY: DrawerLink[] = [
   { href: "/search", label: "Search" },
   { href: "/contact", label: "Contact" },
-  { href: "/submit", label: "List your business" },
 ]
 
 /**
@@ -99,10 +98,10 @@ export function EditorialHeader({ variant = "standard", className }: EditorialHe
             Sign in
           </Link>
           <Link
-            href="/sign-up"
+            href="/plan"
             className="bg-amber px-4 py-2 mono text-night hover:bg-amber-deep transition-colors"
           >
-            Register
+            Start a brief →
           </Link>
         </div>
 

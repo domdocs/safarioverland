@@ -156,8 +156,9 @@ Subject: **A short note from Safari Overland**
 > better the page reads.
 >
 > With thanks,
-> [your name]
+> Niels van de Meer
 > Safari Overland · Victoria Falls
+> niels@safarioverland.com
 
 ### Template B — kept but not featured (no news, kept)
 
@@ -176,8 +177,9 @@ Subject: **A short note from Safari Overland**
 > reconsider for the featured collection.
 >
 > With thanks,
-> [your name]
-> Safari Overland
+> Niels van de Meer
+> Safari Overland · Victoria Falls
+> niels@safarioverland.com
 
 ### Template C — culled (politely)
 
@@ -199,8 +201,9 @@ Subject: **A short note from Safari Overland**
 > accordingly.
 >
 > With thanks for the working relationship,
-> [your name]
-> Safari Overland
+> Niels van de Meer
+> Safari Overland · Victoria Falls
+> niels@safarioverland.com
 
 ---
 

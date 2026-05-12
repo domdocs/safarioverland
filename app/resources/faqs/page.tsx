@@ -522,17 +522,18 @@ export default function FaqsPage() {
       {/* ─── Still have questions ─────────────────────────── */}
       <section className="border-t border-rule bg-ink py-24 md:py-32">
         <div className="container max-w-3xl">
-          <Eyebrow withRule>Didn&apos;t find your answer?</Eyebrow>
+          <Eyebrow withRule>Still planning?</Eyebrow>
           <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
-            Tell us what you&apos;re trying to figure out.
+            Tell us what you&apos;re <span className="italic text-amber">trying to figure out</span>.
           </h2>
           <p className="mt-6 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
-            If your question isn&apos;t covered, drop us a note. We&apos;ll point you at
-            the right operator, lodge, or field note in the directory.
+            If your question isn&apos;t answered here, send us a brief. Niels and
+            the team will come back within 48 hours with three drawn-by-hand
+            routes — and a more useful answer than we could fit in a FAQ.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <Button asChild size="lg" className="rounded-none px-8 py-6 mono">
-              <Link href="/contact">Get in touch →</Link>
+              <Link href="/plan">Start a brief →</Link>
             </Button>
             <Button
               asChild
@@ -540,7 +541,7 @@ export default function FaqsPage() {
               variant="outline"
               className="rounded-none px-8 py-6 mono border-rule text-bone hover:border-amber hover:text-amber"
             >
-              <Link href="/plan">Start a planning brief</Link>
+              <Link href="/contact">Speak to a planner</Link>
             </Button>
           </div>
         </div>

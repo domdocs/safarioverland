@@ -93,7 +93,7 @@ export default async function HomePage() {
               </p>
               <div className="mt-10 flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
-                  <Link href="/categories">Open the collection →</Link>
+                  <Link href="/plan">Start a brief →</Link>
                 </Button>
                 <Button
                   size="lg"
@@ -101,7 +101,7 @@ export default async function HomePage() {
                   className="rounded-none px-8 py-6 mono border-bone/30 text-bone hover:border-amber hover:text-amber bg-transparent"
                   asChild
                 >
-                  <Link href="/destinations">Open the atlas</Link>
+                  <Link href="/categories">Open the collection</Link>
                 </Button>
               </div>
             </div>
@@ -110,6 +110,49 @@ export default async function HomePage() {
 
         {/* ─── In-season strip ───────────────────────────────────── */}
         <InSeasonStrip />
+
+        {/* ─── Plan-with-us card ─────────────────────────────────── */}
+        <section className="container py-24 md:py-32">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-7">
+              <Eyebrow withRule>By hand — open</Eyebrow>
+              <h2 className="mt-6 font-serif text-h1-fluid text-bone leading-tight tracking-tight text-balance">
+                A safari, drawn{" "}
+                <span className="italic text-amber">by hand</span>.
+              </h2>
+              <p className="mt-8 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
+                Tell us what you&apos;re chasing — the months, the rhythm, the kind of quiet you want.
+                We&apos;ll come back with three routes within 48 hours.
+              </p>
+              <div className="mt-12 flex flex-col sm:flex-row gap-4">
+                <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
+                  <Link href="/plan">Start a brief →</Link>
+                </Button>
+                <PlannerCallTrigger size="lg">
+                  Speak to a planner
+                </PlannerCallTrigger>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 lg:border-l lg:border-rule lg:pl-12">
+              <p className="eyebrow mb-6">How it works — in three steps</p>
+              <ol className="space-y-6">
+                {[
+                  ["01", "You tell us the months, the regions, and the rhythm."],
+                  ["02", "We draft three routes — at different rhythms and budgets."],
+                  ["03", "You pick one, we make the introduction."],
+                ].map(([n, t]) => (
+                  <li key={n} className="flex gap-5 border-t border-rule pt-6">
+                    <span className="mono text-amber pt-1 shrink-0" aria-hidden>
+                      {n}
+                    </span>
+                    <p className="font-serif text-h4-fluid text-bone leading-tight">{t}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </section>
 
         {/* ─── Three-pillar manifesto ────────────────────────────── */}
         <section className="container py-24 md:py-32">
@@ -225,49 +268,6 @@ export default async function HomePage() {
         </section>
 
         <SectionRule className="container" />
-
-        {/* ─── Plan-with-us card ─────────────────────────────────── */}
-        <section className="container py-24 md:py-32">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-7">
-              <Eyebrow withRule>By hand — open</Eyebrow>
-              <h2 className="mt-6 font-serif text-h1-fluid text-bone leading-tight tracking-tight text-balance">
-                A safari, drawn{" "}
-                <span className="italic text-amber">by hand</span>.
-              </h2>
-              <p className="mt-8 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
-                Tell us what you&apos;re chasing — the months, the rhythm, the kind of quiet you want.
-                We&apos;ll come back with three routes within 48 hours.
-              </p>
-              <div className="mt-12 flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
-                  <Link href="/plan">Start a brief →</Link>
-                </Button>
-                <PlannerCallTrigger size="lg">
-                  Speak to a planner
-                </PlannerCallTrigger>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 lg:border-l lg:border-rule lg:pl-12">
-              <p className="eyebrow mb-6">How it works — in three steps</p>
-              <ol className="space-y-6">
-                {[
-                  ["01", "You tell us the months, the regions, and the rhythm."],
-                  ["02", "We draft three routes — at different rhythms and budgets."],
-                  ["03", "You pick one, we make the introduction."],
-                ].map(([n, t]) => (
-                  <li key={n} className="flex gap-5 border-t border-rule pt-6">
-                    <span className="mono text-amber pt-1 shrink-0" aria-hidden>
-                      {n}
-                    </span>
-                    <p className="font-serif text-h4-fluid text-bone leading-tight">{t}</p>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
-        </section>
       </main>
 
       <EditorialFooter />
