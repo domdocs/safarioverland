@@ -20,7 +20,9 @@ The new gold-on-black brand identity. Use these instead of the legacy
 ### Masters (don't ship to clients — for re-encoding only)
 
 - `safari-overland-horizontal-master.png` — original AI-generated horizontal layout (1360×768).
-- `safari-overland-square-master.png` — original square layout with prominent elephant (1024×1024).
+- `safari-overland-square-master.png` — **upgraded May 2026.** Cleaned full lockup
+  (wordmark + EST. 2018 + elephant) from `_uploads/safari_overland_logo_main.png`,
+  1024×1024, transparent background. Source of truth for all square-logo variants.
 - `safari-overland-mark-master.png` — **upgraded May 2026.** Cleaned elephant-only mark from
   `_uploads/safari_overland_logo.svg`, padded square (1296×1296), transparent background.
   Source of truth for all elephant-mark variants. Re-encode mark assets from this file.
@@ -32,6 +34,9 @@ The new gold-on-black brand identity. Use these instead of the legacy
 - `safari-overland-horizontal-300.{jpg,webp}` — mobile / small contexts.
 
 ### Square logo — wordmark above large elephant
+
+**Upgraded May 2026** from the cleaned full-lockup PNG. WebPs preserve transparency;
+JPGs bake on `#0E110F` (--night).
 
 - `safari-overland-square-1024.{jpg,webp}` — social profile pictures.
 - `safari-overland-square-512.{jpg,webp}` — medium use.
@@ -60,29 +65,33 @@ The WebPs preserve transparency; the JPGs bake the mark on `#0E110F` (--night).
 - `/app/icon.png` (512×512) — elephant-only mark; Next.js builds it into
   `<link rel="icon">` automatically. **Upgraded May 2026** — uses the new
   cleaned mark.
-- `/app/apple-icon.png` (180×180) — full square logo; Apple home-screen tile.
-  Still the older lockup; needs the upgraded full-logo to be re-encoded.
-- `/app/opengraph-image.jpg` (1200×630) — horizontal logo on black + amber
-  tagline; Slack/Twitter/Facebook share preview. Still the older lockup.
-- `/app/twitter-image.jpg` — same image, served as `twitter:image`. Still
-  the older lockup.
+- `/app/apple-icon.png` (180×180) — full square logo on `#0E110F`; Apple
+  home-screen tile. **Upgraded May 2026** from the cleaned full-lockup PNG,
+  with padding so the logo doesn't kiss Apple's rounded mask.
+- `/app/opengraph-image.jpg` (1200×630) — full square logo centred on
+  `#0E110F`. Slack/Twitter/Facebook share preview. **Upgraded May 2026**
+  (the previous version had an amber tagline baked in — if you want that
+  back, layer the text on top of `opengraph-image.jpg` in a design tool
+  and re-export, or commission a fresh composition).
+- `/app/twitter-image.jpg` — same image, served as `twitter:image`.
+  **Upgraded May 2026.**
 - `/public/favicon.ico` — multi-size (16/32/48) elephant-only; browser tab.
   **Upgraded May 2026.**
 
-## Pending re-encode — full logo lockup
+## Pending re-encode — horizontal lockup only
 
-The elephant mark was upgraded in May 2026. The full-logo lockup (wordmark
-above the elephant + EST. 2018) hasn't been upgraded yet — `_uploads/`
-only contained the elephant mark as a file. When the upgraded full lockup
-arrives as a PNG, re-encode these from it:
+The elephant mark and the square lockup were both upgraded in May 2026.
+The horizontal lockup (wordmark and elephant side-by-side, with EST. 2018)
+hasn't been upgraded — `_uploads/` only contained the square version.
 
-- `safari-overland-square-{1024,512,256}.{jpg,webp}`
+When the upgraded horizontal layout arrives as a PNG (~1600×600 or
+similar wide aspect ratio), re-encode these from it:
+
 - `safari-overland-horizontal-{1200,600,300}.{jpg,webp}`
-- `safari-overland-square-master.png`
 - `safari-overland-horizontal-master.png`
-- `/app/apple-icon.png` (180×180)
-- `/app/opengraph-image.jpg` (1200×630 — needs the horizontal layout)
-- `/app/twitter-image.jpg`
+
+The horizontal variants are used in the editorial header and a few
+hero placements; not blocking but worth doing when the asset arrives.
 
 ## Brand colors (matches `app/globals.css` tokens)
 
