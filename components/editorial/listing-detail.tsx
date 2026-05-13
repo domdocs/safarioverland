@@ -17,12 +17,26 @@ import type { DirectoryListing } from "@/lib/listings"
  * simply don't render.
  */
 
+type ImageAttributionEntry = {
+  supplied_by?: string | null
+  uploaded_at?: string | null
+  licence?: string | null
+  alt_text?: string | null
+}
+
+type ImageAttribution = {
+  hero?: ImageAttributionEntry
+  gallery?: (ImageAttributionEntry & { url?: string | null })[]
+  founder?: ImageAttributionEntry
+}
+
 type LooseListing = DirectoryListing & {
   amenities?: string[]
   coordinates?: { latitude: number; longitude: number } | null
   verdict?: string | null
   stayed_at?: string | null
   website_url?: string | null
+  image_attribution?: ImageAttribution | null
 }
 
 type ListingDetailProps = {
@@ -61,7 +75,13 @@ export function ListingDetail({ listing, related }: ListingDetailProps) {
     coordinates,
     verdict,
     stayed_at,
+    image_attribution,
   } = listing
+
+  // Prefer operator-supplied alt text when available; fall back to the
+  // listing name so screen-reader users still get something useful.
+  const heroAlt =
+    image_attribution?.hero?.alt_text?.trim() || listing_name
 
   const websiteHref = website_url ?? website ?? null
 
@@ -77,7 +97,7 @@ export function ListingDetail({ listing, related }: ListingDetailProps) {
       <section className="relative h-[72vh] min-h-[560px] w-full overflow-hidden bg-night">
         <ListingImage
           src={image_url}
-          alt={listing_name}
+          alt={heroAlt}
           category={category}
           className="absolute inset-0 h-full w-full object-cover"
         />

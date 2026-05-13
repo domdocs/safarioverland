@@ -15,6 +15,8 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { toast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
 import { DirectoryListing, ListingStatus } from "@/lib/listings"
+import { GalleryUpload } from "@/components/admin/gallery-upload"
+import { SingleImageUpload } from "@/components/admin/single-image-upload"
 
 const regions = [
   { value: "Southern Africa", label: "Southern Africa" },
@@ -122,8 +124,8 @@ const formSchema = z.object({
     .optional()
     .default([]),
 
-  // Photography — one URL per line
-  gallery_urls_text: z.string().optional().or(z.literal("")),
+  // Photography — array of stable Supabase Storage URLs in display order.
+  gallery_urls: z.array(z.string().url()).optional().default([]),
 
   // Practical
   max_guests: z
@@ -174,7 +176,7 @@ export function ListingEditForm({ listing }: ListingEditFormProps) {
     wellness_offerings_csv: (listing.wellness_offerings ?? []).join(", "),
     activities_csv: (listing.activities ?? []).join(", "),
     field_notes_slugs_csv: (listing.field_notes_slugs ?? []).join(", "),
-    gallery_urls_text: (listing.gallery_urls ?? []).join("\n"),
+    gallery_urls: listing.gallery_urls ?? [],
 
     // Founder
     founder_name: listing.founder_name ?? "",
@@ -232,11 +234,6 @@ export function ListingEditForm({ listing }: ListingEditFormProps) {
           .split(",")
           .map((x) => x.trim())
           .filter(Boolean)
-      const splitLines = (s: string | undefined) =>
-        (s ?? "")
-          .split(/[\n,]+/)
-          .map((x) => x.trim())
-          .filter(Boolean)
       const numOrNull = (v: unknown): number | null => {
         if (v === "" || v === undefined || v === null) return null
         const n = typeof v === "number" ? v : Number(v)
@@ -248,7 +245,7 @@ export function ListingEditForm({ listing }: ListingEditFormProps) {
         wellness_offerings: splitCsv(values.wellness_offerings_csv),
         activities: splitCsv(values.activities_csv),
         field_notes_slugs: splitCsv(values.field_notes_slugs_csv),
-        gallery_urls: splitLines(values.gallery_urls_text),
+        gallery_urls: values.gallery_urls ?? [],
         traveller_quotes: (values.traveller_quotes ?? [])
           .filter((q) => (q.quote ?? "").trim() !== "")
           .map((q) => ({
@@ -540,11 +537,22 @@ export function ListingEditForm({ listing }: ListingEditFormProps) {
                   name="image_url"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Image URL</FormLabel>
+                      <FormLabel>Hero image</FormLabel>
                       <FormControl>
-                        <Input {...field} />
+                        <SingleImageUpload
+                          listingId={listing.id}
+                          slot="hero"
+                          value={field.value || ""}
+                          onChange={field.onChange}
+                          disabled={field.disabled}
+                          hint="Landscape works best, ~1600×1200 or wider."
+                          testIdPrefix="hero-upload"
+                        />
                       </FormControl>
-                      <FormDescription>Optional: Add an image URL</FormDescription>
+                      <FormDescription>
+                        Drag a photo or click to choose. JPEG / PNG / WebP, max
+                        10 MB.
+                      </FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -761,9 +769,17 @@ export function ListingEditForm({ listing }: ListingEditFormProps) {
                   name="founder_image_url"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Founder photo URL</FormLabel>
+                      <FormLabel>Founder portrait</FormLabel>
                       <FormControl>
-                        <Input placeholder="https://…" {...field} />
+                        <SingleImageUpload
+                          listingId={listing.id}
+                          slot="founder"
+                          value={field.value || ""}
+                          onChange={field.onChange}
+                          disabled={field.disabled}
+                          hint="Portrait works best as a square crop, around 600×600px."
+                          testIdPrefix="founder-upload"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -1006,23 +1022,24 @@ export function ListingEditForm({ listing }: ListingEditFormProps) {
               <div>
                 <h3 className="text-xl font-semibold">Gallery</h3>
                 <p className="text-sm text-stone-500">
-                  One image URL per line. Used for the listing detail gallery scroller.
+                  Drag images to upload. Order them by dragging the thumbnails —
+                  the resulting order is the order on the public listing page.
                 </p>
               </div>
               <FormField
                 control={form.control}
-                name="gallery_urls_text"
+                name="gallery_urls"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Gallery URLs</FormLabel>
+                    <FormLabel>Gallery</FormLabel>
                     <FormControl>
-                      <Textarea
-                        rows={6}
-                        placeholder={"https://…/photo-1.jpg\nhttps://…/photo-2.jpg"}
-                        {...field}
+                      <GalleryUpload
+                        listingId={listing.id}
+                        value={field.value ?? []}
+                        onChange={field.onChange}
+                        disabled={field.disabled}
                       />
                     </FormControl>
-                    <FormDescription>One URL per line. Order matters.</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
