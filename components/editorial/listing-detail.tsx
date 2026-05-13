@@ -100,6 +100,8 @@ export function ListingDetail({ listing, related }: ListingDetailProps) {
           alt={heroAlt}
           category={category}
           className="absolute inset-0 h-full w-full object-cover"
+          sizes="100vw"
+          priority
         />
         <div
           aria-hidden

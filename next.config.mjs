@@ -20,7 +20,20 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    // Vercel image optimization on. The CDN resizes + serves WebP on the
+    // fly and caches per device-pixel-ratio at the edge — listings load
+    // fast even when the raw Supabase Storage source is multi-megabyte.
+    //
+    // remotePatterns whitelists hosts the optimizer is allowed to proxy.
+    // *.supabase.co covers the `listing-media` bucket and any future
+    // public-asset URLs from the same project.
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*.supabase.co",
+        pathname: "/storage/v1/object/public/**",
+      },
+    ],
   },
   experimental: {
     webpackBuildWorker: true,
