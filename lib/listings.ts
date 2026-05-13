@@ -725,6 +725,19 @@ export async function getListingById(id: string): Promise<DirectoryListing | nul
   }
 }
 
+/**
+ * Admin-side fetcher. Identical implementation to `getListingById` — both
+ * use the service-role client which already bypasses RLS — but kept
+ * separate so admin call sites (edit form, preview route, outreach API)
+ * read clearly: "we deliberately want pending and rejected rows too."
+ *
+ * Public surfaces must continue to call `getListingById` and gate the
+ * result on `listing.status === "approved"` at the page level.
+ */
+export async function getListingForAdmin(id: string): Promise<DirectoryListing | null> {
+  return getListingById(id)
+}
+
 // Get all categories with counts
 export async function getCategories() {
   const categories = [

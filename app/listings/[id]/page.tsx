@@ -21,7 +21,10 @@ export async function generateMetadata(
   const { id } = await params
   const listing = await getListingById(id)
 
-  if (!listing) {
+  // Public surface — only approved listings get rendered or appear in
+  // page metadata. Pending/rejected rows must 404 (admin preview is at
+  // /admin/listings/preview/[id]).
+  if (!listing || listing.status !== "approved") {
     return {
       title: "Listing not found",
       description: "The requested safari listing could not be found.",
@@ -42,7 +45,8 @@ export async function generateMetadata(
 export default async function ListingPage({ params }: ListingPageProps) {
   const { id } = await params
   const listing = await getListingById(id)
-  if (!listing) notFound()
+  // Public surface — same gate as the metadata branch.
+  if (!listing || listing.status !== "approved") notFound()
 
   const related = (await getListingsByCategory(listing.category, 4))
     .filter((r) => r.id !== listing.id)
