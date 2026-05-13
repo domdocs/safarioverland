@@ -1,6 +1,8 @@
-import { ListingEditForm } from "@/components/listing-edit-form"
-import { getListingById } from "@/lib/listings"
 import { notFound } from "next/navigation"
+
+import { ListingEditForm } from "@/components/listing-edit-form"
+import { OutreachSection } from "@/components/admin/outreach-section"
+import { getListingById } from "@/lib/listings"
 
 interface EditListingPageProps {
   params: Promise<{
@@ -26,6 +28,18 @@ export default async function EditListingPage({ params }: EditListingPageProps) 
       </div>
 
       <ListingEditForm listing={listing} />
+
+      <OutreachSection
+        listing={{
+          id: listing.id,
+          listing_name: listing.listing_name,
+          contact_name: listing.contact_name,
+          contact_email: listing.contact_email,
+          status: listing.status,
+          featured: listing.featured,
+          editor_notes: listing.editor_notes,
+        }}
+      />
     </div>
   )
 }
