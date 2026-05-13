@@ -4,6 +4,7 @@ import type { ReactNode } from "react"
 import { ListingImage } from "@/components/listing-image"
 import { Button } from "@/components/ui/button"
 import { PlannerCallTrigger } from "@/components/planner-call/planner-call-trigger"
+import { GalleryLightbox } from "./gallery-lightbox"
 import { ListingCardEditorial } from "./listing-card-editorial"
 import type { DirectoryListing } from "@/lib/listings"
 
@@ -333,22 +334,13 @@ export function ListingDetail({ listing, related }: ListingDetailProps) {
               <span className="italic-accent">{listing_name}</span> in
               pictures
             </h2>
-            <ul className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {gallery_urls.map((url, i) => (
-                <li
-                  key={`${url}-${i}`}
-                  className="relative aspect-[4/3] overflow-hidden bg-card"
-                >
-                  <ListingImage
-                    src={url}
-                    alt={galleryAlt(url, i)}
-                    category={category}
-                    className="absolute inset-0 h-full w-full object-cover"
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                  />
-                </li>
-              ))}
-            </ul>
+            <GalleryLightbox
+              listingName={listing_name}
+              images={gallery_urls.map((url, i) => ({
+                url,
+                alt: galleryAlt(url, i),
+              }))}
+            />
           </div>
         </section>
       )}
