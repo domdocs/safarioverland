@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight, X } from "lucide-react"
 
+import { BlendOverlay } from "./blend-overlay"
 import { cn } from "@/lib/utils"
 
 export type LightboxImage = {
@@ -71,6 +72,7 @@ export function GalleryLightbox({ images, listingName }: Props) {
                 sizes="(min-width: 768px) 50vw, 100vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
               />
+              <BlendOverlay />
             </button>
           </li>
         ))}
