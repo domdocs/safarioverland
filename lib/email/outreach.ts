@@ -35,11 +35,15 @@ type MailtoArgs = {
 }
 
 /**
- * Build a mailto URL with the standard query params. Subject + body are
- * percent-encoded via URLSearchParams (which uses application/x-www-form-
- * urlencoded — i.e. spaces become `+`). Mail clients accept this just
- * fine; the alternative (RFC 6068 strict encoding) is more conservative
- * but several macOS clients balk at it.
+ * Build a mailto URL per RFC 6068.
+ *
+ * Important encoding note: we deliberately *don't* use URLSearchParams
+ * here. URLSearchParams produces application/x-www-form-urlencoded
+ * output (space → `+`), and most mail clients (Apple Mail, Outlook,
+ * Thunderbird) do not decode `+` back to space inside a mailto body —
+ * the recipient sees literal `+` signs everywhere. RFC 6068 specifies
+ * percent-encoding (space → `%20`), which is what encodeURIComponent
+ * produces and what every mail client correctly decodes.
  */
 export function buildMailtoUrl({
   to,
@@ -48,12 +52,13 @@ export function buildMailtoUrl({
   cc,
   bcc,
 }: MailtoArgs): string {
-  const params = new URLSearchParams()
-  params.set("subject", subject)
-  params.set("body", body)
-  if (cc) params.set("cc", cc)
-  if (bcc) params.set("bcc", bcc)
-  return `mailto:${encodeURIComponent(to)}?${params.toString()}`
+  const parts: string[] = [
+    `subject=${encodeURIComponent(subject)}`,
+    `body=${encodeURIComponent(body)}`,
+  ]
+  if (cc) parts.push(`cc=${encodeURIComponent(cc)}`)
+  if (bcc) parts.push(`bcc=${encodeURIComponent(bcc)}`)
+  return `mailto:${encodeURIComponent(to)}?${parts.join("&")}`
 }
 
 /**
@@ -61,7 +66,16 @@ export function buildMailtoUrl({
  * out the clarifying questions. Tolerant of formatting drift — we look
  * for either a `### For operator outreach` heading or a literal
  * "Three clarifying questions" line, then grab bullet/em-dash items
- * underneath until the next heading or blank-line break.
+ * underneath, including continuation lines that wrap a single question
+ * across multiple source lines.
+ *
+ * A continuation line is one that is non-empty, doesn't start a new
+ * bullet, and doesn't start a new heading. Common in the research
+ * records produced by the listing-research skill, e.g.
+ *
+ *   > — Are walking safaris part of the offer on the concession? They're
+ *   >   not prominently surfaced on the experiences page and we want to
+ *   >   describe the activity mix accurately.
  *
  * Returns an empty array if nothing matches.
  */
@@ -75,9 +89,20 @@ export function extractClarifyingQuestions(
     /^#{1,4}\s*for operator outreach/i,
     /clarifying questions/i,
   ]
+  // Bullet-prefix forms — em-dash, hyphen, asterisk, bullet, numbered.
+  // Optional `>` quote prefix in front (one or more times).
+  const bulletRe = /^(?:>+\s*)?(?:[-*•—–]|\d+\.)\s+(.+?)\s*$/
+  const stripQuoteRe = /^>+\s?/
 
   let inBlock = false
+  let current = ""
   const questions: string[] = []
+
+  function flush() {
+    const trimmed = current.replace(/\s+/g, " ").trim()
+    if (trimmed.length >= 5) questions.push(trimmed)
+    current = ""
+  }
 
   for (const line of lines) {
     if (!inBlock) {
@@ -87,25 +112,37 @@ export function extractClarifyingQuestions(
       continue
     }
 
-    // Stop at the next section header.
-    if (/^#{1,4}\s+\S/.test(line)) break
+    // Stop at the next markdown heading — the block is over.
+    if (/^#{1,4}\s+\S/.test(line)) {
+      flush()
+      break
+    }
 
     const trimmed = line.trim()
     if (!trimmed) {
-      // Don't break on a single blank — many notes have spacing — only
-      // break if we've already collected at least one question and hit
-      // a second consecutive blank.
+      // Blank line ends a multi-line question, but doesn't end the
+      // block (notes often have spacing between bullets).
+      flush()
       continue
     }
 
-    const bullet = trimmed.match(
-      /^(?:[-*•—–]|>\s*[-—–]|\d+\.)\s*(.+?)\s*$/,
-    )
+    const bullet = trimmed.match(bulletRe)
     if (bullet) {
-      const q = bullet[1].replace(/^["'`]|["'`]$/g, "").trim()
-      if (q.length >= 5) questions.push(q)
+      // New bullet — flush any in-progress question, start a fresh one.
+      flush()
+      current = bullet[1].replace(/^["'`]|["'`]$/g, "").trim()
+      continue
+    }
+
+    // Continuation line — append to whatever we're currently building.
+    // Strip leading blockquote `> ` markers so wrapped lines look
+    // clean when joined.
+    if (current) {
+      current += " " + trimmed.replace(stripQuoteRe, "").trim()
     }
   }
+
+  flush()
 
   // De-dupe while preserving order.
   return [...new Set(questions)]
