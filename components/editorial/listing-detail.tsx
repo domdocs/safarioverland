@@ -4,6 +4,7 @@ import type { ReactNode } from "react"
 import { ListingImage } from "@/components/listing-image"
 import { Button } from "@/components/ui/button"
 import { PlannerCallTrigger } from "@/components/planner-call/planner-call-trigger"
+import { GalleryLightbox } from "./gallery-lightbox"
 import { ListingCardEditorial } from "./listing-card-editorial"
 import type { DirectoryListing } from "@/lib/listings"
 
@@ -17,12 +18,26 @@ import type { DirectoryListing } from "@/lib/listings"
  * simply don't render.
  */
 
+type ImageAttributionEntry = {
+  supplied_by?: string | null
+  uploaded_at?: string | null
+  licence?: string | null
+  alt_text?: string | null
+}
+
+type ImageAttribution = {
+  hero?: ImageAttributionEntry
+  gallery?: (ImageAttributionEntry & { url?: string | null })[]
+  founder?: ImageAttributionEntry
+}
+
 type LooseListing = DirectoryListing & {
   amenities?: string[]
   coordinates?: { latitude: number; longitude: number } | null
   verdict?: string | null
   stayed_at?: string | null
   website_url?: string | null
+  image_attribution?: ImageAttribution | null
 }
 
 type ListingDetailProps = {
@@ -61,7 +76,31 @@ export function ListingDetail({ listing, related }: ListingDetailProps) {
     coordinates,
     verdict,
     stayed_at,
+    image_attribution,
   } = listing
+
+  const gallery_urls = (listing.gallery_urls ?? []).filter(
+    (u): u is string => typeof u === "string" && u.trim().length > 0,
+  )
+  const founder_name = listing.founder_name?.trim() || null
+  const founder_note = listing.founder_note?.trim() || null
+  const founder_image_url = listing.founder_image_url?.trim() || null
+
+  // Prefer operator-supplied alt text where present; fall back to the
+  // listing name so screen-reader users still get something useful.
+  const heroAlt =
+    image_attribution?.hero?.alt_text?.trim() || listing_name
+  const founderAlt =
+    image_attribution?.founder?.alt_text?.trim() ||
+    (founder_name ? `Portrait of ${founder_name}` : `Portrait, ${listing_name}`)
+  function galleryAlt(url: string, index: number): string {
+    const fromAttribution = image_attribution?.gallery?.find(
+      (g) => g?.url === url,
+    )?.alt_text
+    return (
+      fromAttribution?.trim() || `${listing_name} — gallery ${index + 1}`
+    )
+  }
 
   const websiteHref = website_url ?? website ?? null
 
@@ -77,9 +116,11 @@ export function ListingDetail({ listing, related }: ListingDetailProps) {
       <section className="relative h-[72vh] min-h-[560px] w-full overflow-hidden bg-night">
         <ListingImage
           src={image_url}
-          alt={listing_name}
+          alt={heroAlt}
           category={category}
           className="absolute inset-0 h-full w-full object-cover"
+          sizes="100vw"
+          priority
         />
         <div
           aria-hidden
@@ -170,6 +211,40 @@ export function ListingDetail({ listing, related }: ListingDetailProps) {
             </div>
           )}
 
+          {(founder_note || founder_image_url || founder_name) && (
+            <section
+              className="mt-16 border-t border-rule pt-12"
+              aria-label="A note from the founder"
+            >
+              <p className="eyebrow mb-8">A note from the founder</p>
+              <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
+                {founder_image_url && (
+                  <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-full bg-card">
+                    <ListingImage
+                      src={founder_image_url}
+                      alt={founderAlt}
+                      category={category}
+                      className="absolute inset-0 h-full w-full object-cover"
+                      sizes="128px"
+                    />
+                  </div>
+                )}
+                <div className="max-w-prose">
+                  {founder_note && (
+                    <blockquote className="font-serif italic text-h4-fluid text-bone leading-snug text-balance">
+                      “{founder_note}”
+                    </blockquote>
+                  )}
+                  {founder_name && (
+                    <p className="mono mt-4 text-bone-mute">
+                      — {founder_name}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </section>
+          )}
+
           {amenities.length > 0 && (
             <section className="mt-16 border-t border-rule pt-12">
               <p className="eyebrow mb-8">What&apos;s here</p>
@@ -246,6 +321,29 @@ export function ListingDetail({ listing, related }: ListingDetailProps) {
           )}
         </div>
       </section>
+
+      {/* ── Gallery ────────────────────────────────────────────────── */}
+      {gallery_urls.length > 0 && (
+        <section
+          className="border-t border-rule bg-ink py-24"
+          aria-label="Photography"
+        >
+          <div className="container">
+            <p className="eyebrow mb-4">Photography</p>
+            <h2 className="mb-12 font-serif text-h2-fluid text-bone tracking-tight text-balance">
+              <span className="italic-accent">{listing_name}</span> in
+              pictures
+            </h2>
+            <GalleryLightbox
+              listingName={listing_name}
+              images={gallery_urls.map((url, i) => ({
+                url,
+                alt: galleryAlt(url, i),
+              }))}
+            />
+          </div>
+        </section>
+      )}
 
       {/* ── Related ────────────────────────────────────────────────── */}
       {related.length > 0 && (

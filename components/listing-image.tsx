@@ -41,6 +41,10 @@ type ListingImageProps = {
   alt: string
   category?: string | null
   className?: string
+  /** Sizes hint for `next/image`. Defaults to `100vw` (cinematic hero). */
+  sizes?: string
+  /** First hero on a page (eg listing detail) should set this. */
+  priority?: boolean
 }
 
 /**
@@ -55,7 +59,14 @@ type ListingImageProps = {
  * fallback block directly or hands off to a tiny client component that can
  * react to `onError` if the URL exists but 404s/CORS-fails at fetch time.
  */
-export function ListingImage({ src, alt, category, className }: ListingImageProps) {
+export function ListingImage({
+  src,
+  alt,
+  category,
+  className,
+  sizes,
+  priority,
+}: ListingImageProps) {
   const Icon = iconForCategory(category)
 
   if (isMissing(src)) {
@@ -67,6 +78,8 @@ export function ListingImage({ src, alt, category, className }: ListingImageProp
       src={src as string}
       alt={alt}
       className={className}
+      sizes={sizes}
+      priority={priority}
       fallback={<Fallback Icon={Icon} alt={alt} className={className} />}
     />
   )
