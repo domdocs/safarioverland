@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 
-import { OperatorOutreachFeaturedEmail } from "@/lib/email/templates/OperatorOutreachFeaturedEmail"
-import { renderEmail } from "@/lib/email/render"
+import {
+  OperatorOutreachFeaturedEmail,
+  operatorOutreachFeaturedPlainText,
+} from "@/lib/email/templates/OperatorOutreachFeaturedEmail"
+import { renderEmailHtml } from "@/lib/email/render"
 import {
   buildMailtoUrl,
   outreachSubject,
@@ -116,15 +119,22 @@ export async function POST(request: NextRequest, ctx: RouteContext) {
 
   const subject = outreachSubject(template, listing.listing_name)
 
-  const { html, text } = await renderEmail(
-    <OperatorOutreachFeaturedEmail
-      recipientName={recipientName}
-      lodgeName={listing.listing_name}
-      customQuestions={input.custom_questions}
-      senderName={SENDER_NAME}
-      senderEmail={SENDER_EMAIL}
-    />,
+  const templateProps = {
+    recipientName,
+    lodgeName: listing.listing_name,
+    customQuestions: input.custom_questions,
+    senderName: SENDER_NAME,
+    senderEmail: SENDER_EMAIL,
+  }
+
+  // HTML is rendered for the admin preview + DB body_html column.
+  // Plain text for the mailto body comes from the hand-rolled helper
+  // — react-email's plainText mode produces output that runs the
+  // bullet block into the sign-off and inlines the layout chrome.
+  const html = await renderEmailHtml(
+    <OperatorOutreachFeaturedEmail {...templateProps} />,
   )
+  const text = operatorOutreachFeaturedPlainText(templateProps)
 
   const mailtoUrl = buildMailtoUrl({
     to: input.recipient_email,

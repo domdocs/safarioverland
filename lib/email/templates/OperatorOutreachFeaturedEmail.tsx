@@ -18,6 +18,50 @@ export type OperatorOutreachFeaturedProps = {
 }
 
 /**
+ * Hand-rolled plain-text version of the outreach body. Used for the
+ * mailto: URL — going through @react-email/render's plainText mode
+ * produces unstable output (html-to-text smashes the bullet block into
+ * the next paragraph, drops the layout's logo URL into the body, etc).
+ *
+ * Source of truth for the prose lives in this file alongside the JSX so
+ * the two stay in sync.
+ */
+export function operatorOutreachFeaturedPlainText({
+  recipientName,
+  lodgeName,
+  customQuestions,
+  senderName,
+  senderEmail,
+}: OperatorOutreachFeaturedProps): string {
+  const sections: string[] = [
+    `Dear ${recipientName},`,
+    `We are repositioning safarioverland.com as a small, opinionated collection of African lodges and operators — chosen for what the wild does to you, not just what it shows you. Fewer names than before, but each one written up properly.`,
+    `${lodgeName} is staying. We'd like to feature it on our home page rotation, in our planning briefs, and in our Field Notes coverage where it fits.`,
+    `Three small asks, only when convenient:`,
+    [
+      `1. Two or three high-resolution photographs (~3000px wide) we can use across the site. Anything atmospheric — guests on the land at last light, the rooms at dusk, the textures and details.`,
+      `2. Fifty words from the owner or founder on what makes a stay different. Written as you'd say it, not as marketing.`,
+      `3. Permission to pull two or three traveller quotes from your guest book or testimonials page, with attribution.`,
+    ].join("\n\n"),
+  ]
+
+  if (customQuestions.length > 0) {
+    sections.push(`And a few clarifying questions while we're writing the page:`)
+    sections.push(customQuestions.map((q) => `— ${q}`).join("\n"))
+  }
+
+  sections.push(
+    `No commitments either way; we'll keep the listing live with what we have. But if you have time, the better the source material, the better the page reads.`,
+  )
+  sections.push(`With thanks,`)
+  sections.push(
+    [senderName, `Safari Overland · Victoria Falls`, senderEmail].join("\n"),
+  )
+
+  return sections.join("\n\n")
+}
+
+/**
  * Template A — featured operator outreach. Mirrors the prose in
  * handoff/LISTINGS_AUDIT.md "Template A — featured (kept and going to
  * the home rotation)".

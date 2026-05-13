@@ -1,7 +1,10 @@
 import { describe, expect, test } from "vitest"
 import { render } from "@react-email/render"
 
-import { OperatorOutreachFeaturedEmail } from "./templates/OperatorOutreachFeaturedEmail"
+import {
+  OperatorOutreachFeaturedEmail,
+  operatorOutreachFeaturedPlainText,
+} from "./templates/OperatorOutreachFeaturedEmail"
 import { ContactAcknowledgementEmail } from "./templates/ContactAcknowledgementEmail"
 import { DownloadConfirmationEmail } from "./templates/DownloadConfirmationEmail"
 import { BriefReceivedEmail } from "./templates/BriefReceivedEmail"
@@ -170,5 +173,64 @@ describe("Email templates render", () => {
       />,
     )
     expect(html).not.toContain("clarifying questions while")
+  })
+
+  test("operatorOutreachFeaturedPlainText: sections separated by blank lines, sign-off not glued to bullets", () => {
+    const text = operatorOutreachFeaturedPlainText({
+      recipientName: "Sarah",
+      lodgeName: "Matetsi Victoria Falls",
+      customQuestions: [
+        "Are walking safaris part of the offer on the concession?",
+        "Could you tell us more about the gastronomy programme?",
+        "What's the peak total guest capacity across the 16 suites, 2 family suites, and Matetsi River House?",
+      ],
+      senderName: "Niels van de Meer",
+      senderEmail: "niels@safarioverland.com",
+    })
+
+    // Opens with the greeting (no logo URL / chrome leakage).
+    expect(text.startsWith("Dear Sarah,\n\n")).toBe(true)
+
+    // No html-to-text artefacts.
+    expect(text).not.toContain("https://safarioverland.com")
+    expect(text).not.toContain("A SHORT NOTE FROM")
+
+    // Sign-off prose lives on its own paragraph — verify there's a
+    // blank line immediately before it. The pre-fix bug had the
+    // last bullet glued directly to "No commitments…".
+    const beforeSignoff = text.split(
+      "No commitments either way",
+    )[0] as string
+    expect(beforeSignoff.endsWith("\n\n")).toBe(true)
+
+    // Each clarifying question appears once, prefixed with the em dash,
+    // and the third question survives in full (the pre-fix parser
+    // truncated mid-sentence).
+    expect(text).toContain(
+      "— What's the peak total guest capacity across the 16 suites, 2 family suites, and Matetsi River House?",
+    )
+    expect(text.match(/No commitments either way/g)?.length).toBe(1)
+
+    // Sign-off lines stack with single line breaks, not blank lines,
+    // so the signature reads as a block.
+    expect(text).toContain(
+      "Niels van de Meer\nSafari Overland · Victoria Falls\nniels@safarioverland.com",
+    )
+  })
+
+  test("operatorOutreachFeaturedPlainText: omits the questions block when none provided", () => {
+    const text = operatorOutreachFeaturedPlainText({
+      recipientName: "the team",
+      lodgeName: "Anywhere Lodge",
+      customQuestions: [],
+      senderName: "Niels van de Meer",
+      senderEmail: "niels@safarioverland.com",
+    })
+    expect(text).not.toContain("clarifying questions while")
+    // Three asks → No commitments. No question block in between.
+    const askIdx = text.indexOf("3. Permission to pull")
+    const closingIdx = text.indexOf("No commitments either way")
+    expect(askIdx).toBeGreaterThan(0)
+    expect(closingIdx).toBeGreaterThan(askIdx)
   })
 })
