@@ -78,10 +78,28 @@ export function ListingDetail({ listing, related }: ListingDetailProps) {
     image_attribution,
   } = listing
 
-  // Prefer operator-supplied alt text when available; fall back to the
+  const gallery_urls = (listing.gallery_urls ?? []).filter(
+    (u): u is string => typeof u === "string" && u.trim().length > 0,
+  )
+  const founder_name = listing.founder_name?.trim() || null
+  const founder_note = listing.founder_note?.trim() || null
+  const founder_image_url = listing.founder_image_url?.trim() || null
+
+  // Prefer operator-supplied alt text where present; fall back to the
   // listing name so screen-reader users still get something useful.
   const heroAlt =
     image_attribution?.hero?.alt_text?.trim() || listing_name
+  const founderAlt =
+    image_attribution?.founder?.alt_text?.trim() ||
+    (founder_name ? `Portrait of ${founder_name}` : `Portrait, ${listing_name}`)
+  function galleryAlt(url: string, index: number): string {
+    const fromAttribution = image_attribution?.gallery?.find(
+      (g) => g?.url === url,
+    )?.alt_text
+    return (
+      fromAttribution?.trim() || `${listing_name} — gallery ${index + 1}`
+    )
+  }
 
   const websiteHref = website_url ?? website ?? null
 
@@ -192,6 +210,40 @@ export function ListingDetail({ listing, related }: ListingDetailProps) {
             </div>
           )}
 
+          {(founder_note || founder_image_url || founder_name) && (
+            <section
+              className="mt-16 border-t border-rule pt-12"
+              aria-label="A note from the founder"
+            >
+              <p className="eyebrow mb-8">A note from the founder</p>
+              <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
+                {founder_image_url && (
+                  <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-full bg-card">
+                    <ListingImage
+                      src={founder_image_url}
+                      alt={founderAlt}
+                      category={category}
+                      className="absolute inset-0 h-full w-full object-cover"
+                      sizes="128px"
+                    />
+                  </div>
+                )}
+                <div className="max-w-prose">
+                  {founder_note && (
+                    <blockquote className="font-serif italic text-h4-fluid text-bone leading-snug text-balance">
+                      “{founder_note}”
+                    </blockquote>
+                  )}
+                  {founder_name && (
+                    <p className="mono mt-4 text-bone-mute">
+                      — {founder_name}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </section>
+          )}
+
           {amenities.length > 0 && (
             <section className="mt-16 border-t border-rule pt-12">
               <p className="eyebrow mb-8">What&apos;s here</p>
@@ -268,6 +320,38 @@ export function ListingDetail({ listing, related }: ListingDetailProps) {
           )}
         </div>
       </section>
+
+      {/* ── Gallery ────────────────────────────────────────────────── */}
+      {gallery_urls.length > 0 && (
+        <section
+          className="border-t border-rule bg-ink py-24"
+          aria-label="Photography"
+        >
+          <div className="container">
+            <p className="eyebrow mb-4">Photography</p>
+            <h2 className="mb-12 font-serif text-h2-fluid text-bone tracking-tight text-balance">
+              <span className="italic-accent">{listing_name}</span> in
+              pictures
+            </h2>
+            <ul className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {gallery_urls.map((url, i) => (
+                <li
+                  key={`${url}-${i}`}
+                  className="relative aspect-[4/3] overflow-hidden bg-card"
+                >
+                  <ListingImage
+                    src={url}
+                    alt={galleryAlt(url, i)}
+                    category={category}
+                    className="absolute inset-0 h-full w-full object-cover"
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       {/* ── Related ────────────────────────────────────────────────── */}
       {related.length > 0 && (
