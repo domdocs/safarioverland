@@ -1,11 +1,8 @@
 import Image from "next/image"
-import Link from "next/link"
 
 import { Eyebrow } from "@/components/editorial/eyebrow"
 import { SectionRule } from "@/components/editorial/section-rule"
 import { NumberedList } from "@/components/editorial/numbered-list"
-import { EditorialImage } from "@/components/editorial/editorial-image"
-import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 const PRINCIPLES = [
   {
@@ -63,9 +60,9 @@ export default function AboutPage() {
               <span className="italic text-amber">written from the bush</span>.
             </h1>
             <p className="mt-8 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
-              Safari Overland is a small, opinionated collection of African lodges and operators —
-              chosen for what the wild does to you, not just what it shows you. We are
-              headquartered in Victoria Falls, and we start there.
+              Safari Overland is a small, opinionated collection of African lodges
+              and operators — chosen for what the wild does to you, not just what
+              it shows you.
             </p>
           </div>
         </div>
@@ -128,54 +125,21 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── Our home: Victoria Falls ─────────────────────────── */}
-      <section className="border-t border-rule bg-ink py-24 md:py-32">
-        <div className="container">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-7">
-              <Eyebrow withRule>Our home</Eyebrow>
-              <h2 className="mt-6 font-serif text-h1-fluid text-bone leading-tight tracking-tight text-balance">
-                Victoria Falls,
-                <br />
-                <span className="italic text-amber">Mosi-oa-Tunya</span>.
-              </h2>
-              <p className="mt-8 font-serif italic text-h4-fluid text-bone-mute leading-snug max-w-2xl">
-                The smoke that thunders. We chose to be based here — not London, not
-                New York — because it puts us at the crossroads of the safari continent.
-              </p>
-              <p className="mt-6 text-bone-mute leading-relaxed max-w-2xl">
-                From Victoria Falls we&apos;re a short flight from the Okavango, an
-                afternoon&apos;s drive into Hwange, and within easy reach of the safari
-                circuits of Zimbabwe, Zambia, Botswana, Namibia and South Africa.
-              </p>
-              <p className="mt-4 text-bone-mute leading-relaxed max-w-2xl">
-                We are starting the collection with the lodges and operators we know
-                personally — the ones within our own range — and widening the circle
-                outward from there. Slowly, on foot, by hand. The collection is not a
-                desk job.
-              </p>
-              <div className="mt-10">
-                <Link
-                  href="/about/location"
-                  className="mono text-amber hover:text-amber-deep transition-colors"
-                >
-                  More on the headquarters →
-                </Link>
-              </div>
-            </div>
-            <div className="lg:col-span-5">
-              <div className="relative aspect-[4/5] overflow-hidden bg-card">
-            <EditorialImage
-                  src="/images/about/about-hero.jpg"
-                  alt="Victoria Falls — Mosi-oa-Tunya, the smoke that thunders"
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover" />
-            <BlendOverlay />
-          </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/*
+       * The "Our Home / Victoria Falls Mosi-oa-Tunya" section that used
+       * to sit here was retired per
+       * handoff/briefs/2026-05-DROP_OUR_HOME_SECTION.md — the framing
+       * blurred personal-vs-company (Niels writes from Vic Falls;
+       * Safari Overland is a Delaware LLC). Personal references to
+       * Victoria Falls remain in the footer, Niels' email signature,
+       * and operator-outreach templates. To restore the section, see
+       * git history before the corresponding feature branch merge.
+       *
+       * SectionRule below preserves the visual beat between
+       * Mission+Vision and What We Stand For now that the contrasting
+       * bg-ink section is gone.
+       */}
+      <SectionRule className="container" />
 
       {/* ─── Values ───────────────────────────────────────────── */}
       <section className="container py-24 md:py-32">
