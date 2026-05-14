@@ -5,6 +5,7 @@ import { Header } from "@/components/header"
 const NAV = [
   { href: "/admin", label: "Overview" },
   { href: "/admin/briefs", label: "Briefs" },
+  { href: "/admin/itineraries", label: "Itineraries" },
   { href: "/admin/articles", label: "Articles" },
   { href: "/admin/listings", label: "Manage Listings" },
   { href: "/admin/pending", label: "Pending Approvals" },

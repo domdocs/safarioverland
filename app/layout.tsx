@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google"
+import { Caveat, Cormorant_Garamond, Inter, JetBrains_Mono, Newsreader } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
@@ -27,6 +27,23 @@ const sans = Inter({
 const mono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
+  display: "swap",
+})
+// Itinerary preview only — handwritten "Caveat" for curator notes and
+// the sign-off signature; "Newsreader" for editorial body copy in the
+// PDF/print render. Variables are scoped via class on <html>, so they
+// don't leak into the main site type.
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-hand",
+  display: "swap",
+})
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-body-serif",
   display: "swap",
 })
 
@@ -90,7 +107,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${serif.variable} ${sans.variable} ${mono.variable}`}
+      className={`${serif.variable} ${sans.variable} ${mono.variable} ${caveat.variable} ${newsreader.variable}`}
     >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
