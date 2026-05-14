@@ -1,5 +1,7 @@
 import Link from "next/link"
 import { ListingImage } from "@/components/listing-image"
+
+import { BlendOverlay } from "./blend-overlay"
 import { cn } from "@/lib/utils"
 
 type ListingCardEditorialProps = {
@@ -68,6 +70,7 @@ export function ListingCardEditorial({
               category={category}
               className="transition-transform duration-300 group-hover:scale-[1.02]"
             />
+            <BlendOverlay />
           </div>
         </div>
 
