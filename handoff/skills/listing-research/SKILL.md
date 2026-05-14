@@ -223,6 +223,31 @@ A research record is "ready to import" when:
 - Outstanding-gap items requiring his input are resolved or noted
 - The verdict reflects his personal voice if he has personal experience
 
+## Importing the record
+
+Two paths exist as of May 2026. Both call the same backend API
+(`POST /api/admin/listings/import`); both produce a `pending` row
+in `directory_listings` for editorial review at
+`/admin/listings/edit/[id]`.
+
+### Preferred: admin UI
+
+`/admin/listings/import` — drag-drop one or more `.md` files or
+paste markdown directly. Sequential POSTs with per-file pass/fail
+shown inline. Use this for all interactive imports.
+
+### Scripting only: CLI
+
+`pnpm tsx scripts/import-listing.ts <path-to-record.md>` — same
+endpoint, headless. Use this only when invoking from automation
+(this skill's own runs, batch loops, etc.). For Dom's editorial
+work, the admin UI is faster and easier.
+
+In either case: the row lands as `status='pending'`. Use the
+**Preview** button on the edit form (`/admin/listings/preview/[id]`)
+to see the listing rendered in its public-page form before flipping
+status to `approved`.
+
 ## When the pipeline doesn't work
 
 If a property's public web presence is thin, the WebFetch will return

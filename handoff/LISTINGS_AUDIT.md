@@ -68,6 +68,29 @@ edit form (`/admin/listings/edit/[id]`) and fill in as many of the
 editorial fields as you can. None are required, but the more you fill
 the richer the listing detail page renders.
 
+**Importing from a research record.** If the row started life as a
+research record from `handoff/listings/[slug].md`, you can drag the
+file onto `/admin/listings/import` (or paste the markdown) and the
+editorial fields land pre-populated. Existing rows update in place
+as long as status is still `pending`.
+
+**Images.** Drag-drop directly onto the hero, gallery, and founder
+fields on the edit form. Uploads go to the `listing-media` bucket
+in Supabase Storage; the URLs back are stable and CDN-served. No
+need to host anywhere external.
+
+**Preview before approving.** The Preview button on the edit form
+opens `/admin/listings/preview/[id]` in a new tab — the listing
+renders in its public-page form with a sticky banner showing its
+current status. Use this to sense-check the editorial before flipping
+status to `approved`.
+
+**Outreach.** The Outreach section on the edit form drafts a Template
+A operator email from the listing's `editor_notes` clarifying-
+questions block, opens it in your default mail client (so it sends
+from Niels' Gmail, not a transactional service), and tracks status
+in the `listing_outreach` table.
+
 | Field | What it is | Where it surfaces |
 |---|---|---|
 | `verdict` | One sentence. The "we'd send this here" line. | Top of listing detail page, italic. |
