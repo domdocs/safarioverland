@@ -12,26 +12,9 @@
  * preserved so Phase 5 can flip them on, but no UI exposes them yet.
  */
 
-/* Lift the preview out of the admin chrome — covers the sidebar, the
- * Safari Overland public header injected by /admin/layout.tsx, and any
- * surrounding padding. Only applies to screen; @media print rules
- * below restore the document to normal flow. */
-.itinerary-preview {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  overflow-y: auto;
-}
-
-@media print {
-  .itinerary-preview {
-    position: static;
-    inset: auto;
-    z-index: auto;
-    overflow: visible;
-  }
-}
-
+/* The preview route lives outside the `(chrome)` admin route group, so
+ * it gets only the root layout — no admin sidebar, no public site
+ * header. The wrapper flows naturally in both screen and print mode. */
 .itinerary-preview {
   /* Palette — Savanna (default) */
   --bone: #f3ead8;
@@ -153,11 +136,10 @@
   overflow: hidden;
 }
 .itinerary-preview .cover .cover-photo img {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 .itinerary-preview .cover .cover-photo::after {
   content: "";
@@ -342,12 +324,10 @@
   background-image: linear-gradient(180deg, #2a2418 0%, #6e3f0d 60%, #a86b1e 100%);
 }
 .itinerary-preview .chapter-hero-photo {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 0;
+  display: block;
 }
 .itinerary-preview .chapter-hero::after {
   content: "";
@@ -974,16 +954,15 @@
     min-height: auto;
     height: 200mm;
   }
-  /* Absolute-positioned hero/cover photos render reliably in print
-   * because they get a definite size from their position:absolute +
-   * inset:0 rather than relying on grid stretch. */
+  /* Photos sit in normal flow with width/height 100%, so they fill
+   * their parent reliably — same pattern the lodge photo uses, which
+   * Chrome's print engine handles cleanly. */
   .itinerary-preview .chapter-hero-photo,
   .itinerary-preview .cover .cover-photo img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
   }
 
   .preview-banner {
