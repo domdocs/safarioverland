@@ -1,8 +1,9 @@
 import type { ReactNode } from "react"
 import { ListingImage } from "@/components/listing-image"
-import { Eyebrow } from "./eyebrow"
-import { CategoryTabStrip } from "./category-tab-strip"
+import { getActiveCategories } from "@/lib/categories"
 import { buildCategoryTabs } from "@/lib/category-tabs"
+import { CategoryTabStrip } from "./category-tab-strip"
+import { Eyebrow } from "./eyebrow"
 
 type Props = {
   /** Slug of the active category, or null for the parent /categories page. */
@@ -20,13 +21,19 @@ type Props = {
 }
 
 /**
- * Editorial shell for category index pages. Replaces components/category-layout.tsx.
+ * Editorial shell for category index pages.
  *
  *  - Cinematic hero band with category image and title block
- *  - Sticky tab strip directly under the header
+ *  - Sticky tab strip directly under the header — filtered to
+ *    currently-active categories so empty cards retire from the strip
+ *    as well (same rule as the /categories index + footer column)
  *  - Body slot for the listings grid
+ *
+ * Async server component — the active-categories fetch is the same
+ * single-query call used elsewhere; we don't memoise here since each
+ * category page is its own SSR render anyway.
  */
-export function CategoryPageShell({
+export async function CategoryPageShell({
   activeSlug,
   title,
   description,
@@ -35,7 +42,9 @@ export function CategoryPageShell({
   total,
   children,
 }: Props) {
-  const tabs = buildCategoryTabs(activeSlug)
+  const activeSlugs = (await getActiveCategories().catch(() => []))
+    .map((c) => c.slug)
+  const tabs = buildCategoryTabs(activeSlug, activeSlugs)
 
   return (
     <>

@@ -1,16 +1,14 @@
 import Link from "next/link"
 import { Facebook, Instagram, Twitter } from "lucide-react"
+
+import { getActiveCategories } from "@/lib/categories"
+
 import { SectionRule } from "./section-rule"
 
-const COLUMNS = [
-  {
-    label: "Categories",
-    links: [
-      { href: "/categories/lodges", label: "Lodges" },
-      { href: "/categories/guided-tours", label: "Guided tours" },
-      { href: "/categories/game-viewing", label: "Game viewing" },
-    ],
-  },
+type FooterLink = { href: string; label: string }
+type FooterColumn = { label: string; links: FooterLink[] }
+
+const STATIC_COLUMNS: FooterColumn[] = [
   {
     label: "Regions",
     links: [
@@ -31,6 +29,29 @@ const COLUMNS = [
   },
 ]
 
+/**
+ * Build the Categories footer column from the live `getActiveCategories()`
+ * helper. Empty categories drop out automatically (same rule as the
+ * /categories index). On a Supabase failure we fall back to an empty
+ * column header so the footer never breaks the rest of the page.
+ *
+ * Capped at 6 entries to keep the column visually tight even after the
+ * collection grows; the index page is the canonical browse surface.
+ */
+async function buildCategoriesColumn(): Promise<FooterColumn> {
+  let links: FooterLink[] = []
+  try {
+    const active = await getActiveCategories()
+    links = active.slice(0, 6).map((c) => ({
+      href: `/categories/${c.slug}`,
+      label: c.name,
+    }))
+  } catch (err) {
+    console.error("editorial footer: getActiveCategories failed", err)
+  }
+  return { label: "Categories", links }
+}
+
 const SOCIAL = [
   { href: "#", label: "Facebook", Icon: Facebook },
   { href: "#", label: "Twitter", Icon: Twitter },
@@ -44,14 +65,20 @@ const POLICY = [
 ]
 
 /**
- * Editorial site footer — replaces components/footer.tsx.
+ * Editorial site footer.
  *
- * Layout:
  *   Top: brand + manifesto, then 3 link columns
  *   Hairline rule
  *   Bottom: copyright, social, policy
+ *
+ * Async server component — the Categories column reads
+ * `getActiveCategories()` so empty categories drop out automatically.
+ * Regions + Field notes stay static (they're not data-driven).
  */
-export function EditorialFooter() {
+export async function EditorialFooter() {
+  const categoriesColumn = await buildCategoriesColumn()
+  const columns: FooterColumn[] = [categoriesColumn, ...STATIC_COLUMNS]
+
   return (
     <footer className="bg-ink text-bone border-t border-rule">
       <div className="container py-16 md:py-20">
@@ -70,7 +97,7 @@ export function EditorialFooter() {
 
           {/* Link columns */}
           <div className="lg:col-span-7 grid gap-8 sm:grid-cols-3">
-            {COLUMNS.map((col) => (
+            {columns.map((col) => (
               <div key={col.label}>
                 <p className="eyebrow mb-4">{col.label}</p>
                 <ul className="space-y-2">

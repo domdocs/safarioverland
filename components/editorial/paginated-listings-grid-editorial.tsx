@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useState } from "react"
+import { useCallback, useState, type ReactNode } from "react"
 import { Button } from "@/components/ui/button"
 import { ListingCardEditorial } from "./listing-card-editorial"
 import { getListingsByCategory } from "@/lib/listings"
@@ -14,7 +14,18 @@ type Props = {
   eyebrow?: string
   /** Page size used by the load-more handler. */
   pageSize?: number
+  /**
+   * Short message rendered in a centred bordered block when the grid
+   * has no listings. Used by callers that want the lightweight
+   * fallback. Mutually exclusive with `emptyContent` — if both are
+   * set, `emptyContent` wins.
+   */
   emptyMessage?: string
+  /**
+   * Rich empty-state slot — eg `<CategoryEmptyState />`. Renders
+   * verbatim when listings are empty.
+   */
+  emptyContent?: ReactNode
   /** Continue numbering from this index across page loads. */
   startAt?: number
 }
@@ -35,6 +46,7 @@ export function PaginatedListingsGridEditorial({
   eyebrow,
   pageSize = 6,
   emptyMessage = "No listings yet — check back soon.",
+  emptyContent,
   startAt = 1,
 }: Props) {
   const [listings, setListings] = useState<DirectoryListing[]>(initialListings)
@@ -62,6 +74,9 @@ export function PaginatedListingsGridEditorial({
   }, [page, pageSize, categorySlug])
 
   if (listings.length === 0) {
+    if (emptyContent) {
+      return <>{emptyContent}</>
+    }
     return (
       <div className="border border-rule p-12 text-center">
         <p className="font-serif italic text-h4-fluid text-bone-mute">{emptyMessage}</p>
