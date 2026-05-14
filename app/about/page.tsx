@@ -60,9 +60,9 @@ export default function AboutPage() {
               <span className="italic text-amber">written from the bush</span>.
             </h1>
             <p className="mt-8 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
-              Safari Overland is a small, opinionated collection of African lodges and operators —
-              chosen for what the wild does to you, not just what it shows you. We are
-              headquartered in Victoria Falls, and we start there.
+              Safari Overland is a small, opinionated collection of African lodges
+              and operators — chosen for what the wild does to you, not just what
+              it shows you.
             </p>
           </div>
         </div>
