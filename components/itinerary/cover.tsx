@@ -13,7 +13,12 @@ export function Cover({ itinerary }: { itinerary: Itinerary }) {
       <div className="cover-photo">
         {itinerary.cover_photo_url ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={itinerary.cover_photo_url} alt="" />
+          <img
+            src={itinerary.cover_photo_url}
+            alt=""
+            loading="eager"
+            decoding="sync"
+          />
         ) : null}
       </div>
       <div className="cover-meta">

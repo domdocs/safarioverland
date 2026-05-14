@@ -940,27 +940,43 @@
     print-color-adjust: exact !important;
   }
 
-  /* Cover photo & chapter hero rely on photo backgrounds. Force the
-   * containers to a definite page-relative height so the photo fills
-   * its half of the page (Chrome's print pipeline can lose `vh` units). */
+  /* A4 print viewport (≈ 794px) would otherwise trigger our @media
+   * (max-width: 900px) mobile rule, collapsing the cover to a single
+   * column. Force the desktop 2-column cover and its padding for print. */
   .itinerary-preview .cover {
-    min-height: auto;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    min-height: 0;
     height: 297mm;
+  }
+  .itinerary-preview .cover-meta {
+    padding: 5rem 5rem 4rem !important;
   }
   .itinerary-preview .cover .cover-photo {
+    position: relative;
+    min-height: 0;
     height: 297mm;
+    overflow: hidden;
   }
   .itinerary-preview .chapter-hero {
-    min-height: auto;
+    min-height: 0;
     height: 200mm;
   }
-  /* Photos sit in normal flow with width/height 100%, so they fill
-   * their parent reliably — same pattern the lodge photo uses, which
-   * Chrome's print engine handles cleanly. */
-  .itinerary-preview .chapter-hero-photo,
+  /* Give the imgs explicit page-relative dimensions instead of
+   * width/height: 100% — Safari and Chrome's print engines occasionally
+   * fail to resolve % heights when the parent's height comes from mm
+   * units inside a grid. The lodge photo works because its parent has
+   * aspect-ratio, which provides a definite intrinsic height; cover
+   * and hero parents don't, so we hardcode the print dimensions. */
   .itinerary-preview .cover .cover-photo img {
-    width: 100% !important;
-    height: 100% !important;
+    width: 105mm !important;
+    height: 297mm !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+  .itinerary-preview .chapter-hero-photo {
+    width: 210mm !important;
+    height: 200mm !important;
     object-fit: cover !important;
     display: block !important;
   }

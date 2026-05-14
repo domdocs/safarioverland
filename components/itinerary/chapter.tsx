@@ -19,6 +19,8 @@ function ChapterHero({
           src={chapter.photo_hero_url}
           alt=""
           className="chapter-hero-photo"
+          loading="eager"
+          decoding="sync"
         />
       )}
       <div className="label">
@@ -84,7 +86,12 @@ function Lodge({ chapter }: { chapter: ChapterType }) {
       <div className="photo">
         {chapter.photo_lodge_url ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={chapter.photo_lodge_url} alt="" />
+          <img
+            src={chapter.photo_lodge_url}
+            alt=""
+            loading="eager"
+            decoding="sync"
+          />
         ) : null}
       </div>
       <div className="text">
