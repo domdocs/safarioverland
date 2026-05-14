@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { SupabaseProvider } from "@/components/supabase-provider"
 import { DownloadGateProvider } from "@/components/download-gate-provider"
+import { VercelProviders } from "@/components/analytics/vercel-providers"
 import Script from "next/script"
 
 // Editorial typography — wired via CSS variables, picked up in tailwind.config.ts
@@ -113,6 +114,18 @@ export default function RootLayout({
             </DownloadGateProvider>
           </SupabaseProvider>
         </ThemeProvider>
+        {/*
+         * Vercel Web Analytics + Speed Insights.
+         *
+         * Wrapped in a "use client" island so the beforeSend functions
+         * (which filter /admin/* from both dashboards) live on the
+         * client side of the RSC boundary. The custom events fired
+         * via lib/analytics/track.ts are also gated on /admin/* — see
+         * handoff/ANALYTICS.md for the full taxonomy.
+         *
+         * Cookieless, no PII by design.
+         */}
+        <VercelProviders />
       </body>
     </html>
   )

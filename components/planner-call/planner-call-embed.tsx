@@ -1,3 +1,10 @@
+"use client"
+
+import { useEffect } from "react"
+
+import { track } from "@/lib/analytics/track"
+import type { CalendlyBookingSource } from "@/lib/analytics/events"
+
 /**
  * Shared embed renderer.
  *
@@ -8,6 +15,13 @@
  *
  * Works for both Calendly and Cal.com; their inline-iframe contracts
  * are interchangeable.
+ *
+ * When `source` is supplied, listens for Calendly's
+ * `calendly.event_scheduled` postMessage and fires the
+ * `calendly-booking-completed` analytics event. Cal.com uses a
+ * different postMessage shape and is left untracked for now — the
+ * fallback (no event) is acceptable, and the inline embed sees
+ * the same `source` thread regardless.
  */
 
 const FALLBACK_EMAIL = "hello@safarioverland.com"
@@ -28,10 +42,39 @@ type Props = {
   height?: number
   /** Optional inline tone — used on the dark page surfaces. */
   className?: string
+  /**
+   * Provenance label for `calendly-booking-completed`. Omit on the
+   * design-review preview or other non-conversion mounts and the
+   * listener no-ops.
+   */
+  source?: CalendlyBookingSource
 }
 
-export function PlannerCallEmbed({ height = 720, className }: Props) {
+// Calendly's postMessage payloads always begin with `calendly.`; the
+// scheduled event is what we count. Reference:
+// https://help.calendly.com/hc/en-us/articles/360020052833
+function isCalendlyScheduledEvent(data: unknown): boolean {
+  if (typeof data !== "object" || data === null) return false
+  const event = (data as { event?: unknown }).event
+  return typeof event === "string" && event === "calendly.event_scheduled"
+}
+
+export function PlannerCallEmbed({ height = 720, className, source }: Props) {
   const url = getUrl()
+
+  // Listen for Calendly's booking-completed postMessage. The listener
+  // is unconditional — even when no `source` is provided we still
+  // attach (cheap), but the track() call is gated on source.
+  useEffect(() => {
+    function handler(event: MessageEvent) {
+      if (!isCalendlyScheduledEvent(event.data)) return
+      if (!source) return
+      track("calendly-booking-completed", { source })
+    }
+    window.addEventListener("message", handler)
+    return () => window.removeEventListener("message", handler)
+  }, [source])
+
   if (!url) {
     return (
       <div className={className}>

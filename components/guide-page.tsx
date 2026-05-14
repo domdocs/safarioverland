@@ -5,6 +5,8 @@ import { ArrowLeft, ChevronRight, Info } from "lucide-react"
 
 import { Eyebrow } from "@/components/editorial/eyebrow"
 import { Button } from "@/components/ui/button"
+import { StartBriefLink } from "@/components/analytics/start-brief-link"
+import { FieldNoteReadTracker } from "@/components/analytics/field-note-read-tracker"
 
 export type GuideSection = {
   heading: string
@@ -190,13 +192,32 @@ export function GuidePage({
                       size="lg"
                       className="rounded-none px-8 py-6 mono bg-night text-bone hover:bg-ink"
                     >
-                      <Link href={ctaHref}>{ctaLabel} →</Link>
+                      {/*
+                       * Field-note CTA cards that point at /plan double as
+                       * Start-a-brief CTAs — wire the analytics event with
+                       * source "field-notes". Any other ctaHref renders as
+                       * a plain Link, untracked.
+                       */}
+                      {ctaHref === "/plan" || ctaHref.startsWith("/plan?") ? (
+                        <StartBriefLink source="field-notes" href={ctaHref}>
+                          {ctaLabel} →
+                        </StartBriefLink>
+                      ) : (
+                        <Link href={ctaHref}>{ctaLabel} →</Link>
+                      )}
                     </Button>
                   </div>
                 )}
               </div>
             </section>
           )}
+
+          {/*
+           * Field Notes scroll-depth tracker. Fires
+           * `field-note-read-complete` the first time the visitor scrolls
+           * past 75% of the document. Zero visible footprint.
+           */}
+          <FieldNoteReadTracker />
         </article>
 
         {/* ─── Related guides ─────────────────────────────────── */}

@@ -1,5 +1,4 @@
-import Link from "next/link"
-
+import { StartBriefLink } from "@/components/analytics/start-brief-link"
 import { Eyebrow } from "./eyebrow"
 
 type Props = {
@@ -37,13 +36,13 @@ export function CategoryEmptyState({ noun = "category" }: Props) {
         it&apos;ll appear here first.
       </p>
       <div className="mt-10">
-        <Link
-          href="/plan"
+        <StartBriefLink
+          source="category-empty-state"
           className="inline-flex items-center gap-2 mono text-amber hover:text-amber-deep transition-colors"
           data-testid="category-empty-state-cta"
         >
           Send a brief →
-        </Link>
+        </StartBriefLink>
       </div>
     </div>
   )

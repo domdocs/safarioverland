@@ -1,5 +1,6 @@
 import { Eyebrow } from "@/components/editorial/eyebrow"
 import { PlannerCallEmbed } from "./planner-call-embed"
+import type { CalendlyBookingSource } from "@/lib/analytics/events"
 
 type Props = {
   /** Section heading copy. Defaults to the /plan/sent treatment. */
@@ -7,6 +8,12 @@ type Props = {
   /** Subhead in editorial italic. */
   lede?: string
   className?: string
+  /**
+   * Provenance label for `calendly-booking-completed`. Required for
+   * the canonical /plan and /plan/sent placements; optional everywhere
+   * else (the listener no-ops without it).
+   */
+  source?: CalendlyBookingSource
 }
 
 /**
@@ -17,6 +24,7 @@ export function PlannerCallInline({
   heading = "Want to talk it through first?",
   lede = "Thirty minutes with a planner. Bring your dates and the trip you're picturing.",
   className,
+  source,
 }: Props) {
   return (
     <section className={className}>
@@ -30,7 +38,7 @@ export function PlannerCallInline({
         </p>
       </div>
       <div className="mt-10">
-        <PlannerCallEmbed height={760} />
+        <PlannerCallEmbed height={760} source={source} />
       </div>
     </section>
   )

@@ -4,9 +4,21 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Loader2, Check } from "lucide-react"
 
+import { track } from "@/lib/analytics/track"
+import type { NewsletterSource } from "@/lib/analytics/events"
+
 type Status = "idle" | "submitting" | "success" | "error"
 
-export function NewsletterForm() {
+type Props = {
+  /**
+   * Where this signup form lives — drives `newsletter-signup`'s `source`
+   * param. Defaults to `"field-notes"` for the canonical /resources
+   * placement; callers on the FAQ + footer override.
+   */
+  source?: NewsletterSource
+}
+
+export function NewsletterForm({ source = "field-notes" }: Props = {}) {
   const [email, setEmail] = useState("")
   const [status, setStatus] = useState<Status>("idle")
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -46,6 +58,7 @@ export function NewsletterForm() {
         return
       }
 
+      track("newsletter-signup", { source })
       setStatus("success")
       setEmail("")
     } catch (err) {

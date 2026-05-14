@@ -64,6 +64,12 @@ export default async function ListingPage({ params }: ListingPageProps) {
         href={`/plan?listing=${listing.id}`}
         price={listing.price_info || undefined}
         label="Add to a brief"
+        tracking={{
+          listingId: listing.id,
+          listingName: listing.listing_name,
+          category: listing.category ?? "",
+          region: listing.country ?? listing.location ?? "",
+        }}
       />
     </div>
   )

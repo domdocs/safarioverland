@@ -4,6 +4,7 @@ import type { ReactNode } from "react"
 import { ListingImage } from "@/components/listing-image"
 import { Button } from "@/components/ui/button"
 import { PlannerCallTrigger } from "@/components/planner-call/planner-call-trigger"
+import { AddToBriefLink } from "@/components/analytics/add-to-brief-link"
 import { GalleryLightbox } from "./gallery-lightbox"
 import { ListingCardEditorial } from "./listing-card-editorial"
 import type { DirectoryListing } from "@/lib/listings"
@@ -297,11 +298,17 @@ export function ListingDetail({ listing, related }: ListingDetailProps) {
                 className="rounded-none px-8 py-6 mono bg-amber text-night hover:bg-amber-deep"
                 asChild
               >
-                <Link href={`/plan?listing=${listing.id}`}>
+                <AddToBriefLink
+                  href={`/plan?listing=${listing.id}`}
+                  listingId={listing.id}
+                  listingName={listing_name}
+                  category={category ?? ""}
+                  region={country ?? location ?? ""}
+                >
                   Add this to a brief →
-                </Link>
+                </AddToBriefLink>
               </Button>
-              <PlannerCallTrigger size="lg">
+              <PlannerCallTrigger size="lg" source="listing-detail">
                 Speak to a planner →
               </PlannerCallTrigger>
             </div>
