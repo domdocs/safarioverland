@@ -20,7 +20,10 @@ export const dynamic = "force-dynamic"
 
 export default async function CategoriesPage() {
   const categories = await getActiveCategories()
-  const tabs = buildCategoryTabs(null)
+  const tabs = buildCategoryTabs(
+    null,
+    categories.map((c) => c.slug),
+  )
   const total = categories.length
   const totalLabel = String(total).padStart(2, "0")
   const sectionWord = total === 1 ? "section" : "sections"
