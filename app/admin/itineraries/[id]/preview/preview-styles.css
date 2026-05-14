@@ -939,6 +939,29 @@
     print-color-adjust: exact;
   }
 
+  /* Force every element (and especially background-image elements like
+   * the chapter hero) to print its backgrounds + photography. Without
+   * this rule, browsers drop background-image and background-color from
+   * print unless the user has "Print backgrounds" enabled in the dialog
+   * — which Niels' Mac default is OFF. We override that default. */
+  .itinerary-preview,
+  .itinerary-preview * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Cover photo & chapter hero rely on photo backgrounds. Force the
+   * containers to a definite page-relative height so the photo fills
+   * its half of the page (Chrome's print pipeline can lose `vh` units). */
+  .itinerary-preview .cover {
+    min-height: auto;
+    height: 297mm;
+  }
+  .itinerary-preview .chapter-hero {
+    min-height: auto;
+    height: 200mm;
+  }
+
   .preview-banner {
     display: none !important;
   }
