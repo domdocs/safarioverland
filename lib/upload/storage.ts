@@ -26,12 +26,14 @@ export const ALLOWED_MIME = new Set<string>([
   "image/jpeg",
   "image/png",
   "image/webp",
+  "image/avif",
 ])
 
 const EXT_BY_MIME: Record<string, string> = {
   "image/jpeg": "jpg",
   "image/png": "png",
   "image/webp": "webp",
+  "image/avif": "avif",
 }
 
 export type UploadResult =
@@ -116,13 +118,21 @@ export async function uploadListingImage(
   slot: UploadSlot,
   body: ArrayBuffer | Uint8Array,
   mimeType: string,
+  options?: {
+    /**
+     * Override the storage path. v2 needs this so the route can force
+     * `.webp` regardless of the source mime type. When omitted we fall
+     * back to `buildStoragePath(listingId, slot, mimeType)`.
+     */
+    path?: string
+  },
 ): Promise<UploadResult> {
   const supabase = getSupabaseServerClient()
   if (!supabase) {
     return { ok: false, error: "supabase server client unavailable" }
   }
 
-  const path = buildStoragePath(listingId, slot, mimeType)
+  const path = options?.path ?? buildStoragePath(listingId, slot, mimeType)
   const bytes =
     body instanceof Uint8Array ? body : new Uint8Array(body)
 

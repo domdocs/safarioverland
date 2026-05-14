@@ -1,11 +1,11 @@
 "use client"
 
 import { useCallback, useState } from "react"
-import Image from "next/image"
 import { useDropzone } from "react-dropzone"
 import { Loader2, RefreshCw, Trash2, UploadCloud } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { formatBytes } from "@/lib/upload/format-bytes"
 import { cn } from "@/lib/utils"
 
 type UploadSlot = "hero" | "founder"
@@ -47,12 +47,17 @@ export function SingleImageUpload({
 }: Props) {
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [stats, setStats] = useState<{
+    original: number
+    processed: number
+  } | null>(null)
 
   const onDrop = useCallback(
     async (accepted: File[]) => {
       if (accepted.length === 0) return
       const file = accepted[0]
       setError(null)
+      setStats(null)
       setUploading(true)
       try {
         const form = new FormData()
@@ -68,6 +73,15 @@ export function SingleImageUpload({
           setError(data.error || `HTTP ${res.status}`)
           setUploading(false)
           return
+        }
+        if (
+          typeof data.original_size === "number" &&
+          typeof data.processed_size === "number"
+        ) {
+          setStats({
+            original: data.original_size,
+            processed: data.processed_size,
+          })
         }
         onChange(data.url as string)
       } catch (err) {
@@ -187,6 +201,15 @@ export function SingleImageUpload({
               Remove
             </Button>
           </div>
+          {stats && (
+            <p
+              className="text-xs text-emerald-700"
+              data-testid={`${testIdPrefix}-stats`}
+            >
+              Original {formatBytes(stats.original)} → processed{" "}
+              {formatBytes(stats.processed)} (WebP)
+            </p>
+          )}
           <code className="block max-w-xs break-all text-[10px] text-muted-foreground bg-stone-100 p-2 rounded">
             {value}
           </code>

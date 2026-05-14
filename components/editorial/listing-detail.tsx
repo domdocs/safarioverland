@@ -67,8 +67,6 @@ export function ListingDetail({ listing, related }: ListingDetailProps) {
     location,
     country,
     category,
-    contact_email,
-    contact_phone,
     website,
     website_url,
     price_info,
@@ -264,61 +262,50 @@ export function ListingDetail({ listing, related }: ListingDetailProps) {
             </section>
           )}
 
-          {(contact_email || contact_phone || websiteHref) && (
-            <section className="mt-16 border-t border-rule pt-12">
-              <p className="eyebrow mb-8">Direct</p>
+          {/*
+           * Direct section — operator contact name / email / phone are
+           * deliberately not surfaced on the public listing page (see
+           * handoff/briefs/2026-05-IMAGE_PIPELINE_V2_AND_CONTACT_CLEANUP.md).
+           * Enquiries route through Safari Overland's planning service.
+           * The website link is kept — visitors going to the operator
+           * for further research is on-brand. Contact fields stay in
+           * the admin edit form for internal record-keeping.
+           */}
+          <section className="mt-16 border-t border-rule pt-12">
+            <p className="eyebrow mb-8">Enquire</p>
+            {websiteHref && (
               <dl className="space-y-0">
-                {websiteHref && (
-                  <ContactRow label="Website">
-                    <a
-                      href={websiteHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-amber transition-colors"
-                    >
-                      {websiteHref.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}
-                    </a>
-                  </ContactRow>
-                )}
-                {contact_email && (
-                  <ContactRow label="Email">
-                    <a
-                      href={`mailto:${contact_email}`}
-                      className="hover:text-amber transition-colors"
-                    >
-                      {contact_email}
-                    </a>
-                  </ContactRow>
-                )}
-                {contact_phone && (
-                  <ContactRow label="Phone">
-                    <a
-                      href={`tel:${contact_phone}`}
-                      className="hover:text-amber transition-colors"
-                    >
-                      {contact_phone}
-                    </a>
-                  </ContactRow>
-                )}
+                <ContactRow label="Website">
+                  <a
+                    href={websiteHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-amber transition-colors"
+                  >
+                    {websiteHref
+                      .replace(/^https?:\/\/(www\.)?/, "")
+                      .replace(/\/$/, "")}
+                  </a>
+                </ContactRow>
               </dl>
+            )}
 
-              {/* Desktop CTA — mobile gets the StickyCTA island */}
-              <div className="mt-12 hidden lg:flex flex-wrap gap-4">
-                <Button
-                  size="lg"
-                  className="rounded-none px-8 py-6 mono bg-amber text-night hover:bg-amber-deep"
-                  asChild
-                >
-                  <Link href={`/plan?listing=${listing.id}`}>
-                    Add this to a brief →
-                  </Link>
-                </Button>
-                <PlannerCallTrigger size="lg">
-                  Speak to a planner →
-                </PlannerCallTrigger>
-              </div>
-            </section>
-          )}
+            {/* Desktop CTA — mobile gets the StickyCTA island */}
+            <div className="mt-12 hidden lg:flex flex-wrap gap-4">
+              <Button
+                size="lg"
+                className="rounded-none px-8 py-6 mono bg-amber text-night hover:bg-amber-deep"
+                asChild
+              >
+                <Link href={`/plan?listing=${listing.id}`}>
+                  Add this to a brief →
+                </Link>
+              </Button>
+              <PlannerCallTrigger size="lg">
+                Speak to a planner →
+              </PlannerCallTrigger>
+            </div>
+          </section>
         </div>
       </section>
 
