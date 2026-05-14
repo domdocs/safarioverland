@@ -1,3 +1,8 @@
+> ✓ **SHIPPED (Phase 1)** — May 2026, PR #5 merged to `main`. Final
+> commit `431add6`. Phase 2 (server-side resize, EXIF stripping,
+> responsive-size variants, alt-text capture) deferred.
+> See `handoff/CHANGELOG.md` for the session-level summary.
+
 # Image upload + storage
 
 Operator outreach is going to return high-resolution photographs — we

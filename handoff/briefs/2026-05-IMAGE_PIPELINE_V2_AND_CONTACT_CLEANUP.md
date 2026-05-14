@@ -1,3 +1,8 @@
+> ✓ **SHIPPED** — 2026-05-14, PR #7 merged to `main`. Final commit `64e098c`.
+> Verified live: 36 KB JPEG with sharp-injected GPS came back at 6.9 KB
+> WebP, 2400×1600, EXIF absent.
+> See `handoff/CHANGELOG.md` for the session-level summary.
+
 # Image processing v2 + listing contact cleanup
 
 Two pieces of work bundled together because they polish the

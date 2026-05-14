@@ -1,3 +1,6 @@
+> ✓ **SHIPPED** — May 2026, merged to `main`.
+> See `handoff/CHANGELOG.md` for the session-level summary.
+
 # Home CTAs + directory-era cleanup
 
 Two related pieces of work that ship together. The first elevates the

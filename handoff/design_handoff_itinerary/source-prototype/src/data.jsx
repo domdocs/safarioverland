@@ -1,0 +1,198 @@
+// Itinerary data — Victoria Falls → Chobe → Okavango → Cape Town
+// Travelling 14 — 24 September, 2026  (11 days / 10 nights)
+
+const TRIP = {
+  title: "The Smoke, the Delta, the Cape",
+  subtitle: "Eleven days from the Zambezi to the Atlantic",
+  guests: ["Mr & Mrs Whitford"],
+  reference: "SO-2026-1042",
+  dates: { from: "14 September", to: "24 September", year: "2026" },
+  pace: "Unhurried. Three nights, on average, in each place.",
+  curator: {
+    name: "Tom Edwards",
+    title: "Curator, Safari Overland",
+    location: "Victoria Falls, Zimbabwe",
+  },
+  prologue: [
+    "Africa is not a place you visit. It is a thing that happens to you.",
+    "This eleven-day arc carries you from the thunder of the Zambezi, through Botswana's flooded\u00a0heart, and out the bottom of the continent where two oceans collide beneath a flat mountain. You will travel by light aircraft, by mokoro, by Land Cruiser, and twice on foot. You will sleep in four very different beds. You will, at some point — usually around the third morning of the Delta — stop checking your phone.",
+    "What follows is not an agenda. It is the shape of the journey we have built for you. Times are honest estimates; the wild keeps its own clock.",
+  ],
+};
+
+const CHAPTERS = [
+  {
+    id: "victoria-falls",
+    numeral: "I",
+    place: "Victoria Falls",
+    country: "Zimbabwe",
+    coords: { lat: -17.924, lon: 25.857 },
+    nights: 2,
+    dates: "14 — 16 September",
+    palette: "spray",
+    epigraph: "Mosi-oa-Tunya — the smoke that thunders.",
+    intro: [
+      "You arrive on the Zimbabwean side, where the Falls show themselves whole. From the air the Zambezi looks lazy, almost domestic, until it isn't — until 1.7 kilometres of river fold over a basalt lip and disappear into their own weather. The spray you can see from twenty miles out is, on most days, a small standing cloud.",
+      "We give you two full days here on purpose. One to meet the Falls; one to forget about them and meet the river instead.",
+    ],
+    lodge: {
+      name: "Victoria Falls Hotel",
+      kind: "Grande dame, est. 1904",
+      room: "Stables Garden Suite",
+      blurb: "The colonial-era hotel sits on the lip of the gorge, ten minutes' walk from the Falls themselves. Ask for tea on the Stanley Terrace at five o'clock — the spray plume hangs above the bridge like punctuation.",
+      amenities: ["Two restaurants", "Edwardian terrace", "Garden bathing pool", "Falls 10 min walk"],
+      photoId: "lodge-vf",
+    },
+    rhythm: [
+      { time: "Dawn", title: "Helicopter — Flight of Angels", body: "Fifteen minutes from Sprayview airstrip. You see the whole geological accident from a thousand feet — the zigzag gorge below, the river above, the perpetual rainbow between." },
+      { time: "Late morning", title: "The Falls themselves, on foot", body: "Sixteen viewpoints along the rim. Wear the raincoat we send to your room; do not bother with the camera at Devil's Cataract." },
+      { time: "Afternoon", title: "Sundowner cruise, upper Zambezi", body: "Hippo, elephant, fish eagles, the green sun. Three hours on a small boat with no more than ten others." },
+      { time: "Day 2", title: "Half-day rafting (Sept = high water)", body: "Or, for the less inclined: a guided walk along the gorge rim with Charles, a local geologist." },
+    ],
+    seeing: [
+      "Verreaux's eagles nesting in the gorge",
+      "Bushbuck and warthog in the hotel grounds at dusk",
+      "Hippo pods on the upper Zambezi at sundown",
+    ],
+    note: "If it is your first time, do not rush the Falls. Most people see them in 40 minutes and leave damp. The right way is to walk the path twice — once for the spectacle, once for the silence behind it. There is a bench at viewpoint 12 that almost no one uses. — T.",
+  },
+  {
+    id: "chobe",
+    numeral: "II",
+    place: "Chobe Riverfront",
+    country: "Botswana",
+    coords: { lat: -17.819, lon: 25.165 },
+    nights: 2,
+    dates: "16 — 18 September",
+    palette: "river",
+    epigraph: "Where the elephants come down to drink.",
+    intro: [
+      "Two hours west by road and a border crossing later, the landscape opens onto the Chobe River. In September — the end of the dry — the herds here are the densest concentration of elephant on the continent. Not a romantic exaggeration: the official census this year was 120,000 head along this stretch alone.",
+      "We have put you on the river side at Chobe Game Lodge, the only lodge inside the park itself. Your back door is the floodplain.",
+    ],
+    lodge: {
+      name: "Chobe Game Lodge",
+      kind: "Riverfront lodge, in-park",
+      room: "Riverview Room, ground floor",
+      blurb: "Built in the seventies and still the address inside Chobe National Park. Forty-six rooms, all looking onto the river. Female guiding team — Botswana's first, and still the best.",
+      amenities: ["In-park access", "Electric boats", "Wraparound river deck", "Spa"],
+      photoId: "lodge-chobe",
+    },
+    rhythm: [
+      { time: "Pre-dawn", title: "Coffee at 5:30, vehicle at 6:00", body: "Open Land Cruisers. The first hour of light is the hour of the cats. Florence is your guide on day one." },
+      { time: "Late morning", title: "Brunch on the deck", body: "Eggs to order. Elephants in the river, fifty metres from the eggs." },
+      { time: "Afternoon", title: "Electric boat — sundowner cruise", body: "Silent on the water. You can drift inside a hippo pod without disturbing it." },
+      { time: "Day 2", title: "Full-day Savuti excursion (optional)", body: "Three hours each way for the chance of lion-on-elephant — a behaviour unique to Savuti. We'll discuss the morning of." },
+    ],
+    seeing: [
+      "Loxodonta africana — by the hundred, sometimes thousand",
+      "Lion prides on the floodplain (Chobe's are unusually relaxed)",
+      "Carmine bee-eaters on the river banks",
+      "Sable, roan, puku — Chobe specials",
+    ],
+    note: "Florence has been guiding the Chobe river for nineteen years. Ask her about the elephant matriarchs by name — she knows them. Ask her about the leopard that hunts the lodge garden at night. — T.",
+  },
+  {
+    id: "okavango",
+    numeral: "III",
+    place: "Okavango Delta",
+    country: "Botswana",
+    coords: { lat: -19.282, lon: 22.847 },
+    nights: 3,
+    dates: "18 — 21 September",
+    palette: "delta",
+    epigraph: "A river that never reaches the sea.",
+    intro: [
+      "You fly south on a Cessna 208 — about an hour over the salt pans, then a slow descent over a country that has somehow turned to water. The Okavango is the largest inland delta on earth: every year, rain that falls in the Angolan highlands fans out across the Kalahari and quietly evaporates. The wildlife follows the water.",
+      "We have placed you on a private concession — no other vehicles, no other camps. The pace here is slower. Three nights gives you time to do nothing properly.",
+    ],
+    lodge: {
+      name: "Mombo Camp",
+      kind: "Tented camp, private concession",
+      room: "Tent 3 — riverfront, raised",
+      blurb: "Nine tents on the Mombo Island concession. Universally considered the best wildlife real estate in Botswana — your tent's deck looks onto the flooded plain where the lions hunt at night. Pool, library, no fences.",
+      amenities: ["9 tents only", "Private plunge pool", "Library & bar", "Open-vehicle game drives"],
+      photoId: "lodge-mombo",
+    },
+    rhythm: [
+      { time: "Morning", title: "Mokoro at first light", body: "Two hours poled through the reedbeds in a dugout canoe. You sit low — eye-level with the lily pads, the painted reed frogs, the occasional sitatunga." },
+      { time: "Midday", title: "Brunch, then rest", body: "It is hot. You will want to be horizontal. The plunge pool is on your deck." },
+      { time: "Late afternoon", title: "Game drive into the Mombo plains", body: "Lion, leopard, wild dog. The concession holds the highest predator density in southern Africa. Stop for sundowners on a termite mound." },
+      { time: "After dark", title: "Dinner under the stars", body: "Then a brief night drive home — the bush is a different country after sundown." },
+    ],
+    seeing: [
+      "Lion — Mombo's prides are habituated and unbothered",
+      "Leopard, often at the lodge itself after dark",
+      "Painted wolves (African wild dog) — denning season",
+      "Red lechwe, the delta antelope, splashing through the shallows",
+    ],
+    note: "The third morning is the one you'll remember. By then you've stopped trying. You'll be drinking coffee on your deck at 5:45 and the elephants will come past and you will not pick up your phone. That is the whole point of this trip. — T.",
+  },
+  {
+    id: "cape-town",
+    numeral: "IV",
+    place: "Cape Town",
+    country: "South Africa",
+    coords: { lat: -33.925, lon: 18.424 },
+    nights: 3,
+    dates: "21 — 24 September",
+    palette: "atlantic",
+    epigraph: "Two oceans, one mountain, a town wedged between.",
+    intro: [
+      "From bush to city in a single morning. Light aircraft out of the Delta, scheduled flight from Maun to Johannesburg, two-hour hop to Cape Town. You arrive in time for a late lunch.",
+      "Three nights at the bottom of Africa. The mountain in the middle of town, the cold Atlantic on one side, the warmer Indian on the other. We have built this final stretch deliberately gentle — the safari is the trip; Cape Town is the decompression.",
+    ],
+    lodge: {
+      name: "Ellerman House",
+      kind: "Boutique hotel, Bantry Bay",
+      room: "Suite 7, ocean-facing",
+      blurb: "Thirteen rooms on a cliffside above Bantry Bay. The wine cellar is a museum. The contemporary South African art collection is, quietly, world-class. Pool, spa, the best private chef in the country.",
+      amenities: ["13 rooms only", "Cliffside pool", "9000-bottle cellar", "Private art gallery"],
+      photoId: "lodge-ellerman",
+    },
+    rhythm: [
+      { time: "Day 1", title: "Arrival, lunch at the house, slow afternoon", body: "Swim, sleep, the spa if you want it. Dinner with the in-house chef." },
+      { time: "Day 2", title: "Table Mountain at dawn, then the winelands", body: "Cable car up before the queues. Drive into Franschhoek by ten. Lunch at La Colombe (booked), back via Stellenbosch." },
+      { time: "Day 3", title: "Cape Point & the peninsula", body: "Chapman's Peak drive, lunch at Cape Point, penguins at Boulders Beach on the way home. Final dinner at Ellerman — the chef has a tasting menu planned." },
+    ],
+    seeing: [
+      "Cape fur seals, Hout Bay",
+      "African penguins, Boulders Beach",
+      "Southern right whales, if you're lucky (early season)",
+      "Cape sugarbirds in the Ellerman gardens",
+    ],
+    note: "If the weather is on Table Mountain (it usually is, in some way), do not delay — go the moment it clears, even if it's the second morning instead of the first. The cable car runs only on still days. — T.",
+  },
+];
+
+const TRANSITS = [
+  {
+    from: "Victoria Falls",
+    to: "Chobe",
+    mode: "Private road transfer",
+    duration: "≈ 1 hr 30 min",
+    distance: "78 km",
+    crosses: "Kazungula border (Zimbabwe → Botswana)",
+    note: "Border formalities take 30–45 minutes. Your driver, Givemore, will handle the paperwork. Visas issued on arrival.",
+  },
+  {
+    from: "Chobe",
+    to: "Okavango Delta",
+    mode: "Light aircraft (Cessna 208)",
+    duration: "≈ 1 hr 10 min flight",
+    distance: "440 km",
+    crosses: "Kasane → Mombo airstrip",
+    note: "20 kg luggage limit on the bush flight (soft bags only). The hotel will store hard cases for you and forward them to Cape Town.",
+  },
+  {
+    from: "Okavango Delta",
+    to: "Cape Town",
+    mode: "Bush flight + scheduled flights",
+    duration: "≈ 6 hr door-to-door",
+    distance: "1,900 km",
+    crosses: "Mombo → Maun → Johannesburg → Cape Town",
+    note: "Bush flight at 09:00; SA Airlink to Joburg 13:20; onward to CPT 16:45. Lounge access throughout.",
+  },
+];
+
+window.TRIP_DATA = { TRIP, CHAPTERS, TRANSITS };

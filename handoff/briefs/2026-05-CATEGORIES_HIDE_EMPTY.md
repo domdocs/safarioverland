@@ -1,3 +1,9 @@
+> ✓ **SHIPPED** — 2026-05-14, PR #8 merged to `main`. Final commit `64e098c`.
+> Filters apply to three surfaces: `/categories` index grid, sticky
+> header tab strip, and footer Categories column. Driven by
+> `getActiveCategories()` in `lib/categories.ts`.
+> See `handoff/CHANGELOG.md` for the session-level summary.
+
 # Categories — retire empty cards gracefully
 
 Editorial polish: categories with zero approved listings should not

@@ -1,3 +1,6 @@
+> ✓ **SHIPPED** — May 2026, PR #1 merged to `main`. Final commit `431add6`.
+> See `handoff/CHANGELOG.md` for the session-level summary.
+
 # Listing import API + CLI
 
 A small API surface that turns a research-record markdown file (see

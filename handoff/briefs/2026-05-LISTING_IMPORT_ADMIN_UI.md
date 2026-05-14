@@ -1,3 +1,6 @@
+> ✓ **SHIPPED** — May 2026, PR #2 merged to `main`. Final commit `431add6`.
+> See `handoff/CHANGELOG.md` for the session-level summary.
+
 # Listing-import admin UI
 
 Replace the CLI-only import workflow with a drag-and-drop UI in the

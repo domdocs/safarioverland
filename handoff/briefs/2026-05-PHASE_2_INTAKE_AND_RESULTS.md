@@ -1,3 +1,6 @@
+> ✓ **SHIPPED** — May 2026, merged to `main`.
+> See `handoff/CHANGELOG.md` for the session-level summary.
+
 # Phase 2 — better intake, results, and CTAs
 
 ## Source

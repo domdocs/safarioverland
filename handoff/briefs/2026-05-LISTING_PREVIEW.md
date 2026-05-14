@@ -1,3 +1,9 @@
+> ✓ **SHIPPED** — May 2026, PR #4 merged to `main`. Final commit `431add6`.
+> Also closed a latent bug: pending and rejected listings on the
+> public `/listings/[id]` path now 404 (previously viewable by anyone
+> with the UUID).
+> See `handoff/CHANGELOG.md` for the session-level summary.
+
 # Preview button on listing edit form
 
 Add a "Preview" button to `/admin/listings/edit/[id]` that opens the

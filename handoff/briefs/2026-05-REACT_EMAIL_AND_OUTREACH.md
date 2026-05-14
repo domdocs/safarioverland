@@ -1,3 +1,6 @@
+> ✓ **SHIPPED** — May 2026, PR #3 merged to `main`. Final commit `431add6`.
+> See `handoff/CHANGELOG.md` for the session-level summary.
+
 # React Email + outreach tracking
 
 Three pieces of work that ship together:
