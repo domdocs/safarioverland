@@ -3,6 +3,8 @@
 import { useCallback, useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { Loader2, UploadCloud, X } from "lucide-react"
+
+import { formatBytes } from "@/lib/upload/format-bytes"
 import {
   DndContext,
   closestCenter,
@@ -50,15 +52,23 @@ export function GalleryUpload({
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [progress, setProgress] = useState<{ done: number; total: number } | null>(null)
+  const [batchStats, setBatchStats] = useState<{
+    files: number
+    original: number
+    processed: number
+  } | null>(null)
 
   const onDrop = useCallback(
     async (accepted: File[]) => {
       if (accepted.length === 0) return
       setError(null)
+      setBatchStats(null)
       setUploading(true)
       setProgress({ done: 0, total: accepted.length })
 
       const newUrls: string[] = []
+      let originalTotal = 0
+      let processedTotal = 0
       for (let i = 0; i < accepted.length; i++) {
         const file = accepted[i]
         try {
@@ -76,6 +86,12 @@ export function GalleryUpload({
             break
           }
           newUrls.push(data.url as string)
+          if (typeof data.original_size === "number") {
+            originalTotal += data.original_size
+          }
+          if (typeof data.processed_size === "number") {
+            processedTotal += data.processed_size
+          }
         } catch (err) {
           setError(
             `${file.name}: ${err instanceof Error ? err.message : "network error"}`,
@@ -83,6 +99,14 @@ export function GalleryUpload({
           break
         }
         setProgress({ done: i + 1, total: accepted.length })
+      }
+
+      if (newUrls.length > 0 && originalTotal > 0) {
+        setBatchStats({
+          files: newUrls.length,
+          original: originalTotal,
+          processed: processedTotal,
+        })
       }
 
       if (newUrls.length > 0) {
@@ -179,6 +203,17 @@ export function GalleryUpload({
       {error ? (
         <p className="text-xs text-red-700" data-testid={`${testIdPrefix}-error`}>
           {error}
+        </p>
+      ) : null}
+
+      {batchStats ? (
+        <p
+          className="text-xs text-emerald-700"
+          data-testid={`${testIdPrefix}-stats`}
+        >
+          {batchStats.files} file{batchStats.files === 1 ? "" : "s"} ·
+          Original {formatBytes(batchStats.original)} → processed{" "}
+          {formatBytes(batchStats.processed)} (WebP)
         </p>
       ) : null}
 
