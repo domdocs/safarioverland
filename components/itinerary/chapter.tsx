@@ -9,14 +9,18 @@ function ChapterHero({
   index: number
 }) {
   const numeral = toRoman(index)
-  const heroStyle = chapter.photo_hero_url
-    ? { backgroundImage: `url(${chapter.photo_hero_url})` }
-    : undefined
   return (
     <div
       className={`chapter-hero${chapter.photo_hero_url ? "" : " no-photo"}`}
-      style={heroStyle}
     >
+      {chapter.photo_hero_url && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={chapter.photo_hero_url}
+          alt=""
+          className="chapter-hero-photo"
+        />
+      )}
       <div className="label">
         <div className="numeral-big">{numeral}</div>
         <div>

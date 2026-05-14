@@ -153,6 +153,8 @@
   overflow: hidden;
 }
 .itinerary-preview .cover .cover-photo img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -334,12 +336,18 @@
   height: 78vh;
   min-height: 560px;
   background-color: var(--ink);
-  background-size: cover;
-  background-position: center;
   overflow: hidden;
 }
 .itinerary-preview .chapter-hero.no-photo {
   background-image: linear-gradient(180deg, #2a2418 0%, #6e3f0d 60%, #a86b1e 100%);
+}
+.itinerary-preview .chapter-hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 .itinerary-preview .chapter-hero::after {
   content: "";
@@ -358,7 +366,9 @@
   grid-template-columns: auto 1fr auto;
   align-items: end;
   gap: 3rem;
+  z-index: 2;
 }
+.itinerary-preview .chapter-hero::after { z-index: 1; }
 @media (max-width: 900px) {
   .itinerary-preview .chapter-hero .label {
     padding: 2rem 1.5rem;
@@ -957,9 +967,23 @@
     min-height: auto;
     height: 297mm;
   }
+  .itinerary-preview .cover .cover-photo {
+    height: 297mm;
+  }
   .itinerary-preview .chapter-hero {
     min-height: auto;
     height: 200mm;
+  }
+  /* Absolute-positioned hero/cover photos render reliably in print
+   * because they get a definite size from their position:absolute +
+   * inset:0 rather than relying on grid stretch. */
+  .itinerary-preview .chapter-hero-photo,
+  .itinerary-preview .cover .cover-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .preview-banner {
