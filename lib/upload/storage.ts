@@ -19,6 +19,19 @@ import { randomUUID } from "node:crypto"
 import { getSupabaseServerClient } from "@/lib/supabase"
 
 export type UploadSlot = "hero" | "gallery" | "founder"
+export type ItinerarySlot = "itinerary-cover" | "chapter-hero" | "chapter-lodge"
+export type AnySlot = UploadSlot | ItinerarySlot
+
+const LISTING_SLOTS: ReadonlySet<UploadSlot> = new Set<UploadSlot>([
+  "hero",
+  "gallery",
+  "founder",
+])
+const ITINERARY_SLOTS: ReadonlySet<ItinerarySlot> = new Set<ItinerarySlot>([
+  "itinerary-cover",
+  "chapter-hero",
+  "chapter-lodge",
+])
 
 export const LISTING_MEDIA_BUCKET = "listing-media"
 export const MAX_BYTES = 10 * 1024 * 1024 // 10 MB
@@ -53,11 +66,7 @@ export function validateUpload(args: {
   if (!args.listingId || args.listingId.length < 8) {
     return { ok: false, error: "listing_id is required" }
   }
-  if (
-    args.slot !== "hero" &&
-    args.slot !== "gallery" &&
-    args.slot !== "founder"
-  ) {
+  if (!LISTING_SLOTS.has(args.slot as UploadSlot)) {
     return {
       ok: false,
       error: `slot must be one of hero / gallery / founder (got "${args.slot}")`,
@@ -82,6 +91,56 @@ export function validateUpload(args: {
 }
 
 /**
+ * Validate an itinerary upload — separate from listings because the
+ * required identifiers differ (chapter slots need an additional chapter_id).
+ */
+export function validateItineraryUpload(args: {
+  itineraryId: string
+  chapterId?: string | null
+  slot: string
+  type: string
+  size: number
+}):
+  | { ok: true; slot: ItinerarySlot }
+  | { ok: false; error: string } {
+  if (!args.itineraryId || args.itineraryId.length < 8) {
+    return { ok: false, error: "itinerary_id is required" }
+  }
+  if (!ITINERARY_SLOTS.has(args.slot as ItinerarySlot)) {
+    return {
+      ok: false,
+      error: `slot must be one of itinerary-cover / chapter-hero / chapter-lodge (got "${args.slot}")`,
+    }
+  }
+  const slot = args.slot as ItinerarySlot
+  if (
+    (slot === "chapter-hero" || slot === "chapter-lodge") &&
+    (!args.chapterId || args.chapterId.length < 8)
+  ) {
+    return {
+      ok: false,
+      error: `chapter_id is required for slot "${slot}"`,
+    }
+  }
+  if (!ALLOWED_MIME.has(args.type)) {
+    return {
+      ok: false,
+      error: `unsupported mime type "${args.type}" — accept image/jpeg, image/png, image/webp`,
+    }
+  }
+  if (args.size <= 0) {
+    return { ok: false, error: "file is empty" }
+  }
+  if (args.size > MAX_BYTES) {
+    return {
+      ok: false,
+      error: `file is ${Math.round(args.size / 1024 / 1024)}MB; max is ${MAX_BYTES / 1024 / 1024}MB`,
+    }
+  }
+  return { ok: true, slot }
+}
+
+/**
  * Compute the bucket path for a given listing + slot + mime. Exposed
  * for tests; production callers go through `uploadListingImage`.
  */
@@ -92,6 +151,26 @@ export function buildStoragePath(
 ): string {
   const ext = EXT_BY_MIME[mimeType] ?? "bin"
   return `${listingId}/${slot}/${randomUUID()}.${ext}`
+}
+
+/**
+ * Compute the bucket path for an itinerary asset. Cover assets land at
+ * `itineraries/[id]/cover/[uuid].ext`; chapter assets nest the chapter id
+ * one level deeper. The Phase-1 brief specifies this layout verbatim.
+ */
+export function buildItineraryStoragePath(args: {
+  itineraryId: string
+  chapterId?: string | null
+  slot: ItinerarySlot
+  mimeType: string
+}): string {
+  const ext = EXT_BY_MIME[args.mimeType] ?? "bin"
+  if (args.slot === "itinerary-cover") {
+    return `itineraries/${args.itineraryId}/cover/${randomUUID()}.${ext}`
+  }
+  // chapter-hero / chapter-lodge
+  const sub = args.slot === "chapter-hero" ? "chapter-hero" : "chapter-lodge"
+  return `itineraries/${args.itineraryId}/${sub}/${args.chapterId}/${randomUUID()}.${ext}`
 }
 
 /**
@@ -136,6 +215,42 @@ export async function uploadListingImage(
   const bytes =
     body instanceof Uint8Array ? body : new Uint8Array(body)
 
+  const { error: uploadErr } = await supabase.storage
+    .from(LISTING_MEDIA_BUCKET)
+    .upload(path, bytes, {
+      contentType: mimeType,
+      upsert: false,
+    })
+
+  if (uploadErr) {
+    console.error("listing media upload failed", uploadErr)
+    return { ok: false, error: uploadErr.message }
+  }
+
+  const url = publicUrlFor(path)
+  if (!url) {
+    return { ok: false, error: "NEXT_PUBLIC_SUPABASE_URL missing" }
+  }
+  return { ok: true, url, path }
+}
+
+/**
+ * Upload bytes to an arbitrary path inside `listing-media`. Used by the
+ * itinerary slots where the path layout differs from the listing layout.
+ * Caller is responsible for computing the path via
+ * `buildItineraryStoragePath()`.
+ */
+export async function uploadToPath(
+  path: string,
+  body: ArrayBuffer | Uint8Array,
+  mimeType: string,
+): Promise<UploadResult> {
+  const supabase = getSupabaseServerClient()
+  if (!supabase) {
+    return { ok: false, error: "supabase server client unavailable" }
+  }
+
+  const bytes = body instanceof Uint8Array ? body : new Uint8Array(body)
   const { error: uploadErr } = await supabase.storage
     .from(LISTING_MEDIA_BUCKET)
     .upload(path, bytes, {
