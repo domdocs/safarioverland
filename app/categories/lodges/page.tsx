@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { getListingsByCategory } from "@/lib/listings"
 import { getSettings } from "@/lib/settings"
 import { CategoryPageShell } from "@/components/editorial/category-page-shell"
+import { CategoryEmptyState } from "@/components/editorial/category-empty-state"
 import { PaginatedListingsGridEditorial } from "@/components/editorial/paginated-listings-grid-editorial"
 
 export const metadata: Metadata = {
@@ -31,7 +32,7 @@ export default async function LodgesPage() {
         categorySlug="lodges"
         pageSize={pageSize}
         eyebrow="Lodge"
-        emptyMessage="No lodges listed yet — submissions open under /submit."
+        emptyContent={<CategoryEmptyState noun="lodge" />}
       />
     </CategoryPageShell>
   )
