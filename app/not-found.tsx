@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 
+import { StartBriefLink } from "@/components/analytics/start-brief-link"
 import { EditorialHeader } from "@/components/editorial/editorial-header"
 import { EditorialFooter } from "@/components/editorial/editorial-footer"
 import { Eyebrow } from "@/components/editorial/eyebrow"
@@ -61,7 +62,7 @@ export default function NotFound() {
                   className="rounded-none px-8 py-6 mono border-bone/30 text-bone hover:border-amber hover:text-amber bg-transparent"
                   asChild
                 >
-                  <Link href="/plan">Plan a trip</Link>
+                  <StartBriefLink source="404">Plan a trip</StartBriefLink>
                 </Button>
               </div>
             </div>

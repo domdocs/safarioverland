@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
+import { StartBriefLink } from "@/components/analytics/start-brief-link"
 import { Eyebrow } from "@/components/editorial/eyebrow"
 import { Button } from "@/components/ui/button"
 import { PlannerCallInline } from "@/components/planner-call/planner-call-inline"
@@ -185,9 +186,9 @@ export function PlanSent() {
             back within 48 hours.
           </p>
           <Button asChild size="lg" className="mt-10 rounded-none px-8 py-6 mono">
-            <Link href="/plan">
+            <StartBriefLink source="plan-sent">
               Start a brief <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
+            </StartBriefLink>
           </Button>
         </div>
       </section>
@@ -281,7 +282,10 @@ export function PlanSent() {
       </section>
 
       {/* ── Call slot ───────────────────────────────────────────── */}
-      <PlannerCallInline className="container py-16 md:py-24 border-b border-rule" />
+      <PlannerCallInline
+        className="container py-16 md:py-24 border-b border-rule"
+        source="plan-sent"
+      />
 
       {/* ── What happens next ───────────────────────────────────── */}
       <section className="container py-16 md:py-24">

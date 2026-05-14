@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 
 import { getActiveCategories } from "@/lib/categories"
+import { StartBriefLink } from "@/components/analytics/start-brief-link"
 import { Eyebrow } from "@/components/editorial/eyebrow"
 import { CategoryTabStrip } from "@/components/editorial/category-tab-strip"
 import { buildCategoryTabs } from "@/lib/category-tabs"
@@ -65,12 +66,12 @@ export default async function CategoriesPage() {
               and we'll draft you three routes by hand.
             </p>
             <div className="mt-10">
-              <Link
-                href="/plan"
+              <StartBriefLink
+                source="categories-empty"
                 className="inline-flex items-center gap-2 mono text-amber hover:text-amber-deep transition-colors"
               >
                 Send a brief →
-              </Link>
+              </StartBriefLink>
             </div>
           </div>
         ) : (

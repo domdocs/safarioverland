@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 
+import { StartBriefLink } from "@/components/analytics/start-brief-link"
 import { EditorialHeader } from "@/components/editorial/editorial-header"
 import { EditorialFooter } from "@/components/editorial/editorial-footer"
 import { Eyebrow } from "@/components/editorial/eyebrow"
@@ -93,7 +94,7 @@ export default async function HomePage() {
               </p>
               <div className="mt-10 flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
-                  <Link href="/plan">Start a brief →</Link>
+                  <StartBriefLink source="hero">Start a brief →</StartBriefLink>
                 </Button>
                 <Button
                   size="lg"
@@ -126,9 +127,11 @@ export default async function HomePage() {
               </p>
               <div className="mt-12 flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
-                  <Link href="/plan">Start a brief →</Link>
+                  <StartBriefLink source="home-plan-card">
+                    Start a brief →
+                  </StartBriefLink>
                 </Button>
-                <PlannerCallTrigger size="lg">
+                <PlannerCallTrigger size="lg" source="home">
                   Speak to a planner
                 </PlannerCallTrigger>
               </div>

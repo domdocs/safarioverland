@@ -2,6 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Search } from "lucide-react"
 import { MobileDrawer, type DrawerLink } from "./mobile-drawer"
+import { StartBriefLink } from "@/components/analytics/start-brief-link"
 import { cn } from "@/lib/utils"
 
 type EditorialHeaderProps = {
@@ -97,12 +98,12 @@ export function EditorialHeader({ variant = "standard", className }: EditorialHe
           >
             Sign in
           </Link>
-          <Link
-            href="/plan"
+          <StartBriefLink
+            source="header"
             className="bg-amber px-4 py-2 mono text-night hover:bg-amber-deep transition-colors"
           >
             Start a brief →
-          </Link>
+          </StartBriefLink>
         </div>
 
         {/* Mobile drawer (lg-) */}

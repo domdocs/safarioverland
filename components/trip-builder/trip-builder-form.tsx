@@ -9,6 +9,8 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Eyebrow } from "@/components/editorial/eyebrow"
+import { track } from "@/lib/analytics/track"
+import type { BriefSubmittedProps } from "@/lib/analytics/events"
 import {
   BUDGET_TIER_OPTIONS,
   DURATION_OPTIONS,
@@ -234,6 +236,18 @@ export function TripBuilderForm() {
         setSubmitting(false)
         return
       }
+
+      // Funnel event — only fires on 2xx so attempts don't pollute the
+      // dashboard. PII (name/email/phone/free_text) deliberately excluded;
+      // we capture only the categorical funnel slices.
+      const briefEvent: BriefSubmittedProps = {
+        pace: (state.pace || null) as BriefSubmittedProps["pace"],
+        budget_tier:
+          (state.budget_tier || null) as BriefSubmittedProps["budget_tier"],
+        duration: state.duration || null,
+        has_source_listing: !!sourceListingId,
+      }
+      track("brief-submitted", briefEvent)
 
       // Hand off a snapshot for /plan/sent. No PII in the URL.
       try {

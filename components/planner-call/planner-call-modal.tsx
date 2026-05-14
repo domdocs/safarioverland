@@ -4,10 +4,16 @@ import { useEffect, useRef } from "react"
 import { X } from "lucide-react"
 
 import { PlannerCallEmbed } from "./planner-call-embed"
+import type { CalendlyBookingSource } from "@/lib/analytics/events"
 
 type Props = {
   open: boolean
   onClose: () => void
+  /**
+   * Threaded through to the embed so `calendly-booking-completed` carries
+   * the same provenance as the original `speak-to-planner-click`.
+   */
+  source: CalendlyBookingSource
 }
 
 /**
@@ -18,7 +24,7 @@ type Props = {
  * - Locks body scroll while open.
  * - Focused on the close button on mount so keyboard users can dismiss.
  */
-export function PlannerCallModal({ open, onClose }: Props) {
+export function PlannerCallModal({ open, onClose, source }: Props) {
   const closeBtnRef = useRef<HTMLButtonElement>(null)
 
   // ESC + scroll lock + initial focus
@@ -64,7 +70,7 @@ export function PlannerCallModal({ open, onClose }: Props) {
           </button>
         </div>
         <div className="px-6 py-6">
-          <PlannerCallEmbed height={680} />
+          <PlannerCallEmbed height={680} source={source} />
         </div>
       </div>
     </div>

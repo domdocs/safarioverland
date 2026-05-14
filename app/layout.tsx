@@ -6,6 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { SupabaseProvider } from "@/components/supabase-provider"
 import { DownloadGateProvider } from "@/components/download-gate-provider"
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import Script from "next/script"
 
 // Editorial typography — wired via CSS variables, picked up in tailwind.config.ts
@@ -113,6 +115,28 @@ export default function RootLayout({
             </DownloadGateProvider>
           </SupabaseProvider>
         </ThemeProvider>
+        {/*
+         * Vercel Web Analytics + Speed Insights.
+         *
+         * Both filter out /admin/* in beforeSend — we don't need pageview
+         * counts or Core Web Vitals on our own editorial back-of-house,
+         * and the seven custom events fired via lib/analytics/track.ts
+         * are themselves filtered there as a second layer.
+         *
+         * Cookieless, no PII. See handoff/ANALYTICS.md for the taxonomy.
+         */}
+        <Analytics
+          beforeSend={(event) => {
+            if (event.url.includes("/admin")) return null
+            return event
+          }}
+        />
+        <SpeedInsights
+          beforeSend={(event) => {
+            if (event.url.includes("/admin")) return null
+            return event
+          }}
+        />
       </body>
     </html>
   )

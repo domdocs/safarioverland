@@ -66,6 +66,7 @@ export default async function PlanPage({ searchParams }: PlanPageProps) {
           className="container py-16 md:py-24"
           heading="Or speak to a planner first."
           lede="Thirty minutes on a call before you fill anything in — sometimes faster than a form."
+          source="plan"
         />
       </main>
 

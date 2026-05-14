@@ -3,6 +3,7 @@ import Link from "next/link"
 import type { ReactNode } from "react"
 import { ChevronDown } from "lucide-react"
 
+import { StartBriefLink } from "@/components/analytics/start-brief-link"
 import { Eyebrow } from "@/components/editorial/eyebrow"
 import { SectionRule } from "@/components/editorial/section-rule"
 import { NewsletterForm } from "@/components/newsletter-form"
@@ -533,7 +534,7 @@ export default function FaqsPage() {
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <Button asChild size="lg" className="rounded-none px-8 py-6 mono">
-              <Link href="/plan">Start a brief →</Link>
+              <StartBriefLink source="faq">Start a brief →</StartBriefLink>
             </Button>
             <Button
               asChild
@@ -559,7 +560,7 @@ export default function FaqsPage() {
             opinion. Unsubscribe in one click.
           </p>
           <div className="mt-10">
-            <NewsletterForm />
+            <NewsletterForm source="faq" />
           </div>
         </div>
       </section>

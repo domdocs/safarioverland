@@ -7,6 +7,54 @@ referenced — it's the canonical spec for what was built and why.
 
 ---
 
+## 2026-05-14 — Vercel Web Analytics + Speed Insights
+
+**Vercel Web Analytics + Speed Insights + seven custom conversion events** (PR #11)
+Spec: `handoff/briefs/2026-05-VERCEL_ANALYTICS.md`
+
+- `@vercel/analytics` and `@vercel/speed-insights` installed and wired
+  into `app/layout.tsx`, both filtering `/admin/*` via `beforeSend`.
+- New `lib/analytics/` module:
+  - `events.ts` — single source of truth for the event taxonomy (typed
+    name → param-shape map).
+  - `track.ts` — typed wrapper around `@vercel/analytics`' `track()`
+    that no-ops on `/admin/*` paths (defence in depth).
+- New `components/analytics/` shared client components:
+  - `StartBriefLink` — drop-in replacement for `<Link href="/plan">`
+    that fires `start-brief-click` with a typed `source`.
+  - `AddToBriefLink` — listing-detail Add-to-a-brief CTA wrapper.
+  - `FieldNoteReadTracker` — zero-DOM scroll-depth observer.
+- Seven events live:
+  1. `start-brief-click` — instrumented at header, hero, home plan
+     card, field-note CTAs, category empty state, categories root
+     empty, `/resources/faqs` bottom CTA, `/404`, and `/plan/sent`
+     fallback.
+  2. `add-to-brief-click` — desktop CTA + mobile sticky on
+     `/listings/[id]`.
+  3. `speak-to-planner-click` — `PlannerCallTrigger` open with
+     threaded `source`.
+  4. `brief-submitted` — `/plan` success branch only (no attempts),
+     captures pace / budget_tier / duration / has_source_listing.
+     No PII.
+  5. `newsletter-signup` — `NewsletterForm` on dispatch success.
+  6. `field-note-read-complete` — fires once per page-load at 75%
+     scroll depth on any `GuidePage`.
+  7. `calendly-booking-completed` — `PlannerCallEmbed` listens for
+     Calendly's `calendly.event_scheduled` postMessage; threaded
+     `source` from the modal/inline mount.
+- Documentation: `handoff/ANALYTICS.md` — taxonomy, dashboard
+  locations, admin exclusion, and the "no PII / no cookies" stance.
+- Tests: 11 new unit/component tests across `lib/analytics/track`,
+  `StartBriefLink`, and `AddToBriefLink`; full vitest suite at 57/57.
+
+Defence in depth on admin exclusion: `beforeSend` filters URL-keyed
+events (page views + Core Web Vitals), the `track()` wrapper filters
+custom events. Either alone is sufficient; both means a future
+shared-CTA change on an admin page can't accidentally pollute the
+dashboard.
+
+---
+
 ## 2026-05-14 — Image pipeline v2 + category polish
 
 Two PRs landed: the deferred Phase 2 image-processing work, and the
