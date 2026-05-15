@@ -947,18 +947,18 @@
 
   /* A4 print viewport (≈ 794px) would otherwise trigger our @media
    * (max-width: 900px) mobile rule, collapsing the cover to a single
-   * column. Force the desktop 2-column cover and its padding for print.
+   * column. Force the desktop 2-column cover for print.
    *
-   * Heights use 100vh rather than 297mm so the cover/hero exactly
-   * matches the printable page area whatever Safari's internal
-   * margin policy is — Safari was producing pages slightly taller
-   * than 297mm, leaving a bone strip below the hero AND letting the
-   * next section flow onto the same page despite break-after: page. */
+   * Heights use 297mm (= A4 portrait page height with @page margin: 0)
+   * for absolute reliability. vh units fail here because Safari's
+   * print engine resolves vh against the screen viewport, not the page
+   * area, so 100vh comes out around 200-220mm on a typical Mac. */
   .itinerary-preview .cover {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     min-height: 0;
-    height: 100vh;
+    height: 297mm;
+    overflow: hidden;
   }
   .itinerary-preview .cover-meta {
     padding: 5rem 5rem 4rem !important;
@@ -966,12 +966,13 @@
   .itinerary-preview .cover .cover-photo {
     position: relative;
     min-height: 0;
-    height: 100vh;
+    height: 297mm;
     overflow: hidden;
   }
   .itinerary-preview .chapter-hero {
     min-height: 0;
-    height: 100vh;
+    height: 297mm;
+    overflow: hidden;
   }
   /* Give the imgs explicit page-relative dimensions instead of
    * width/height: 100% — Safari and Chrome's print engines occasionally
@@ -980,14 +981,14 @@
    * aspect-ratio, which provides a definite intrinsic height; cover
    * and hero parents don't, so we hardcode the print dimensions. */
   .itinerary-preview .cover .cover-photo img {
-    width: 100% !important;
-    height: 100vh !important;
+    width: 105mm !important;
+    height: 297mm !important;
     object-fit: cover !important;
     display: block !important;
   }
   .itinerary-preview .chapter-hero-photo {
-    width: 100% !important;
-    height: 100vh !important;
+    width: 210mm !important;
+    height: 297mm !important;
     object-fit: cover !important;
     display: block !important;
   }
@@ -1020,17 +1021,18 @@
     page-break-inside: avoid;
   }
 
-  /* min-height: 100vh on sections whose background colour differs
-   * from the body (paper for overview/practicals, ink for transit,
-   * bone for signoff). Without this the section background ends with
-   * the content and the rest of the page would expose the body
-   * background, creating a colour band. Sections that already share
-   * the body bone background (prologue, chapter) don't need it. */
+  /* min-height: 297mm (not 100vh — vh resolves against the screen
+   * viewport in Safari print, not the page area) on sections whose
+   * background colour differs from the body. Without this the
+   * section background ends with the content and the rest of the
+   * page would expose the body background, creating a colour band.
+   * Sections that already share the body bone background (prologue,
+   * chapter) don't need it. */
   .itinerary-preview .signoff,
   .itinerary-preview .overview,
   .itinerary-preview .practicals,
   .itinerary-preview .transit {
-    min-height: 100vh;
+    min-height: 297mm;
   }
 
   /* The dark ::after gradient overlays on cover and chapter hero are
