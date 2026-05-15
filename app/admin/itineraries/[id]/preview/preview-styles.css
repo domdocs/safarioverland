@@ -960,7 +960,7 @@
   }
   .itinerary-preview .chapter-hero {
     min-height: 0;
-    height: 200mm;
+    height: 297mm;
   }
   /* Give the imgs explicit page-relative dimensions instead of
    * width/height: 100% — Safari and Chrome's print engines occasionally
@@ -976,9 +976,49 @@
   }
   .itinerary-preview .chapter-hero-photo {
     width: 210mm !important;
-    height: 200mm !important;
+    height: 297mm !important;
     object-fit: cover !important;
     display: block !important;
+  }
+
+  /* Text shadow on the chapter hero label so the cream type stays
+   * readable when the photo has a light area underneath. We can't
+   * re-introduce the ::after gradient overlay because Safari renders
+   * rgba gradients as opaque blocks in print, fully hiding the photo. */
+  .itinerary-preview .chapter-hero .numeral-big,
+  .itinerary-preview .chapter-hero .label h2,
+  .itinerary-preview .chapter-hero .place-meta,
+  .itinerary-preview .chapter-hero .dates .when,
+  .itinerary-preview .chapter-hero .dates .nights {
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Practical cards: switch from grid to CSS columns. CSS columns
+   * honour break-inside: avoid reliably; grid items don't, especially
+   * across page boundaries. The Weather/Packing pair was splitting
+   * mid-card across pages 13→14. Columns keep each card whole. */
+  .itinerary-preview .practicals .cards {
+    display: block !important;
+    column-count: 2;
+    column-gap: 1.5rem;
+  }
+  .itinerary-preview .practical-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    margin: 0 0 1.5rem;
+    display: block;
+  }
+
+  /* Each major section's background should extend to fill the page.
+   * The signoff page in particular was leaving a white half-page
+   * because its section ended before the page edge. */
+  .itinerary-preview .signoff,
+  .itinerary-preview .prologue,
+  .itinerary-preview .overview,
+  .itinerary-preview .practicals,
+  .itinerary-preview .transit {
+    min-height: 100vh;
   }
 
   /* The dark ::after gradient overlays on cover and chapter hero are
@@ -995,6 +1035,11 @@
     display: none !important;
   }
 
+  /* Each major section starts on a new page. .chapter is deliberately
+   * excluded from break-inside: avoid because chapter content spans
+   * 3-4 pages (hero, intro, lodge, rhythm, seeing+note) — the
+   * granular rules below handle within-chapter breaks. Legacy
+   * page-break-* aliases included for Safari's WebKit print pipeline. */
   .itinerary-preview .cover,
   .itinerary-preview .prologue,
   .itinerary-preview .overview,
@@ -1003,24 +1048,40 @@
   .itinerary-preview .practicals,
   .itinerary-preview .signoff {
     break-before: page;
-    break-inside: avoid;
+    page-break-before: always;
   }
 
-  .itinerary-preview .cover { break-before: auto; }
+  .itinerary-preview .prologue,
+  .itinerary-preview .overview,
+  .itinerary-preview .transit,
+  .itinerary-preview .signoff {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .itinerary-preview .cover {
+    break-before: auto;
+    page-break-before: auto;
+  }
 
   .itinerary-preview .chapter-hero,
   .itinerary-preview .cover-photo,
   .itinerary-preview .lodge .photo {
     break-inside: avoid;
+    page-break-inside: avoid;
   }
 
-  /* Chapters can't fit on a single page — granular breaks instead. */
-  .itinerary-preview .chapter-hero { break-after: page; }
-  .itinerary-preview .chapter-intro { break-inside: avoid; }
-  .itinerary-preview .lodge { break-inside: avoid; }
-  .itinerary-preview .rhythm-section { break-before: auto; }
-  .itinerary-preview .rhythm-item { break-inside: avoid; }
-  .itinerary-preview .seeing-note { break-before: auto; }
-  .itinerary-preview .note-card { break-inside: avoid; }
-  .itinerary-preview .practical-card { break-inside: avoid; }
+  /* Chapter sub-sections — granular page break rules. */
+  .itinerary-preview .chapter-hero {
+    break-after: page;
+    page-break-after: always;
+  }
+  .itinerary-preview .chapter-intro,
+  .itinerary-preview .lodge,
+  .itinerary-preview .rhythm-item,
+  .itinerary-preview .note-card,
+  .itinerary-preview .practical-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
 }
