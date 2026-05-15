@@ -993,25 +993,22 @@
     display: block !important;
   }
 
-  /* Text shadow on the chapter hero label so the cream type stays
-   * readable when the photo has a light area underneath. We can't
-   * re-introduce the ::after gradient overlay because Safari renders
-   * rgba gradients as opaque blocks in print, fully hiding the photo. */
-  .itinerary-preview .chapter-hero .numeral-big,
-  .itinerary-preview .chapter-hero .label h2,
-  .itinerary-preview .chapter-hero .place-meta,
-  .itinerary-preview .chapter-hero .dates .when,
-  .itinerary-preview .chapter-hero .dates .nights {
-    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.5);
-  }
+  /* No text-shadow on hero labels — Chromium's print engine renders
+   * text-shadow with large blur as opaque rectangles rather than soft
+   * glows. The ::after gradient overlay re-enabled below gives proper
+   * contrast for the cream type. */
 
-  /* Practical cards stay in a 2-column grid (the CSS columns
-   * approach collapsed to a single column in Safari's print engine).
-   * Strict break-inside: avoid keeps each card whole when it can't
-   * fit in the remaining page space, pushing it to the next page. */
+  /* Practical cards stay in a 2-column grid. align-items: start so a
+   * tall card on one side doesn't force its row-mate to stretch
+   * vertically — that was leaving large gaps below shorter cards
+   * when their neighbour spanned multiple paragraphs. Strict
+   * break-inside: avoid keeps each card whole when it can't fit in
+   * the remaining page space, pushing it to the next page. */
   .itinerary-preview .practicals .cards {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
+    grid-auto-rows: min-content;
+    align-items: start;
     gap: 1.5rem !important;
     column-count: auto;
     column-gap: 0;
@@ -1035,13 +1032,12 @@
     min-height: 297mm;
   }
 
-  /* The dark ::after gradient overlays on cover and chapter hero are
-   * partially transparent on screen (top 40-50% transparent so the
-   * photo reads through), but Safari's print rasterizer has been
-   * observed to render rgba gradients as opaque dark blocks — which
-   * fully hides the photo. Drop them in print. */
-  .itinerary-preview .cover .cover-photo::after,
-  .itinerary-preview .chapter-hero::after {
+  /* Cover ::after kept hidden (the cover meta column already has a
+   * dark ink background, so the gradient is decorative-only). The
+   * chapter-hero ::after IS needed for label contrast and we now use
+   * Chromium for PDF, which renders rgba gradients correctly — leave
+   * it visible. */
+  .itinerary-preview .cover .cover-photo::after {
     display: none !important;
   }
 
