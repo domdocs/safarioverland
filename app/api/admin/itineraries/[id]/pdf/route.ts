@@ -68,6 +68,11 @@ export async function GET(
     const pdf = await generateItineraryPdf({
       url: previewUrl,
       basicAuth: credentials,
+      // Vercel Deployment Protection on preview deployments wraps the
+      // app in an SSO check (separate from our admin Basic Auth). The
+      // caller's browser has the _vercel_jwt cookie set; forwarding the
+      // raw Cookie header gets Puppeteer past that login screen.
+      cookieHeader: request.headers.get("cookie") ?? undefined,
     })
 
     const filename = buildFilename(data.itinerary)

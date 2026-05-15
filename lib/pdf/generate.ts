@@ -37,6 +37,8 @@ type Page = {
     height: number
     deviceScaleFactor?: number
   }): Promise<void>
+  setCookie(...cookies: Array<Record<string, unknown>>): Promise<void>
+  setExtraHTTPHeaders(headers: Record<string, string>): Promise<void>
   goto(url: string, options?: Record<string, unknown>): Promise<unknown>
   evaluate<R>(fn: () => R | Promise<R>): Promise<R>
   pdf(options: Record<string, unknown>): Promise<Buffer | Uint8Array>
@@ -85,6 +87,13 @@ export type GenerateItineraryPdfArgs = {
   url: string
   /** Admin Basic Auth credentials for the middleware-gated route. */
   basicAuth: { user: string; pass: string }
+  /**
+   * Raw `Cookie` header from the incoming request. Forwarded to
+   * Puppeteer so Vercel Deployment Protection's `_vercel_jwt` cookie
+   * passes through — without it, Puppeteer hits the Vercel SSO login
+   * page instead of the preview route.
+   */
+  cookieHeader?: string
 }
 
 export async function generateItineraryPdf(
@@ -99,6 +108,18 @@ export async function generateItineraryPdf(
       username: args.basicAuth.user,
       password: args.basicAuth.pass,
     })
+
+    // Forward request cookies (notably _vercel_jwt) so Vercel
+    // Deployment Protection lets Puppeteer through. Without this the
+    // preview URL serves the Vercel SSO login page and the PDF rasters
+    // a "Log in to Vercel" screen instead of the itinerary.
+    if (args.cookieHeader) {
+      const urlObj = new URL(args.url)
+      const cookies = parseCookieHeader(args.cookieHeader, urlObj.hostname)
+      if (cookies.length > 0) {
+        await page.setCookie(...cookies)
+      }
+    }
 
     // A4 portrait at 96 DPI (Chromium's default print DPI). preferCSSPageSize
     // below makes the @page rule the source of truth, so this viewport is
@@ -148,4 +169,32 @@ export async function generateItineraryPdf(
   } finally {
     await browser.close()
   }
+}
+
+/**
+ * Convert a raw `Cookie` request header (`a=1; b=2`) into the array of
+ * cookie descriptors Puppeteer's `page.setCookie()` expects. We attach
+ * each cookie to the deployment hostname so Vercel/Next.js treat them
+ * as same-origin on navigation.
+ */
+function parseCookieHeader(
+  header: string,
+  domain: string,
+): Array<{ name: string; value: string; domain: string; path: string }> {
+  const out: Array<{
+    name: string
+    value: string
+    domain: string
+    path: string
+  }> = []
+  for (const piece of header.split(/;\s*/)) {
+    if (!piece) continue
+    const eq = piece.indexOf("=")
+    if (eq <= 0) continue
+    const name = piece.slice(0, eq).trim()
+    const value = piece.slice(eq + 1).trim()
+    if (!name) continue
+    out.push({ name, value, domain, path: "/" })
+  }
+  return out
 }
