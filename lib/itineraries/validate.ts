@@ -62,6 +62,13 @@ export const updateItinerarySchema = z.object({
   show_curator_notes: z.boolean().optional(),
   practicals: z.array(practicalCardSchema).max(12).optional(),
   status: z.enum(["draft", "published", "archived"]).optional(),
+  // Theme fields — exposed via the Phase 5 picker UI. Schema columns
+  // already have CHECK constraints; zod enforces the same set on the
+  // wire so a typo in a client payload fails before hitting Postgres.
+  palette: z.enum(["savanna", "forest", "coast"]).optional(),
+  typography: z.enum(["editorial", "modern", "classic"]).optional(),
+  density: z.enum(["spacious", "compact"]).optional(),
+  slug: z.string().min(1).max(120).nullable().optional(),
 })
 
 export type UpdateItineraryInput = z.infer<typeof updateItinerarySchema>

@@ -182,6 +182,116 @@ export async function createItinerary(args: {
   return mapItinerary(data)
 }
 
+/**
+ * Duplicate an existing itinerary into a fresh draft. The new copy
+ * keeps every field except: a new reference is minted, status drops
+ * back to "draft", slug clears (next publish will mint a new one),
+ * and the title gets a "(copy)" suffix so the admin list disambiguates.
+ *
+ * Chapters and their transits are copied wholesale. Photo URLs are
+ * kept — the new draft references the same Supabase Storage objects
+ * as the original, which is fine; the storage paths include the
+ * original itinerary_id and that's OK for assets that aren't being
+ * rewritten.
+ */
+export async function duplicateItinerary(
+  sourceId: string,
+  args?: { created_by?: string | null },
+): Promise<Itinerary> {
+  const supabase = requireClient()
+
+  const source = await getItinerary(sourceId)
+  if (!source) throw new Error(`Itinerary ${sourceId} not found`)
+
+  const newReference = await mintReference()
+
+  // Insert the new itinerary as a draft.
+  const { data: itinRow, error: itinErr } = await supabase
+    .from("itineraries")
+    .insert({
+      title: `${source.itinerary.title} (copy)`,
+      reference: newReference,
+      status: "draft",
+      slug: null,
+      cover_title_lines: source.itinerary.cover_title_lines,
+      subtitle: source.itinerary.subtitle,
+      guests: source.itinerary.guests,
+      dates_from: source.itinerary.dates_from,
+      dates_to: source.itinerary.dates_to,
+      dates_year: source.itinerary.dates_year,
+      pace: source.itinerary.pace,
+      curator_name: source.itinerary.curator_name,
+      curator_title: source.itinerary.curator_title,
+      curator_location: source.itinerary.curator_location,
+      prologue: source.itinerary.prologue,
+      cover_photo_url: source.itinerary.cover_photo_url,
+      palette: source.itinerary.palette,
+      typography: source.itinerary.typography,
+      density: source.itinerary.density,
+      show_curator_notes: source.itinerary.show_curator_notes,
+      source_brief_id: source.itinerary.source_brief_id,
+      practicals: source.itinerary.practicals,
+      created_by: args?.created_by ?? null,
+    })
+    .select(ITINERARY_COLS)
+    .single()
+  if (itinErr) throw itinErr
+  const newItinerary = mapItinerary(itinRow)
+
+  // Copy chapters, building a map from old chapter id → new chapter id
+  // so we can rewrite the transit chain.
+  const oldToNewChapterId = new Map<string, string>()
+  for (const ch of source.chapters) {
+    const { data: chRow, error: chErr } = await supabase
+      .from("itinerary_chapters")
+      .insert({
+        itinerary_id: newItinerary.id,
+        position: ch.position,
+        slug: ch.slug,
+        place: ch.place,
+        country: ch.country,
+        coords_lat: ch.coords_lat,
+        coords_lon: ch.coords_lon,
+        nights: ch.nights,
+        dates: ch.dates,
+        palette: ch.palette,
+        epigraph: ch.epigraph,
+        intro: ch.intro,
+        seeing: ch.seeing,
+        note: ch.note,
+        lodge: ch.lodge,
+        rhythm: ch.rhythm,
+        photo_hero_url: ch.photo_hero_url,
+        photo_lodge_url: ch.photo_lodge_url,
+      })
+      .select("id")
+      .single()
+    if (chErr) throw chErr
+    oldToNewChapterId.set(ch.id, (chRow as { id: string }).id)
+  }
+
+  // Copy transits with the new chapter ids.
+  for (const t of source.transits) {
+    const fromId = oldToNewChapterId.get(t.from_chapter_id)
+    const toId = oldToNewChapterId.get(t.to_chapter_id)
+    if (!fromId || !toId) continue
+    const { error: trErr } = await supabase.from("itinerary_transits").insert({
+      itinerary_id: newItinerary.id,
+      from_chapter_id: fromId,
+      to_chapter_id: toId,
+      position: t.position,
+      mode: t.mode,
+      duration: t.duration,
+      distance: t.distance,
+      crosses: t.crosses,
+      note: t.note,
+    })
+    if (trErr) throw trErr
+  }
+
+  return newItinerary
+}
+
 export async function updateItinerary(id: string, patch: Record<string, unknown>): Promise<Itinerary> {
   const supabase = requireClient()
   const { data, error } = await supabase
