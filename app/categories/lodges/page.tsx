@@ -24,7 +24,7 @@ export default async function LodgesPage() {
       index={1}
       total={9}
       title="Safari lodges"
-      description="From luxury tented camps to exclusive private reserves. Curated, reviewed, and reachable on the directory."
+      description="From owner-run tented camps to exclusive private concessions. A small kept list, written up properly."
       image="/images/category-img/luxury-safari-lodges.jpg"
     >
       <PaginatedListingsGridEditorial

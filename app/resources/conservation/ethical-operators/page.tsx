@@ -86,7 +86,7 @@ export default function EthicalOperatorsPage() {
           ],
         },
         {
-          heading: "Using this directory",
+          heading: "Using the collection",
           body: (
             <p>
               Listings on Safari Overland include the operator's stated conservation commitments where they are

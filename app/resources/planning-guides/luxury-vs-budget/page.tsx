@@ -254,8 +254,8 @@ const LuxuryVsBudgetPage = () => {
       <section className="mb-12 bg-primary text-white rounded-lg p-8 text-center">
         <h2 className="text-2xl font-bold mb-3">Need help matching budget to experience?</h2>
         <p className="mb-5 max-w-2xl mx-auto">
-          Tell us your budget, dates, and what matters most. We'll point you at operators in our directory who deliver
-          real value at your price point — not just the ones paying for placement.
+          Tell us your budget, dates, and what matters most. We'll point you at operators we'd send our friends to,
+          who deliver real value at your price point — no paid placement, ever.
         </p>
         <Link
           href="/contact"

@@ -119,7 +119,7 @@ export function SettingsForm({ initial }: Props) {
       {/* Listings */}
       <Section
         title="Listings"
-        body="Workflow toggles for the directory."
+        body="Workflow toggles for the collection."
       >
         <SwitchRow
           id="auto_approve_listings"

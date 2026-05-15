@@ -2,7 +2,7 @@ import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Manage Listings | Admin Dashboard",
-  description: "Manage all directory listings in the Safari Overland Directory.",
+  description: "Manage every listing in the Safari Overland collection.",
 }
 
 export default function ListingsLayout({

@@ -284,7 +284,7 @@ export function ListingEditForm({ listing }: ListingEditFormProps) {
 
       toast({
         title: "Listing updated successfully",
-        description: "The listing has been updated and will be reflected in the directory.",
+        description: "The listing has been updated and will be reflected in the collection.",
       })
 
       // Force a cache revalidation and refresh
@@ -316,7 +316,7 @@ export function ListingEditForm({ listing }: ListingEditFormProps) {
 
       toast({
         title: "Listing approved",
-        description: "The listing has been approved and is now live in the directory.",
+        description: "The listing has been approved and is now live in the collection.",
       })
 
       // Redirect to the listings page

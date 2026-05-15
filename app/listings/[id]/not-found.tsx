@@ -11,12 +11,12 @@ export default function ListingNotFound() {
 
       <main className="flex-1 container py-24 md:py-32">
         <div className="max-w-2xl">
-          <Eyebrow withRule>404 — not in the directory</Eyebrow>
+          <Eyebrow withRule>404 — not in the collection</Eyebrow>
           <h1 className="mt-6 font-serif text-h1-fluid text-bone leading-tight text-balance">
             That listing isn&apos;t here.
           </h1>
           <p className="mt-6 font-serif italic text-h4-fluid text-bone-mute max-w-xl">
-            It may have been removed, renamed, or it never existed. The directory
+            It may have been removed, renamed, or it never existed. The collection
             still has plenty to explore.
           </p>
 

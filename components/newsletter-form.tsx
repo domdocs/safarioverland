@@ -117,7 +117,7 @@ export function NewsletterForm({ source = "field-notes" }: Props = {}) {
       )}
       <p className="mt-3 text-xs text-muted-foreground">
         No spam. Unsubscribe anytime. We&apos;ll only email occasional safari planning tips and
-        updates from the directory.
+        updates from the collection.
       </p>
     </form>
   )

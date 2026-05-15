@@ -81,12 +81,12 @@ export default function AccessibleSafarisPage() {
           body: (
             <p>
               A handful of African operators specialise in accessible safari travel. We don't endorse specific firms
-              but the directory below filters for those advertising adapted vehicles and experience with mobility
-              clients. Always cross-check independent reviews.
+              here; send us a brief and we'll suggest operators we know who run adapted vehicles and have experience
+              with mobility clients. Always cross-check independent reviews.
             </p>
           ),
           bullets: [
-            "Search the directory for operators tagged 'accessible'",
+            "Send a brief asking specifically for accessible-equipped operators",
             "Ask whether they have hosted similar requirements before, and request a reference",
             "Confirm the lead guide on your trip has experience with your specific needs",
           ],

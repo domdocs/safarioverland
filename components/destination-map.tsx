@@ -68,7 +68,7 @@ export function DestinationMap({ countries, regionName }: DestinationMapProps) {
                     {active.name}
                   </p>
                   <p className="mt-3 mono text-bone-mute">
-                    {active.listings} listings in directory
+                    {active.listings} on the kept list
                   </p>
                 </div>
               </div>

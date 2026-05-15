@@ -92,7 +92,7 @@ export default function SafariBudgetingPage() {
         },
       ]}
       ctaTitle="Need a costed itinerary?"
-      ctaBody="Tell us your budget and dates and we'll suggest operators in our directory who deliver real value at your price point."
+      ctaBody="Tell us your budget and dates and we'll suggest operators we'd send our friends to — ones who deliver real value at your price point."
       ctaHref="/contact"
       ctaLabel="Contact our planners"
       relatedLinks={[

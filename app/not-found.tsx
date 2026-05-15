@@ -41,7 +41,7 @@ export default function NotFound() {
               </h1>
               <p className="mt-8 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
                 The page you tried to reach has moved, been renamed, or never
-                existed. The directory still has plenty to read.
+                existed. The collection still has plenty to read.
               </p>
 
               <div className="mt-10 flex flex-col sm:flex-row gap-4">

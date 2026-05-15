@@ -11,7 +11,7 @@ export default function SearchPage() {
         <div className="mb-12 max-w-3xl">
           <Eyebrow withRule>Search</Eyebrow>
           <h1 className="mt-6 font-serif text-h1-fluid text-bone leading-tight tracking-tight text-balance">
-            Search the directory.
+            Search the collection.
           </h1>
         </div>
         <SearchInterface />

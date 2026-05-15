@@ -111,7 +111,7 @@ export default async function AdminListingsPage({
         <div>
           <h1 className="text-3xl font-bold">Manage listings</h1>
           <p className="text-muted-foreground mt-1">
-            Filter, edit, and triage every directory row.
+            Filter, edit, and triage every listing.
           </p>
         </div>
       </div>

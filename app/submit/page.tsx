@@ -24,7 +24,7 @@ export default function OperatorPage() {
             </h1>
             <p className="mt-8 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
               Safari Overland is a small editorial collection — fewer
-              names than a directory, each one written up properly.
+              names than most platforms, each one written up properly.
               We add operators by invitation, after we&apos;ve visited or
               spoken at length. The bar is editorial fit, not category coverage.
             </p>

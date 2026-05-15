@@ -73,24 +73,24 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-lg font-bold mb-2">How do I list my safari business?</h3>
+                <h3 className="text-lg font-bold mb-2">I run a lodge — can I be listed?</h3>
                 <p className="text-muted-foreground mb-4">
-                  To add your safari business to our directory, navigate to the 'Submit Listing' page and fill out the form. Our team will review your submission and get back to you within 48 hours.
+                  We add operators by invitation, after we've visited or spoken at length. The bar is editorial fit, not category coverage. If you'd like to be considered, write to Niels directly.
                 </p>
-                <Link 
-                  href="/submit" 
+                <Link
+                  href="/submit"
                   className="inline-flex items-center text-primary hover:text-primary/80 font-medium"
                 >
-                  Submit a listing <ArrowRight className="ml-1 h-4 w-4" />
+                  For operators <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </CardContent>
             </Card>
 
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-lg font-bold mb-2">How can I update my existing listing?</h3>
+                <h3 className="text-lg font-bold mb-2">How can I update an existing listing?</h3>
                 <p className="text-muted-foreground mb-4">
-                  Contact our support team directly via email or phone for any changes needed to your business listing. Our team will assist you promptly with updates to your information.
+                  Email Niels directly with any change you'd like reflected — new photography, an updated founder note, a seasonal price shift. We'll review and update the entry promptly.
                 </p>
                 <Link 
                   href="mailto:info@safarioverland.com" 

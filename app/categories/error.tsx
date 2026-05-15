@@ -18,12 +18,12 @@ export default function Error({
   return (
     <section className="container py-24 md:py-32">
       <div className="max-w-2xl">
-        <Eyebrow withRule>Error — directory</Eyebrow>
+        <Eyebrow withRule>Error — collection</Eyebrow>
         <h2 className="mt-6 font-serif text-h1-fluid text-bone leading-tight tracking-tight text-balance">
           Something didn&apos;t load.
         </h2>
         <p className="mt-6 font-serif italic text-h4-fluid text-bone-mute max-w-xl">
-          The directory hit an issue rendering this page. Try again, or browse another category.
+          The collection hit an issue rendering this page. Try again, or browse another category.
         </p>
         <div className="mt-12">
           <Button

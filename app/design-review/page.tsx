@@ -93,7 +93,7 @@ export default function DesignReviewPage() {
             <div>
               <p className="mono text-bone-mute mb-2">h1-fluid · serif</p>
               <p className="font-serif text-h1-fluid text-bone leading-tight text-balance">
-                A directory of operators, lodges, and field notes.
+                A small collection of African safaris, by hand.
               </p>
             </div>
             <div>

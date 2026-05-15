@@ -43,7 +43,7 @@ export default function DashboardPage() {
           <p className="eyebrow mb-3">Account information</p>
           <p className="text-bone-mute leading-relaxed">
             Account details will appear here once your profile is connected. Until then,
-            head over to the directory or open a planning brief.
+            open the collection or start a brief.
           </p>
         </div>
       </main>
