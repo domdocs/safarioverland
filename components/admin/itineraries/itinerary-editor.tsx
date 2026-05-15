@@ -8,6 +8,13 @@ import { Plus, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 import {
@@ -342,8 +349,9 @@ export function ItineraryEditor({ initial }: Props) {
             {itinerary.reference}
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-wrap">
           <SaveIndicator state={saveState} error={errorMsg} />
+          <StatusPill status={itinerary.status} slug={itinerary.slug} />
           <Button asChild variant="outline" size="sm">
             <Link
               href={`/admin/itineraries/${itinerary.id}/preview`}
@@ -353,7 +361,16 @@ export function ItineraryEditor({ initial }: Props) {
               Preview ↗
             </Link>
           </Button>
+          <DuplicateButton itineraryId={itinerary.id} />
           <DownloadPdfButton itineraryId={itinerary.id} />
+          <PublishButton
+            itineraryId={itinerary.id}
+            status={itinerary.status}
+            slug={itinerary.slug}
+            onStatusChange={(status, slug) =>
+              setItinerary((prev) => ({ ...prev, status, slug: slug ?? prev.slug }))
+            }
+          />
         </div>
       </div>
 
@@ -519,17 +536,84 @@ export function ItineraryEditor({ initial }: Props) {
             />
           </div>
 
-          <div className="flex items-center gap-3 pt-4 border-t border-stone-200">
-            <Switch
-              id="show_curator_notes"
-              checked={itinerary.show_curator_notes}
-              onCheckedChange={(checked) =>
-                patchItinerary({ show_curator_notes: checked })
-              }
-            />
-            <Label htmlFor="show_curator_notes">
-              Show curator notes on each chapter
-            </Label>
+          <div className="pt-4 border-t border-stone-200 space-y-4">
+            <div>
+              <h3 className="text-sm font-semibold text-stone-700 mb-2">Theme</h3>
+              <p className="text-xs text-muted-foreground mb-3">
+                Locked to savanna/editorial/spacious for v1 unless you have
+                a reason to deviate.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div>
+                  <Label>Palette</Label>
+                  <Select
+                    value={itinerary.palette}
+                    onValueChange={(v) =>
+                      patchItinerary({ palette: v as Itinerary["palette"] })
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="savanna">Savanna (default)</SelectItem>
+                      <SelectItem value="forest">Forest</SelectItem>
+                      <SelectItem value="coast">Coast</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label>Typography</Label>
+                  <Select
+                    value={itinerary.typography}
+                    onValueChange={(v) =>
+                      patchItinerary({
+                        typography: v as Itinerary["typography"],
+                      })
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="editorial">Editorial (default)</SelectItem>
+                      <SelectItem value="modern">Modern</SelectItem>
+                      <SelectItem value="classic">Classic</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label>Density</Label>
+                  <Select
+                    value={itinerary.density}
+                    onValueChange={(v) =>
+                      patchItinerary({ density: v as Itinerary["density"] })
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="spacious">Spacious (default)</SelectItem>
+                      <SelectItem value="compact">Compact</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <Switch
+                id="show_curator_notes"
+                checked={itinerary.show_curator_notes}
+                onCheckedChange={(checked) =>
+                  patchItinerary({ show_curator_notes: checked })
+                }
+              />
+              <Label htmlFor="show_curator_notes">
+                Show curator notes on each chapter
+              </Label>
+            </div>
           </div>
         </CardContent>
       </Card>
@@ -749,5 +833,206 @@ function DownloadPdfButton({ itineraryId }: { itineraryId: string }) {
         </span>
       )}
     </div>
+  )
+}
+
+/**
+ * Status indicator + click-to-copy public URL when the itinerary is
+ * published. Visible in the sticky header next to the action buttons.
+ */
+function StatusPill({
+  status,
+  slug,
+}: {
+  status: Itinerary["status"]
+  slug: string | null
+}) {
+  const styles: Record<Itinerary["status"], string> = {
+    draft: "bg-stone-100 text-stone-700",
+    published: "bg-emerald-100 text-emerald-800",
+    archived: "bg-stone-200 text-stone-500",
+  }
+
+  async function copyUrl() {
+    if (!slug) return
+    const url = `${window.location.origin}/trips/${slug}`
+    try {
+      await navigator.clipboard.writeText(url)
+    } catch {
+      // clipboard might be locked down; surface the URL via prompt as fallback
+      prompt("Copy this URL:", url)
+    }
+  }
+
+  return (
+    <div className="flex items-center gap-2">
+      <span
+        className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-medium uppercase tracking-wider ${styles[status]}`}
+      >
+        {status}
+      </span>
+      {status === "published" && slug && (
+        <button
+          type="button"
+          className="text-[10px] text-stone-600 underline underline-offset-2 hover:text-stone-900"
+          onClick={copyUrl}
+          title={`Copy /trips/${slug}`}
+        >
+          Copy public URL
+        </button>
+      )}
+    </div>
+  )
+}
+
+/**
+ * Publish flow: GET /publish runs the preflight as a dry-run; POST
+ * mints the slug if needed, creates a snapshot, sets status. We
+ * always dry-run first so we can show issues inline before asking the
+ * curator to confirm publication.
+ */
+function PublishButton({
+  itineraryId,
+  status,
+  slug,
+  onStatusChange,
+}: {
+  itineraryId: string
+  status: Itinerary["status"]
+  slug: string | null
+  onStatusChange: (status: Itinerary["status"], slug: string | null) => void
+}) {
+  const [busy, setBusy] = useState(false)
+  const [issues, setIssues] = useState<
+    Array<{ path: string; message: string }> | null
+  >(null)
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
+
+  async function onPublish() {
+    setBusy(true)
+    setIssues(null)
+    setErrorMsg(null)
+    try {
+      const res = await fetch(
+        `/api/admin/itineraries/${itineraryId}/publish`,
+        { method: "POST" },
+      )
+      const body = await res.json().catch(() => ({}))
+      if (res.status === 422 && Array.isArray(body.issues)) {
+        setIssues(body.issues)
+        return
+      }
+      if (!res.ok) throw new Error(body.error ?? `HTTP ${res.status}`)
+      onStatusChange("published", body.slug ?? slug)
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : "publish failed")
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  async function onUnpublish() {
+    if (!confirm("Unpublish this itinerary? The public URL keeps working until you delete the snapshot in Supabase.")) {
+      return
+    }
+    setBusy(true)
+    setErrorMsg(null)
+    try {
+      const res = await fetch(
+        `/api/admin/itineraries/${itineraryId}/publish`,
+        { method: "DELETE" },
+      )
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}))
+        throw new Error(body.error ?? `HTTP ${res.status}`)
+      }
+      onStatusChange("draft", slug)
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : "unpublish failed")
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <div className="relative flex flex-col items-end gap-1">
+      {status === "published" ? (
+        <Button
+          type="button"
+          size="sm"
+          variant="outline"
+          onClick={onUnpublish}
+          disabled={busy}
+        >
+          {busy ? "Working…" : "Unpublish"}
+        </Button>
+      ) : (
+        <Button type="button" size="sm" onClick={onPublish} disabled={busy}>
+          {busy ? "Publishing…" : "Publish"}
+        </Button>
+      )}
+      {errorMsg && (
+        <span className="text-[10px] text-red-700 max-w-[240px]">{errorMsg}</span>
+      )}
+      {issues && issues.length > 0 && (
+        <div className="absolute top-full right-0 mt-2 z-20 bg-white border border-red-200 rounded-md shadow-lg p-3 max-w-xs">
+          <p className="text-xs font-semibold text-red-800 mb-2">
+            Not ready to publish:
+          </p>
+          <ul className="text-[11px] text-stone-700 space-y-1 list-disc pl-4">
+            {issues.slice(0, 8).map((issue, i) => (
+              <li key={i}>{issue.message}</li>
+            ))}
+            {issues.length > 8 && (
+              <li className="text-stone-500">
+                …and {issues.length - 8} more
+              </li>
+            )}
+          </ul>
+          <button
+            type="button"
+            className="mt-2 text-[10px] text-stone-500 underline"
+            onClick={() => setIssues(null)}
+          >
+            Dismiss
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
+
+/** Duplicate this itinerary as a new draft. */
+function DuplicateButton({ itineraryId }: { itineraryId: string }) {
+  const router = useRouter()
+  const [busy, setBusy] = useState(false)
+
+  async function onClick() {
+    if (!confirm("Duplicate this itinerary as a new draft?")) return
+    setBusy(true)
+    try {
+      const res = await fetch(
+        `/api/admin/itineraries/${itineraryId}/duplicate`,
+        { method: "POST" },
+      )
+      const body = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(body.error ?? "duplicate failed")
+      router.push(`/admin/itineraries/${body.id}/edit`)
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "duplicate failed")
+      setBusy(false)
+    }
+  }
+
+  return (
+    <Button
+      type="button"
+      size="sm"
+      variant="outline"
+      onClick={onClick}
+      disabled={busy}
+    >
+      {busy ? "Duplicating…" : "Duplicate"}
+    </Button>
   )
 }
