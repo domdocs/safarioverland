@@ -924,9 +924,14 @@
 
 @media print {
   html, body {
-    background: var(--bone);
+    background: var(--bone) !important;
+    margin: 0 !important;
+    padding: 0 !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+  }
+  .itinerary-preview {
+    background: var(--bone) !important;
   }
 
   /* Force every element (and especially background-image elements like
@@ -942,12 +947,18 @@
 
   /* A4 print viewport (≈ 794px) would otherwise trigger our @media
    * (max-width: 900px) mobile rule, collapsing the cover to a single
-   * column. Force the desktop 2-column cover and its padding for print. */
+   * column. Force the desktop 2-column cover and its padding for print.
+   *
+   * Heights use 100vh rather than 297mm so the cover/hero exactly
+   * matches the printable page area whatever Safari's internal
+   * margin policy is — Safari was producing pages slightly taller
+   * than 297mm, leaving a bone strip below the hero AND letting the
+   * next section flow onto the same page despite break-after: page. */
   .itinerary-preview .cover {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     min-height: 0;
-    height: 297mm;
+    height: 100vh;
   }
   .itinerary-preview .cover-meta {
     padding: 5rem 5rem 4rem !important;
@@ -955,12 +966,12 @@
   .itinerary-preview .cover .cover-photo {
     position: relative;
     min-height: 0;
-    height: 297mm;
+    height: 100vh;
     overflow: hidden;
   }
   .itinerary-preview .chapter-hero {
     min-height: 0;
-    height: 297mm;
+    height: 100vh;
   }
   /* Give the imgs explicit page-relative dimensions instead of
    * width/height: 100% — Safari and Chrome's print engines occasionally
@@ -969,14 +980,14 @@
    * aspect-ratio, which provides a definite intrinsic height; cover
    * and hero parents don't, so we hardcode the print dimensions. */
   .itinerary-preview .cover .cover-photo img {
-    width: 105mm !important;
-    height: 297mm !important;
+    width: 100% !important;
+    height: 100vh !important;
     object-fit: cover !important;
     display: block !important;
   }
   .itinerary-preview .chapter-hero-photo {
-    width: 210mm !important;
-    height: 297mm !important;
+    width: 100% !important;
+    height: 100vh !important;
     object-fit: cover !important;
     display: block !important;
   }
@@ -993,28 +1004,29 @@
     text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.5);
   }
 
-  /* Practical cards: switch from grid to CSS columns. CSS columns
-   * honour break-inside: avoid reliably; grid items don't, especially
-   * across page boundaries. The Weather/Packing pair was splitting
-   * mid-card across pages 13→14. Columns keep each card whole. */
+  /* Practical cards stay in a 2-column grid (the CSS columns
+   * approach collapsed to a single column in Safari's print engine).
+   * Strict break-inside: avoid keeps each card whole when it can't
+   * fit in the remaining page space, pushing it to the next page. */
   .itinerary-preview .practicals .cards {
-    display: block !important;
-    column-count: 2;
-    column-gap: 1.5rem;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1.5rem !important;
+    column-count: auto;
+    column-gap: 0;
   }
   .itinerary-preview .practical-card {
     break-inside: avoid;
     page-break-inside: avoid;
-    -webkit-column-break-inside: avoid;
-    margin: 0 0 1.5rem;
-    display: block;
   }
 
-  /* Each major section's background should extend to fill the page.
-   * The signoff page in particular was leaving a white half-page
-   * because its section ended before the page edge. */
+  /* min-height: 100vh on sections whose background colour differs
+   * from the body (paper for overview/practicals, ink for transit,
+   * bone for signoff). Without this the section background ends with
+   * the content and the rest of the page would expose the body
+   * background, creating a colour band. Sections that already share
+   * the body bone background (prologue, chapter) don't need it. */
   .itinerary-preview .signoff,
-  .itinerary-preview .prologue,
   .itinerary-preview .overview,
   .itinerary-preview .practicals,
   .itinerary-preview .transit {
