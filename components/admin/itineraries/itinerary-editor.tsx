@@ -353,6 +353,7 @@ export function ItineraryEditor({ initial }: Props) {
               Preview ↗
             </Link>
           </Button>
+          <DownloadPdfButton itineraryId={itinerary.id} />
         </div>
       </div>
 
@@ -691,4 +692,62 @@ function SaveIndicator({
     )
   }
   return null
+}
+
+/**
+ * Triggers a server-side Puppeteer render of the preview and streams
+ * the PDF back as a download. Disabled state during the rasterise so
+ * impatient double-clicks don't kick off a second function invocation.
+ */
+function DownloadPdfButton({ itineraryId }: { itineraryId: string }) {
+  const [generating, setGenerating] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  async function onClick() {
+    setError(null)
+    setGenerating(true)
+    try {
+      // A plain anchor download would be simpler, but our admin
+      // middleware is Basic Auth — the browser already has credentials
+      // for the page, so the same-origin fetch picks them up. Then we
+      // turn the blob into an anchor click for the save dialog.
+      const res = await fetch(`/api/admin/itineraries/${itineraryId}/pdf`, {
+        method: "GET",
+      })
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}))
+        throw new Error(body.error ?? `HTTP ${res.status}`)
+      }
+      const disposition = res.headers.get("content-disposition") ?? ""
+      const match = /filename="([^"]+)"/.exec(disposition)
+      const filename = match?.[1] ?? `itinerary-${itineraryId}.pdf`
+
+      const blob = await res.blob()
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement("a")
+      link.href = url
+      link.download = filename
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      URL.revokeObjectURL(url)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "PDF generation failed")
+    } finally {
+      setGenerating(false)
+    }
+  }
+
+  return (
+    <div className="flex flex-col items-end gap-1">
+      <Button type="button" size="sm" onClick={onClick} disabled={generating}>
+        {generating ? "Generating…" : "Download PDF"}
+      </Button>
+      {error && (
+        <span className="text-[10px] text-red-700 max-w-[200px] truncate">
+          {error}
+        </span>
+      )}
+    </div>
+  )
 }

@@ -40,6 +40,13 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  // Puppeteer and the slim Chromium binary need to stay outside the
+  // Next.js webpack bundle — they're heavy and rely on native module
+  // loading at runtime. serverExternalPackages keeps them as plain
+  // require()s in the Vercel function bundle. (Sharp was already in
+  // serverComponentsExternalPackages by Next.js default for the same
+  // reason.)
+  serverExternalPackages: ["puppeteer-core", "@sparticuz/chromium", "puppeteer"],
 }
 
 if (userConfig) {
