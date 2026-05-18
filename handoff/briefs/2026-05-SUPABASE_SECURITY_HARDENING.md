@@ -1,3 +1,8 @@
+> ✓ **SHIPPED** — 2026-05-18, folded into PR #12 (Trip Designer
+> Phases 1–4) via an early commit; the migration applied alongside
+> the itineraries schema.
+> See `handoff/CHANGELOG.md` for the session-level summary.
+
 # Supabase security hardening
 
 Four discrete fixes triggered by the Supabase security advisor. All

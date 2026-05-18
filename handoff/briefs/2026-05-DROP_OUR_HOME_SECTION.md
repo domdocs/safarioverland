@@ -1,3 +1,6 @@
+> ✓ **SHIPPED** — May 2026, merged to `main`.
+> See `handoff/CHANGELOG.md` for the session-level summary.
+
 # Drop the "Our Home / Vic Falls" section from /about
 
 Editorial decision: the *"Our Home — Victoria Falls, Mosi-oa-Tunya"*

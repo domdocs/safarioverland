@@ -1,3 +1,7 @@
+> ✓ **SHIPPED** — 2026-05-14, PR #11 merged to `main`.
+> See `handoff/CHANGELOG.md` for the session-level summary and the
+> seven custom events that landed.
+
 # Vercel Web Analytics + Speed Insights + conversion events
 
 Wire Vercel's privacy-respecting analytics into the site, with seven

@@ -1,3 +1,14 @@
+> ✓ **SHIPPED** — 2026-05-18, PR #12 merged to `main`. Phase 4
+> (server-side PDF via headless Chromium) was **folded in early**
+> during the build because Safari's print pipeline has unfixable
+> quirks; this brief therefore covers Phases 1–4 as shipped.
+> Phase 5 (publish + snapshots + public URL + theme picker +
+> duplicate) is in review as PR #13 on branch
+> `feature/trip-designer-phase-5`.
+> See `handoff/briefs/2026-05-TRIP_DESIGNER_HANDOFF.md` for the
+> non-obvious print/PDF decisions and operating notes.
+> See `handoff/CHANGELOG.md` for the session-level summary.
+
 # Trip Designer — Phase 1 to Phase 3 (combined autonomous brief)
 
 End-to-end implementation of the staff-facing itinerary builder, from

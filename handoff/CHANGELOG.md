@@ -7,6 +7,137 @@ referenced — it's the canonical spec for what was built and why.
 
 ---
 
+## 2026-05-18 — Trip Designer (Phases 1–4) + Supabase security hardening
+
+**Trip Designer — Phases 1–4** (PR #12)
+Spec: `handoff/briefs/2026-05-TRIP_DESIGNER_PHASE_1_TO_3.md`
+Handoff: `handoff/briefs/2026-05-TRIP_DESIGNER_HANDOFF.md`
+
+End-to-end implementation of the staff-facing itinerary builder.
+Phases 1–3 were specified as a single autonomous brief; Phase 4
+(server-side PDF) was folded in early during the build because
+Safari's print pipeline has unfixable quirks (`vh` resolving
+against the screen viewport in print, `rgba()` gradients rendering
+as opaque dark blocks, `break-after: page` firing inconsistently).
+Chromium honours all three correctly; the print path therefore
+uses Puppeteer rather than Mac Print > PDF.
+
+- Schema: `itineraries`, `itinerary_chapters`, `itinerary_transits`,
+  `itinerary_reference_sequences` — applied via
+  `supabase/migrations/20260516_itineraries.sql`. Reference
+  numbering uses an atomic per-year sequence
+  (`SO-YYYY-NNNN`).
+- CRUD library in `lib/itineraries/` (types, validate, index,
+  reference, defaults, preflight). Roman numerals derived from
+  position. Chapter add/delete/reorder cascades to transit
+  invariant `transits.length === max(0, chapters.length − 1)`.
+- API routes: list, create, edit, delete, chapter add/delete/
+  reorder, transit edit, PDF generation. All under
+  `/api/admin/itineraries/*` with existing admin Basic Auth.
+- Admin UI: `/admin/itineraries` list, `/new` create, `/[id]/edit`
+  long-page editor with autosave, `/[id]/preview` editorial render
+  that escapes the admin chrome via a route group (admin sidebar
+  lives under `(chrome)/`; the preview sits outside it for
+  full-bleed editorial rendering).
+- Image uploads route through the existing `/api/admin/upload`
+  endpoint with three new slots (`itinerary-cover`, `chapter-hero`,
+  `chapter-lodge`) — reuses image pipeline v2 (sharp resize, EXIF
+  strip, WebP).
+- Editorial render: `components/itinerary/*.tsx` ports the
+  prototype JSX (Cover, Prologue, Overview, Chapter, Transit,
+  Practicals, SignOff, Maps) into Next.js Server Components.
+  CSS ported verbatim from `source-prototype/src/styles.css` into
+  `app/admin/itineraries/[id]/preview/preview-styles.css`. Fonts:
+  Caveat + Newsreader added via next/font/google; Cormorant
+  Garamond + Inter reused from existing layout.
+- PDF generation: `lib/pdf/generate.ts` splits between
+  `puppeteer-core` + `@sparticuz/chromium` on Vercel
+  (`process.env.VERCEL`) and full `puppeteer` locally. Both in
+  `serverExternalPackages` in `next.config.mjs`. Cold start
+  ~3–5 s, warm ~1–2 s. `maxDuration = 60` on the PDF route.
+  Cookies forwarded to handle Vercel Deployment Protection on
+  preview deploys.
+- `handoff/PRINT_TO_PDF.md` exists but is now historical — the
+  in-admin "Download PDF" button is the primary path. Mac
+  Print > PDF still works as a fallback.
+
+**Supabase security hardening** (rode along in an early PR #12 commit)
+Spec: `handoff/briefs/2026-05-SUPABASE_SECURITY_HARDENING.md`
+
+- Dropped overly permissive bucket SELECT policies on
+  `listing-media` and `article-assets` (public URL access continues
+  via the bucket public-flag; anonymous listing now blocked)
+- Pinned `search_path` on `update_updated_at_column` and
+  `mint_reference_for_year`
+- Analytics tables: outcome documented in PR description (audit
+  step from the brief)
+- `contact_messages` INSERT policy: outcome documented in PR
+  description (audit step from the brief)
+
+### Test coverage at session close
+
+- node:test (`pnpm test:unit`): 26 cases for `toRoman`, `slugify`,
+  zod schemas, preflight rules. **Note:** corepack `pnpm` is broken
+  on the build box — use
+  `node --env-file=.env.local --import tsx --test lib/**/*.test.ts`
+  or `npx tsx --test lib/itineraries/*.test.ts`.
+- vitest (`npx vitest run`): 76 cases across itinerary components
+  and preview render.
+- `npx tsc --noEmit` clean across all checked routes.
+- `npx next build` all routes compile.
+
+### In review — Phase 5
+
+**PR #13 — Trip Designer Phase 5**
+Branch: `feature/trip-designer-phase-5`
+Spec: derived from `SCOPE_TRIP_DESIGNER.md` Phase 5 outline
+
+In review, not merged. Includes:
+
+- Publish workflow with immutable snapshots (`itinerary_snapshots`
+  table; `/trips/[slug]` reads `is_current` snapshot, never live
+  tables)
+- Public read-only URL `/trips/[slug]`
+- Theme picker UI (palette / typography / density) exposed but
+  with "(default)" labels nudging curators to leave savanna /
+  editorial / spacious
+- Duplicate trip → fresh draft
+- Pre-flight validation on publish (rejects: missing cover photo,
+  zero chapters, chapter missing coords/dates/epigraph/intro/hero,
+  transit with placeholder values, transit count out of sync)
+- Migration: `supabase/migrations/20260517_itinerary_publishing.sql`
+  — apply when PR #13 merges
+
+### Known gaps left at session close
+
+- `NEXT_PUBLIC_CALENDLY_URL` still unset → "Speak to a planner"
+  buttons fall back to the email mailto. Carry-over from prior
+  sessions; no code change needed when Niels' Calendly is wired.
+- Matetsi pending test row
+  (`d97e32c6-3740-45b7-9808-98a6256df635`) still in admin — flip or
+  delete when convenient.
+- **Legacy-directory copy sweep** — Dom edited 13 files removing
+  user-facing "directory" language (category subhead, error pages,
+  404 pages, search heading, FAQ rewrite on contact page, Field
+  Notes article CTAs, admin chrome subheads, newsletter form,
+  destination map tooltip, settings, listing-edit toasts). These
+  edits are uncommitted as of session close — commit and push to
+  `main` separately.
+- Templates library — single remaining item from the original Trip
+  Designer scope. Deferred; write a brief after the team has run
+  the publish flow on a few real trips.
+- `next dev` cannot be started from the iCloud-synced repo path
+  (OS denies executing `node_modules/.bin/next`); UI verification
+  during PR #12 was done on Vercel preview deploys. If preview
+  testing becomes painful, run the dev server from a non-iCloud
+  checkout.
+
+### Briefs queued and not yet shipped
+
+None.
+
+---
+
 ## 2026-05-14 — Vercel Web Analytics + Speed Insights
 
 **Vercel Web Analytics + Speed Insights + seven custom conversion events** (PR #11)
