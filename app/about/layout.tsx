@@ -5,9 +5,14 @@ import { EditorialFooter } from "@/components/editorial/editorial-footer"
 import { AutoBreadcrumbs } from "@/components/AutoBreadcrumbs"
 
 export const metadata: Metadata = {
-  title: "About",
+  // Use `absolute` so the root template ("%s | Safari Overland") doesn't
+  // double the brand name — "Safari Overland" already appears in this title.
+  title: {
+    absolute:
+      "About Safari Overland — A Curated African Safari Collection from Victoria Falls",
+  },
   description:
-    "About Safari Overland — a small, opinionated collection of African lodges and operators, chosen for what the wild does to you, not just what it shows you.",
+    "Meet Safari Overland — a small, editor-led African safari collection written from Victoria Falls. Our criteria, our editor, our funding model. Honest, in writing.",
   alternates: { canonical: "https://safarioverland.com/about" },
 }
 
