@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { SupabaseProvider } from "@/components/supabase-provider"
 import { DownloadGateProvider } from "@/components/download-gate-provider"
 import { VercelProviders } from "@/components/analytics/vercel-providers"
+import { GlobalJsonLd } from "@/components/JsonLd/GlobalJsonLd"
 import Script from "next/script"
 
 // Editorial typography — wired via CSS variables, picked up in tailwind.config.ts
@@ -143,6 +144,7 @@ export default function RootLayout({
          * Cookieless, no PII by design.
          */}
         <VercelProviders />
+        <GlobalJsonLd />
       </body>
     </html>
   )
