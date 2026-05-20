@@ -1,36 +1,60 @@
-import React from 'react'
-import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
+import Link from "next/link"
 
-interface BreadcrumbItem {
-  label: string
-  link: string
-}
+/**
+ * A single crumb. `href` drives the UI link; `item` is the absolute
+ * URL used in the BreadcrumbList JSON-LD. Both are optional —
+ * typically the last (current-page) crumb has neither.
+ */
+export type Crumb = { name: string; href?: string; item?: string }
 
-interface BreadcrumbsProps {
-  items: BreadcrumbItem[]
-}
+/**
+ * Editorial breadcrumb nav matching the brand's `.eyebrow` treatment
+ * — small caps, letter-spacing, amber hover. Uses `/` as the
+ * separator to match the editorial type-only mast.
+ *
+ * Pair with `<BreadcrumbsJsonLd crumbs={...} />` for the structured
+ * data; both take the same shape.
+ *
+ * Legacy `{ items: { label, link }[] }` callers (one usage on
+ * /resources/seasonal-guides/bird-watching) are handled via a
+ * transparent shim so renaming the API doesn't break the page.
+ */
+type Props =
+  | { crumbs: Crumb[]; items?: never }
+  | { items: { label: string; link: string }[]; crumbs?: never }
 
-export default function Breadcrumbs({ items }: BreadcrumbsProps) {
+export function Breadcrumbs(props: Props) {
+  const crumbs: Crumb[] =
+    "crumbs" in props && props.crumbs
+      ? props.crumbs
+      : (props.items ?? []).map((i, idx, arr) => ({
+          name: i.label,
+          href: idx === arr.length - 1 ? undefined : i.link,
+        }))
+
+  if (crumbs.length === 0) return null
+
   return (
-    <nav className="container mx-auto px-4 py-4">
-      <ol className="flex flex-wrap items-center gap-1 text-sm text-muted-foreground">
-        {items.map((item, index) => (
-          <li key={item.link} className="flex items-center">
-            {index > 0 && <ChevronRight className="h-4 w-4 mx-1" />}
-            {index === items.length - 1 ? (
-              <span className="font-medium text-foreground">{item.label}</span>
-            ) : (
-              <Link 
-                href={item.link} 
-                className="hover:text-primary transition-colors"
+    <nav aria-label="Breadcrumb" className="eyebrow mb-6">
+      <ol className="flex flex-wrap items-center gap-2 text-bone-mute">
+        {crumbs.map((c, i) => (
+          <li key={`${c.name}-${i}`} className="flex items-center gap-2">
+            {c.href ? (
+              <Link
+                href={c.href}
+                className="hover:text-amber transition-colors"
               >
-                {item.label}
+                {c.name}
               </Link>
+            ) : (
+              <span className="text-bone">{c.name}</span>
             )}
+            {i < crumbs.length - 1 && <span aria-hidden>/</span>}
           </li>
         ))}
       </ol>
     </nav>
   )
-} 
+}
+
+export default Breadcrumbs

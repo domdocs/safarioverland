@@ -1,6 +1,7 @@
 import type React from "react"
 import { EditorialHeader } from "@/components/editorial/editorial-header"
 import { EditorialFooter } from "@/components/editorial/editorial-footer"
+import { AutoBreadcrumbs } from "@/components/AutoBreadcrumbs"
 
 export default function CategoriesLayout({
   children,
@@ -10,6 +11,7 @@ export default function CategoriesLayout({
   return (
     <div className="flex min-h-screen flex-col bg-night text-bone">
       <EditorialHeader variant="floating" />
+      <AutoBreadcrumbs />
       <main className="flex-1">{children}</main>
       <EditorialFooter />
     </div>
