@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   keywords: "anti-poaching, rhino poaching, elephant poaching, ranger units, wildlife crime africa",
 }
 
+
 export default function AntiPoachingPage() {
   return (
     <GuidePage

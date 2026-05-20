@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   keywords: "Great Migration, Serengeti, Masai Mara, wildebeest migration, Kenya, Tanzania, river crossing, calving season, safari seasons",
 }
 
+
 export default function GreatMigrationGuidePage() {
   return (
     <div className="container mx-auto px-4 py-12">

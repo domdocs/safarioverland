@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation"
 
 import { Byline } from "@/components/Byline"
 import { ArticleJsonLd } from "@/components/JsonLd/ArticleJsonLd"
-import { niels } from "@/lib/editors"
+import { getEditorById } from "@/lib/editors"
 import {
   FALLBACK_DATE,
   FIELD_NOTE_DATES,
@@ -14,12 +14,17 @@ const SITE = "https://safarioverland.com"
 
 /**
  * Drops a visible <Byline> + Article JSON-LD onto every field-note
- * page via the resources layout. Reads pathname client-side
+ * page via the field-notes layout. Reads pathname client-side
  * (server-rendered for the initial HTML, so SEO is unaffected) and
- * looks up the published/updated dates from the build-time-generated
- * FIELD_NOTE_DATES map.
+ * looks up the published/updated dates + editorId from the
+ * build-time FIELD_NOTE_DATES map.
  *
- * Skipped on the resources index itself — the index isn't a field
+ * The map is regenerated from each page's exported `publishedAt`,
+ * `updatedAt` and `editorId` constants via
+ * `node scripts/gen-field-note-dates.mjs`. Pages without those
+ * exports fall back to file mtime (dates) + niels (editor).
+ *
+ * Skipped on the /field-notes index itself — the index isn't a field
  * note and doesn't have a single editor / dateline to declare.
  *
  * Pages that want a bespoke byline or richer metadata (custom
@@ -42,6 +47,7 @@ export function AutoArticleMeta({
     return null
   }
   const dates = FIELD_NOTE_DATES[pathname] ?? FALLBACK_DATE
+  const editor = getEditorById(dates.editorId)
   const computedHeadline =
     headline ??
     pathname
@@ -54,7 +60,7 @@ export function AutoArticleMeta({
   return (
     <>
       <Byline
-        editor={niels}
+        editor={editor}
         published={dates.datePublished}
         updated={dates.dateModified}
       />
@@ -64,7 +70,7 @@ export function AutoArticleMeta({
         image={image ?? null}
         datePublished={dates.datePublished}
         dateModified={dates.dateModified}
-        editor={niels}
+        editor={editor}
       />
     </>
   )

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   keywords: "what to pack safari, safari packing essentials, safari quick packing list, safari must-haves",
 }
 
+
 export default function WhatToPackPage() {
   return (
     <>
