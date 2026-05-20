@@ -1,3 +1,11 @@
+> ✓ **COMPLETED** — all five phases shipped May 2026.
+> Phases 1–4 in PR #12 (2026-05-18); Phase 5 in PR #13 (2026-05-19).
+> The templates library deferral from §"What this scope deliberately
+> doesn't cover" remains the one unbuilt item. See
+> `handoff/CHANGELOG.md` for the implementation summary and
+> `handoff/briefs/2026-05-TRIP_DESIGNER_HANDOFF.md` for the operating
+> notes and non-obvious decisions baked in during the build.
+
 # Trip Designer — scope and phasing
 
 This document scopes the Trip Designer feature before any Code briefs

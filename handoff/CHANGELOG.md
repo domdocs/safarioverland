@@ -7,6 +7,183 @@ referenced — it's the canonical spec for what was built and why.
 
 ---
 
+## 2026-05-19 — Technical SEO (Critical & High-Priority)
+
+**SEO Brief 1 — Critical & High-Priority Technical Fixes** (PR #14)
+Spec: `handoff/briefs/2026-05-SEO_CRITICAL_AND_HIGH_PRIORITY.md`
+
+Template-level SEO fixes that apply across every page on the site.
+Composed by Dom from an external audit; brief annotated in Cowork
+with codebase-specific context (URL structures, content loader names,
+editor identity, social handles, style tokens) before handing to Code.
+
+### Shipped
+
+- **Title-tag duplication fixed.** `metadata.title.template` in
+  `app/layout.tsx` kept; redundant `" | Safari Overland"` suffixes
+  stripped from individual page titles. View source on `/about`,
+  `/categories`, `/destinations`, `/resources`, `/plan` shows exactly
+  one suffix per title.
+- **Global structured data shipped.** `components/JsonLd/GlobalJsonLd.tsx`
+  emits an Organization + WebSite `@graph` block site-wide via
+  `app/layout.tsx`. Cross-referenced `@id`s; `SearchAction` wired to
+  `/search?q=...`. Logo points at
+  `/images/logo/safari-overland-horizontal-600.png`. Validates clean
+  at validator.schema.org.
+- **BreadcrumbList schema + visible breadcrumb UI.**
+  `components/JsonLd/BreadcrumbsJsonLd.tsx` and
+  `components/Breadcrumbs.tsx` use the existing brand tokens
+  (`.eyebrow`, `text-bone-mute`, `text-amber` hover). Wired onto
+  every non-homepage page.
+- **Sitemap rebuilt.** Replaced the static `public/sitemap.xml` with
+  dynamic `app/sitemap.ts`. Pulls approved listings from
+  `getListings()`, active categories from `getActiveCategories()`,
+  hand-enumerates destination regions and field-note pages. Admin and
+  utility paths excluded. Sitemap count materially larger than the
+  prior 13 URLs.
+- **Canonical tags on every page.** Static pages set
+  `metadata.alternates.canonical`; dynamic routes generate canonical
+  via `generateMetadata({ params })`. One canonical per page,
+  verified on five page types.
+- **E-E-A-T author/dateline layer.** Editor data structure for Niels
+  van de Meer added (photo and LinkedIn omitted pending Dom's supply
+  — degraded gracefully). `components/JsonLd/ArticleJsonLd.tsx` emits
+  Article + Person JSON-LD on field-note pages.
+  `components/Byline.tsx` renders the visible byline under the H1.
+  Article dates: file mtime via `fs.stat` at build time for
+  `dateModified`; hard-coded `datePublished` per page (a TODO for
+  Brief 3 graduation to per-page editorial metadata).
+- **FAQ component built.** `components/FAQ.tsx` renders both visible
+  `<details>` accordion UI and FAQPage JSON-LD. Wired only as a smoke
+  test on `/resources/faqs` for this brief — sitewide wiring lives in
+  Brief 3 alongside the content rewrites.
+- **Contextual internal-link module.**
+  `components/RelatedFieldNotes.tsx` and `components/RelatedListings.tsx`
+  with hand-rolled topic-tag matching in `lib/content/related.ts`.
+  Keyword-bearing anchor text. Wired as samples onto three pages —
+  full sweep in a follow-up.
+
+### Follow-up notes from Code
+
+Four items worth tracking for subsequent briefs:
+
+1. **17 `app/resources/conservation/success-stories/*` pages use a
+   bespoke layout** instead of the `GuidePage` component. The byline,
+   ArticleJsonLd, and breadcrumbs work didn't reach them. Falls into
+   Brief 3 (content rewrites) when those pages get the editorial pass.
+
+2. **`app/resources/planning-guides/hidden-costs/page.tsx` is a
+   client component** (`"use client"`) and therefore can't export
+   `metadata`. It inherits the layout's canonical (`/resources`)
+   which is wrong. Small fix: extract a server wrapper that exports
+   `metadata` and passes children to the client component. Discrete
+   bug; doesn't need to wait for Brief 3.
+
+3. **Weak / missing meta descriptions** on several resource pages.
+   Brief 3 (content rewrites).
+
+4. **Related-content modules wired onto only 3 pages as samples.**
+   Full sweep across every destination, category, and field-note
+   page is either a quick follow-up brief or naturally part of
+   Brief 3.
+
+### Editor data supply gap
+
+The byline degrades gracefully when `editor.photo` is null and
+`editor.sameAs` is empty. Both are flagged for Dom to supply:
+
+- Niels' professional headshot (square crop, ≥600×600px). Drop in
+  `/public/team/niels.webp` once available.
+- Niels' LinkedIn URL for the `sameAs` array on the Person JSON-LD.
+- Confirmation that `https://www.instagram.com/safarioverland` exists
+  for the Organization `sameAs` (or the actual handle if different).
+
+Until supplied, the photo is omitted and `sameAs` is left empty
+rather than scaffolded with placeholders.
+
+### Known gaps left at session close
+
+(In addition to the four follow-up notes above)
+
+- `NEXT_PUBLIC_CALENDLY_URL` still unset.
+- Matetsi pending test row still in admin.
+- Templates library still deferred (Trip Designer scope).
+- Legacy-directory copy sweep — status to be verified via `git log`.
+
+### Briefs queued and not yet shipped
+
+- **Brief 2** — net-new pages (not yet written)
+- **Brief 3** — page content rewrites + meta-description sweep +
+  full related-content wiring (not yet written)
+- Optional follow-up: hidden-costs canonical fix (discrete bug;
+  doesn't need a full brief)
+
+---
+
+## 2026-05-19 — Trip Designer Phase 5 merged
+
+**Trip Designer — Phase 5** (PR #13)
+Branch (now merged): `feature/trip-designer-phase-5`
+Spec: derived from `handoff/SCOPE_TRIP_DESIGNER.md` Phase 5 outline
+(no separate brief).
+
+Closes the Trip Designer loop. With this PR merged, the staff-side
+itinerary builder is complete end-to-end: a curator can compose,
+preview, generate a PDF, publish to a stable customer URL, and
+clone the trip for next season.
+
+### Shipped
+
+- **Publish workflow with immutable snapshots.** New
+  `itinerary_snapshots` table copied at publish time; `is_current`
+  flag on the active snapshot per slug. `/trips/[slug]` reads
+  snapshots, never live tables — so editing a published itinerary
+  doesn't change what the customer sees until you re-publish.
+  Re-publishing keeps the same slug (stable customer URL) and
+  flips the previous `is_current` snapshot to false.
+- **Public read-only URL** `/trips/[slug]` — no auth, renders the
+  editorial design from the snapshot. Slug minted from the trip
+  reference + guest lastname; stable across re-publishes.
+- **Theme picker UI** in the admin editor. Palette
+  (savanna/forest/coast), typography (editorial/modern/classic),
+  and density (spacious/compact) all exposed, with "(default)"
+  labels nudging curators to leave savanna / editorial / spacious.
+  The forest/coast palettes and modern/classic type pairings work
+  but haven't been visually QA'd at PDF fidelity — expect rough
+  edges if a curator switches them.
+- **Duplicate trip** → clones a published itinerary into a fresh
+  draft with a new reference. Photos copy across; status resets to
+  `draft`. Used for "this year's Botswana trip is mostly the same
+  as last year's."
+- **Pre-flight validation on publish** (`lib/itineraries/preflight.ts`)
+  rejects publishing if: no cover photo, zero chapters, any chapter
+  missing coords/dates/epigraph/intro/hero, any transit still
+  showing placeholder values (`Transfer` / `TBD` /
+  `To be specified.`), or transit count out of sync with chapter
+  count. Errors render inline on the editor; user fixes and re-tries.
+- **Migration applied:** `supabase/migrations/20260517_itinerary_publishing.sql`.
+
+### Known gaps left at session close
+
+- **Templates library** — the final deferred item from the original
+  Trip Designer scope. Recommended approach: write a brief after
+  the team has run the publish flow on a few real trips and knows
+  which chapter/trip shapes get reached for repeatedly. Scope
+  sketch in `handoff/briefs/2026-05-TRIP_DESIGNER_HANDOFF.md` §7.
+- `NEXT_PUBLIC_CALENDLY_URL` still unset (carry-over from prior
+  sessions).
+- Matetsi pending test row
+  (`d97e32c6-3740-45b7-9808-98a6256df635`) still in admin.
+- Legacy-directory copy sweep — flagged in the 2026-05-18 entry —
+  status as of this entry is whatever you committed in the
+  intervening hours; check git log.
+
+### Briefs queued and not yet shipped
+
+None.
+
+---
+
 ## 2026-05-18 — Trip Designer (Phases 1–4) + Supabase security hardening
 
 **Trip Designer — Phases 1–4** (PR #12)
@@ -86,27 +263,11 @@ Spec: `handoff/briefs/2026-05-SUPABASE_SECURITY_HARDENING.md`
 - `npx tsc --noEmit` clean across all checked routes.
 - `npx next build` all routes compile.
 
-### In review — Phase 5
+### Phase 5 — merged the following day
 
-**PR #13 — Trip Designer Phase 5**
-Branch: `feature/trip-designer-phase-5`
-Spec: derived from `SCOPE_TRIP_DESIGNER.md` Phase 5 outline
-
-In review, not merged. Includes:
-
-- Publish workflow with immutable snapshots (`itinerary_snapshots`
-  table; `/trips/[slug]` reads `is_current` snapshot, never live
-  tables)
-- Public read-only URL `/trips/[slug]`
-- Theme picker UI (palette / typography / density) exposed but
-  with "(default)" labels nudging curators to leave savanna /
-  editorial / spacious
-- Duplicate trip → fresh draft
-- Pre-flight validation on publish (rejects: missing cover photo,
-  zero chapters, chapter missing coords/dates/epigraph/intro/hero,
-  transit with placeholder values, transit count out of sync)
-- Migration: `supabase/migrations/20260517_itinerary_publishing.sql`
-  — apply when PR #13 merges
+Phase 5 (publish workflow + snapshots + public URL + theme picker +
+duplicate + preflight) shipped as PR #13 on 2026-05-19. See the
+entry above for the detail.
 
 ### Known gaps left at session close
 
