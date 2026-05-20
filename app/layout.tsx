@@ -64,6 +64,21 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
   applicationName: "Safari Overland",
+  authors: [
+    {
+      name: "Safari Overland Editorial",
+      url: "https://safarioverland.com/about",
+    },
+  ],
+  creator: "Safari Overland",
+  publisher: "Safari Overland",
+  // Phones love to auto-link strings that look like phone numbers or
+  // addresses in editorial copy. Suppress — we set our own CTAs.
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   keywords: [
     "African safari",
     "safari operators",
