@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Conservation Funding in Africa | Safari Overland",
+  title: "Conservation Funding in Africa",
   description:
     "Where conservation money comes from, where it goes, and how individual travelers can contribute meaningfully — vetted organisations and giving strategies.",
+  alternates: { canonical: "https://safarioverland.com/resources/conservation/funding" },
   keywords:
     "conservation funding, africa wildlife donations, conservation NGOs, where to donate africa wildlife, sustainable conservation finance",
 }

@@ -5,8 +5,9 @@ import PageHeader from "@/components/PageHeader";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "African Bird Watching Seasonal Guide | Safari Overland",
+  title: "African Bird Watching Seasonal Guide",
   description: "Discover the best seasons for bird watching across Africa's diverse ecosystems, from the wetlands of the Okavango Delta to the forests of Uganda.",
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/bird-watching" },
   keywords: ["bird watching Africa", "birding safari", "best time bird watching", "African birds", "migratory birds Africa", "birding season", "bird photography"],
 };
 

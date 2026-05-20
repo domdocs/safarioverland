@@ -7,6 +7,7 @@ import { AutoBreadcrumbs } from "@/components/AutoBreadcrumbs"
 export const metadata: Metadata = {
   title: "Atlas",
   description: "Explore safari destinations across Africa.",
+  alternates: { canonical: "https://safarioverland.com/destinations" },
 }
 
 export default function DestinationsLayout({

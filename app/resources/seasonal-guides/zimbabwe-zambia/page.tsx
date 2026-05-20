@@ -7,8 +7,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: 'Zimbabwe & Zambia Safari Seasonal Guide | Safari Overland',
+  title: 'Zimbabwe & Zambia Safari Seasonal Guide',
   description: 'Best times for visiting Victoria Falls and the wildlife-rich national parks of Zimbabwe and Zambia throughout the year.',
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/zimbabwe-zambia" },
   keywords: 'Zimbabwe Zambia safari seasons, best time Victoria Falls, Hwange National Park, Mana Pools, South Luangwa, Lower Zambezi, Zimbabwe wildlife, Zambia wildlife viewing',
 };
 

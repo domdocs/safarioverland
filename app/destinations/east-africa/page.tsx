@@ -28,6 +28,7 @@ import { BlendOverlay } from "@/components/editorial/blend-overlay"
 export const metadata: Metadata = {
   title: "East Africa Safari | Kenya, Tanzania, Uganda & Rwanda",
   description: "Discover the iconic savannahs, mountain gorillas, and Great Migration of East Africa. Plan your ultimate safari adventure in Kenya, Tanzania, Uganda & Rwanda.",
+  alternates: { canonical: "https://safarioverland.com/destinations/east-africa" },
   keywords: "East Africa safari, Kenya safari, Tanzania safari, Uganda gorilla trekking, Rwanda gorillas, Great Migration, Serengeti, Masai Mara, Ngorongoro Crater, African wildlife",
 }
 

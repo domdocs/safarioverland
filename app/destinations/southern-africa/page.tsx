@@ -23,8 +23,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: "Southern Africa Safaris | Ultimate Safari Guide | Safari Overland",
+  title: "Southern Africa Safaris | Ultimate Safari Guide",
   description: "Explore the diverse wilderness of Southern Africa with our comprehensive safari guide. From Botswana's Okavango Delta to Kruger National Park and Victoria Falls.",
+  alternates: { canonical: "https://safarioverland.com/destinations/southern-africa" },
   keywords: "Southern Africa safari, Botswana safari, South Africa safari, Zimbabwe safari, Kruger National Park, Okavango Delta, Victoria Falls, safari destinations"
 };
 

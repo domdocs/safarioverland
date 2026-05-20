@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "About Safari Overland — a small, opinionated collection of African lodges and operators, chosen for what the wild does to you, not just what it shows you.",
+  alternates: { canonical: "https://safarioverland.com/about" },
 }
 
 export default function AboutLayout({

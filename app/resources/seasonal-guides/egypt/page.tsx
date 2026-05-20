@@ -10,8 +10,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: "Egypt Safari Seasonal Guide | Safari Overland",
+  title: "Egypt Safari Seasonal Guide",
   description: "Comprehensive guide to the best times for desert safaris and wildlife viewing in Egypt throughout the year.",
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/egypt" },
   keywords: "Egypt safari seasons, Egypt desert safari, White Desert, Siwa Oasis, Western Desert, Egyptian wildlife, Egypt weather, Egypt travel guide",
 }
 

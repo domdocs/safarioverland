@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Endangered Species in Africa | Safari Overland",
+  title: "Endangered Species in Africa",
   description:
     "Status, threats and recovery efforts for Africa's most endangered species — from black rhino and pangolin to African wild dog, vulture and grey crowned crane.",
+  alternates: { canonical: "https://safarioverland.com/resources/conservation/endangered-species" },
   keywords:
     "endangered species africa, black rhino, pangolin, african wild dog, vulture decline, grey crowned crane, mountain gorilla",
 }

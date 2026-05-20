@@ -1,9 +1,18 @@
+import type { Metadata } from "next"
+
 import { DestinationHeader } from "@/components/destination-header"
 import { DestinationAttractions } from "@/components/destination-attractions"
 import { DestinationWildlife } from "@/components/destination-wildlife"
 import { DestinationSeasons } from "@/components/destination-seasons"
 import { DestinationMap } from "@/components/destination-map"
 import { ListingsGrid } from "@/components/listings-grid"
+
+export const metadata: Metadata = {
+  title: "West Africa Safaris",
+  description:
+    "West Africa safari guide — Ghana, Senegal, Benin and beyond. Wildlife reserves, cultural travel, and the lesser-known African safari frontier.",
+  alternates: { canonical: "https://safarioverland.com/destinations/west-africa" },
+}
 
 // Define Season type to match the component's requirements
 type Season = {

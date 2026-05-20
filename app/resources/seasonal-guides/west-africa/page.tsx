@@ -7,8 +7,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: 'West Africa Safari Seasonal Guide | Safari Overland',
+  title: 'West Africa Safari Seasonal Guide',
   description: 'Comprehensive guide to the best times for wildlife viewing in West Africa, including Ghana, Senegal, Gambia, and other countries throughout the year.',
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/west-africa" },
   keywords: 'West Africa safari seasons, Ghana wildlife viewing, Senegal birding, Mole National Park, Gambia river cruise, best time visit West Africa, green season, dry season',
 };
 

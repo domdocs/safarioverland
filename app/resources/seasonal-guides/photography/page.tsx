@@ -8,8 +8,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: "Photography Seasonal Guide | Safari Overland",
+  title: "Photography Seasonal Guide",
   description: "Discover the best seasons for wildlife photography in Africa's diverse regions, with tips on lighting, animal behavior, and landscape conditions.",
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/photography" },
   keywords: "safari photography, wildlife photography, best light Africa, photography seasons, Africa photography guide, photography safari",
 };
 

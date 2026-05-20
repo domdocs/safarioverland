@@ -10,8 +10,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: "Great Migration Seasonal Guide | Safari Overland",
+  title: "Great Migration Seasonal Guide",
   description: "Month-by-month tracking of the Great Migration through Tanzania and Kenya, with the best viewing locations and times.",
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/great-migration" },
   keywords: "Great Migration, Serengeti, Masai Mara, wildebeest migration, Kenya, Tanzania, river crossing, calving season, safari seasons",
 }
 

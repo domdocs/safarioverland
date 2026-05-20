@@ -7,8 +7,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: 'Gorilla Trekking Seasonal Guide | Best Time for Gorilla Safaris | Safari Overland',
+  title: 'Gorilla Trekking Seasonal Guide | Best Time for Gorilla Safaris',
   description: 'Discover the optimal times for gorilla trekking in Uganda, Rwanda, and DRC with our comprehensive seasonal guide covering weather conditions, permit availability, and trekking difficulty.',
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/gorilla-trekking" },
   keywords: 'gorilla trekking season, best time gorilla safari, Uganda gorilla trekking, Rwanda gorilla permits, Bwindi Impenetrable Forest, Volcanoes National Park, Virunga, mountain gorillas, dry season gorilla trek',
 };
 

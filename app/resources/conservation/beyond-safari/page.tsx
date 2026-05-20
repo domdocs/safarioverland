@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Beyond Safari: Conservation Travel | Safari Overland",
+  title: "Beyond Safari: Conservation Travel",
   description:
     "Hands-on conservation travel beyond traditional game drives — research stations, citizen science, voluntourism, and tracking expeditions that fund real work.",
+  alternates: { canonical: "https://safarioverland.com/resources/conservation/beyond-safari" },
   keywords: "conservation travel, voluntourism africa, research safari, citizen science, conservation holidays",
 }
 

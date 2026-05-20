@@ -9,6 +9,7 @@ export const metadata = {
   title: "For operators",
   description:
     "Safari Overland is a small editorial collection of African lodges and operators we know personally. We add new listings by invitation, not by submission — but we always read.",
+  alternates: { canonical: "https://safarioverland.com/submit" },
 }
 
 export default function OperatorPage() {

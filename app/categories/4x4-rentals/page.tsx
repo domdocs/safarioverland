@@ -6,9 +6,10 @@ import { CategoryEmptyState } from "@/components/editorial/category-empty-state"
 import { PaginatedListingsGridEditorial } from "@/components/editorial/paginated-listings-grid-editorial"
 
 export const metadata: Metadata = {
-  title: "4×4 Rentals | Safari Overland",
+  title: "4×4 Rentals",
   description:
     "Self-drive 4×4 rentals — fully equipped vehicles for off-road exploration.",
+  alternates: { canonical: "https://safarioverland.com/categories/4x4-rentals" },
 }
 
 export const dynamic = "force-dynamic"

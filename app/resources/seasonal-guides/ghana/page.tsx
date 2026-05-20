@@ -10,8 +10,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: "Ghana Safari Seasonal Guide | Safari Overland",
+  title: "Ghana Safari Seasonal Guide",
   description: "Comprehensive guide to the best times for wildlife viewing and cultural experiences in Ghana throughout the year.",
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/ghana" },
   keywords: "Ghana safari seasons, Ghana wildlife viewing, Ghana national parks, Mole National Park, Ghana weather, Ghana travel guide",
 }
 

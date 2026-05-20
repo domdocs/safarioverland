@@ -6,6 +6,7 @@ import { Separator } from "@/components/ui/separator"
 export const metadata = {
   title: "Privacy Policy",
   description: "Learn how Safari Overland collects, uses, and protects your personal information in compliance with GDPR and global privacy laws.",
+  alternates: { canonical: "https://safarioverland.com/privacy-policy" },
 }
 
 export default function PrivacyPolicyPage() {

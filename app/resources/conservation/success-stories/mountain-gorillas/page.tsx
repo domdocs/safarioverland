@@ -1,3 +1,12 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Mountain Gorilla Recovery — Success Stories",
+  description:
+    "Conservation work that brought mountain gorillas back from the brink across Rwanda, Uganda and the DRC.",
+  alternates: { canonical: "https://safarioverland.com/resources/conservation/success-stories/mountain-gorillas" },
+}
+
 import React from 'react';
 import Image from 'next/image';
 import { EditorialImage } from "@/components/editorial/editorial-image"

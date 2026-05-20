@@ -5,9 +5,10 @@ import { DollarSign, Star, ArrowLeft, Info, CheckCircle2, AlertTriangle } from '
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Luxury vs Budget Safari Guide | Safari Overland',
+  title: 'Luxury vs Budget Safari Guide',
   description:
     'A frank, practical comparison of luxury, mid-range and budget safaris in Africa — what you actually get at each price point and how to maximise value at any budget.',
+  alternates: { canonical: "https://safarioverland.com/resources/planning-guides/luxury-vs-budget" },
   keywords:
     'luxury safari, budget safari, affordable safari, safari cost comparison, safari value, safari accommodation options, safari price points',
 };

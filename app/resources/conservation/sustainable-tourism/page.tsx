@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Sustainable Tourism in Safari Travel | Safari Overland",
+  title: "Sustainable Tourism in Safari Travel",
   description:
     "What sustainable tourism actually means in the African safari context — economic, environmental and social pillars, certifications and how travelers fit in.",
+  alternates: { canonical: "https://safarioverland.com/resources/conservation/sustainable-tourism" },
   keywords:
     "sustainable tourism africa, ecotourism, responsible travel, regenerative tourism, sustainable safari, low impact safari",
 }

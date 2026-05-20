@@ -100,6 +100,7 @@ export default function PlanningGuidesPage() {
               {[
                 {
                   title: "Choosing the Right Safari Destination",
+                  alternates: { canonical: "https://safarioverland.com/resources/planning-guides" },
                   image: "/images/planning-guides/destinations/safari-destinations.jpg",
                   excerpt:
                     "A comprehensive comparison of safari destinations across Africa to help you choose the perfect location for your interests and budget.",

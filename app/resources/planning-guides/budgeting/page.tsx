@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Safari Budgeting Guide | Safari Overland",
+  title: "Safari Budgeting Guide",
   description:
     "A practical breakdown of safari costs — flights, park fees, accommodation, transfers, tipping — with realistic budget ranges for every traveler type.",
+  alternates: { canonical: "https://safarioverland.com/resources/planning-guides/budgeting" },
   keywords:
     "safari budget, safari cost, africa travel budget, safari pricing, how much does a safari cost, safari park fees",
 }

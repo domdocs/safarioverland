@@ -10,9 +10,10 @@ import { NewsletterForm } from "@/components/newsletter-form"
 import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions | Safari Overland",
+  title: "Frequently Asked Questions",
   description:
     "Practical answers to the most common questions about planning an African safari — covering costs, safety, logistics, and what to expect on the ground.",
+  alternates: { canonical: "https://safarioverland.com/resources/faqs" },
   keywords: [
     "safari FAQs",
     "African safari planning",

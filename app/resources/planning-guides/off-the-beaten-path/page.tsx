@@ -7,8 +7,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: 'Off-the-Beaten-Path Safari Destinations | Safari Overland',
+  title: 'Off-the-Beaten-Path Safari Destinations',
   description: 'Discover Africa\'s hidden safari gems, from Timbuktu and Guinea Bissau to remote parks in Tanzania, Zambia, and Gabon that offer authentic wildlife experiences away from the crowds.',
+  alternates: { canonical: "https://safarioverland.com/resources/planning-guides/off-the-beaten-path" },
   keywords: 'off the beaten path safaris, remote African destinations, Timbuktu, Guinea Bissau, Ruaha, Mahale, Kafue, Loango, hidden safari gems',
 };
 

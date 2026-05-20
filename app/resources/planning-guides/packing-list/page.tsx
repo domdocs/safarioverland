@@ -5,8 +5,9 @@ import { ArrowLeft, CheckSquare, Info, Compass, ShieldCheck, Check, Sun, Camera,
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Ultimate Safari Packing List | Safari Overland',
+  title: 'Ultimate Safari Packing List',
   description: 'The essential safari packing list for all seasons and destinations. From clothing and gear to medical supplies and electronics, prepare for your African adventure.',
+  alternates: { canonical: "https://safarioverland.com/resources/planning-guides/packing-list" },
   keywords: 'safari packing list, what to pack for safari, safari clothing, safari gear, safari essentials, africa travel packing',
 };
 

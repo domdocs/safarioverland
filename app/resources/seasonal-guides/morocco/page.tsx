@@ -10,8 +10,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: "Morocco Safari Seasonal Guide | Safari Overland",
+  title: "Morocco Safari Seasonal Guide",
   description: "Comprehensive guide to the best times for desert safaris and wildlife viewing in Morocco throughout the year.",
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/morocco" },
   keywords: "Morocco safari seasons, Morocco desert safari, Sahara Desert, Atlas Mountains, Moroccan wildlife, Morocco weather, Morocco travel guide",
 }
 

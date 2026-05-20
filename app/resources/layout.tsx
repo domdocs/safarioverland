@@ -7,6 +7,7 @@ import { AutoBreadcrumbs } from "@/components/AutoBreadcrumbs"
 export const metadata: Metadata = {
   title: "Field Notes",
   description: "Long-form planning, conservation and seasonal field notes from across Africa.",
+  alternates: { canonical: "https://safarioverland.com/resources" },
 }
 
 export default function ResourcesLayout({

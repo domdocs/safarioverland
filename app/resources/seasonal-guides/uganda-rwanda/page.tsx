@@ -7,8 +7,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: 'Uganda & Rwanda Safari Seasonal Guide | Safari Overland',
+  title: 'Uganda & Rwanda Safari Seasonal Guide',
   description: 'Comprehensive guide to the best times for gorilla trekking and wildlife viewing in Uganda and Rwanda throughout the year, including Bwindi, Volcanoes National Park, and Queen Elizabeth.',
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/uganda-rwanda" },
   keywords: 'Uganda Rwanda safari seasons, gorilla trekking best time, Bwindi Impenetrable Forest, Volcanoes National Park, Queen Elizabeth National Park, Uganda wildlife viewing, Rwanda dry season, chimpanzee tracking',
 };
 

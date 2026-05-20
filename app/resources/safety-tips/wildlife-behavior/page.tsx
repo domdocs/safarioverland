@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Wildlife Behavior on Safari | Safari Overland",
+  title: "Wildlife Behavior on Safari",
   description:
     "How to read wildlife behaviour on safari — recognising stress, threat displays and safe distances for the species you're most likely to encounter.",
+  alternates: { canonical: "https://safarioverland.com/resources/safety-tips/wildlife-behavior" },
   keywords:
     "wildlife behavior safari, animal body language, safari safety wildlife, lion behaviour, elephant warning signs, hippo danger",
 }

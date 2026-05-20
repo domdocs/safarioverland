@@ -7,8 +7,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: 'Budget Safari Travel Guide | Best Value Seasons | Safari Overland',
+  title: 'Budget Safari Travel Guide | Best Value Seasons',
   description: 'How to maximize value with budget-friendly safari travel during shoulder and green seasons while still enjoying excellent wildlife experiences.',
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/budget-travel" },
   keywords: 'budget safari, affordable African safari, shoulder season safari, green season deals, value safari travel, low season safari, safari discounts, budget travel tips',
 };
 

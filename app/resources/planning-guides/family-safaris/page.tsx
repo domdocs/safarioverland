@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Family Safari Guide | Safari Overland",
+  title: "Family Safari Guide",
   description:
     "Practical advice on planning a safari with children — choosing destinations, lodges, age-appropriate activities, malaria considerations and how to keep kids engaged.",
+  alternates: { canonical: "https://safarioverland.com/resources/planning-guides/family-safaris" },
   keywords: "family safari, kids safari, safari with children, family-friendly safari, family africa trip",
 }
 

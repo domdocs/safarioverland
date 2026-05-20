@@ -1,3 +1,12 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Elephant Corridors in Kenya — Success Stories",
+  description:
+    "How strategic land conservation has restored vital elephant migration corridors between national parks in Kenya.",
+  alternates: { canonical: "https://safarioverland.com/resources/conservation/success-stories/kenya-corridors" },
+}
+
 import React from 'react';
 import Image from 'next/image';
 import { EditorialImage } from "@/components/editorial/editorial-image"

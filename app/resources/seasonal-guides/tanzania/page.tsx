@@ -7,8 +7,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: 'Tanzania Safari Seasonal Guide | Safari Overland',
+  title: 'Tanzania Safari Seasonal Guide',
   description: 'Month-by-month guide to Tanzania\'s safari seasons, including the Great Migration in the Serengeti, peak times for Ngorongoro Crater, and optimal seasons for each region.',
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/tanzania" },
   keywords: 'Tanzania safari seasons, best time to visit Tanzania, Serengeti migration timing, Tanzania weather, Tanzania wildlife viewing, dry season Tanzania, green season Tanzania, Ngorongoro Crater',
 };
 

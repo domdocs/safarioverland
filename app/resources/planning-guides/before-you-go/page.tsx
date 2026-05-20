@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Before You Go: Safari Pre-Departure Checklist | Safari Overland",
+  title: "Before You Go: Safari Pre-Departure Checklist",
   description:
     "A pre-departure checklist for African safari travelers — passports, visas, vaccinations, insurance, money, communications and final-week logistics.",
+  alternates: { canonical: "https://safarioverland.com/resources/planning-guides/before-you-go" },
   keywords: "safari pre-departure, safari preparation, safari checklist, africa visa, safari vaccinations",
 }
 

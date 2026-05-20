@@ -5,8 +5,9 @@ import { Calendar, ArrowLeft, Bird, Info, Map, Check } from 'lucide-react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Planning Around Wildlife Events | Safari Overland',
+  title: 'Planning Around Wildlife Events',
   description: 'Time your safari to witness Africa\'s most spectacular wildlife events—like the Great Migration, calving season, and bird migrations—for a truly unforgettable adventure.',
+  alternates: { canonical: "https://safarioverland.com/resources/planning-guides/wildlife-events" },
   keywords: 'wildlife events, great migration, calving season, bird migration, safari timing, river crossing, wildebeest migration, serengeti migration, masai mara migration',
 };
 

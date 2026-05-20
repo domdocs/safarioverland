@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Community Conservation | Safari Overland",
+  title: "Community Conservation",
   description:
     "How community-led conservancies and benefit-sharing models are reshaping African wildlife protection — examples, results and how travelers support the model.",
+  alternates: { canonical: "https://safarioverland.com/resources/conservation/community-conservation" },
   keywords:
     "community conservation, conservancies, namibia conservancies, maasai mara conservancies, community-based natural resource management",
 }

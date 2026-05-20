@@ -6,9 +6,10 @@ import { CategoryEmptyState } from "@/components/editorial/category-empty-state"
 import { PaginatedListingsGridEditorial } from "@/components/editorial/paginated-listings-grid-editorial"
 
 export const metadata: Metadata = {
-  title: "Overland Tours | Safari Overland",
+  title: "Overland Tours",
   description:
     "Multi-country overland adventures across diverse African landscapes.",
+  alternates: { canonical: "https://safarioverland.com/categories/overland-tours" },
 }
 
 export const dynamic = "force-dynamic"

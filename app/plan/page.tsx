@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "Plan a safari, by hand",
   description:
     "Tell us what you're chasing — the months, the rhythm, the kind of quiet you want. We'll come back with three routes within 48 hours.",
+  alternates: { canonical: "https://safarioverland.com/plan" },
 }
 
 type PlanPageProps = {

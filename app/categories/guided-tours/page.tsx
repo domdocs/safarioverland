@@ -6,9 +6,10 @@ import { CategoryEmptyState } from "@/components/editorial/category-empty-state"
 import { PaginatedListingsGridEditorial } from "@/components/editorial/paginated-listings-grid-editorial"
 
 export const metadata: Metadata = {
-  title: "Guided Tours | Safari Overland",
+  title: "Guided Tours",
   description:
     "Expert-led safari tours across Africa's most spectacular wildlife destinations.",
+  alternates: { canonical: "https://safarioverland.com/categories/guided-tours" },
 }
 
 export const dynamic = "force-dynamic"
