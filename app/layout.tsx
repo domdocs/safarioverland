@@ -61,6 +61,14 @@ export const metadata: Metadata = {
     // own via metadata.alternates.canonical or generateMetadata so
     // this doesn't leak through to child routes.
     canonical: "https://safarioverland.com",
+    // Hreflang scaffold. Site is English-only today; the scaffold
+    // signals "this content is in English" cleanly to crawlers and
+    // makes it trivial to add a Portuguese/French/German variant
+    // later by adding rows here (and a localised path).
+    languages: {
+      en: "https://safarioverland.com",
+      "x-default": "https://safarioverland.com",
+    },
   },
   manifest: "/manifest.json",
   applicationName: "Safari Overland",
