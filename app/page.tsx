@@ -222,13 +222,6 @@ export default async function HomePage() {
         </section>
 
         {/* ─── In-season strip ───────────────────────────────────── */}
-        <section className="container">
-          <Eyebrow withRule>In season, right now</Eyebrow>
-          <p className="mt-6 max-w-2xl text-bone-mute leading-relaxed">
-            Conditions on the ground, this week, across the continent. Use
-            it to choose where to go now — not just where to go in theory.
-          </p>
-        </section>
         <InSeasonStrip />
 
         {/* ─── Plan-with-us card ─────────────────────────────────── */}
