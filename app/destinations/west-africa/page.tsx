@@ -6,6 +6,8 @@ import { DestinationWildlife } from "@/components/destination-wildlife"
 import { DestinationSeasons } from "@/components/destination-seasons"
 import { DestinationMap } from "@/components/destination-map"
 import { ListingsGrid } from "@/components/listings-grid"
+import { RelatedFieldNotes } from "@/components/RelatedFieldNotes"
+import { RelatedListings } from "@/components/RelatedListings"
 
 export const metadata: Metadata = {
   title: "West Africa Safaris",
@@ -316,6 +318,9 @@ export default function WestAfricaPage() {
           <ListingsGrid listings={westAfricaListings} category="West Africa" />
         </div>
       </div>
+
+      <RelatedFieldNotes topic="west-africa" heading="More on West Africa" />
+      <RelatedListings region="West Africa" heading="Where we'd send you in West Africa" />
     </div>
   )
 }

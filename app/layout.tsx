@@ -61,9 +61,32 @@ export const metadata: Metadata = {
     // own via metadata.alternates.canonical or generateMetadata so
     // this doesn't leak through to child routes.
     canonical: "https://safarioverland.com",
+    // Hreflang scaffold. Site is English-only today; the scaffold
+    // signals "this content is in English" cleanly to crawlers and
+    // makes it trivial to add a Portuguese/French/German variant
+    // later by adding rows here (and a localised path).
+    languages: {
+      en: "https://safarioverland.com",
+      "x-default": "https://safarioverland.com",
+    },
   },
   manifest: "/manifest.json",
   applicationName: "Safari Overland",
+  authors: [
+    {
+      name: "Safari Overland Editorial",
+      url: "https://safarioverland.com/about",
+    },
+  ],
+  creator: "Safari Overland",
+  publisher: "Safari Overland",
+  // Phones love to auto-link strings that look like phone numbers or
+  // addresses in editorial copy. Suppress — we set our own CTAs.
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   keywords: [
     "African safari",
     "safari operators",
@@ -98,7 +121,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  generator: "v0.dev",
 }
 
 export const viewport: Viewport = {

@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 
+import { getBlurDataURL } from "@/lib/images/blur"
 import { StartBriefLink } from "@/components/analytics/start-brief-link"
 import { EditorialHeader } from "@/components/editorial/editorial-header"
 import { EditorialFooter } from "@/components/editorial/editorial-footer"
@@ -35,21 +36,21 @@ const PILLARS = [
 
 const FIELD_NOTES = [
   {
-    href: "/resources/planning-guides/east-vs-southern",
+    href: "/field-notes/planning-guides/east-vs-southern",
     eyebrow: "Planning · 04 min",
     title: "East vs Southern Africa",
     lede: "Two extraordinary safari regions, two different experiences. A direct comparison on landscapes, game viewing, and cost.",
     image: "/images/planning-guides/destinations/east-vs-southern.jpg",
   },
   {
-    href: "/resources/planning-guides/luxury-vs-budget",
+    href: "/field-notes/planning-guides/luxury-vs-budget",
     eyebrow: "Budgeting · 06 min",
     title: "Luxury vs budget safaris",
     lede: "What you actually get at each price point — and how to spend smart at any budget.",
     image: "/images/planning-guides/budgeting/budget-vs-luxury.jpg",
   },
   {
-    href: "/resources/conservation/community-conservation",
+    href: "/field-notes/conservation/community-conservation",
     eyebrow: "Conservation · 05 min",
     title: "Community conservation",
     lede: "How conservancies are reshaping African wildlife protection — and how to choose trips that fund the model.",
@@ -58,7 +59,10 @@ const FIELD_NOTES = [
 ]
 
 export default async function HomePage() {
-  const settings = await getSettings()
+  const [settings, heroBlur] = await Promise.all([
+    getSettings(),
+    getBlurDataURL("/safari-tent.jpg"),
+  ])
   const featured = settings.show_featured_on_home
     ? await getFeaturedListings(3)
     : []
@@ -75,6 +79,9 @@ export default async function HomePage() {
             alt="Tented camp at sunset in the African bush"
             fill
             priority
+            sizes="100vw"
+            placeholder="blur"
+            blurDataURL={heroBlur}
             className="object-cover"
           />
           <div
@@ -234,7 +241,7 @@ export default async function HomePage() {
               </h2>
             </div>
             <Link
-              href="/resources"
+              href="/field-notes"
               className="mono text-amber hover:text-amber-deep transition-colors"
             >
               All field notes →

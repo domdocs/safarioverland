@@ -21,10 +21,10 @@ const STATIC_COLUMNS: FooterColumn[] = [
   {
     label: "Field notes",
     links: [
-      { href: "/resources/planning-guides", label: "Planning guides" },
-      { href: "/resources/seasonal-guides", label: "Seasonal guides" },
-      { href: "/resources/conservation", label: "Conservation" },
-      { href: "/resources/safety-tips", label: "Safety" },
+      { href: "/field-notes/planning-guides", label: "Planning guides" },
+      { href: "/field-notes/seasonal-guides", label: "Seasonal guides" },
+      { href: "/field-notes/conservation", label: "Conservation" },
+      { href: "/field-notes/safety-tips", label: "Safety" },
     ],
   },
 ]

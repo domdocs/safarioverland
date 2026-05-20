@@ -24,6 +24,8 @@ import { DestinationMap } from "@/components/destination-map"
 import { ListingsGrid } from "@/components/listings-grid"
 import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
+import { RelatedFieldNotes } from "@/components/RelatedFieldNotes"
+import { RelatedListings } from "@/components/RelatedListings"
 
 export const metadata: Metadata = {
   title: "North Africa Safaris & Adventures | Morocco, Egypt & Tunisia",
@@ -634,6 +636,9 @@ export default function NorthAfricaPage() {
           </div>
         </div>
       </section>
+
+      <RelatedFieldNotes topic="north-africa" heading="More on North Africa" />
+      <RelatedListings region="North Africa" heading="Where we'd send you in North Africa" />
     </div>
   )
 }

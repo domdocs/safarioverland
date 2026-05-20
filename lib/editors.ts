@@ -28,3 +28,17 @@ export const niels: Editor = {
   photo: null,
   sameAs: [],
 }
+
+/**
+ * Registry — keyed by Editor.id. The `editorId` field exported from
+ * each /field-notes/.../page.tsx is looked up here. New editors
+ * register by adding to this map. Unknown ids fall back to niels.
+ */
+export const EDITORS: Record<string, Editor> = {
+  [niels.id]: niels,
+}
+
+export function getEditorById(id: string | undefined | null): Editor {
+  if (!id) return niels
+  return EDITORS[id] ?? niels
+}

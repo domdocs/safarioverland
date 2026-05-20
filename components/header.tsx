@@ -53,7 +53,7 @@ export function Header() {
           <Link href="/about" className="transition-colors hover:text-amber">
             About
           </Link>
-          <Link href="/resources" className="transition-colors hover:text-amber">
+          <Link href="/field-notes" className="transition-colors hover:text-amber">
             Resources
           </Link>
         </nav>

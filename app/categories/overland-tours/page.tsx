@@ -4,6 +4,7 @@ import { getSettings } from "@/lib/settings"
 import { CategoryPageShell } from "@/components/editorial/category-page-shell"
 import { CategoryEmptyState } from "@/components/editorial/category-empty-state"
 import { PaginatedListingsGridEditorial } from "@/components/editorial/paginated-listings-grid-editorial"
+import { RelatedFieldNotes } from "@/components/RelatedFieldNotes"
 
 export const metadata: Metadata = {
   title: "Overland Tours",
@@ -35,6 +36,7 @@ export default async function OverlandToursPage() {
         eyebrow="Overland"
         emptyContent={<CategoryEmptyState noun="overland tour" />}
       />
+      <RelatedFieldNotes topic="overland-tours" heading="Reading on overland travel & where we'd send you" />
     </CategoryPageShell>
   )
 }

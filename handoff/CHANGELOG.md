@@ -7,6 +7,33 @@ referenced — it's the canonical spec for what was built and why.
 
 ---
 
+## 2026-05-19 — Hidden-costs canonical fix
+
+**Standalone follow-up to SEO PR #14** — merged same day, small
+single-bug fix.
+
+`app/resources/planning-guides/hidden-costs/page.tsx` was a
+`"use client"` component and therefore couldn't export `metadata`,
+which meant it inherited the parent layout's canonical
+(`/resources`) instead of its own
+(`/resources/planning-guides/hidden-costs`). Fixed by splitting:
+
+- `hidden-costs-content.tsx` — the original client component,
+  renamed verbatim, all 1052 lines preserved and untouched
+- `page.tsx` — new server-component wrapper, exports `metadata`
+  with the correct canonical, default-exports a function that
+  renders `<HiddenCostsContent />`
+
+Standard Next.js pattern for "big client component that also
+needs page-level metadata." Closes follow-up item #2 from the
+SEO PR.
+
+The three remaining SEO follow-ups (success-stories pages on the
+bespoke layout, weak meta descriptions across resource pages, full
+related-content sweep) still belong in Brief 3.
+
+---
+
 ## 2026-05-19 — Technical SEO (Critical & High-Priority)
 
 **SEO Brief 1 — Critical & High-Priority Technical Fixes** (PR #14)

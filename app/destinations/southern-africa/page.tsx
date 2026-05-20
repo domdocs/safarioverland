@@ -23,6 +23,7 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 import { RelatedFieldNotes } from "@/components/RelatedFieldNotes"
 import { RelatedListings } from "@/components/RelatedListings"
+import { getBlurDataURL } from "@/lib/images/blur"
 
 export const metadata: Metadata = {
   title: "Southern Africa Safaris | Ultimate Safari Guide",
@@ -306,19 +307,23 @@ const southernAfricaListings = [
   },
 ]
 
-export default function SouthernAfricaPage() {
+export default async function SouthernAfricaPage() {
+  const heroBlur = await getBlurDataURL("/images/destinations/southern-africa.jpg")
   return (
     <div className="container mx-auto px-4 py-12">
       {/* Hero Section */}
       <section className="mb-16">
         <div className="relative rounded-xl overflow-hidden">
           <div className="aspect-video relative">
-            <Image 
-              src="/images/destinations/southern-africa.jpg" 
-              alt="Southern Africa Safari Landscape" 
-              fill 
-              className="object-cover" 
+            <Image
+              src="/images/destinations/southern-africa.jpg"
+              alt="Elephants at a Chobe waterhole at sunset, northern Botswana"
+              fill
               priority
+              sizes="100vw"
+              placeholder="blur"
+              blurDataURL={heroBlur}
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent">
               <div className="absolute bottom-0 left-0 p-6 md:p-10 max-w-3xl">

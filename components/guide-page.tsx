@@ -39,11 +39,11 @@ export type GuidePageProps = {
 
 /**
  * Editorial article template — used by every long-form guide under
- * /resources/* (planning guides, conservation, seasonal, safety,
+ * /field-notes/* (planning guides, conservation, seasonal, safety,
  * country guides). Drop-cap intro, ruled section heads, italic-amber
  * callouts, related-guide footer, optional CTA card.
  *
- * Header/Footer chrome comes from app/resources/layout.tsx — this
+ * Header/Footer chrome comes from app/field-notes/layout.tsx — this
  * component is just the article body. Server Component.
  */
 export function GuidePage({

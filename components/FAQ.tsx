@@ -1,7 +1,7 @@
 /**
  * Reusable FAQ section — visible accordion + FAQPage JSON-LD in one.
  *
- * Built per the brief but only smoke-tested on /resources/faqs for
+ * Built per the brief but only smoke-tested on /field-notes/faqs for
  * this ship. Wider rollout is Brief 3 (page content rewrites) where
  * the actual per-page FAQ questions live.
  */

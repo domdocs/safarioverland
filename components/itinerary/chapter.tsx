@@ -17,7 +17,10 @@ function ChapterHero({
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={chapter.photo_hero_url}
-          alt=""
+          alt={
+            [chapter.place, chapter.country].filter(Boolean).join(", ") ||
+            "Chapter hero photograph"
+          }
           className="chapter-hero-photo"
           loading="eager"
           decoding="sync"
@@ -88,7 +91,11 @@ function Lodge({ chapter }: { chapter: ChapterType }) {
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={chapter.photo_lodge_url}
-            alt=""
+            alt={
+              lodge.name && chapter.country
+                ? `${lodge.name}, ${chapter.country}`
+                : lodge.name || "Lodge photograph"
+            }
             loading="eager"
             decoding="sync"
           />

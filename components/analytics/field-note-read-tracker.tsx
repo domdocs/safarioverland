@@ -14,7 +14,7 @@ type Props = {
   /**
    * Field Notes category bucket: planning / seasonal / conservation /
    * safety / etc. Optional — when omitted, derived from the second
-   * pathname segment under /resources/*.
+   * pathname segment under /field-notes/*.
    */
   category?: string
   /**
@@ -52,7 +52,7 @@ export function FieldNoteReadTracker({
     if (firedRef.current) return
 
     // Derive slug/category from the URL when not supplied. URL shape:
-    // /resources/{category}/{slug} — bail out gracefully on shapes that
+    // /field-notes/{category}/{slug} — bail out gracefully on shapes that
     // don't match so non-article mounts don't fire stray events.
     const segs = pathname.split("/").filter(Boolean)
     const derivedSlug = slug ?? segs[segs.length - 1] ?? ""
