@@ -4,17 +4,14 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { 
-  MapPin, 
-  Calendar, 
-  Sun, 
-  Cloud, 
-  Thermometer, 
-  CloudRain, 
-  Binoculars, 
-  Camera, 
-  Compass, 
-  DollarSign 
+import {
+  MapPin,
+  Calendar,
+  Sun,
+  Cloud,
+  Thermometer,
+  CloudRain,
+  Compass,
 } from "lucide-react"
 import { DestinationHeader } from "@/components/destination-header"
 import { DestinationAttractions } from "@/components/destination-attractions"
@@ -26,14 +23,40 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 import { RelatedFieldNotes } from "@/components/RelatedFieldNotes"
 import { RelatedListings } from "@/components/RelatedListings"
+import { FAQ } from "@/components/FAQ"
 import { getBlurDataURL } from "@/lib/images/blur"
 
 export const metadata: Metadata = {
-  title: "East Africa Safari | Kenya, Tanzania, Uganda & Rwanda",
-  description: "Discover the iconic savannahs, mountain gorillas, and Great Migration of East Africa. Plan your ultimate safari adventure in Kenya, Tanzania, Uganda & Rwanda.",
+  title: "East Africa Safari Guide 2026 — Kenya, Tanzania, Uganda, Rwanda",
+  description:
+    "Plan an East Africa safari for 2026 — Maasai Mara, Serengeti, Bwindi gorillas, the Great Migration. Month-by-month conditions, costs, and the lodges we'd send our friends to.",
   alternates: { canonical: "https://safarioverland.com/destinations/east-africa" },
-  keywords: "East Africa safari, Kenya safari, Tanzania safari, Uganda gorilla trekking, Rwanda gorillas, Great Migration, Serengeti, Masai Mara, Ngorongoro Crater, African wildlife",
+  keywords:
+    "East Africa safari, Kenya safari, Tanzania safari, Uganda gorilla trekking, Rwanda gorillas, Great Migration, Serengeti, Maasai Mara, Ngorongoro Crater, African wildlife",
 }
+
+const EAST_AFRICA_FAQ = [
+  {
+    question: "Is East Africa or Southern Africa better for a first safari?",
+    answer:
+      "East Africa for the iconic image and the Migration. Southern Africa for variety, value, and fewer crowds.",
+  },
+  {
+    question: "What's the cheapest month to go to East Africa?",
+    answer:
+      "April and November — the long and short rains. Camps that stay open often discount 25–40%. Game viewing is dramatic in green and predators are out. The trade-off: some roads close and some bush camps shut entirely.",
+  },
+  {
+    question: "Can you do East Africa as a self-drive safari?",
+    answer:
+      "Kenya — yes, plausibly (Maasai Mara, Amboseli, Tsavo). Tanzania — possible but not recommended; the Serengeti is huge and rough. Uganda and Rwanda — no for gorilla trekking (permits are guide-led).",
+  },
+  {
+    question: "How many days do you need for East Africa?",
+    answer:
+      "Seven to ten nights for a focused single-country trip. Twelve to fourteen for a meaningful two-country combination (e.g. Kenya + Rwanda for gorillas; or Tanzania northern circuit + Zanzibar).",
+  },
+]
 
 // East Africa attractions with enhanced content
 const eastAfricaAttractions = [
@@ -330,10 +353,10 @@ export default async function EastAfricaPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent">
               <div className="absolute bottom-0 left-0 p-6 md:p-10 max-w-3xl">
                 <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                  East Africa Safari Destinations
+                  East Africa safari — Kenya, Tanzania, Uganda &amp; Rwanda
                 </h1>
                 <p className="text-xl text-white/90 mb-6">
-                  Experience the iconic savannahs, mountain gorillas, and the Great Migration in Kenya, Tanzania, Uganda, and Rwanda.
+                  The safari of the brochure — vast open plains, the Great Migration, mountain gorillas in Bwindi mist. Opinionated, current, written from the bush.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Badge variant="outline" className="bg-white/10 text-white border-white/30 px-3 py-1 text-sm">
@@ -361,13 +384,65 @@ export default async function EastAfricaPage() {
           <h2 className="text-3xl font-bold mb-6 text-center">Discover East Africa</h2>
           <div className="prose prose-lg max-w-none">
             <p>
-              East Africa represents the quintessential safari destination—a land of sweeping savannah plains, snow-capped mountains, dense rainforests, and incredible wildlife spectacles. This diverse region encompasses Kenya, Tanzania, Uganda, and Rwanda, each offering distinctive experiences while sharing the remarkable landscapes and wildlife that make East Africa legendary among safari enthusiasts.
+              An East Africa safari is the safari of the brochure — vast open plains, the Great Migration, lions on a kopje, mountain gorillas in Bwindi mist. It is also the safari of distance: longer transfers, larger vehicles, and a more crowded peak season than the Southern Africa equivalent.
             </p>
             <p>
-              The region's crown jewel is undoubtedly the Great Migration—the annual movement of over 1.5 million wildebeest and hundreds of thousands of zebra and gazelle between Tanzania's Serengeti and Kenya's Masai Mara in a constant search for fresh grazing. This natural spectacle, with its dramatic river crossings and attendant predator action, ranks among the world's most awe-inspiring wildlife events.
+              This guide is the editorial position on East Africa: where to go, when to go, what it costs in 2026, the conservancy and community model worth paying extra for, and the kinds of lodges we&apos;d send our closest friends to. It is opinionated and current. Pricing reflects published 2026 rates at time of writing; lodges and parks adjust between seasons — we update this page on a rolling basis.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* The four East African safari countries, briefly */}
+      <section className="mb-16">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold mb-6">The four East African safari countries, briefly</h2>
+          <div className="prose prose-lg max-w-none">
+            <h3 className="text-xl font-bold mt-6">Kenya — the classic safari and the conservancy revolution</h3>
+            <p>
+              Kenya is where the modern safari was invented and where it is currently being re-invented. The Maasai Mara is the headline — the river crossings between July and October are genuinely as spectacular as they sound — but the conservancies on the Mara&apos;s borders (Olare Motorogi, Mara North, Naboisho, Ol Kinyei) are where the editorial picks live, because they cap vehicle numbers, allow night drives and walking, and put lease income directly into Maasai hands. Laikipia (Lewa, Borana, Ol Pejeta, Loisaba) is Kenya&apos;s quiet luxury heartland — black-rhino conservation, fewer crowds, exceptional guiding, and the chance to see African wild dog at scale. Amboseli for the Kilimanjaro backdrop. Samburu for the special-five (Grevy&apos;s zebra, reticulated giraffe, gerenuk, beisa oryx, Somali ostrich).
+            </p>
+
+            <h3 className="text-xl font-bold mt-6">Tanzania — the herd country</h3>
+            <p>
+              Tanzania is sheer scale. The Serengeti ecosystem is roughly the size of Northern Ireland and holds the bulk of the Migration herds for most of the year. Northern Serengeti and Mara River crossings (July–October) are the headline; southern Serengeti and Ndutu calving (January–March) is the editor&apos;s pick. Ngorongoro is a one-day destination — astonishing but crowded. Tarangire (June–October) is the elephant park and seriously underrated. Selous/Nyerere and Ruaha are the Tanzania of fewer vehicles, walking safaris, and boating — the editorial sweet spot for second-time visitors.
+            </p>
+
+            <h3 className="text-xl font-bold mt-6">Uganda — the gorilla country</h3>
+            <p>
+              Bwindi Impenetrable Forest and Mgahinga have around 459 mountain gorillas, roughly half the world population. Gorilla permits in Uganda are materially cheaper than Rwanda&apos;s; book 6–9 months ahead in peak. Pair gorillas with Kibale (chimps), Queen Elizabeth (tree-climbing lions in Ishasha), and Murchison Falls (the most dramatic stretch of the Nile in Africa).
+            </p>
+
+            <h3 className="text-xl font-bold mt-6">Rwanda — the boutique gorilla country</h3>
+            <p>
+              Rwanda&apos;s Volcanoes National Park is the higher-cost, higher-comfort gorilla option — shorter transfer from Kigali (2.5 hours vs 9–10 for Bwindi), and the lodges (Singita Kwitonda, One&amp;Only Gorilla&apos;s Nest, Bisate) are at the top of the gorilla-country comfort ranking. Akagera in the east is Rwanda&apos;s Big Five savanna park and an important community-conservation case study (African Parks management since 2010).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* How much does an East Africa safari cost in 2026 */}
+      <section className="mb-16">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold mb-6">How much does an East Africa safari cost in 2026</h2>
+          <div className="prose prose-lg max-w-none">
+            <p>
+              Honest 2026 numbers. Per person per night, full-board, including game drives but excluding international flights, regional flights, conservancy fees, and gratuities:
+            </p>
+            <ul>
+              <li>Mid-range mobile camps and lodges: <strong>$450–$750</strong> per person per night</li>
+              <li>Premium small camps in conservancies: <strong>$900–$1,600</strong> per person per night</li>
+              <li>Luxury (Singita, Sanctuary, Asilia, &amp;Beyond&apos;s top tier): <strong>$1,500–$3,200</strong> per person per night</li>
+              <li>Ultra-luxury fly-in private safaris: <strong>$3,500–$6,500</strong> per person per night</li>
+            </ul>
+            <p>
+              Add: international flights $1,200–$2,500; East Africa regional flights $250–$600 per sector; conservancy and park fees that vary by region; gorilla permits (Uganda lower than Rwanda); gratuities typically 10–15%.
             </p>
             <p>
-              Beyond the migration, East Africa offers extraordinary diversity: track endangered mountain gorillas in the misty forests of Uganda and Rwanda, witness the snow-capped peak of Kilimanjaro rising above Amboseli's elephant herds, explore the wildlife-packed caldera of Ngorongoro Crater, or experience authentic cultural encounters with the Maasai, Samburu, and other traditional communities who maintain ancient ways of life in a modern world.
+              A 10-night East Africa safari for two, mid-range, typically lands around <strong>$14,000–$22,000</strong> all-in; premium <strong>$24,000–$36,000</strong>; luxury <strong>$40,000–$65,000+</strong>.
+            </p>
+            <p className="text-sm text-muted-foreground italic">
+              Specific permit and park-fee prices change between seasons and are intentionally not listed here. Ask us in a brief and we&apos;ll quote current rates with the lodge.
             </p>
           </div>
         </div>
@@ -472,7 +547,22 @@ export default async function EastAfricaPage() {
 
       {/* Seasons Section */}
       <section className="mb-16">
-        <h2 className="text-3xl font-bold mb-8 text-center">When to Visit East Africa</h2>
+        <h2 className="text-3xl font-bold mb-4 text-center">When to go to East Africa (month by month)</h2>
+        <div className="max-w-4xl mx-auto mb-10">
+          <div className="prose prose-lg max-w-none">
+            <p>
+              East Africa runs on two rainy seasons (the &quot;long&quot; rains in April–May and the &quot;short&quot; rains in November) and two dry seasons. The dry season from June to October is the famous safari window — the Mara/Serengeti migration drama, the best big-cat sightings, and dust-on-the-Land-Cruiser conditions. The green season (November–March) is dramatically better value, photographically spectacular, and underrated for predator action when the wildebeest are calving in the Ndutu region of southern Serengeti (January–March).
+            </p>
+          </div>
+        </div>
+        {/*
+         * A detailed month-by-month table (12 rows: Month, Conditions,
+         * Migration position, Game viewing, Cost band, Best for) is
+         * the most-quoted block in AI Overviews for "best time" queries
+         * — but the content needs Niels' editorial supply rather than
+         * being invented here. Flagged in the Brief 3 PR. The four
+         * season-cards below remain the current treatment.
+         */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {eastAfricaSeasons.map((season) => (
             <Card key={season.name} className="h-full hover:shadow-lg transition-all duration-300">
@@ -526,71 +616,30 @@ export default async function EastAfricaPage() {
       
       {/* Travel Tips */}
       <section className="mb-16 bg-muted p-8 rounded-xl">
-        <h2 className="text-3xl font-bold mb-8 text-center">East Africa Travel Tips</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center mb-4">
-                <Binoculars className="h-8 w-8 text-primary mr-3" />
-                <h3 className="text-lg font-bold">Safari Essentials</h3>
-              </div>
-              <ul className="space-y-2 text-sm">
-                <li>• Pack neutral-colored clothing (beige, khaki, olive)</li>
-                <li>• Bring lightweight, breathable fabrics</li>
-                <li>• Include a warm layer for cool mornings</li>
-                <li>• Quality binoculars enhance wildlife viewing</li>
-                <li>• Dust-proof camera bag for equipment protection</li>
-              </ul>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center mb-4">
-                <Camera className="h-8 w-8 text-primary mr-3" />
-                <h3 className="text-lg font-bold">Photography Tips</h3>
-              </div>
-              <ul className="space-y-2 text-sm">
-                <li>• Bring a versatile zoom lens (70-300mm minimum)</li>
-                <li>• Golden hours provide the best lighting</li>
-                <li>• Pack extra batteries and memory cards</li>
-                <li>• Consider a beanbag for vehicle stability</li>
-                <li>• Ask permission before photographing local people</li>
-              </ul>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center mb-4">
-                <Compass className="h-8 w-8 text-primary mr-3" />
-                <h3 className="text-lg font-bold">Trip Planning</h3>
-              </div>
-              <ul className="space-y-2 text-sm">
-                <li>• Book peak season safaris 6-12 months in advance</li>
-                <li>• Gorilla permits sell out months ahead</li>
-                <li>• Consider combining countries for diverse experiences</li>
-                <li>• Allow at least 7-10 days for a meaningful safari</li>
-                <li>• Build in rest days between long safari drives</li>
-              </ul>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center mb-4">
-                <DollarSign className="h-8 w-8 text-primary mr-3" />
-                <h3 className="text-lg font-bold">Budget Considerations</h3>
-              </div>
-              <ul className="space-y-2 text-sm">
-                <li>• Most lodges are all-inclusive with activities</li>
-                <li>• Green season offers significant discounts (30-40%)</li>
-                <li>• Budget $150-800 per person/day for accommodations</li>
-                <li>• Factor in park fees ($50-150 per day)</li>
-                <li>• Gorilla permits cost $700-1,500 per trek</li>
-              </ul>
-            </CardContent>
-          </Card>
+        <h2 className="text-3xl font-bold mb-6 text-center">East Africa safari travel tips</h2>
+        <div className="max-w-3xl mx-auto">
+          <ul className="space-y-4 text-base">
+            <li className="flex gap-3">
+              <span className="text-primary mt-1">•</span>
+              <span>Mobile tented camps are the East African specialism — book one for at least 2 nights of every 10.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-primary mt-1">•</span>
+              <span>Off-road game viewing is generally not permitted inside the national parks, but is allowed in the conservancies. The conservancy levy is worth paying for that reason alone.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-primary mt-1">•</span>
+              <span>Light aircraft luggage limits are strict (15kg / 33lbs, soft-sided).</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-primary mt-1">•</span>
+              <span>Yellow fever certificate required for entry to many East African countries; check 30 days before.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-primary mt-1">•</span>
+              <span>Visa policies vary by country; check eVisa availability and costs at time of booking — these change.</span>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -611,6 +660,13 @@ export default async function EastAfricaPage() {
               </Button>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* FAQ block */}
+      <section className="mb-16">
+        <div className="max-w-3xl mx-auto">
+          <FAQ items={EAST_AFRICA_FAQ} heading="Frequently asked — East Africa" />
         </div>
       </section>
 
