@@ -20,9 +20,23 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    // Vercel image optimization on. The CDN resizes + serves WebP on the
-    // fly and caches per device-pixel-ratio at the edge — listings load
-    // fast even when the raw Supabase Storage source is multi-megabyte.
+    // Vercel image optimization on. The CDN resizes + serves AVIF/WebP
+    // on the fly and caches per device-pixel-ratio at the edge —
+    // listings load fast even when the raw Supabase Storage source is
+    // multi-megabyte.
+    //
+    // - AVIF first so modern browsers get the smallest payload
+    //   (~25-50% smaller than WebP at equivalent quality).
+    // - Explicit deviceSizes / imageSizes so the optimizer picks
+    //   correctly for editorial heroes (large) and avatars/icons
+    //   (small) without falling back to Next's defaults.
+    // - minimumCacheTTL: 1 year — image content is immutable per
+    //   storage path (Vercel & sharp pipeline both fingerprint),
+    //   so long caches are safe.
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [360, 640, 750, 828, 1080, 1200, 1440, 1920, 2560],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000,
     //
     // remotePatterns whitelists hosts the optimizer is allowed to proxy.
     // *.supabase.co covers the `listing-media` bucket and any future

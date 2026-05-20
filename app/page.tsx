@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 
+import { getBlurDataURL } from "@/lib/images/blur"
 import { StartBriefLink } from "@/components/analytics/start-brief-link"
 import { EditorialHeader } from "@/components/editorial/editorial-header"
 import { EditorialFooter } from "@/components/editorial/editorial-footer"
@@ -58,7 +59,10 @@ const FIELD_NOTES = [
 ]
 
 export default async function HomePage() {
-  const settings = await getSettings()
+  const [settings, heroBlur] = await Promise.all([
+    getSettings(),
+    getBlurDataURL("/safari-tent.jpg"),
+  ])
   const featured = settings.show_featured_on_home
     ? await getFeaturedListings(3)
     : []
@@ -75,6 +79,9 @@ export default async function HomePage() {
             alt="Tented camp at sunset in the African bush"
             fill
             priority
+            sizes="100vw"
+            placeholder="blur"
+            blurDataURL={heroBlur}
             className="object-cover"
           />
           <div
