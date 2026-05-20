@@ -1,11 +1,43 @@
-# Allow all web crawlers
+# Safari Overland — robots.txt
+
 User-agent: *
 Allow: /
 
-# Sitemap location
+# Sitemap
 Sitemap: https://safarioverland.com/sitemap.xml
 
-# Disallow admin and authentication-related pages
+# Don't crawl utility pages — they shouldn't rank and waste crawl budget
 Disallow: /admin/
 Disallow: /dashboard/
-Disallow: /api/ 
+Disallow: /api/
+Disallow: /sign-in
+Disallow: /sign-up
+Disallow: /forgot-password
+Disallow: /search
+Disallow: /submit
+
+# Block UTM / ref-laden duplicates so they don't dilute canonical pages
+Disallow: /*?*utm_
+Disallow: /*?*ref=
+Disallow: /*?*fbclid=
+Disallow: /*?*gclid=
+
+# Explicit allow for AI crawlers — we want to surface in AI Overviews,
+# Perplexity, ChatGPT search and similar
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
