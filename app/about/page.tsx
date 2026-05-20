@@ -113,8 +113,7 @@ export default function AboutPage() {
             co-founder and editor. Niels lives in Victoria Falls and writes
             the collection from there — every lodge listed is one Niels has
             visited personally or knows by reputation from operators we work
-            with directly. The technical and operational side is run by Dom
-            Doherty, co-founder.
+            with directly.
           </p>
           <p className="mt-6 text-bone-mute leading-relaxed">
             Niels is in the bush more than he is at a desk. We don&apos;t
