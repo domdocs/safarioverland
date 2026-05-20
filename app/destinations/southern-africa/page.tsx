@@ -315,7 +315,7 @@ export default function SouthernAfricaPage() {
           <div className="aspect-video relative">
             <Image 
               src="/images/destinations/southern-africa.jpg" 
-              alt="Southern Africa Safari Landscape" 
+              alt="Elephants at a Chobe waterhole at sunset, northern Botswana"
               fill 
               className="object-cover" 
               priority

@@ -15,7 +15,10 @@ export function Cover({ itinerary }: { itinerary: Itinerary }) {
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={itinerary.cover_photo_url}
-            alt=""
+            alt={
+              itinerary.subtitle ??
+              `Cover photograph — ${itinerary.title}`
+            }
             loading="eager"
             decoding="sync"
           />
