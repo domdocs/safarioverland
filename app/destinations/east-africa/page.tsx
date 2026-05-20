@@ -24,6 +24,8 @@ import { DestinationMap } from "@/components/destination-map"
 import { ListingsGrid } from "@/components/listings-grid"
 import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
+import { RelatedFieldNotes } from "@/components/RelatedFieldNotes"
+import { RelatedListings } from "@/components/RelatedListings"
 
 export const metadata: Metadata = {
   title: "East Africa Safari | Kenya, Tanzania, Uganda & Rwanda",
@@ -606,6 +608,12 @@ export default function EastAfricaPage() {
           </div>
         </div>
       </section>
+
+      {/* Contextual internal links — keeps the East Africa page tied
+          to the planning notes a curious reader is likely to want next,
+          plus a few approved listings in the region. */}
+      <RelatedFieldNotes topic="east-africa" heading="More on East Africa" />
+      <RelatedListings region="East Africa" heading="Where we'd send you in East Africa" />
     </div>
   )
 }

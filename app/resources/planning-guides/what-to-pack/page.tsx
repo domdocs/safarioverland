@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
+import { RelatedFieldNotes } from "@/components/RelatedFieldNotes"
 
 export const metadata: Metadata = {
   title: "What to Pack for Safari — Quick Reference",
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 
 export default function WhatToPackPage() {
   return (
+    <>
     <GuidePage
       backHref="/resources/planning-guides"
       backLabel="Back to Planning Guides"
@@ -98,5 +100,7 @@ export default function WhatToPackPage() {
         { href: "/resources/planning-guides/before-you-go", label: "Before You Go" },
       ]}
     />
+    <RelatedFieldNotes topic="planning" excludeSlug="what-to-pack" heading="More planning notes" />
+    </>
   )
 }

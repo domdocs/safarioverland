@@ -21,6 +21,8 @@ import { DestinationMap } from "@/components/destination-map"
 import { ListingsGrid } from "@/components/listings-grid"
 import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
+import { RelatedFieldNotes } from "@/components/RelatedFieldNotes"
+import { RelatedListings } from "@/components/RelatedListings"
 
 export const metadata: Metadata = {
   title: "Southern Africa Safaris | Ultimate Safari Guide",
@@ -539,6 +541,9 @@ export default function SouthernAfricaPage() {
           </div>
         </div>
       </section>
+
+      <RelatedFieldNotes topic="southern-africa" heading="More on Southern Africa" />
+      <RelatedListings region="Southern Africa" heading="Where we'd send you in Southern Africa" />
     </div>
   )
-} 
+}
