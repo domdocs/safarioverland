@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Anti-Poaching in African Conservation | Safari Overland",
+  title: "Anti-Poaching in African Conservation",
   description:
     "How anti-poaching operations protect African wildlife — ranger units, technology, intelligence networks, and how travelers contribute through ethical operator choice.",
+  alternates: { canonical: "https://safarioverland.com/resources/conservation/anti-poaching" },
   keywords: "anti-poaching, rhino poaching, elephant poaching, ranger units, wildlife crime africa",
 }
 

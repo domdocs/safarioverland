@@ -51,6 +51,7 @@ const ARTICLES = [
     href: "/resources/planning-guides/what-to-pack",
     eyebrow: "Planning · 03 min",
     title: "The packing list that earned its weight",
+    alternates: { canonical: "https://safarioverland.com/resources" },
     lede: "What to bring, what to skip, and what you really don't need on safari.",
     image: "/images/planning-guides/packing/packing-list.jpg",
   },

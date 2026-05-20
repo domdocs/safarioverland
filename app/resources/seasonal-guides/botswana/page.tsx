@@ -7,8 +7,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: 'Botswana Safari Seasonal Guide | Safari Overland',
+  title: 'Botswana Safari Seasonal Guide',
   description: 'Detailed information on Botswana\'s dramatic seasonal changes, from dry season to Okavango Delta floods, and the best times to visit each region.',
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/botswana" },
   keywords: 'Botswana safari seasons, Okavango Delta flood season, best time Chobe National Park, Botswana wildlife viewing, Makgadikgadi Pans, Kalahari Desert, green season Botswana',
 };
 

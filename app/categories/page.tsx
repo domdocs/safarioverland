@@ -8,9 +8,10 @@ import { CategoryTabStrip } from "@/components/editorial/category-tab-strip"
 import { buildCategoryTabs } from "@/lib/category-tabs"
 
 export const metadata: Metadata = {
-  title: "Categories | Safari Overland",
+  title: "Categories",
   description:
     "Browse the collection by category. Categories with at least one listing show here; the rest retire until they earn their place back.",
+  alternates: { canonical: "https://safarioverland.com/categories" },
 }
 
 // Re-fetched on every request — categories appear and disappear as

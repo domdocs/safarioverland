@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Seasonal Packing Guide | Safari Overland",
+  title: "Seasonal Packing Guide",
   description:
     "How your safari packing list should change by season — dry winter mornings, wet-season layers, peak heat — region by region.",
+  alternates: { canonical: "https://safarioverland.com/resources/planning-guides/seasonal-packing" },
   keywords: "safari seasonal packing, what to pack safari winter, safari rainy season, safari clothing by season",
 }
 

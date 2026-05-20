@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Habitat Preservation in Africa | Safari Overland",
+  title: "Habitat Preservation in Africa",
   description:
     "How African ecosystems — savanna, miombo, rainforest, wetland, coast — are being protected, the threats they face, and how visitors support them.",
+  alternates: { canonical: "https://safarioverland.com/resources/conservation/habitat-preservation" },
   keywords:
     "habitat preservation, african ecosystems, savanna protection, miombo woodland, wetland conservation, marine protected areas",
 }

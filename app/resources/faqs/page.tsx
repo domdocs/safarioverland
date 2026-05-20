@@ -8,11 +8,13 @@ import { Eyebrow } from "@/components/editorial/eyebrow"
 import { SectionRule } from "@/components/editorial/section-rule"
 import { NewsletterForm } from "@/components/newsletter-form"
 import { Button } from "@/components/ui/button"
+import { FAQ } from "@/components/FAQ"
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions | Safari Overland",
+  title: "Frequently Asked Questions",
   description:
     "Practical answers to the most common questions about planning an African safari — covering costs, safety, logistics, and what to expect on the ground.",
+  alternates: { canonical: "https://safarioverland.com/resources/faqs" },
   keywords: [
     "safari FAQs",
     "African safari planning",
@@ -562,6 +564,44 @@ export default function FaqsPage() {
           <div className="mt-10">
             <NewsletterForm source="faq" />
           </div>
+        </div>
+
+        {/*
+          Quick-reference FAQ block — smoke test for the reusable
+          <FAQ /> component shipped in the SEO fixes brief. Emits both
+          the visible accordion and the FAQPage JSON-LD. The richer
+          curated FAQs above use a bespoke layout and stay as-is;
+          this section adds the structured-data layer Google needs to
+          render rich results in search.
+        */}
+        <div className="container mx-auto px-4 pb-24">
+          <FAQ
+            heading="Quick reference"
+            items={[
+              {
+                question:
+                  "How far in advance should I book an African safari?",
+                answer:
+                  "Six to nine months is the sweet spot. Twelve months for high-demand camps in July–October. Three to six months can work for green-season trips and last-minute camps with cancellations.",
+              },
+              {
+                question: "How much does an African safari typically cost?",
+                answer:
+                  "Mid-range, fully-inclusive bush trips land between $500–$1,000 per person per night. Luxury camps sit at $1,000–$2,000. Exclusive use and very remote camps go above. International flights are extra.",
+              },
+              {
+                question: "Is it safe to go on safari with children?",
+                answer:
+                  "Most camps welcome children from around six years old; some have family-only camps with private guides and tailored rhythms. Vehicle-based safari is the safest format with young kids.",
+              },
+              {
+                question:
+                  "Do I need malaria tablets and special vaccinations?",
+                answer:
+                  "Speak to a travel-medicine clinic six to eight weeks before flying. Malaria prophylaxis is advised for most safari regions. Yellow fever certificates are mandatory in several countries depending on prior travel.",
+              },
+            ]}
+          />
         </div>
       </section>
     </>

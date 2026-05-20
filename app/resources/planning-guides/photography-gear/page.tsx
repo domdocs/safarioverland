@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Photography Gear for Safari | Safari Overland",
+  title: "Photography Gear for Safari",
   description:
     "Practical camera and lens recommendations for safari — for smartphones, enthusiast bodies and pro setups — plus accessories, settings and field tips.",
+  alternates: { canonical: "https://safarioverland.com/resources/planning-guides/photography-gear" },
   keywords:
     "safari photography gear, wildlife photography, safari camera, telephoto lens safari, safari photography tips",
 }

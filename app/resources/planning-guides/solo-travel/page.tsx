@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Solo Traveler Safari Tips | Safari Overland",
+  title: "Solo Traveler Safari Tips",
   description:
     "How to plan a great safari as a solo traveler — managing single supplements, choosing the right operator, safety, and getting the most out of social camp life.",
+  alternates: { canonical: "https://safarioverland.com/resources/planning-guides/solo-travel" },
   keywords: "solo safari, solo female safari, single supplement safari, solo traveler africa, solo safari tips",
 }
 

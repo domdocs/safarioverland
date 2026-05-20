@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Education and Awareness in Conservation | Safari Overland",
+  title: "Education and Awareness in Conservation",
   description:
     "How conservation education in schools, communities and visitor programmes drives long-term wildlife protection — and how travelers can support it.",
+  alternates: { canonical: "https://safarioverland.com/resources/conservation/education-awareness" },
   keywords:
     "conservation education, environmental education africa, awareness campaigns wildlife, conservation curriculum, wildlife club",
 }

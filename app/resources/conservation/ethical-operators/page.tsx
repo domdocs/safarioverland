@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Choosing Ethical Safari Operators | Safari Overland",
+  title: "Choosing Ethical Safari Operators",
   description:
     "How to identify operators that practice genuine conservation and community engagement — beyond marketing claims and greenwashing.",
+  alternates: { canonical: "https://safarioverland.com/resources/conservation/ethical-operators" },
   keywords:
     "ethical safari operators, responsible tour operators, sustainable tourism africa, greenwashing safari, choosing safari operator",
 }

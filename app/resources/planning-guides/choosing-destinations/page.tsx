@@ -5,8 +5,9 @@ import { Map, ArrowLeft, Compass, Calendar, LucideWallet, User, Mountain } from 
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Choosing the Perfect Safari Destination | Safari Overland',
+  title: 'Choosing the Perfect Safari Destination',
   description: 'A comprehensive guide to selecting the ideal African safari destinations based on your interests and preferences.',
+  alternates: { canonical: "https://safarioverland.com/resources/planning-guides/choosing-destinations" },
   keywords: 'safari destinations, African safari, best safari locations, Kruger park, Masai Mara, Serengeti, Okavango Delta, gorilla trekking, safari planning, safari comparison',
 };
 

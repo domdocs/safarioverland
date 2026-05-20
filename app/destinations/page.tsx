@@ -6,9 +6,10 @@ import { Eyebrow } from "@/components/editorial/eyebrow"
 import { SectionRule } from "@/components/editorial/section-rule"
 
 export const metadata: Metadata = {
-  title: "Atlas | Safari Overland",
+  title: "Atlas",
   description:
     "An atlas of African safari regions — East, Southern, West and North. Field-noted by region.",
+  alternates: { canonical: "https://safarioverland.com/destinations" },
 }
 
 const REGIONS = [

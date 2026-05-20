@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Green Season Safari Benefits | Safari Overland",
+  title: "Green Season Safari Benefits",
   description:
     "Why the wet 'green' season is a smart choice for many safari travelers — lower prices, dramatic skies, baby animals and birds in breeding plumage.",
+  alternates: { canonical: "https://safarioverland.com/resources/planning-guides/green-season" },
   keywords: "green season safari, wet season africa, safari low season, emerald season, off-peak safari",
 }
 

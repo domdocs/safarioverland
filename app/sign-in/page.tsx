@@ -6,7 +6,7 @@ import { SignInForm } from "@/components/sign-in-form"
 import { Eyebrow } from "@/components/editorial/eyebrow"
 
 export const metadata: Metadata = {
-  title: "Sign In | Safari Overland",
+  title: "Sign In",
   description: "Sign in to your Safari Overland account.",
 }
 

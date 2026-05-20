@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "The Economics of Conservation | Safari Overland",
+  title: "The Economics of Conservation",
   description:
     "How wildlife conservation is funded across Africa — tourism revenue, philanthropy, government budgets, and the gap between income and need.",
+  alternates: { canonical: "https://safarioverland.com/resources/conservation/economics" },
   keywords:
     "conservation economics, africa wildlife economy, tourism conservation revenue, conservation funding gap, sustainable financing",
 }

@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Responsible Safari Practices | Safari Overland",
+  title: "Responsible Safari Practices",
   description:
     "Practical, day-to-day responsible behaviour on safari — for travelers, guides and lodges. What to do, what to avoid, and why each rule exists.",
+  alternates: { canonical: "https://safarioverland.com/resources/conservation/responsible-practices" },
   keywords:
     "responsible safari, safari etiquette, ethical safari practices, wildlife viewing rules, leave no trace safari",
 }

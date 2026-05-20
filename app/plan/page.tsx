@@ -5,12 +5,14 @@ import { EditorialFooter } from "@/components/editorial/editorial-footer"
 import { Eyebrow } from "@/components/editorial/eyebrow"
 import { TripBuilderForm } from "@/components/trip-builder/trip-builder-form"
 import { PlannerCallInline } from "@/components/planner-call/planner-call-inline"
+import { AutoBreadcrumbs } from "@/components/AutoBreadcrumbs"
 import { getListingById } from "@/lib/listings"
 
 export const metadata: Metadata = {
-  title: "Plan a safari, by hand | Safari Overland",
+  title: "Plan a safari, by hand",
   description:
     "Tell us what you're chasing — the months, the rhythm, the kind of quiet you want. We'll come back with three routes within 48 hours.",
+  alternates: { canonical: "https://safarioverland.com/plan" },
 }
 
 type PlanPageProps = {
@@ -24,6 +26,7 @@ export default async function PlanPage({ searchParams }: PlanPageProps) {
   return (
     <div className="flex min-h-screen flex-col bg-night text-bone">
       <EditorialHeader variant="floating" />
+      <AutoBreadcrumbs />
 
       <main className="flex-1">
         {/* ─── Opening ───────────────────────────────────────── */}

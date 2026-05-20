@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { SupabaseProvider } from "@/components/supabase-provider"
 import { DownloadGateProvider } from "@/components/download-gate-provider"
 import { VercelProviders } from "@/components/analytics/vercel-providers"
+import { GlobalJsonLd } from "@/components/JsonLd/GlobalJsonLd"
 import Script from "next/script"
 
 // Editorial typography — wired via CSS variables, picked up in tailwind.config.ts
@@ -55,6 +56,12 @@ export const metadata: Metadata = {
   },
   description:
     "A small, opinionated collection of African lodges and operators chosen for what the wild does to you — not just what it shows you. Curated from Victoria Falls.",
+  alternates: {
+    // Default canonical for the homepage. Every other page sets its
+    // own via metadata.alternates.canonical or generateMetadata so
+    // this doesn't leak through to child routes.
+    canonical: "https://safarioverland.com",
+  },
   manifest: "/manifest.json",
   applicationName: "Safari Overland",
   keywords: [
@@ -143,6 +150,7 @@ export default function RootLayout({
          * Cookieless, no PII by design.
          */}
         <VercelProviders />
+        <GlobalJsonLd />
       </body>
     </html>
   )

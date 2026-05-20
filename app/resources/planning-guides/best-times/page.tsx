@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Best Time to Visit Each Safari Destination | Safari Overland",
+  title: "Best Time to Visit Each Safari Destination",
   description:
     "A month-by-month guide to the best time to safari in each major African destination — wildlife, weather, prices and crowds.",
+  alternates: { canonical: "https://safarioverland.com/resources/planning-guides/best-times" },
   keywords: "best time safari, when to safari africa, safari season, safari weather, dry season africa, green season",
 }
 

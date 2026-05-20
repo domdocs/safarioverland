@@ -7,8 +7,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: 'South Africa Safari Seasonal Guide | Safari Overland',
+  title: 'South Africa Safari Seasonal Guide',
   description: 'Month-by-month guide to South Africa\'s diverse safari regions, including Kruger National Park, private reserves, and coastal wildlife areas.',
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/south-africa" },
   keywords: 'South Africa safari seasons, best time to visit Kruger, South Africa wildlife viewing, private game reserves, Pilanesberg, Madikwe, Kgalagadi, South Africa whale watching, Big Five safari',
 };
 

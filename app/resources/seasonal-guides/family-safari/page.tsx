@@ -7,8 +7,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: 'Family Safari Guide | Best Seasons for Children | Safari Overland',
+  title: 'Family Safari Guide | Best Seasons for Children',
   description: 'Plan the perfect family safari with our guide to the best times to visit Africa with children, considering school holidays, weather conditions, and family-friendly activities.',
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/family-safari" },
   keywords: 'family safari, safari with kids, safari school holidays, family friendly safari, children safari africa, malaria-free safari family, best time safari children',
 };
 

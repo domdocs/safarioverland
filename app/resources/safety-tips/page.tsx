@@ -122,6 +122,7 @@ export default function SafetyTipsPage() {
               {([
                 {
                   title: "Wildlife Viewing Safety",
+                  alternates: { canonical: "https://safarioverland.com/resources/safety-tips" },
                   icon: Binoculars,
                   excerpt:
                     "Essential guidelines for safe wildlife viewing, including proper behavior around different animal species.",

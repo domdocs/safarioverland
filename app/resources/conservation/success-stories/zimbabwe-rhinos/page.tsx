@@ -1,3 +1,12 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Zimbabwe Rhino Conservation — Success Stories",
+  description:
+    "Anti-poaching, intensive protection zones, and the slow recovery of Zimbabwe's black and white rhino populations.",
+  alternates: { canonical: "https://safarioverland.com/resources/conservation/success-stories/zimbabwe-rhinos" },
+}
+
 import React from 'react';
 import Image from 'next/image';
 import { EditorialImage } from "@/components/editorial/editorial-image"

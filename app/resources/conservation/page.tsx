@@ -93,6 +93,7 @@ export default function ConservationPage() {
               {[
                 {
                   title: "Endangered Species Protection",
+                  alternates: { canonical: "https://safarioverland.com/resources/conservation" },
                   image: "/images/conservation/wildlife/endangered-species.jpg",
                   excerpt:
                     "Learn about efforts to protect Africa's most endangered species and how safari tourism supports these initiatives.",

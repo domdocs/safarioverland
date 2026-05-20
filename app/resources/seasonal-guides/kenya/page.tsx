@@ -7,8 +7,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: 'Kenya Safari Seasonal Guide | Safari Overland',
+  title: 'Kenya Safari Seasonal Guide',
   description: 'Month-by-month guide to Kenya\'s safari seasons, including the Great Migration in the Masai Mara, dry and green seasons, and the best times to visit each region.',
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/kenya" },
   keywords: 'Kenya safari seasons, best time to visit Kenya, Masai Mara migration timing, Kenya weather, Kenya wildlife viewing, Kenya dry season, Kenya green season',
 };
 

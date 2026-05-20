@@ -24,10 +24,13 @@ import { DestinationMap } from "@/components/destination-map"
 import { ListingsGrid } from "@/components/listings-grid"
 import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
+import { RelatedFieldNotes } from "@/components/RelatedFieldNotes"
+import { RelatedListings } from "@/components/RelatedListings"
 
 export const metadata: Metadata = {
   title: "East Africa Safari | Kenya, Tanzania, Uganda & Rwanda",
   description: "Discover the iconic savannahs, mountain gorillas, and Great Migration of East Africa. Plan your ultimate safari adventure in Kenya, Tanzania, Uganda & Rwanda.",
+  alternates: { canonical: "https://safarioverland.com/destinations/east-africa" },
   keywords: "East Africa safari, Kenya safari, Tanzania safari, Uganda gorilla trekking, Rwanda gorillas, Great Migration, Serengeti, Masai Mara, Ngorongoro Crater, African wildlife",
 }
 
@@ -605,6 +608,12 @@ export default function EastAfricaPage() {
           </div>
         </div>
       </section>
+
+      {/* Contextual internal links — keeps the East Africa page tied
+          to the planning notes a curious reader is likely to want next,
+          plus a few approved listings in the region. */}
+      <RelatedFieldNotes topic="east-africa" heading="More on East Africa" />
+      <RelatedListings region="East Africa" heading="Where we'd send you in East Africa" />
     </div>
   )
 }

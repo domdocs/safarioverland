@@ -6,8 +6,9 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 
 export const metadata: Metadata = {
-  title: "Contact Us | Safari Overland",
+  title: "Contact Us",
   description: "Get in touch with the Safari Overland team for inquiries about safari listings, partnerships, or support.",
+  alternates: { canonical: "https://safarioverland.com/contact" },
 }
 
 export default function ContactPage() {

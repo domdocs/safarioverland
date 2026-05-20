@@ -178,6 +178,7 @@ export default function SeasonalGuidesPage() {
               {[
                 {
                   title: "Kenya Seasonal Guide",
+                  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides" },
                   image: "/images/seasonal-guides/travel-guide-kenya.jpg",
                   excerpt:
                     "Month-by-month guide to Kenya's safari seasons, including the Great Migration in the Masai Mara.",

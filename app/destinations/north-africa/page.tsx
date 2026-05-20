@@ -28,6 +28,7 @@ import { BlendOverlay } from "@/components/editorial/blend-overlay"
 export const metadata: Metadata = {
   title: "North Africa Safaris & Adventures | Morocco, Egypt & Tunisia",
   description: "Discover North Africa's unique blend of desert exploration, historical wonders, and wildlife adventures in Morocco, Egypt, and Tunisia. Plan your perfect safari experience.",
+  alternates: { canonical: "https://safarioverland.com/destinations/north-africa" },
   keywords: "North Africa safari, Morocco desert safari, Egypt safari, Tunisia wildlife, Atlas Mountains, Sahara Desert, desert wildlife, North African adventure, historical safari",
 }
 

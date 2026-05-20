@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Accessible Safari Options | Safari Overland",
+  title: "Accessible Safari Options",
   description:
     "Practical information on safari options for travelers with mobility, vision, hearing or other accessibility needs — from wheelchair-friendly lodges to specialist operators.",
+  alternates: { canonical: "https://safarioverland.com/resources/planning-guides/accessible-safaris" },
   keywords: "accessible safari, wheelchair safari, disabled travel africa, mobility safari, inclusive safari",
 }
 

@@ -4,8 +4,9 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 
 export const metadata = {
-  title: "Terms of Service | Safari Overland",
+  title: "Terms of Service",
   description: "Read the Safari Overland Terms of Service agreement, governing your use of our website and services.",
+  alternates: { canonical: "https://safarioverland.com/terms-of-service" },
 }
 
 export default function TermsOfServicePage() {

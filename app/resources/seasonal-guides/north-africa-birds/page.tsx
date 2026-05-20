@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "North Africa Birding Seasonal Guide | Safari Overland",
+  title: "North Africa Birding Seasonal Guide",
   description:
     "When and where to bird in North Africa — Morocco, Tunisia, Egypt — covering Palearctic migrants, desert specialists, wetland sites and seasonal timing.",
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/north-africa-birds" },
   keywords:
     "north africa birding, morocco birding, egypt birding, tunisia birding, palearctic migration, sahara birds, atlas mountain birds",
 }

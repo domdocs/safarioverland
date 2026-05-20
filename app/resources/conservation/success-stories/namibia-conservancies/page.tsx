@@ -1,3 +1,12 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Namibia's Communal Conservancies — Success Stories",
+  description:
+    "How Namibia's community-led conservancy model returned wildlife management to the people living alongside it.",
+  alternates: { canonical: "https://safarioverland.com/resources/conservation/success-stories/namibia-conservancies" },
+}
+
 import React from 'react';
 import Image from 'next/image';
 import { EditorialImage } from "@/components/editorial/editorial-image"

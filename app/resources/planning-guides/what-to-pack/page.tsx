@@ -1,15 +1,18 @@
 import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
+import { RelatedFieldNotes } from "@/components/RelatedFieldNotes"
 
 export const metadata: Metadata = {
-  title: "What to Pack for Safari — Quick Reference | Safari Overland",
+  title: "What to Pack for Safari — Quick Reference",
   description:
     "A condensed safari packing reference — the essentials, the easy-to-forget items, and the things you really don't need to bring.",
+  alternates: { canonical: "https://safarioverland.com/resources/planning-guides/what-to-pack" },
   keywords: "what to pack safari, safari packing essentials, safari quick packing list, safari must-haves",
 }
 
 export default function WhatToPackPage() {
   return (
+    <>
     <GuidePage
       backHref="/resources/planning-guides"
       backLabel="Back to Planning Guides"
@@ -97,5 +100,7 @@ export default function WhatToPackPage() {
         { href: "/resources/planning-guides/before-you-go", label: "Before You Go" },
       ]}
     />
+    <RelatedFieldNotes topic="planning" excludeSlug="what-to-pack" heading="More planning notes" />
+    </>
   )
 }

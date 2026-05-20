@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { GuidePage } from "@/components/guide-page"
 
 export const metadata: Metadata = {
-  title: "Cultural Preservation in Safari Tourism | Safari Overland",
+  title: "Cultural Preservation in Safari Tourism",
   description:
     "How tourism interacts with the cultures of safari regions — what works, what extracts, and how to choose experiences that respect rather than perform.",
+  alternates: { canonical: "https://safarioverland.com/resources/conservation/cultural-preservation" },
   keywords:
     "cultural preservation, indigenous tourism, maasai culture, san bushmen, ethical cultural visits, africa cultural tourism",
 }

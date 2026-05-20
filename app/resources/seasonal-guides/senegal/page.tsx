@@ -10,8 +10,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 
 export const metadata: Metadata = {
-  title: "Senegal Safari Seasonal Guide | Safari Overland",
+  title: "Senegal Safari Seasonal Guide",
   description: "Comprehensive guide to the best times for wildlife viewing in Senegal's national parks and reserves throughout the year.",
+  alternates: { canonical: "https://safarioverland.com/resources/seasonal-guides/senegal" },
   keywords: "Senegal safari seasons, Senegal wildlife viewing, Niokolo-Koba National Park, Djoudj National Bird Sanctuary, Senegal weather, Senegal travel guide",
 }
 

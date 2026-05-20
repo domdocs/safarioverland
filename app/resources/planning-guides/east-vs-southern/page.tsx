@@ -5,9 +5,10 @@ import { ArrowLeft, Compass, Calendar, DollarSign, Users, Camera, MapPin, CheckC
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'East vs Southern Africa: Choosing Your Safari Destination | Safari Overland',
+  title: 'East vs Southern Africa: Choosing Your Safari Destination',
   description:
     'A practical, side-by-side comparison of East Africa and Southern Africa safari regions — wildlife, scenery, seasons, cost, accessibility — to help you decide where to go.',
+  alternates: { canonical: "https://safarioverland.com/resources/planning-guides/east-vs-southern" },
   keywords:
     'east africa vs southern africa, safari destination comparison, serengeti vs kruger, masai mara vs okavango, safari regions, africa safari planning',
 };

@@ -32,8 +32,11 @@ export async function generateMetadata(
   }
 
   return {
-    title: `${listing.listing_name} | Safari Overland`,
+    title: listing.listing_name,
     description: listing.description?.substring(0, 160),
+    alternates: {
+      canonical: `https://safarioverland.com/listings/${id}`,
+    },
     openGraph: {
       title: listing.listing_name,
       description: listing.description?.substring(0, 160),
