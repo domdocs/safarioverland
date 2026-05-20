@@ -6,7 +6,7 @@ import { Eyebrow } from "@/components/editorial/eyebrow"
 import { Button } from "@/components/ui/button"
 
 export const metadata = {
-  title: "For operators | Safari Overland",
+  title: "For operators",
   description:
     "Safari Overland is a small editorial collection of African lodges and operators we know personally. We add new listings by invitation, not by submission — but we always read.",
 }

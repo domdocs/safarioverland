@@ -4,7 +4,7 @@ import { EditorialHeader } from "@/components/editorial/editorial-header"
 import { EditorialFooter } from "@/components/editorial/editorial-footer"
 
 export const metadata: Metadata = {
-  title: "Atlas | Safari Overland",
+  title: "Atlas",
   description: "Explore safari destinations across Africa.",
 }
 

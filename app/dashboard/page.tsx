@@ -4,7 +4,7 @@ import { EditorialFooter } from "@/components/editorial/editorial-footer"
 import { Eyebrow } from "@/components/editorial/eyebrow"
 
 export const metadata: Metadata = {
-  title: "Dashboard | Safari Overland",
+  title: "Dashboard",
   description: "Manage your Safari Overland account and listings.",
 }
 

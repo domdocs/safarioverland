@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 
 export const metadata = {
-  title: "Privacy Policy | Safari Overland",
+  title: "Privacy Policy",
   description: "Learn how Safari Overland collects, uses, and protects your personal information in compliance with GDPR and global privacy laws.",
 }
 

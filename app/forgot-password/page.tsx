@@ -6,7 +6,7 @@ import { ForgotPasswordForm } from "@/components/forgot-password-form"
 import { Eyebrow } from "@/components/editorial/eyebrow"
 
 export const metadata: Metadata = {
-  title: "Forgot Password | Safari Overland",
+  title: "Forgot Password",
   description: "Reset your Safari Overland account password.",
 }
 

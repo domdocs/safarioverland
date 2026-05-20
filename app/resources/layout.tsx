@@ -4,7 +4,7 @@ import { EditorialHeader } from "@/components/editorial/editorial-header"
 import { EditorialFooter } from "@/components/editorial/editorial-footer"
 
 export const metadata: Metadata = {
-  title: "Field Notes | Safari Overland",
+  title: "Field Notes",
   description: "Long-form planning, conservation and seasonal field notes from across Africa.",
 }
 

@@ -4,7 +4,7 @@ import { EditorialHeader } from "@/components/editorial/editorial-header"
 import { EditorialFooter } from "@/components/editorial/editorial-footer"
 
 export const metadata: Metadata = {
-  title: "About | Safari Overland",
+  title: "About",
   description:
     "About Safari Overland — a small, opinionated collection of African lodges and operators, chosen for what the wild does to you, not just what it shows you.",
 }
