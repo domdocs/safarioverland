@@ -196,7 +196,7 @@ export default function AboutPage() {
         <div className="max-w-3xl">
           <Eyebrow withRule>How the business actually works</Eyebrow>
           <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
-            Three things travellers always want to know,{" "}
+            Two things travellers always want to know,{" "}
             <span className="italic text-amber">answered plainly</span>.
           </h2>
 
@@ -210,20 +210,6 @@ export default function AboutPage() {
                 hours with three routes, you pick one, we connect you
                 directly to the operator. No fee anywhere in this chain
                 for the traveller.
-              </p>
-            </div>
-
-            <div className="border-t border-rule pt-8">
-              <h3 className="font-serif text-h3-fluid text-bone leading-tight">
-                We are paid via booking margins, not operator subscriptions.
-              </h3>
-              <p className="mt-4 text-bone-mute leading-relaxed">
-                Lodges in the collection give us a margin against their
-                rack rates when you book a trip we&apos;ve planned. You pay
-                rack or close to it; the margin underwrites the editorial
-                work. Where a trip is better routed through a specialist
-                partner, we refer to a friend&apos;s established travel
-                company and they handle the booking.
               </p>
             </div>
 
