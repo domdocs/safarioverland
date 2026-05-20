@@ -7,6 +7,82 @@ referenced — it's the canonical spec for what was built and why.
 
 ---
 
+## 2026-05 — Technical SEO (Remaining: Medium & Low)
+
+**SEO Brief 2 — Remaining Technical Improvements** (PR #15, merge `3f40820`)
+Spec: `handoff/briefs/2026-05-SEO_REMAINING_TECHNICAL.md`
+
+The follow-on to PR #14 (Critical / High SEO fixes). Ships the
+audit's Medium/Low items in a single branch.
+
+### Shipped (commit-per-fix)
+
+1. **Generator meta tag removed** — `<meta name="generator">` no
+   longer in the HTML head; `metadata.generator` deleted from
+   `app/layout.tsx`.
+2. **robots.txt tightened** — explicit `Disallow` for utility
+   pages (`/admin/`, `/api/`, `/dashboard/`, `/sign-in`, `/sign-up`,
+   `/forgot-password`, `/search`, `/submit`); UTM/ref query
+   variants blocked; explicit `Allow` per AI crawler (Googlebot,
+   Google-Extended, OAI-SearchBot, ChatGPT-User, PerplexityBot,
+   ClaudeBot).
+3. **`/resources` → `/field-notes` URL migration** — folder rename,
+   site-wide internal-link grep-and-replace, 301 redirects in
+   `next.config.mjs` (`/resources` and `/resources/:path*`), and the
+   dynamic sitemap from PR #14 updated to emit `/field-notes/...`
+   paths.
+4. **Image alt-text audit** — generic alts (`alt=""`, `alt="image"`,
+   etc.) replaced with specific noun + place descriptions. Brand
+   stuffing avoided per the preamble policy.
+5. **Image optimisation for Core Web Vitals** — AVIF + WebP formats
+   in `next.config.mjs`, deviceSizes / imageSizes / minimumCacheTTL
+   tuned. Hero images carry `priority` + `sizes` + `placeholder="blur"`
+   with `blurDataURL` generated via `plaiceholder` at build time.
+6. **Per-page editorial dates via colocated `dates.ts`** — `10edcb8`.
+   Each editorial page gets a sibling `dates.ts` exporting
+   `publishedAt`, `updatedAt`, `editorId` constants. Byline component
+   + ArticleJsonLd (from PR #14) read from these rather than the
+   file-mtime fallback. Slight refinement from the brief's
+   "in-page exports" suggestion — colocation in a dedicated file
+   reads cleaner.
+7. **Head metadata polish** — `21b2fd0`. Adds `metadataBase`,
+   `applicationName`, `authors`, `creator`, `publisher`,
+   `formatDetection` (email/address/telephone off). Theme colour
+   left at `#0E110F` per the preamble correction. Manifest left
+   untouched.
+8. **Hreflang scaffold** — `cf1552d`. `alternates.languages` stub
+   on the root layout with `en` + `x-default` pointing at the
+   canonical. Future-proofs for second-locale work.
+9. **Internal-link audit / Related-modules extension** — `4ef8375`.
+   `RelatedFieldNotes` + `RelatedListings` now wired across every
+   destination, category, and field-note page (was three sample
+   pages in PR #14). Closes follow-up item #4 from PR #14.
+
+### Known gaps left at session close
+
+- Brief 3 (page content rewrites) — not yet written. Carries the
+  three remaining follow-up items from PR #14 (success-stories
+  pages on bespoke layout, weak meta descriptions, page-content
+  audit).
+- Editor data supply gap (Niels' photo, LinkedIn URL, Instagram
+  handle for Organization sameAs) — still outstanding. Byline +
+  ArticleJsonLd continue to degrade gracefully.
+- Standard carry-overs: `NEXT_PUBLIC_CALENDLY_URL` unset, Matetsi
+  test row, Trip Designer templates library deferral.
+
+### Briefs queued and not yet shipped
+
+- **Brief 2** (net-new pages) — not yet written. Note: numbering
+  is inherited from the external SEO audit's own brief order; "Brief
+  2" in that audit covers net-new pages, which this PR did not
+  cover. The PR #15 work was the audit's "remaining technical"
+  brief, sometimes also called Brief 2 in conversation. Worth
+  clarifying with Dom which "Brief 2" to write next.
+- **Brief 3** (page content rewrites + meta descriptions + 17
+  success-stories pages reformat) — not yet written.
+
+---
+
 ## 2026-05-19 — Hidden-costs canonical fix
 
 **Standalone follow-up to SEO PR #14** — merged same day, small

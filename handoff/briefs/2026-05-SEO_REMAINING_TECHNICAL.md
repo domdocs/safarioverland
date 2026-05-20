@@ -1,3 +1,6 @@
+> ✓ **SHIPPED** — May 2026, PR #15 merged to `main` at `3f40820`.
+> See `handoff/CHANGELOG.md` for the session-level summary.
+
 # Safari Overland — SEO Brief 2: Remaining Technical Improvements
 
 The follow-on to `2026-05-SEO_CRITICAL_AND_HIGH_PRIORITY.md` (PR #14,
