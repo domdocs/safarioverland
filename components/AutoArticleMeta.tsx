@@ -7,8 +7,8 @@ import { ArticleJsonLd } from "@/components/JsonLd/ArticleJsonLd"
 import { niels } from "@/lib/editors"
 import {
   FALLBACK_DATE,
-  RESOURCE_DATES,
-} from "@/lib/resource-dates"
+  FIELD_NOTE_DATES,
+} from "@/lib/field-note-dates"
 
 const SITE = "https://safarioverland.com"
 
@@ -17,7 +17,7 @@ const SITE = "https://safarioverland.com"
  * page via the resources layout. Reads pathname client-side
  * (server-rendered for the initial HTML, so SEO is unaffected) and
  * looks up the published/updated dates from the build-time-generated
- * RESOURCE_DATES map.
+ * FIELD_NOTE_DATES map.
  *
  * Skipped on the resources index itself — the index isn't a field
  * note and doesn't have a single editor / dateline to declare.
@@ -38,10 +38,10 @@ export function AutoArticleMeta({
   image?: string
 } = {}) {
   const pathname = usePathname() ?? "/"
-  if (pathname === "/resources" || !pathname.startsWith("/resources/")) {
+  if (pathname === "/field-notes" || !pathname.startsWith("/field-notes/")) {
     return null
   }
-  const dates = RESOURCE_DATES[pathname] ?? FALLBACK_DATE
+  const dates = FIELD_NOTE_DATES[pathname] ?? FALLBACK_DATE
   const computedHeadline =
     headline ??
     pathname

@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 
 /**
  * Site-wide 404 — editorial register, full-bleed dark hero.
- * Matches the visual language of /resources/conservation/anti-poaching.
+ * Matches the visual language of /field-notes/conservation/anti-poaching.
  */
 export default function NotFound() {
   return (

@@ -25,10 +25,10 @@ export type StartBriefSource =
   | "header"               // EditorialHeader amber button (every public page)
   | "hero"                 // Home page hero block
   | "home-plan-card"       // Home page "A safari, drawn by hand" card
-  | "field-notes"          // /resources listing + inline links inside Field Notes
+  | "field-notes"          // /field-notes listing + inline links inside Field Notes
   | "category-empty-state" // CategoryEmptyState component
   | "categories-empty"     // /categories root with no categories yet
-  | "faq"                  // /resources/faqs bottom CTA
+  | "faq"                  // /field-notes/faqs bottom CTA
   | "404"                  // /404 (not-found) page
   | "plan-sent"            // /plan/sent missing-handoff path
   | "mobile-drawer"        // MobileDrawer "Register" CTA — close-cousin entry point
@@ -46,8 +46,8 @@ export type CalendlyBookingSource = SpeakToPlannerSource
 
 /** Newsletter signup placements. */
 export type NewsletterSource =
-  | "faq"           // /resources/faqs newsletter block
-  | "field-notes"   // /resources newsletter block
+  | "faq"           // /field-notes/faqs newsletter block
+  | "field-notes"   // /field-notes newsletter block
   | "footer"        // EditorialFooter (if wired)
   | "home"          // Home page (if wired)
 

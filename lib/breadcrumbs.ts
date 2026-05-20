@@ -1,7 +1,7 @@
 /**
  * Build a breadcrumb trail from a Next.js pathname.
  *
- * Used by <AutoBreadcrumbs /> in `app/resources/layout.tsx` and
+ * Used by <AutoBreadcrumbs /> in `app/field-notes/layout.tsx` and
  * `app/destinations/layout.tsx` so every child page gets a trail
  * without per-page wiring. Pages that want a bespoke trail can
  * still call `<Breadcrumbs crumbs={...} />` directly.
@@ -22,7 +22,11 @@ const SITE = "https://safarioverland.com"
  * ("Faqs" → "FAQs", "Q-and-a" → "Q & A").
  */
 const NAMED_SEGMENTS: Record<string, string> = {
+  // Pre-migration slug kept so any stale internal link that lands on
+  // /resources via the 301 still produces a sensible crumb on first
+  // hop. The canonical post-migration label is below.
   resources: "Field Notes",
+  "field-notes": "Field Notes",
   destinations: "Atlas",
   "planning-guides": "Planning guides",
   "seasonal-guides": "Seasonal guides",

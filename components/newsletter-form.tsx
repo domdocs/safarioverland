@@ -12,7 +12,7 @@ type Status = "idle" | "submitting" | "success" | "error"
 type Props = {
   /**
    * Where this signup form lives — drives `newsletter-signup`'s `source`
-   * param. Defaults to `"field-notes"` for the canonical /resources
+   * param. Defaults to `"field-notes"` for the canonical /field-notes
    * placement; callers on the FAQ + footer override.
    */
   source?: NewsletterSource

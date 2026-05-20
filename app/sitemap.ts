@@ -20,13 +20,13 @@ const DESTINATIONS = [
 ] as const
 
 /**
- * Discover every `page.tsx` under `app/resources/` at build time so
+ * Discover every `page.tsx` under `app/field-notes/` at build time so
  * new field notes show up in the sitemap automatically. The brief
  * leaves this as a hand-maintained list; using fs is the smallest
  * upgrade that won't go stale when a new resource is added.
  */
-function discoverResourceUrls(): string[] {
-  const root = path.join(process.cwd(), "app", "resources")
+function discoverFieldNoteUrls(): string[] {
+  const root = path.join(process.cwd(), "app", "field-notes")
   const urls: string[] = []
 
   function walk(dir: string, urlPath: string) {
@@ -58,7 +58,7 @@ function discoverResourceUrls(): string[] {
     }
   }
 
-  walk(root, "/resources")
+  walk(root, "/field-notes")
   return urls
 }
 
@@ -104,7 +104,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
     },
     {
-      url: `${BASE}/resources`,
+      url: `${BASE}/field-notes`,
       priority: 0.9,
       changeFrequency: "weekly",
     },
@@ -153,10 +153,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: "monthly" as const,
   }))
 
-  // Field notes — discovered from app/resources/**/page.tsx at build
-  // time. Skip the /resources index itself (already in staticPages).
-  const fieldNotes: MetadataRoute.Sitemap = discoverResourceUrls()
-    .filter((u) => u !== "/resources")
+  // Field notes — discovered from app/field-notes/**/page.tsx at build
+  // time. Skip the /field-notes index itself (already in staticPages).
+  const fieldNotes: MetadataRoute.Sitemap = discoverFieldNoteUrls()
+    .filter((u) => u !== "/field-notes")
     .map((u) => ({
       url: `${BASE}${u}`,
       priority: 0.7,

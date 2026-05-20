@@ -4,7 +4,7 @@ import { getSupabaseServerClient } from "./supabase"
  * Article — admin-managed long-form content.
  *
  * Schema matches supabase/migrations/20260509_create_articles_and_app_settings.sql.
- * For file-based MDX guides see app/resources/* — those live in code.
+ * For file-based MDX guides see app/field-notes/* — those live in code.
  */
 
 export type ArticleStatus = "draft" | "published" | "archived"

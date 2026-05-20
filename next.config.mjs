@@ -40,6 +40,17 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  // 301 redirects from the old /resources tree to the new
+  // /field-notes tree. The folder rename moved every URL; these
+  // catch anyone who still has a /resources link bookmarked or
+  // syndicated externally. Permanent (308 in Next.js's terminology,
+  // which preserves the request method — same SEO effect as a 301).
+  async redirects() {
+    return [
+      { source: "/resources",        destination: "/field-notes",        permanent: true },
+      { source: "/resources/:path*", destination: "/field-notes/:path*", permanent: true },
+    ]
+  },
   // Puppeteer and the slim Chromium binary need to stay outside the
   // Next.js webpack bundle — they're heavy and rely on native module
   // loading at runtime. serverExternalPackages keeps them as plain

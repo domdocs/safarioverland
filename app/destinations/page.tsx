@@ -149,7 +149,7 @@ export default function DestinationsAtlasPage() {
               </p>
               <div className="mt-8">
                 <Link
-                  href="/resources/seasonal-guides"
+                  href="/field-notes/seasonal-guides"
                   className="mono text-amber hover:text-amber-deep transition-colors"
                 >
                   Seasonal guides →

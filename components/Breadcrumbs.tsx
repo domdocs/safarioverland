@@ -16,7 +16,7 @@ export type Crumb = { name: string; href?: string; item?: string }
  * data; both take the same shape.
  *
  * Legacy `{ items: { label, link }[] }` callers (one usage on
- * /resources/seasonal-guides/bird-watching) are handled via a
+ * /field-notes/seasonal-guides/bird-watching) are handled via a
  * transparent shim so renaming the API doesn't break the page.
  */
 type Props =
