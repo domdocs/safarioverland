@@ -423,28 +423,117 @@ export default async function EastAfricaPage() {
 
       {/* How much does an East Africa safari cost in 2026 */}
       <section className="mb-16">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6">How much does an East Africa safari cost in 2026</h2>
-          <div className="prose prose-lg max-w-none">
-            <p>
-              Honest 2026 numbers. Per person per night, full-board, including game drives but excluding international flights, regional flights, conservancy fees, and gratuities:
-            </p>
-            <ul>
-              <li>Mid-range mobile camps and lodges: <strong>$450–$750</strong> per person per night</li>
-              <li>Premium small camps in conservancies: <strong>$900–$1,600</strong> per person per night</li>
-              <li>Luxury (Singita, Sanctuary, Asilia, &amp;Beyond&apos;s top tier): <strong>$1,500–$3,200</strong> per person per night</li>
-              <li>Ultra-luxury fly-in private safaris: <strong>$3,500–$6,500</strong> per person per night</li>
-            </ul>
-            <p>
-              Add: international flights $1,200–$2,500; East Africa regional flights $250–$600 per sector; conservancy and park fees that vary by region; gorilla permits (Uganda lower than Rwanda); gratuities typically 10–15%.
-            </p>
-            <p>
-              A 10-night East Africa safari for two, mid-range, typically lands around <strong>$14,000–$22,000</strong> all-in; premium <strong>$24,000–$36,000</strong>; luxury <strong>$40,000–$65,000+</strong>.
-            </p>
-            <p className="text-sm text-muted-foreground italic">
-              Specific permit and park-fee prices change between seasons and are intentionally not listed here. Ask us in a brief and we&apos;ll quote current rates with the lodge.
-            </p>
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl font-bold mb-3">How much does an East Africa safari cost in 2026</h2>
+          <p className="text-muted-foreground mb-8 max-w-3xl">
+            Honest 2026 numbers. Per person per night, full-board,
+            including game drives — but <strong className="text-foreground">excluding</strong>{" "}
+            international flights, regional flights, conservancy fees, and
+            gratuities.
+          </p>
+
+          {/* Per-person-per-night tier cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+            {[
+              {
+                tier: "Mid-range",
+                detail: "Mobile camps and lodges",
+                price: "$450 – $750",
+              },
+              {
+                tier: "Premium",
+                detail: "Small camps in conservancies",
+                price: "$900 – $1,600",
+              },
+              {
+                tier: "Luxury",
+                detail:
+                  "Singita, Sanctuary, Asilia, &Beyond's top tier",
+                price: "$1,500 – $3,200",
+              },
+              {
+                tier: "Ultra-luxury",
+                detail: "Fly-in private safaris",
+                price: "$3,500 – $6,500",
+              },
+            ].map((b) => (
+              <Card key={b.tier} className="border-l-4 border-l-primary">
+                <CardContent className="p-6">
+                  <div className="flex items-baseline justify-between gap-4 flex-wrap">
+                    <div>
+                      <p className="text-xs uppercase tracking-wider text-primary font-medium mb-1">
+                        {b.tier}
+                      </p>
+                      <h3 className="text-base font-semibold">{b.detail}</h3>
+                    </div>
+                    <p className="text-2xl font-bold tabular-nums whitespace-nowrap">
+                      {b.price}
+                    </p>
+                  </div>
+                  <p className="mt-3 text-xs text-muted-foreground uppercase tracking-wider">
+                    per person · per night
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
+
+          {/* Add-ons */}
+          <div className="bg-muted p-6 md:p-8 rounded-xl mb-8">
+            <h3 className="text-lg font-bold mb-4">Add to the per-night rate</h3>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm">
+              <li className="flex justify-between gap-4 border-b border-border/40 pb-2">
+                <span>International flights</span>
+                <span className="font-semibold tabular-nums whitespace-nowrap">$1,200 – $2,500</span>
+              </li>
+              <li className="flex justify-between gap-4 border-b border-border/40 pb-2">
+                <span>Regional flights (per sector)</span>
+                <span className="font-semibold tabular-nums whitespace-nowrap">$250 – $600</span>
+              </li>
+              <li className="flex justify-between gap-4 border-b border-border/40 pb-2">
+                <span>Conservancy &amp; park fees</span>
+                <span className="text-muted-foreground text-xs italic">varies by region</span>
+              </li>
+              <li className="flex justify-between gap-4 border-b border-border/40 pb-2">
+                <span>Gorilla permits</span>
+                <span className="text-muted-foreground text-xs italic">Uganda &lt; Rwanda</span>
+              </li>
+              <li className="flex justify-between gap-4 border-b border-border/40 pb-2 md:col-span-2">
+                <span>Gratuities</span>
+                <span className="font-semibold tabular-nums whitespace-nowrap">10 – 15% typical</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Headline trip totals */}
+          <div>
+            <h3 className="text-lg font-bold mb-4">
+              A 10-night East Africa safari for two, all-in
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                { tier: "Mid-range", price: "$14,000 – $22,000" },
+                { tier: "Premium", price: "$24,000 – $36,000" },
+                { tier: "Luxury", price: "$40,000 – $65,000+" },
+              ].map((t) => (
+                <div
+                  key={t.tier}
+                  className="border rounded-lg p-5 text-center"
+                >
+                  <p className="text-xs uppercase tracking-wider text-primary font-medium mb-2">
+                    {t.tier}
+                  </p>
+                  <p className="text-xl font-bold tabular-nums">{t.price}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <p className="mt-8 text-sm text-muted-foreground italic max-w-3xl">
+            Specific permit and park-fee prices change between seasons and
+            are intentionally not listed here. Ask us in a brief and
+            we&apos;ll quote current rates with the lodge.
+          </p>
         </div>
       </section>
 
