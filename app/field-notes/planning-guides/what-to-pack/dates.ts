@@ -9,5 +9,5 @@
  * exports from a route segment.
  */
 export const publishedAt = "2026-01-12"
-export const updatedAt = "2026-05-18"
+export const updatedAt = "2026-05-20"
 export const editorId = "editor-niels"

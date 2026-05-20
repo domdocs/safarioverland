@@ -201,7 +201,7 @@ export const FIELD_NOTE_DATES: Record<string, FieldNoteDates> = {
   },
   "/field-notes/planning-guides/what-to-pack": {
     "datePublished": "2026-01-12",
-    "dateModified": "2026-05-18",
+    "dateModified": "2026-05-20",
     "editorId": "editor-niels"
   },
   "/field-notes/planning-guides/wildlife-events": {

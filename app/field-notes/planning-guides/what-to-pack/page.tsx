@@ -3,11 +3,12 @@ import { GuidePage } from "@/components/guide-page"
 import { RelatedFieldNotes } from "@/components/RelatedFieldNotes"
 
 export const metadata: Metadata = {
-  title: "What to Pack for Safari — Quick Reference",
+  title: "Safari Packing List 2026 — What to Pack, What to Wear, What to Leave Home",
   description:
-    "A condensed safari packing reference — the essentials, the easy-to-forget items, and the things you really don't need to bring.",
+    "The honest 2026 African safari packing list — what you actually need, what you really don't, and the small list of things travellers always forget. Written from the bush.",
   alternates: { canonical: "https://safarioverland.com/field-notes/planning-guides/what-to-pack" },
-  keywords: "what to pack safari, safari packing essentials, safari quick packing list, safari must-haves",
+  keywords:
+    "safari packing list, what to pack safari, safari packing essentials, 2026 safari packing list, africa packing list, what to wear on safari",
 }
 
 
@@ -18,13 +19,27 @@ export default function WhatToPackPage() {
       backHref="/field-notes/planning-guides"
       backLabel="Back to Planning Guides"
       heroImage="/images/planning-guides/packing/packing-list.jpg"
-      heroAlt="Safari packing list essentials"
-      title="What to Pack for Safari"
-      subtitle="A no-fluff reference: what you actually need, what you'll forget, and what you can leave at home."
+      heroAlt="Safari packing list essentials laid out — neutral clothing, soft duffel, binoculars, hat"
+      title="What to pack for an African safari — the honest 2026 list"
+      subtitle="Nine pieces of clothing, two pairs of shoes, a small set of accessories. In a 50-litre soft duffel under 15kg — because that is what bush planes will let you bring."
       intro={
         <>
           <p className="mb-3">
-            This is the short version. For a full clothing-by-clothing list see the{" "}
+            A good safari packing list is short and unglamorous. The
+            dressed-for-Africa retail aisle wants to sell you a $400
+            multi-pocketed vest you will wear exactly twice. The truth is
+            that for almost any African safari in 2026, you need maybe nine
+            pieces of clothing, two pairs of shoes, and a small set of
+            accessories — all of which fit in a 50-litre soft-sided duffel
+            weighing under 15kg, because that is what East and Southern
+            African bush planes will let you bring.
+          </p>
+          <p className="mb-3">
+            This list is what we actually pack ourselves. Written from the
+            bush, not the shop floor.
+          </p>
+          <p>
+            For a full clothing-by-clothing list see the{" "}
             <a className="text-primary underline" href="/field-notes/planning-guides/packing-list">
               Ultimate Safari Packing List
             </a>
@@ -32,9 +47,8 @@ export default function WhatToPackPage() {
             <a className="text-primary underline" href="/field-notes/planning-guides/seasonal-packing">
               Seasonal Packing Guide
             </a>
-            .
+            . If you remember nothing else, prioritise the items below.
           </p>
-          <p>If you remember nothing else, prioritise the items below.</p>
         </>
       }
       sections={[
