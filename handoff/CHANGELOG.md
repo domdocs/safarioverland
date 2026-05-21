@@ -7,6 +7,22 @@ referenced — it's the canonical spec for what was built and why.
 
 ---
 
+## 2026-05-21 — Migrated to external SSD + GitHub backups for Vercel-only repos
+
+**Workspace move.** All projects migrated from iCloud Drive to the Crucial external SSD. Repo now lives at `/Volumes/Dom Crucial/Projects/safari-overland/`. iCloud was actively fighting git operations all session — stale lock files, vanishing files, conflict copies — so safari-overland was cloned fresh from `origin/main` onto the SSD rather than copied across. The iCloud copy is untouched as a 24–48-hour safety net before deletion.
+
+**GitHub backups created for previously local-only repos.** Created `domdocs/mosi`, `domdocs/probita-iq`, `domdocs/v0-project-new` (all private) and pushed all uncommitted work as Checkpoint commits. Previously these existed only on local disk despite being Vercel-deployed.
+
+**Vestigial stub removed.** `Probita IQ/probitaiq/` — a 79-byte empty git stub unrelated to the actual project — deleted as part of the GitHub backup work.
+
+**SEO Brief 3 (content rewrites) — REJECTED.** External audit produced off-brand content that misread Safari Overland's voice and business model. PR closed, branch deleted, brief archived at `handoff/briefs/2026-05-SEO_CONTENT_REWRITES.md` with REJECTED header. Future content work happens inside Cowork rather than via external audit handoffs.
+
+**Tooling notes for next session.**
+- Node 20.19.6 + pnpm 10 (NOT pnpm 11, which requires Node 22+).
+- Run `pnpm approve-builds` once to allow puppeteer/sharp/esbuild install scripts (required for Trip Designer PDF generation).
+- The `gh` CLI is installed and authenticated as `domdocs`.
+- Future task: upgrade Node 20 → 22+ (Node 20 is now EOL) and then optionally re-upgrade pnpm to 11.
+
 ## 2026-05-19 — Hidden-costs canonical fix
 
 **Standalone follow-up to SEO PR #14** — merged same day, small
