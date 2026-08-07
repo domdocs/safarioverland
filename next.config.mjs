@@ -1,3 +1,5 @@
+import { REMOTE_PATTERNS } from "./lib/images/remote-patterns.mjs"
+
 let userConfig = undefined
 try {
   // try to import ESM first
@@ -39,15 +41,10 @@ const nextConfig = {
     minimumCacheTTL: 31536000,
     //
     // remotePatterns whitelists hosts the optimizer is allowed to proxy.
-    // *.supabase.co covers the `listing-media` bucket and any future
-    // public-asset URLs from the same project.
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "*.supabase.co",
-        pathname: "/storage/v1/object/public/**",
-      },
-    ],
+    // Shared with the API-side hero_image validator via
+    // `lib/images/remote-patterns.mjs` so the two lists cannot drift —
+    // a URL the optimizer would refuse must never reach the DB.
+    remotePatterns: REMOTE_PATTERNS,
   },
   experimental: {
     webpackBuildWorker: true,

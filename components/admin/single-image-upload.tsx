@@ -9,11 +9,19 @@ import { formatBytes } from "@/lib/upload/format-bytes"
 import { cn } from "@/lib/utils"
 
 type UploadSlot = "hero" | "founder"
+type OwnerType = "listing" | "article"
 
 type Props = {
-  /** Listing UUID the image attaches to — needed for the bucket path. */
+  /**
+   * Owner UUID the image attaches to. Named `listingId` for source
+   * compatibility with the original listings call sites; when
+   * `ownerType="article"` this holds `articles.id` and the POST sends
+   * it as `article_id`.
+   */
   listingId: string
-  /** `hero` for the listing card hero, `founder` for the portrait. */
+  /** Which upload flavour to POST as. Defaults to "listing". */
+  ownerType?: OwnerType
+  /** `hero` for the card hero, `founder` for the listing portrait. */
   slot: UploadSlot
   /** Current URL value. Empty string means no image yet. */
   value: string
@@ -38,6 +46,7 @@ type Props = {
  */
 export function SingleImageUpload({
   listingId,
+  ownerType = "listing",
   slot,
   value,
   onChange,
@@ -62,7 +71,10 @@ export function SingleImageUpload({
       try {
         const form = new FormData()
         form.append("file", file)
-        form.append("listing_id", listingId)
+        form.append(
+          ownerType === "article" ? "article_id" : "listing_id",
+          listingId,
+        )
         form.append("slot", slot)
         const res = await fetch("/api/admin/upload", {
           method: "POST",
@@ -90,7 +102,7 @@ export function SingleImageUpload({
         setUploading(false)
       }
     },
-    [listingId, slot, onChange],
+    [listingId, ownerType, slot, onChange],
   )
 
   const dz = useDropzone({

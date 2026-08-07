@@ -19,7 +19,9 @@ import {
   type Article,
   type ArticleInput,
   type ArticleStatus,
+  type ImageAttribution,
 } from "@/lib/articles"
+import { SingleImageUpload } from "@/components/admin/single-image-upload"
 
 interface ArticleFormProps {
   article?: Article
@@ -43,6 +45,14 @@ export function ArticleForm({ article, onSubmit, onDelete }: ArticleFormProps) {
   const [title, setTitle] = useState(article?.title ?? "")
   const [slug, setSlug] = useState(article?.slug ?? "")
   const [slugDirty, setSlugDirty] = useState(!!article?.slug)
+  // Hero image is state-controlled so the uploader and the manual URL
+  // override can both write to the same field, and so the "Remove"
+  // action in the uploader clears the form correctly.
+  const [heroImage, setHeroImage] = useState(article?.hero_image ?? "")
+  const existingCredit =
+    (article?.image_attribution as ImageAttribution | null | undefined)?.hero
+      ?.credit ?? ""
+  const [imageCredit, setImageCredit] = useState(existingCredit)
 
   function onTitleChange(value: string) {
     setTitle(value)
@@ -57,12 +67,36 @@ export function ArticleForm({ article, onSubmit, onDelete }: ArticleFormProps) {
       const formData = new FormData(event.currentTarget)
       const readMin = formData.get("read_minutes")
       const relatedRaw = formData.get("related_listing_ids") as string
+      const cleanedHero = heroImage.trim() || null
+
+      // Preserve any existing attribution fields the routine may have
+      // populated (source, licence, granted_social_use, uploaded_at) —
+      // the form only touches `hero.credit`.
+      const existingAttribution =
+        (article?.image_attribution as ImageAttribution | null | undefined) ??
+        null
+      const trimmedCredit = imageCredit.trim()
+      let nextAttribution: ImageAttribution | null = existingAttribution
+      if (trimmedCredit) {
+        nextAttribution = {
+          ...(existingAttribution ?? {}),
+          hero: {
+            ...(existingAttribution?.hero ?? {}),
+            credit: trimmedCredit,
+          },
+        }
+      } else if (existingAttribution?.hero?.credit) {
+        // Editor cleared the field — drop just the credit, keep the rest.
+        const { credit: _drop, ...restHero } = existingAttribution.hero
+        nextAttribution = { ...existingAttribution, hero: restHero }
+      }
+
       const data: ArticleInput = {
         slug: slug.trim(),
         title: title.trim(),
         category: ((formData.get("category") as string) || "").trim() || null,
         status: (formData.get("status") as ArticleStatus) || "draft",
-        hero_image: ((formData.get("hero_image") as string) || "").trim() || null,
+        hero_image: cleanedHero,
         excerpt: ((formData.get("excerpt") as string) || "").trim() || null,
         body_md: ((formData.get("body_md") as string) || "").trim() || null,
         read_minutes: readMin ? Number(readMin) : null,
@@ -73,6 +107,7 @@ export function ArticleForm({ article, onSubmit, onDelete }: ArticleFormProps) {
               .map((s) => s.trim())
               .filter(Boolean)
           : null,
+        image_attribution: nextAttribution,
       }
 
       await onSubmit(data)
@@ -190,30 +225,70 @@ export function ArticleForm({ article, onSubmit, onDelete }: ArticleFormProps) {
           />
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <div>
-            <Label htmlFor="hero_image">Hero image URL</Label>
-            <Input
-              id="hero_image"
-              name="hero_image"
-              defaultValue={article?.hero_image ?? ""}
-              placeholder="https://… (optional)"
+        <div className="space-y-2">
+          <Label>Hero image</Label>
+          {article?.id ? (
+            <SingleImageUpload
+              ownerType="article"
+              listingId={article.id}
+              slot="hero"
+              value={heroImage}
+              onChange={setHeroImage}
+              hint="Landscape works best, ~1600×1200 or wider. Processed to WebP, EXIF stripped, max 10 MB."
+              disabled={isSubmitting}
+              testIdPrefix="article-hero-upload"
             />
-          </div>
+          ) : (
+            <p className="text-xs text-stone-500">
+              Save the article as a draft first, then a hero uploader will appear here.
+              You can paste a Supabase Storage URL manually below in the meantime.
+            </p>
+          )}
+          <details className="pt-1">
+            <summary className="cursor-pointer text-xs text-stone-500 hover:text-stone-700">
+              Paste a Supabase Storage URL directly
+            </summary>
+            <Input
+              id="hero_image_manual"
+              className="mt-2"
+              value={heroImage}
+              onChange={(e) => setHeroImage(e.target.value)}
+              placeholder="https://<project>.supabase.co/storage/v1/object/public/listing-media/…"
+            />
+            <p className="mt-1 text-xs text-stone-500">
+              Only Supabase Storage URLs are accepted — the API rejects anything else with
+              <code className="mx-1">invalid_hero_image</code>.
+            </p>
+          </details>
+        </div>
 
-          <div>
-            <Label htmlFor="read_minutes">Read time (minutes)</Label>
-            <Input
-              id="read_minutes"
-              name="read_minutes"
-              type="number"
-              inputMode="numeric"
-              min={1}
-              max={120}
-              defaultValue={article?.read_minutes ?? ""}
-              placeholder="e.g. 6"
-            />
-          </div>
+        <div>
+          <Label htmlFor="image_credit">Image credit</Label>
+          <Input
+            id="image_credit"
+            name="image_credit"
+            value={imageCredit}
+            onChange={(e) => setImageCredit(e.target.value)}
+            placeholder="e.g. Photo: Vlad Chetan / Pexels"
+          />
+          <p className="text-xs text-stone-500 mt-1">
+            Free-text credit line displayed with the article. Written into
+            <code className="mx-1">image_attribution.hero.credit</code>.
+          </p>
+        </div>
+
+        <div>
+          <Label htmlFor="read_minutes">Read time (minutes)</Label>
+          <Input
+            id="read_minutes"
+            name="read_minutes"
+            type="number"
+            inputMode="numeric"
+            min={1}
+            max={120}
+            defaultValue={article?.read_minutes ?? ""}
+            placeholder="e.g. 6"
+          />
         </div>
 
         <div>
