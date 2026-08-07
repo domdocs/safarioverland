@@ -5,10 +5,7 @@ import { usePathname } from "next/navigation"
 import { Byline } from "@/components/Byline"
 import { ArticleJsonLd } from "@/components/JsonLd/ArticleJsonLd"
 import { getEditorById } from "@/lib/editors"
-import {
-  FALLBACK_DATE,
-  FIELD_NOTE_DATES,
-} from "@/lib/field-note-dates"
+import { FIELD_NOTE_DATES } from "@/lib/field-note-dates"
 
 const SITE = "https://safarioverland.com"
 
@@ -46,7 +43,13 @@ export function AutoArticleMeta({
   if (pathname === "/field-notes" || !pathname.startsWith("/field-notes/")) {
     return null
   }
-  const dates = FIELD_NOTE_DATES[pathname] ?? FALLBACK_DATE
+  // DB-backed field notes (/field-notes/[slug]) render their own
+  // <Byline /> + <ArticleJsonLd /> with real published_at / updated_at.
+  // Those paths are not in FIELD_NOTE_DATES — skip auto meta rather
+  // than falling back to a placeholder date that would duplicate the
+  // page-level byline.
+  const dates = FIELD_NOTE_DATES[pathname]
+  if (!dates) return null
   const editor = getEditorById(dates.editorId)
   const computedHeadline =
     headline ??

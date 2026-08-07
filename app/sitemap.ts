@@ -3,6 +3,7 @@ import path from "node:path"
 import type { MetadataRoute } from "next"
 
 import { getActiveCategories } from "@/lib/categories"
+import { getArticles } from "@/lib/articles"
 import { getListings } from "@/lib/listings"
 
 const BASE = "https://safarioverland.com"
@@ -163,11 +164,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
     }))
 
+  // DB-backed articles at /field-notes/[slug]. Only published rows are
+  // publicly reachable — draft / archived 404 on the public surface.
+  let articles: MetadataRoute.Sitemap = []
+  try {
+    articles = (await getArticles({ status: "published", limit: 1000 })).map(
+      (a) => ({
+        url: `${BASE}/field-notes/${a.slug}`,
+        priority: 0.7,
+        changeFrequency: "monthly" as const,
+        lastModified: a.updated_at,
+      }),
+    )
+  } catch (err) {
+    console.error("sitemap: getArticles failed", err)
+  }
+
   return [
     ...staticPages,
     ...listings,
     ...categories,
     ...destinations,
     ...fieldNotes,
+    ...articles,
   ]
 }

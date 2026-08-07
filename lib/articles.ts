@@ -52,6 +52,8 @@ export const ARTICLE_CATEGORIES = [
   "gear",
 ] as const
 
+export { RESERVED_ARTICLE_SLUGS } from "./field-notes/reserved-slugs"
+
 // ─── Reads ──────────────────────────────────────────────────────────────
 
 export async function getArticles({

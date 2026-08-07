@@ -46,3 +46,6 @@ next-env.d.ts
 .Trashes
 ehthumbs.db
 Thumbs.db 
+# operations credentials — plaintext secrets, never committed
+/ops/
+.claude/settings.local.json

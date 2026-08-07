@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 
-import { createArticle, getArticles, type ArticleStatus } from "@/lib/articles"
+import {
+  createArticle,
+  getArticles,
+  RESERVED_ARTICLE_SLUGS,
+  type ArticleStatus,
+} from "@/lib/articles"
 
 export const dynamic = "force-dynamic"
 
@@ -52,6 +57,12 @@ export async function POST(request: NextRequest) {
       { error: "invalid_payload", issues: parsed.error.flatten() },
       { status: 400 },
     )
+  }
+
+  if (
+    (RESERVED_ARTICLE_SLUGS as readonly string[]).includes(parsed.data.slug)
+  ) {
+    return NextResponse.json({ error: "reserved_slug" }, { status: 400 })
   }
 
   try {
