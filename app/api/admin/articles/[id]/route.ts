@@ -7,6 +7,7 @@ import {
   RESERVED_ARTICLE_SLUGS,
   updateArticle,
 } from "@/lib/articles"
+import { revalidateArticleSurfaces } from "@/lib/articles/revalidate"
 import { extractSupabaseErrorMessage } from "@/lib/errors"
 import {
   heroImageRejectReason,
@@ -26,7 +27,7 @@ const updateSchema = z.object({
   read_minutes: z.number().int().min(1).max(240).optional().nullable(),
   author_name: z.string().max(120).optional().nullable(),
   related_listing_ids: z.array(z.string().uuid()).optional().nullable(),
-  // JSONB — see supabase/migrations/20260517_articles_image_attribution.sql.
+  // JSONB — see supabase/migrations/20260518_articles_image_attribution.sql.
   image_attribution: z.record(z.unknown()).optional().nullable(),
   published_at: z.string().optional().nullable(),
 })
@@ -88,8 +89,18 @@ export async function PUT(
     )
   }
 
+  // Snapshot the pre-write state so the revalidation decision can see
+  // both status transitions and slug changes on published articles.
+  const existing = await getArticleById(id)
+
   try {
     const article = await updateArticle(id, parsed.data)
+    revalidateArticleSurfaces({
+      oldStatus: existing?.status ?? null,
+      newStatus: article.status,
+      oldSlug: existing?.slug ?? null,
+      newSlug: article.slug,
+    })
     return NextResponse.json({ status: "ok", article })
   } catch (err) {
     const details = extractSupabaseErrorMessage(err)
@@ -112,8 +123,18 @@ export async function DELETE(
   context: { params: Promise<{ id: string }> },
 ) {
   const { id } = await context.params
+  // Snapshot so we can revalidate the index / sitemap / detail path if
+  // a published article is being removed — leaving a retracted piece
+  // listed for an hour is worse than a delay in adding one.
+  const existing = await getArticleById(id)
   try {
     await deleteArticle(id)
+    revalidateArticleSurfaces({
+      oldStatus: existing?.status ?? null,
+      newStatus: null,
+      oldSlug: existing?.slug ?? null,
+      newSlug: null,
+    })
     return NextResponse.json({ status: "ok" })
   } catch (err) {
     console.error("DELETE /api/admin/articles/[id] failed:", err)

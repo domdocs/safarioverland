@@ -49,3 +49,7 @@ Thumbs.db
 # operations credentials — plaintext secrets, never committed
 /ops/
 .claude/settings.local.json
+
+# supabase CLI scratch + bridge deletion holding pen
+supabase/.temp/
+_to_delete/

@@ -145,10 +145,10 @@ test("LISTING_MEDIA_BUCKET is the documented bucket name", () => {
   assert.equal(LISTING_MEDIA_BUCKET, "listing-media")
 })
 
-test("ALLOWED_MIME contains exactly the three documented types", () => {
+test("ALLOWED_MIME contains exactly the four documented types", () => {
   assert.deepEqual(
     [...ALLOWED_MIME].sort(),
-    ["image/jpeg", "image/png", "image/webp"],
+    ["image/avif", "image/jpeg", "image/png", "image/webp"],
   )
 })
 

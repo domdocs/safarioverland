@@ -7,6 +7,71 @@ referenced — it's the canonical spec for what was built and why.
 
 ---
 
+## 2026-08-07 — Article images: upload path, attribution, hero URL validation
+
+**Brief:** `handoff/briefs/2026-08-ARTICLE_IMAGES.md` (PR #19)
+
+Third of three PRs shipped today; see the SSR entry below for the day's most significant finding.
+
+Field notes could publish from the database but images had no way in. The article form offered a bare text input labelled "Hero image URL" with no validation, and `POST /api/admin/upload` accepted only `listing_id` or `itinerary_id`. The first published article proved the gap immediately: a Pexels *webpage* URL was saved as `hero_image`, the optimizer returned `400 INVALID_IMAGE_OPTIMIZE_REQUEST`, and `og:image` pointed at an HTML page.
+
+**Articles flavour on the upload route.** `POST /api/admin/upload` now takes `article_id` with slot `hero`, writing to `articles/[article_id]/hero/[uuid].webp` in the `listing-media` bucket. It runs through `processImageForUpload` exactly as the listings and itinerary flavours do — deliberately, and commented as such. **The pipeline strips EXIF, and geotagged photographs of rhino are a live poaching risk.** Any future article image path that skips EXIF-stripping is a defect, not an optimisation. Verified on the output rather than assumed: a source JPEG carrying fabricated camera tags and GPS coordinates came back out with neither.
+
+**Uploader on the article form.** `SingleImageUpload` was generalised with an optional `ownerType: "listing" | "article"` prop rather than forked — roughly three lines against two hundred duplicated. Listing call sites unchanged. A collapsible manual-URL fallback remains for images already in the bucket. In create mode, where no article id exists yet, the uploader is replaced with a note to save as draft first; routines don't hit this because they POST first and upload against the returned id.
+
+**Attribution.** `articles.image_attribution JSONB` added, mirroring `directory_listings`. The form writes `hero.credit`; the fuller `source` / `supplied_by` / `licence` / `granted_social_use` fields are for routines to populate later.
+
+**Validation.** `hero_image` must be an absolute `https:` URL on a host in the image allow-list, or the API returns `400 invalid_hero_image` naming the problem. `next.config.mjs` and the API validator now read one shared constant (`lib/images/remote-patterns.mjs`) so the two cannot drift.
+
+**Known follow-up not taken:** `lib/upload/storage.test.ts:148` asserts `ALLOWED_MIME` holds exactly three types; `image/avif` was added at some point without updating it. Failing on `main` before this PR. One-line fix.
+
+---
+
+## 2026-08-07 — Sitemap regression: field-note URLs restored
+
+**Brief:** `handoff/briefs/2026-08-SITEMAP_FIELD_NOTE_URLS_HOTFIX.md` (PR #18)
+
+PR #17 added `export const revalidate = 3600` to `app/sitemap.ts` so database content would stay fresh without a redeploy. That moved sitemap generation from build time to runtime — and `discoverFieldNoteUrls()` walked `process.cwd()/app/field-notes` on the filesystem. That directory exists during a build but not inside the deployed serverless function, so **all 57 hand-authored field-note URLs silently vanished from the live sitemap**. The database-driven branches were unaffected, which is why the listing URLs stayed.
+
+Confirmed by measuring pre-merge production deployments, which still return 76 URLs with 57 field notes, against live production at 19 URLs with none.
+
+Fixed by sourcing field-note routes from the generated `FIELD_NOTE_DATES` map (`lib/field-note-dates.ts`) instead of walking the filesystem — a static import that works at runtime, and one already maintained by `scripts/gen-field-note-dates.mjs`. `revalidate = 3600` kept. Side benefit: field-note URLs now carry per-page `lastModified`, which the filesystem walk never supplied.
+
+**Lesson worth keeping.** Preview deployments still reported 76 URLs throughout, because they were serving their build-time prerender; only production had regenerated at runtime. **A healthy preview is not evidence for anything that depends on runtime behaviour — verify on production.** The same trap applies to any `process.cwd()` or `fs` access reached from a route with `revalidate`, `force-dynamic`, or a dynamic segment. One other instance exists: `lib/images/blur.ts:50` reads from `public/` and is reached from the homepage, which has `revalidate = 60`. Checked on live production and it is working — the blur placeholder is a real 350-character data-URI, not the transparent fallback — so `/public` is evidently included in Vercel's output tracing. Left alone, but it depends on Vercel behaviour rather than anything we control.
+
+---
+
+## 2026-08-07 — Field Notes from the database, and a site-wide SSR regression fixed
+
+**Brief:** `handoff/briefs/2026-08-FIELD_NOTES_DB_RENDERER.md` and `handoff/briefs/2026-08-FIELD_NOTES_RENDERER_FIXES.md` (PR #17)
+
+**The headline is not the renderer.** While building it, `components/supabase-provider.tsx` was found to contain an `if (!supabase) return null` gate that caused React to bail the entire subtree to client-side rendering. The effect was site-wide and had been live since the provider was introduced: **every page was serving crawlers an empty shell** — no `<h1>`, no `<h2>`, and none of the page-level `Article` or `BreadcrumbList` JSON-LD that SEO Brief 1 and the E-E-A-T work exist to produce. Only the global `Organization` / `WebSite` block from the layout survived.
+
+Measured on live production before and after:
+
+| Page | Before | After |
+|---|---|---|
+| `/field-notes/planning-guides/what-to-pack` | `h1=0 h2=0`, no `Article` JSON-LD | `h1=1 h2=7`, `Article` + `BreadcrumbList` |
+| `/field-notes` | `h1=0 h2=0` | `h1=1 h2=7` |
+| a listing detail page | `h1=0 h2=0` | `h1=1 h2=2` |
+
+Nothing calls `useSupabase()` anywhere, so the provider now renders children with `value={undefined}`. **Consider deleting the provider outright** — it is dead code holding a wrap in `app/layout.tsx`.
+
+Every listing page carried this too. It is a plausible explanation for why the SEO work of May 2026 may not have moved anything: the markup was correct and crawlers were not receiving it in the first pass.
+
+**The renderer itself.** `app/field-notes/[slug]/page.tsx` renders `articles` rows: async params, `notFound()` when `status !== "published"` in both `generateMetadata` and the page body, explicit `Byline` / `ArticleJsonLd` / `Breadcrumbs`, `react-markdown` + `remark-gfm` via a new `components/ArticleBody.tsx`. Deliberately one level deep — `[category]/[slug]` would let the static `planning-guides` directory shadow every database article beneath it. Reserved-slug guard rejects `conservation`, `faqs`, `planning-guides`, `safety-tips`, `seasonal-guides`, any of which would otherwise become silently unreachable. The 58 hand-authored pages are untouched and unchanged.
+
+**Also fixed in the same PR:** `category` was required by the database but optional in the zod schema, surfacing as an opaque `500 create_failed / "Unknown error"`; it is now `z.enum(ARTICLE_CATEGORIES)` and create failures carry the real Postgres message. `revalidate = 3600` added to `app/sitemap.ts` and `app/field-notes/page.tsx` — see the sitemap entry above for the regression that caused.
+
+**First article published.** `hwange-community-rhino-conservation` — the Hwange Community Rhino Conservation Initiative — drafted in Cowork, pushed via the admin API, held at `status='draft'` until reviewed, then published. Four internal listing links carried in `related_listing_ids`. The first content the `articles` table has ever held.
+
+**Known follow-ups.**
+- **Soft 404** — `/field-notes/[slug]` and `/listings/[id]` return HTTP 200 with not-found content. Pre-existing, affects both routes, own PR. No content leaks; drafts are correctly hidden.
+- **`revalidatePath` on publish** — a published field note is missing from `/field-notes` and `/sitemap.xml` for up to an hour. Felt twice in one day.
+- **Listing structured data** — no `Product` / `LodgingBusiness` schema on listing pages. Invisible while nothing server-rendered; now a cheap win on the highest-value pages.
+
+---
+
 ## 2026-05-21 — Migrated to external SSD + GitHub backups for Vercel-only repos
 
 **Workspace move.** All projects migrated from iCloud Drive to the Crucial external SSD. Repo now lives at `/Volumes/Dom Crucial/Projects/safari-overland/`. iCloud was actively fighting git operations all session — stale lock files, vanishing files, conflict copies — so safari-overland was cloned fresh from `origin/main` onto the SSD rather than copied across. The iCloud copy is untouched as a 24–48-hour safety net before deletion.
