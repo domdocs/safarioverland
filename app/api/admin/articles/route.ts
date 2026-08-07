@@ -9,6 +9,10 @@ import {
   type ArticleStatus,
 } from "@/lib/articles"
 import { extractSupabaseErrorMessage } from "@/lib/errors"
+import {
+  heroImageRejectReason,
+  isAllowedHeroImageUrl,
+} from "@/lib/upload/hero-image"
 
 export const dynamic = "force-dynamic"
 
@@ -27,6 +31,10 @@ const createSchema = z.object({
   read_minutes: z.number().int().min(1).max(240).optional().nullable(),
   author_name: z.string().max(120).optional().nullable(),
   related_listing_ids: z.array(z.string().uuid()).optional().nullable(),
+  // JSONB — see supabase/migrations/20260517_articles_image_attribution.sql
+  // for the recommended shape. Kept loose here so a routine can populate
+  // additional fields without an API change.
+  image_attribution: z.record(z.unknown()).optional().nullable(),
   published_at: z.string().optional().nullable(),
 })
 
@@ -69,6 +77,16 @@ export async function POST(request: NextRequest) {
     (RESERVED_ARTICLE_SLUGS as readonly string[]).includes(parsed.data.slug)
   ) {
     return NextResponse.json({ error: "reserved_slug" }, { status: 400 })
+  }
+
+  if (parsed.data.hero_image && !isAllowedHeroImageUrl(parsed.data.hero_image)) {
+    return NextResponse.json(
+      {
+        error: "invalid_hero_image",
+        message: heroImageRejectReason(parsed.data.hero_image),
+      },
+      { status: 400 },
+    )
   }
 
   try {

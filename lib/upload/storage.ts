@@ -20,7 +20,8 @@ import { getSupabaseServerClient } from "@/lib/supabase"
 
 export type UploadSlot = "hero" | "gallery" | "founder"
 export type ItinerarySlot = "itinerary-cover" | "chapter-hero" | "chapter-lodge"
-export type AnySlot = UploadSlot | ItinerarySlot
+export type ArticleSlot = "hero"
+export type AnySlot = UploadSlot | ItinerarySlot | ArticleSlot
 
 const LISTING_SLOTS: ReadonlySet<UploadSlot> = new Set<UploadSlot>([
   "hero",
@@ -32,6 +33,7 @@ const ITINERARY_SLOTS: ReadonlySet<ItinerarySlot> = new Set<ItinerarySlot>([
   "chapter-hero",
   "chapter-lodge",
 ])
+const ARTICLE_SLOTS: ReadonlySet<ArticleSlot> = new Set<ArticleSlot>(["hero"])
 
 export const LISTING_MEDIA_BUCKET = "listing-media"
 export const MAX_BYTES = 10 * 1024 * 1024 // 10 MB
@@ -141,6 +143,44 @@ export function validateItineraryUpload(args: {
 }
 
 /**
+ * Validate an article upload. Third flavour alongside listings + itinerary.
+ * Only `hero` is a supported slot today — gallery / attribution slots for
+ * articles are a separate future PR.
+ */
+export function validateArticleUpload(args: {
+  articleId: string
+  slot: string
+  type: string
+  size: number
+}): { ok: true; slot: ArticleSlot } | { ok: false; error: string } {
+  if (!args.articleId || args.articleId.length < 8) {
+    return { ok: false, error: "article_id is required" }
+  }
+  if (!ARTICLE_SLOTS.has(args.slot as ArticleSlot)) {
+    return {
+      ok: false,
+      error: `slot must be "hero" for article uploads (got "${args.slot}")`,
+    }
+  }
+  if (!ALLOWED_MIME.has(args.type)) {
+    return {
+      ok: false,
+      error: `unsupported mime type "${args.type}" — accept image/jpeg, image/png, image/webp, image/avif`,
+    }
+  }
+  if (args.size <= 0) {
+    return { ok: false, error: "file is empty" }
+  }
+  if (args.size > MAX_BYTES) {
+    return {
+      ok: false,
+      error: `file is ${Math.round(args.size / 1024 / 1024)}MB; max is ${MAX_BYTES / 1024 / 1024}MB`,
+    }
+  }
+  return { ok: true, slot: args.slot as ArticleSlot }
+}
+
+/**
  * Compute the bucket path for a given listing + slot + mime. Exposed
  * for tests; production callers go through `uploadListingImage`.
  */
@@ -171,6 +211,20 @@ export function buildItineraryStoragePath(args: {
   // chapter-hero / chapter-lodge
   const sub = args.slot === "chapter-hero" ? "chapter-hero" : "chapter-lodge"
   return `itineraries/${args.itineraryId}/${sub}/${args.chapterId}/${randomUUID()}.${ext}`
+}
+
+/**
+ * Compute the bucket path for an article asset:
+ * `articles/[articleId]/hero/[uuid].[ext]`. Matches the layout of the
+ * one manually-uploaded hero (2026-08-07) so that row is not a special case.
+ */
+export function buildArticleStoragePath(args: {
+  articleId: string
+  slot: ArticleSlot
+  mimeType: string
+}): string {
+  const ext = EXT_BY_MIME[args.mimeType] ?? "bin"
+  return `articles/${args.articleId}/${args.slot}/${randomUUID()}.${ext}`
 }
 
 /**

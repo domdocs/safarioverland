@@ -9,6 +9,24 @@ import { getSupabaseServerClient } from "./supabase"
 
 export type ArticleStatus = "draft" | "published" | "archived"
 
+/**
+ * Rights + credit metadata for the images on an article. Loose JSON
+ * shape so routines can populate the full structure and the admin form
+ * can just write `hero.credit` — see supabase/migrations/20260517_*.
+ */
+export type ImageAttribution = {
+  hero?: {
+    source?: string
+    supplied_by?: string
+    licence?: string
+    credit?: string
+    granted_social_use?: boolean
+    uploaded_at?: string
+    alt_text?: string
+  }
+  // Room to add `gallery`, `body` etc. without a schema change.
+} & Record<string, unknown>
+
 export type Article = {
   id: string
   slug: string
@@ -21,6 +39,7 @@ export type Article = {
   read_minutes: number | null
   author_name: string | null
   related_listing_ids: string[] | null
+  image_attribution: ImageAttribution | null
   published_at: string | null
   created_at: string
   updated_at: string
@@ -38,6 +57,7 @@ export type ArticleInput = {
   read_minutes?: number | null
   author_name?: string | null
   related_listing_ids?: string[] | null
+  image_attribution?: ImageAttribution | null
   published_at?: string | null
 }
 
