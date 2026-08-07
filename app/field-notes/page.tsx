@@ -11,6 +11,38 @@ import { SectionRule } from "@/components/editorial/section-rule"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 import { Button } from "@/components/ui/button"
 import { EditorialImage } from "@/components/editorial/editorial-image"
+import { getArticles, type Article } from "@/lib/articles"
+
+/**
+ * Revalidate every hour so the DB-backed "Latest field notes" rail
+ * picks up newly published articles without a redeploy. The rail is
+ * the primary discovery surface for content published by unattended
+ * routines — without revalidation the index was frozen at build time.
+ */
+export const revalidate = 3600
+
+/** Display labels for the four content pillars. Fallback title-cases
+ *  any category outside the pillar set. */
+const CATEGORY_LABELS: Record<string, string> = {
+  planning: "Planning",
+  safety: "Safety",
+  conservation: "Conservation",
+  seasonal: "Seasonal",
+}
+
+function categoryLabel(category: string | null): string {
+  if (!category) return "Field notes"
+  return (
+    CATEGORY_LABELS[category] ??
+    category.charAt(0).toUpperCase() + category.slice(1)
+  )
+}
+
+function articleEyebrow(article: Article): string {
+  const label = categoryLabel(article.category)
+  if (!article.read_minutes) return label
+  return `${label} · ${String(article.read_minutes).padStart(2, "0")} min`
+}
 
 type Pillar = {
   href: string
@@ -71,7 +103,12 @@ const ARTICLES = [
   },
 ]
 
-export default function ResourcesPage() {
+export default async function ResourcesPage() {
+  // DB-backed articles for the "Latest from the desk" rail. Degrades
+  // to an empty list when Supabase is unavailable; the whole section
+  // is then hidden rather than rendered as an empty state.
+  const dbArticles = await getArticles({ status: "published", limit: 6 })
+
   return (
     <>
       {/* ─── Field notes opening ──────────────────────────── */}
@@ -213,6 +250,56 @@ export default function ResourcesPage() {
           ))}
         </div>
       </section>
+
+      {/* ─── Latest from the desk (DB-backed) ─────────────── */}
+      {dbArticles.length > 0 && (
+        <section className="border-t border-rule bg-ink py-24 md:py-28">
+          <div className="container">
+            <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+              <div className="max-w-2xl">
+                <Eyebrow withRule>From the desk</Eyebrow>
+                <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
+                  Latest field notes.
+                </h2>
+              </div>
+            </div>
+
+            <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+              {dbArticles.map((a, i) => (
+                <Link
+                  key={a.id}
+                  href={`/field-notes/${a.slug}`}
+                  className="group block border-t border-rule pt-6 transition-colors hover:border-amber"
+                >
+                  {a.hero_image && (
+                    <div className="relative aspect-[4/3] overflow-hidden bg-card mb-6">
+                      <EditorialImage
+                        src={a.hero_image}
+                        alt={a.title}
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                      <BlendOverlay />
+                    </div>
+                  )}
+                  <div className="flex items-baseline gap-3 mb-3">
+                    <span className="mono text-amber" aria-hidden>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="eyebrow">{articleEyebrow(a)}</span>
+                  </div>
+                  <h3 className="font-serif text-h3-fluid text-bone leading-tight transition-colors group-hover:text-amber text-balance">
+                    {a.title}
+                  </h3>
+                  {a.excerpt && (
+                    <p className="mt-3 text-bone-mute leading-relaxed">{a.excerpt}</p>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ─── Newsletter ───────────────────────────────────── */}
       <section className="border-t border-rule bg-ink py-24">

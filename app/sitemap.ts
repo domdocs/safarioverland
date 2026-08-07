@@ -3,9 +3,18 @@ import path from "node:path"
 import type { MetadataRoute } from "next"
 
 import { getActiveCategories } from "@/lib/categories"
+import { getArticles } from "@/lib/articles"
 import { getListings } from "@/lib/listings"
 
 const BASE = "https://safarioverland.com"
+
+/**
+ * Revalidate every hour. Without this, `app/sitemap.ts` is prerendered at
+ * build time — approved listings, active categories and DB-backed articles
+ * added between deploys wouldn't reach the sitemap until the next deploy.
+ * (Silently affected listing SEO prior to PR #17 v2 as well.)
+ */
+export const revalidate = 3600
 
 /**
  * The four region pages live under `app/destinations/[country]/`.
@@ -163,11 +172,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
     }))
 
+  // DB-backed articles at /field-notes/[slug]. Only published rows are
+  // publicly reachable — draft / archived 404 on the public surface.
+  let articles: MetadataRoute.Sitemap = []
+  try {
+    articles = (await getArticles({ status: "published", limit: 1000 })).map(
+      (a) => ({
+        url: `${BASE}/field-notes/${a.slug}`,
+        priority: 0.7,
+        changeFrequency: "monthly" as const,
+        lastModified: a.updated_at,
+      }),
+    )
+  } catch (err) {
+    console.error("sitemap: getArticles failed", err)
+  }
+
   return [
     ...staticPages,
     ...listings,
     ...categories,
     ...destinations,
     ...fieldNotes,
+    ...articles,
   ]
 }

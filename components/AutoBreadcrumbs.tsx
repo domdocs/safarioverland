@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { Breadcrumbs } from "@/components/Breadcrumbs"
 import { BreadcrumbsJsonLd } from "@/components/JsonLd/BreadcrumbsJsonLd"
 import { buildCrumbsFromPath } from "@/lib/breadcrumbs"
+import { RESERVED_ARTICLE_SLUGS } from "@/lib/field-notes/reserved-slugs"
 
 /**
  * Drop this into a layout or page to render breadcrumbs derived from
@@ -28,6 +29,19 @@ export function AutoBreadcrumbs({
   containerClassName?: string
 }) {
   const pathname = usePathname() ?? "/"
+  // DB-backed field notes (/field-notes/[slug]) render their own
+  // <Breadcrumbs /> + <BreadcrumbsJsonLd /> so the terminal crumb uses
+  // the article title rather than a humanised slug. Skip here for
+  // those paths — reserved slugs are the static level-3 pages
+  // (planning-guides, conservation, etc.) which still want the auto trail.
+  const segments = pathname.split("/").filter(Boolean)
+  if (
+    segments.length === 2 &&
+    segments[0] === "field-notes" &&
+    !(RESERVED_ARTICLE_SLUGS as readonly string[]).includes(segments[1])
+  ) {
+    return null
+  }
   const crumbs = buildCrumbsFromPath(pathname)
   if (crumbs.length === 0) return null
   return (

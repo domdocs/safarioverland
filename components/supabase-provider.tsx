@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useState, useEffect } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import { getSupabaseBrowserClient } from "@/lib/supabase"
 import { SupabaseClient } from "@supabase/supabase-js"
 
@@ -16,7 +16,22 @@ export function useSupabase() {
   return context
 }
 
-// Provider component to wrap the application
+/**
+ * Wraps the app in a client-side Supabase context.
+ *
+ * The provider must always render `children` — including during SSR
+ * when `supabase` is undefined. The previous `if (!supabase) return null`
+ * gate meant the server render produced null for every descendant, which
+ * caused React to bail the entire subtree to client-side rendering
+ * (marker: `<template data-dgst="BAILOUT_TO_CLIENT_SIDE_RENDERING">`).
+ * That silently stripped page-level JSON-LD, `<h1>`s, and every other
+ * SSR'd element from the initial HTML — GlobalJsonLd survived only
+ * because it lives outside this provider in the root layout.
+ *
+ * Nothing in the current codebase actually calls `useSupabase()` —
+ * browser Supabase calls use `getSupabaseBrowserClient()` directly —
+ * so the context value being undefined during SSR is harmless.
+ */
 export function SupabaseProvider({ children }: { children: React.ReactNode }) {
   const [supabase, setSupabase] = useState<SupabaseClient | undefined>(undefined)
 
@@ -30,9 +45,9 @@ export function SupabaseProvider({ children }: { children: React.ReactNode }) {
     }
   }, [])
 
-  if (!supabase) {
-    return null // or a loading spinner
-  }
-
-  return <SupabaseContext.Provider value={supabase}>{children}</SupabaseContext.Provider>
+  return (
+    <SupabaseContext.Provider value={supabase}>
+      {children}
+    </SupabaseContext.Provider>
+  )
 }

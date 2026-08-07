@@ -1,14 +1,25 @@
 import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 
-import { createArticle, getArticles, type ArticleStatus } from "@/lib/articles"
+import {
+  ARTICLE_CATEGORIES,
+  createArticle,
+  getArticles,
+  RESERVED_ARTICLE_SLUGS,
+  type ArticleStatus,
+} from "@/lib/articles"
+import { extractSupabaseErrorMessage } from "@/lib/errors"
 
 export const dynamic = "force-dynamic"
 
 const createSchema = z.object({
   slug: z.string().min(1).max(120),
   title: z.string().min(1).max(200),
-  category: z.string().max(40).optional().nullable(),
+  // Required at the DB level (legacy NOT NULL that predates the current
+  // migrations and 20260511 didn't relax). Validating against the enum
+  // also prevents silent miscategorisation from a routine that mistypes
+  // "planing".
+  category: z.enum(ARTICLE_CATEGORIES),
   status: z.enum(["draft", "published", "archived"]).optional(),
   hero_image: z.string().max(500).optional().nullable(),
   excerpt: z.string().max(1000).optional().nullable(),
@@ -54,19 +65,28 @@ export async function POST(request: NextRequest) {
     )
   }
 
+  if (
+    (RESERVED_ARTICLE_SLUGS as readonly string[]).includes(parsed.data.slug)
+  ) {
+    return NextResponse.json({ error: "reserved_slug" }, { status: 400 })
+  }
+
   try {
     const article = await createArticle(parsed.data)
     return NextResponse.json({ status: "ok", article }, { status: 201 })
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Unknown error"
+    const details = extractSupabaseErrorMessage(err)
     // Likely conflict on the unique slug index.
-    if (/duplicate|unique/i.test(message)) {
+    if (/duplicate|unique/i.test(details.message)) {
       return NextResponse.json(
         { error: "slug_in_use", message: "An article with that slug already exists." },
         { status: 409 },
       )
     }
     console.error("POST /api/admin/articles failed:", err)
-    return NextResponse.json({ error: "create_failed", message }, { status: 500 })
+    return NextResponse.json(
+      { error: "create_failed", ...details },
+      { status: 500 },
+    )
   }
 }
