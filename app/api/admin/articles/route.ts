@@ -8,6 +8,7 @@ import {
   RESERVED_ARTICLE_SLUGS,
   type ArticleStatus,
 } from "@/lib/articles"
+import { revalidateArticleSurfaces } from "@/lib/articles/revalidate"
 import { extractSupabaseErrorMessage } from "@/lib/errors"
 import {
   heroImageRejectReason,
@@ -31,7 +32,7 @@ const createSchema = z.object({
   read_minutes: z.number().int().min(1).max(240).optional().nullable(),
   author_name: z.string().max(120).optional().nullable(),
   related_listing_ids: z.array(z.string().uuid()).optional().nullable(),
-  // JSONB — see supabase/migrations/20260517_articles_image_attribution.sql
+  // JSONB — see supabase/migrations/20260518_articles_image_attribution.sql
   // for the recommended shape. Kept loose here so a routine can populate
   // additional fields without an API change.
   image_attribution: z.record(z.unknown()).optional().nullable(),
@@ -91,6 +92,12 @@ export async function POST(request: NextRequest) {
 
   try {
     const article = await createArticle(parsed.data)
+    revalidateArticleSurfaces({
+      oldStatus: null,
+      newStatus: article.status,
+      oldSlug: null,
+      newSlug: article.slug,
+    })
     return NextResponse.json({ status: "ok", article }, { status: 201 })
   } catch (err) {
     const details = extractSupabaseErrorMessage(err)
