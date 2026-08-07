@@ -1,9 +1,8 @@
-import { readdirSync, statSync } from "node:fs"
-import path from "node:path"
 import type { MetadataRoute } from "next"
 
 import { getActiveCategories } from "@/lib/categories"
 import { getArticles } from "@/lib/articles"
+import { FIELD_NOTE_DATES } from "@/lib/field-note-dates"
 import { getListings } from "@/lib/listings"
 
 const BASE = "https://safarioverland.com"
@@ -27,49 +26,6 @@ const DESTINATIONS = [
   "west-africa",
   "north-africa",
 ] as const
-
-/**
- * Discover every `page.tsx` under `app/field-notes/` at build time so
- * new field notes show up in the sitemap automatically. The brief
- * leaves this as a hand-maintained list; using fs is the smallest
- * upgrade that won't go stale when a new resource is added.
- */
-function discoverFieldNoteUrls(): string[] {
-  const root = path.join(process.cwd(), "app", "field-notes")
-  const urls: string[] = []
-
-  function walk(dir: string, urlPath: string) {
-    let entries: string[] = []
-    try {
-      entries = readdirSync(dir)
-    } catch {
-      return
-    }
-    if (entries.includes("page.tsx")) {
-      urls.push(urlPath)
-    }
-    for (const entry of entries) {
-      // Skip dynamic segments and route groups — they don't represent
-      // a single concrete URL.
-      if (entry.startsWith("[") || entry.startsWith("(") || entry.startsWith("_")) {
-        continue
-      }
-      const full = path.join(dir, entry)
-      let isDir = false
-      try {
-        isDir = statSync(full).isDirectory()
-      } catch {
-        isDir = false
-      }
-      if (isDir) {
-        walk(full, `${urlPath}/${entry}`)
-      }
-    }
-  }
-
-  walk(root, "/field-notes")
-  return urls
-}
 
 /**
  * Dynamic sitemap that pulls live content from the codebase's actual
@@ -162,14 +118,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: "monthly" as const,
   }))
 
-  // Field notes — discovered from app/field-notes/**/page.tsx at build
-  // time. Skip the /field-notes index itself (already in staticPages).
-  const fieldNotes: MetadataRoute.Sitemap = discoverFieldNoteUrls()
-    .filter((u) => u !== "/field-notes")
-    .map((u) => ({
-      url: `${BASE}${u}`,
+  // Hand-authored field-note routes come from the generated
+  // FIELD_NOTE_DATES map rather than a filesystem walk: `app/field-notes/`
+  // exists at build time but not inside the deployed serverless function,
+  // so walking it at runtime (which `revalidate` above causes) silently
+  // yielded nothing on production. Regenerate the map with
+  // `node scripts/gen-field-note-dates.mjs` after adding a hand-authored
+  // page, or the new page will not reach the sitemap.
+  //
+  // Skip the /field-notes index itself (already in staticPages).
+  const fieldNotes: MetadataRoute.Sitemap = Object.entries(FIELD_NOTE_DATES)
+    .filter(([pathname]) => pathname !== "/field-notes")
+    .map(([pathname, dates]) => ({
+      url: `${BASE}${pathname}`,
       priority: 0.7,
       changeFrequency: "monthly" as const,
+      lastModified: dates.dateModified,
     }))
 
   // DB-backed articles at /field-notes/[slug]. Only published rows are
