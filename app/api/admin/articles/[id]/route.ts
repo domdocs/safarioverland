@@ -7,6 +7,7 @@ import {
   RESERVED_ARTICLE_SLUGS,
   updateArticle,
 } from "@/lib/articles"
+import { extractSupabaseErrorMessage } from "@/lib/errors"
 
 export const dynamic = "force-dynamic"
 
@@ -75,15 +76,18 @@ export async function PUT(
     const article = await updateArticle(id, parsed.data)
     return NextResponse.json({ status: "ok", article })
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Unknown error"
-    if (/duplicate|unique/i.test(message)) {
+    const details = extractSupabaseErrorMessage(err)
+    if (/duplicate|unique/i.test(details.message)) {
       return NextResponse.json(
         { error: "slug_in_use", message: "An article with that slug already exists." },
         { status: 409 },
       )
     }
     console.error("PUT /api/admin/articles/[id] failed:", err)
-    return NextResponse.json({ error: "update_failed", message }, { status: 500 })
+    return NextResponse.json(
+      { error: "update_failed", ...details },
+      { status: 500 },
+    )
   }
 }
 
@@ -96,8 +100,10 @@ export async function DELETE(
     await deleteArticle(id)
     return NextResponse.json({ status: "ok" })
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Unknown error"
     console.error("DELETE /api/admin/articles/[id] failed:", err)
-    return NextResponse.json({ error: "delete_failed", message }, { status: 500 })
+    return NextResponse.json(
+      { error: "delete_failed", ...extractSupabaseErrorMessage(err) },
+      { status: 500 },
+    )
   }
 }

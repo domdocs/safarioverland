@@ -9,6 +9,14 @@ import { getListings } from "@/lib/listings"
 const BASE = "https://safarioverland.com"
 
 /**
+ * Revalidate every hour. Without this, `app/sitemap.ts` is prerendered at
+ * build time — approved listings, active categories and DB-backed articles
+ * added between deploys wouldn't reach the sitemap until the next deploy.
+ * (Silently affected listing SEO prior to PR #17 v2 as well.)
+ */
+export const revalidate = 3600
+
+/**
  * The four region pages live under `app/destinations/[country]/`.
  * They're hard-coded rather than loaded from a data source — list
  * them explicitly here.

@@ -13,6 +13,14 @@ import { Button } from "@/components/ui/button"
 import { EditorialImage } from "@/components/editorial/editorial-image"
 import { getArticles, type Article } from "@/lib/articles"
 
+/**
+ * Revalidate every hour so the DB-backed "Latest field notes" rail
+ * picks up newly published articles without a redeploy. The rail is
+ * the primary discovery surface for content published by unattended
+ * routines — without revalidation the index was frozen at build time.
+ */
+export const revalidate = 3600
+
 /** Display labels for the four content pillars. Fallback title-cases
  *  any category outside the pillar set. */
 const CATEGORY_LABELS: Record<string, string> = {
