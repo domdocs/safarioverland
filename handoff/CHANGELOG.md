@@ -7,6 +7,39 @@ referenced — it's the canonical spec for what was built and why.
 
 ---
 
+## 2026-11-09 — Self-drive relaunch
+
+**Brief:** `handoff/briefs/2026-11-SELF_DRIVE_PHASE_1.md`, then `handoff/relaunch/` (STRATEGY, DECISIONS, research, copy, design, marketing) (PR #21)
+
+Safari Overland now plans and books **lodge-based self-drive journeys through southern Africa**: travellers drive themselves and stay at camps and lodges, not in rooftop tents. US and UK first. Every decision Dom made is logged at the top of `handoff/relaunch/DECISIONS.md`.
+
+**What shipped.**
+- **Routes:** `/routes` and three routes with animated scroll maps, day-by-day drive times and road surfaces, stays, practicalities and "from" prices:
+  - Zimbabwe: Falls, Hwange, Matobo, US$3,050
+  - Namibia: Kalahari to Etosha, US$2,800
+  - Four corners: Falls, Chobe, Caprivi, US$2,900
+
+  Prices are per person sharing, accommodation only; the costing is in `handoff/relaunch/ROUTE_COSTING.md`.
+- **Ad landing pages:** `/self-drive/zimbabwe`, `/self-drive/namibia`, `/self-drive/botswana-zambia`.
+- **Image-led redesign:** video heroes, a photo per day, and 45 licensed photos plus 6 clips. EXIF and GPS are stripped from all media, including the rhino images. Short on-image credits, with full licences on `/credits`.
+- **Field Notes:** seven self-drive guides. 17 off-region notes deleted, each with a 308 redirect.
+- **About and Southern Africa:** both rewritten. East, West and North Africa redirect to Southern Africa.
+- **Brief form:** asks about driving experience, hours at the wheel and countries, with lodge-only budget bands.
+- **Ad tracking:** cookie-free capture of the Google Ads click ID into the brief, for weekly offline-conversion upload (see `handoff/ANALYTICS.md`).
+
+**Database, done on 9 Nov.** Linkwasha and Somalisa are set to `rejected`: they're private concessions that self-drivers can't drive into. The live collection is now Royal Chundu, Camelthorn Lodge and The Hide.
+
+**Database, pending.** The briefs migration (`20261109_briefs_self_drive_fields.sql`) has to be run from `handoff/relaunch/GO_LIVE_MIGRATION.sql` in the Supabase SQL editor. The Supabase CLI isn't installed on this machine. Until it runs:
+- the submit route and admin fall back without the new columns;
+- briefs choosing "discuss" for budget still fail to save. That is a live bug dating back to May, and the last brief in the table is dated 14 May 2026.
+
+**Lessons worth keeping.**
+- **Don't share `.next` between servers.** Several `next dev` servers running from one worktree overwrote the `.next` that `next start` was serving. Run one server per worktree, or build to a separate output directory.
+- **gh doesn't install on this macOS.** It has no Homebrew bottle for macOS 27. Pushes work over SSH (`git@github.com:domdocs/safarioverland.git`), and PRs are opened from the GitHub link.
+- **Mind the domain split.** Vercel now redirects the apex to `www`, but canonicals and the sitemap use the apex. One of them needs to change.
+
+---
+
 ## 2026-08-07 — Article images: upload path, attribution, hero URL validation
 
 **Brief:** `handoff/briefs/2026-08-ARTICLE_IMAGES.md` (PR #19)
