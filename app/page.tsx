@@ -58,9 +58,8 @@ const OFFER = {
 }
 
 // The offer, in the house structure of three.
-// Partner towns (D-02): name only towns where a partner on the ground
-// is signed. Victoria Falls only, for now. Add Windhoek, then Maun or
-// Kasane, to pillar 03 when Dom confirms them.
+// Partner towns (D-02): Victoria Falls, Kasane, Maun and Windhoek
+// (Dom, 9 Nov). Partners are not named. Support line is 24/7 (D-04).
 const PILLARS = [
   {
     title: "We draw the route.",
@@ -72,7 +71,7 @@ const PILLARS = [
   },
   {
     title: "We're at the end of the phone.",
-    body: "A person you can call while you're on the road. Partners on the ground meet you, hand over the vehicle and are there if something goes wrong. The first of them are in Victoria Falls.",
+    body: "A person you can call while you're on the road, day or night. Our partners on the ground — in Victoria Falls, Kasane, Maun and Windhoek — meet you, hand over the vehicle and are there if something goes wrong.",
   },
 ]
 

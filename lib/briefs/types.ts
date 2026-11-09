@@ -36,6 +36,18 @@ export type Brief = {
   drive_hours?: "under-3h" | "3-5h" | "5h-plus" | null
   countries?: string[] | null
 
+  // Ad click attribution (20261109) — cookie-free capture, see
+  // lib/analytics/click-ids.ts. Optional for the same reason as above.
+  gclid?: string | null
+  gbraid?: string | null
+  wbraid?: string | null
+  utm_source?: string | null
+  utm_medium?: string | null
+  utm_campaign?: string | null
+  utm_term?: string | null
+  utm_content?: string | null
+  click_captured_at?: string | null
+
   contact_name: string
   contact_email: string
   contact_phone: string | null
@@ -85,6 +97,15 @@ export type BriefSubmission = {
   // Attribution
   source_url?: string
   utm?: Record<string, string>
+  gclid?: string
+  gbraid?: string
+  wbraid?: string
+  utm_source?: string
+  utm_medium?: string
+  utm_campaign?: string
+  utm_term?: string
+  utm_content?: string
+  click_captured_at?: string
 }
 
 export const STATUS_LABELS: Record<BriefStatus, string> = {

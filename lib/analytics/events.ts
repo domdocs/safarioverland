@@ -35,6 +35,7 @@ export type StartBriefSource =
   | "routes-index"         // /routes "How a route works" CTA
   | "route-page"           // /routes/[slug] "Make it yours" CTA
   | "self-drive-landing"   // /self-drive/[country] ad landing pages
+  | "destination-page"     // /destinations/southern-africa closing CTA
 
 /** Every public placement of the "Speak to a planner" modal trigger. */
 export type SpeakToPlannerSource =

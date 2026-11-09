@@ -283,22 +283,6 @@ export default function ConservationPage() {
               link: "/field-notes/conservation/success-stories/zimbabwe-rhinos",
             },
             {
-              title: "Mountain Gorilla Recovery",
-              location: "Virunga Mountains, Rwanda/Uganda",
-              image: "/images/success-stories/gorilla-recovery.jpg",
-              excerpt:
-                "The remarkable story of how mountain gorilla populations have more than doubled through conservation efforts supported by tourism.",
-              link: "/field-notes/conservation/success-stories/mountain-gorillas",
-            },
-            {
-              title: "Elephant Corridors in Kenya",
-              location: "Amboseli-Tsavo Ecosystem, Kenya",
-              image: "/images/success-stories/elephant-corridor.jpg",
-              excerpt:
-                "How strategic land conservation has restored vital elephant migration corridors between national parks in Kenya.",
-              link: "/field-notes/conservation/success-stories/kenya-corridors",
-            },
-            {
               title: "Community Conservation in Namibia",
               location: "Namibian Conservancies",
               image: "/images/success-stories/namib-community.jpg",
@@ -324,11 +308,6 @@ export default function ConservationPage() {
               </div>
             </Card>
           ))}
-        </div>
-        <div className="mt-8 text-center">
-          <Button variant="outline" size="lg">
-            View All Success Stories
-          </Button>
         </div>
       </section>
 

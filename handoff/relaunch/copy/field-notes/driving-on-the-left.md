@@ -28,7 +28,7 @@ Most rental fleets in southern Africa are built around manual gearboxes. In Nami
 
 If you drive a manual at home every day, the gear lever under your left hand takes an hour or two to settle. If you don't, this is not the trip to learn. Changing gear with the wrong hand while reading an unfamiliar road on the wrong side is too many new things at once, and gravel punishes a missed gear on a hill.
 
-Our advice to most American drivers is simple: ask for an automatic, and ask early. We match the vehicle to the route when we book it, and a gearbox you don't have to think about is part of that match.
+Our advice to most American drivers is simple: ask for an automatic, and ask early. We match the vehicle to the route when we book it, with an automatic where one is available, and a gearbox you don't have to think about is part of that match.
 
 ## The International Driving Permit
 
@@ -56,7 +56,7 @@ At the fuel station, know whether the car takes petrol or diesel before you pull
 
 ## What we'd do
 
-Ask for an automatic, even if it costs a little more, and book it with the lodges rather than afterwards. Get the IDP before you fly: AAA if you are American, the right type or types from a PayPoint shop if you are British.
+Ask for an automatic where one is available, even if it costs a little more, and book it with the lodges rather than afterwards. Get the IDP before you fly: AAA if you are American, the right type or types from a PayPoint shop if you are British.
 
 Keep the first day short. A handover at Victoria Falls and a drive of an hour or two to the first lodge is ideal; a long day on gravel straight off a long-haul flight is not. Our partners on the ground do the handover and will sit with you for the first few minutes if you want them to: mirrors, lights, which stalk does what. The road book sets out that first drive, surface by surface, so you know what is coming before you turn the key.
 

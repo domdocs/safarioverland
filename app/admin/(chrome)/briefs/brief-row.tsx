@@ -48,6 +48,10 @@ type Brief = {
   drive_experience?: string | null
   drive_hours?: string | null
   countries?: string[] | null
+  // Ad click attribution (20261109) — absent until that migration is applied
+  gclid?: string | null
+  utm_source?: string | null
+  utm_campaign?: string | null
   // Triage
   status: BriefStatus
   assigned_to: string | null
@@ -110,6 +114,7 @@ export function BriefRow({ brief: initial }: { brief: Brief }) {
   const seasonLine = labelFor(SEASON_OPTIONS, brief.season_preference)
   const budgetLine =
     labelFor(BUDGET_TIER_OPTIONS, brief.budget_tier) ?? brief.budget_per_person
+  const sourceLine = attributionLine(brief)
 
   return (
     <>
@@ -124,6 +129,9 @@ export function BriefRow({ brief: initial }: { brief: Brief }) {
             <span className="font-medium">{brief.contact_name}</span>
           </button>
           <p className="mt-1 text-xs text-stone-500">{brief.contact_email}</p>
+          {sourceLine && (
+            <p className="mt-1 text-xs text-stone-500">Source: {sourceLine}</p>
+          )}
         </td>
         <td className="px-4 py-3 align-top text-stone-700">
           {intentLine || brief.chapters.join(", ") || (
@@ -218,6 +226,15 @@ export function BriefRow({ brief: initial }: { brief: Brief }) {
       )}
     </>
   )
+}
+
+/** "google / campaign · Google Ads click", or null when nothing was captured. */
+function attributionLine(b: Brief): string | null {
+  const parts = [b.utm_source, b.utm_campaign].filter((x): x is string => !!x)
+  const campaign = parts.length ? parts.join(" / ") : null
+  const click = b.gclid ? "Google Ads click" : null
+  const line = [campaign, click].filter(Boolean).join(" · ")
+  return line || null
 }
 
 function Field({

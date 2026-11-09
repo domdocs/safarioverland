@@ -2,7 +2,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Calendar, Sun, CloudRain, ChevronRight } from "lucide-react"
 import { DownloadButton } from "@/components/download-button"
 import { RESOURCES } from "@/lib/downloads/resources"
@@ -164,182 +163,46 @@ export default function SeasonalGuidesPage() {
 
       {/* Regional Seasonal Guides */}
       <section className="mb-16">
-        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">Regional Seasonal Guides</h2>
-        <Tabs defaultValue="east-africa">
-          <TabsList className="grid grid-cols-2 md:grid-cols-4 mb-8">
-            <TabsTrigger value="east-africa">East Africa</TabsTrigger>
-            <TabsTrigger value="southern-africa">Southern Africa</TabsTrigger>
-            <TabsTrigger value="west-africa">West Africa</TabsTrigger>
-            <TabsTrigger value="north-africa">North Africa</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="east-africa">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: "Kenya Seasonal Guide",
-                  alternates: { canonical: "https://safarioverland.com/field-notes/seasonal-guides" },
-                  image: "/images/seasonal-guides/travel-guide-kenya.jpg",
-                  excerpt:
-                    "Month-by-month guide to Kenya's safari seasons, including the Great Migration in the Masai Mara.",
-                  link: "/field-notes/seasonal-guides/kenya",
-                },
-                {
-                  title: "Tanzania Seasonal Guide",
-                  image: "/images/seasonal-guides/travel-guide-tanzania.jpg",
-                  excerpt:
-                    "Detailed seasonal information for Tanzania's diverse safari destinations, from Serengeti to Selous.",
-                  link: "/field-notes/seasonal-guides/tanzania",
-                },
-                {
-                  title: "Uganda & Rwanda Seasonal Guide",
-                  image: "/images/seasonal-guides/travel-guide-uganda-rwanda.jpg",
-                  excerpt:
-                    "Best times for gorilla trekking and wildlife viewing in Uganda and Rwanda throughout the year.",
-                  link: "/field-notes/seasonal-guides/uganda-rwanda",
-                },
-              ].map((guide) => (
-                <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48 overflow-hidden">
-            <EditorialImage src={guide.image} alt={guide.title} className="object-cover"/>
-            <BlendOverlay />
-          </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
-                    <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
-                    <Link href={guide.link} className="text-primary font-medium hover:underline flex items-center">
-                      Read More <ChevronRight className="h-4 w-4 ml-1" />
-                    </Link>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="southern-africa">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: "South Africa Seasonal Guide",
-                  image: "/images/seasonal-guides/travel-guide-south-africa.jpg",
-                  excerpt:
-                    "Month-by-month guide to South Africa's diverse safari regions, including Kruger and private reserves.",
-                  link: "/field-notes/seasonal-guides/south-africa",
-                },
-                {
-                  title: "Botswana Seasonal Guide",
-                  image: "/images/seasonal-guides/travel-guide-botswana.jpg",
-                  excerpt:
-                    "Detailed information on Botswana's dramatic seasonal changes, from dry season to Okavango floods.",
-                  link: "/field-notes/seasonal-guides/botswana",
-                },
-                {
-                  title: "Zimbabwe & Zambia Seasonal Guide",
-                  image: "/images/seasonal-guides/travel-guide-zambia-zimbabwe.jpg",
-                  excerpt:
-                    "Best times for visiting Victoria Falls and the wildlife-rich national parks of Zimbabwe and Zambia.",
-                  link: "/field-notes/seasonal-guides/zimbabwe-zambia",
-                },
-              ].map((guide) => (
-                <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48 overflow-hidden">
-            <EditorialImage src={guide.image} alt={guide.title} className="object-cover"/>
-            <BlendOverlay />
-          </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
-                    <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
-                    <Link href={guide.link} className="text-primary font-medium hover:underline flex items-center">
-                      Read More <ChevronRight className="h-4 w-4 ml-1" />
-                    </Link>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="west-africa">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: "West Africa Safari Seasons",
-                  image: "/images/seasonal-guides/travel-guide-west-africa.jpg",
-                  excerpt:
-                    "Comprehensive guide to the best times for wildlife viewing across West Africa's diverse safari destinations.",
-                  link: "/field-notes/seasonal-guides/west-africa",
-                },
-                {
-                  title: "Ghana Seasonal Guide",
-                  image: "/images/seasonal-guides/travel-guide-ghana.jpg",
-                  excerpt:
-                    "Optimal times for wildlife viewing and cultural experiences in Ghana's emerging safari destinations.",
-                  link: "/field-notes/seasonal-guides/ghana",
-                },
-                {
-                  title: "Senegal Seasonal Guide",
-                  image: "/images/seasonal-guides/travel-guide-senegal.jpg",
-                  excerpt:
-                    "Seasonal information for visiting national parks and wildlife reserves in Senegal.",
-                  link: "/field-notes/seasonal-guides/senegal",
-                },
-              ].map((guide) => (
-                <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48 overflow-hidden">
-            <EditorialImage src={guide.image} alt={guide.title} className="object-cover"/>
-            <BlendOverlay />
-          </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
-                    <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
-                    <Link href={guide.link} className="text-primary font-medium hover:underline flex items-center">
-                      Read More <ChevronRight className="h-4 w-4 ml-1" />
-                    </Link>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="north-africa">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: "Morocco Seasonal Guide",
-                  image: "/images/seasonal-guides/travel-guide-morocco.jpg",
-                  excerpt:
-                    "Best times for desert safaris, mountain trekking, and wildlife viewing in Morocco's diverse landscapes.",
-                  link: "/field-notes/seasonal-guides/morocco",
-                },
-                {
-                  title: "Egypt Desert Safari Seasons",
-                  image: "/images/seasonal-guides/travel-guide-egypt.jpg",
-                  excerpt: "Optimal times for exploring Egypt's Western Desert, oases, and unique desert wildlife.",
-                  link: "/field-notes/seasonal-guides/egypt",
-                },
-                {
-                  title: "North Africa Bird Migration Guide",
-                  image: "/images/seasonal-guides/travel-guide-north-africa-birds.jpg",
-                  excerpt: "Seasonal guide to bird migrations across North Africa's wetlands and coastal areas.",
-                  link: "/field-notes/seasonal-guides/north-africa-birds",
-                },
-              ].map((guide) => (
-                <Card key={guide.title} className="overflow-hidden">
-                  <div className="relative h-48 overflow-hidden">
-            <EditorialImage src={guide.image} alt={guide.title} className="object-cover"/>
-            <BlendOverlay />
-          </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
-                    <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
-                    <Link href={guide.link} className="text-primary font-medium hover:underline flex items-center">
-                      Read More <ChevronRight className="h-4 w-4 ml-1" />
-                    </Link>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
+        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">Southern Africa seasonal guides</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              title: "South Africa Seasonal Guide",
+              image: "/images/seasonal-guides/travel-guide-south-africa.jpg",
+              excerpt:
+                "Month-by-month guide to South Africa's diverse safari regions, including Kruger and private reserves.",
+              link: "/field-notes/seasonal-guides/south-africa",
+            },
+            {
+              title: "Botswana Seasonal Guide",
+              image: "/images/seasonal-guides/travel-guide-botswana.jpg",
+              excerpt:
+                "Detailed information on Botswana's dramatic seasonal changes, from dry season to Okavango floods.",
+              link: "/field-notes/seasonal-guides/botswana",
+            },
+            {
+              title: "Zimbabwe & Zambia Seasonal Guide",
+              image: "/images/seasonal-guides/travel-guide-zambia-zimbabwe.jpg",
+              excerpt:
+                "Best times for visiting Victoria Falls and the wildlife-rich national parks of Zimbabwe and Zambia.",
+              link: "/field-notes/seasonal-guides/zimbabwe-zambia",
+            },
+          ].map((guide) => (
+            <Card key={guide.title} className="overflow-hidden">
+              <div className="relative h-48 overflow-hidden">
+                <EditorialImage src={guide.image} alt={guide.title} className="object-cover" />
+                <BlendOverlay />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
+                <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
+                <Link href={guide.link} className="text-primary font-medium hover:underline flex items-center">
+                  Read More <ChevronRight className="h-4 w-4 ml-1" />
+                </Link>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </section>
 
       {/* Wildlife Events Calendar */}
@@ -351,37 +214,37 @@ export default function SeasonalGuidesPage() {
               {
                 season: "January-March",
                 events: [
-                  "Calving season in Serengeti & Ngorongoro (Tanzania)",
-                  "Green season in Botswana's Okavango Delta",
-                  "Peak bird watching in many regions",
-                  "Whale shark season in Tanzania",
+                  "Green season in Botswana's Okavango Delta and Hwange",
+                  "Zebra gather on the Makgadikgadi and Nxai Pans (Botswana)",
+                  "Peak bird watching, with summer migrants present",
+                  "Lowest rates of the year at many lodges",
                 ],
               },
               {
                 season: "April-June",
                 events: [
-                  "Start of Great Migration in Serengeti",
-                  "Okavango Delta floods begin (Botswana)",
                   "Victoria Falls at peak flow (Zimbabwe/Zambia)",
-                  "Low season begins with great value opportunities",
+                  "Okavango Delta floods begin (Botswana)",
+                  "Dry season begins in Hwange and Etosha",
+                  "Shoulder-season rates at many lodges",
                 ],
               },
               {
                 season: "July-September",
                 events: [
-                  "Great Migration river crossings in Masai Mara (Kenya)",
-                  "Peak dry season across Southern Africa",
+                  "Peak dry season across southern Africa",
+                  "Game concentrates at waterholes in Hwange, Chobe and Etosha",
+                  "Okavango floods at their height (Botswana)",
                   "Excellent predator viewing in most regions",
-                  "Whale watching along South Africa's coast",
                 ],
               },
               {
                 season: "October-December",
                 events: [
-                  "Short rains begin in East Africa",
-                  "Migration returns to Tanzania",
-                  "Summer arrives in Southern Africa",
-                  "Baby animals appear in many regions",
+                  "October heat brings the most reliable waterhole viewing",
+                  "First rains usually arrive in November",
+                  "Impala and wildebeest calving season",
+                  "Summer migrant birds return",
                 ],
               },
             ].map((quarter) => (
@@ -409,20 +272,6 @@ export default function SeasonalGuidesPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             {
-              title: "Great Migration Seasonal Guide",
-              image: "/images/seasonal-guides/kenya-migration.jpg",
-              excerpt:
-                "Month-by-month tracking of the Great Migration through Tanzania and Kenya, with the best viewing locations.",
-              link: "/field-notes/seasonal-guides/great-migration",
-            },
-            {
-              title: "Bird Watching Seasonal Guide",
-              image: "/images/seasonal-guides/travel-guide-west-africa-birds.jpg",
-              excerpt:
-                "Optimal times for bird watching across Africa, including migratory seasons and endemic species.",
-              link: "/field-notes/seasonal-guides/bird-watching",
-            },
-            {
               title: "Photography Seasonal Guide",
               image: "/images/seasonal-guides/safari-seasons.jpg",
               excerpt:
@@ -442,13 +291,6 @@ export default function SeasonalGuidesPage() {
               excerpt:
                 "Best times for family safaris, considering school holidays, weather conditions, and child-friendly activities.",
               link: "/field-notes/seasonal-guides/family-safari",
-            },
-            {
-              title: "Gorilla Trekking Seasonal Guide",
-              image: "/images/seasonal-guides/travel-guide-uganda-rwanda.jpg",
-              excerpt:
-                "Optimal times for gorilla trekking in Uganda, Rwanda, and DRC, with seasonal considerations for each location.",
-              link: "/field-notes/seasonal-guides/gorilla-trekking",
             },
           ].map((guide) => (
             <Card key={guide.title} className="overflow-hidden">

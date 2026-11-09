@@ -25,6 +25,7 @@ import { formatKm, getRouteStats, type RouteStats } from "@/lib/relaunch/route-s
 import { ROUTE_VISUALS, guideHero, routeHero } from "@/lib/relaunch/visuals"
 import { ROUTES, getRouteSummary } from "@/lib/relaunch/routes"
 import { getRouteView } from "@/lib/relaunch/route-editorial"
+import { formatUsd, getRoutePrice } from "@/lib/relaunch/route-prices"
 import { ROUTE_DETAIL as C } from "@/lib/relaunch/copy"
 import { getSelfDriveNote, type SelfDriveNote } from "@/lib/field-notes/self-drive-notes"
 
@@ -174,6 +175,7 @@ export default async function RoutePage({ params }: PageProps) {
   const hero = routeHero(slug)
   const visuals = ROUTE_VISUALS[slug]
   const stats = getRouteStats(slug)
+  const price = getRoutePrice(slug)
   const dayMedia: Record<string, MediaItem> = Object.fromEntries(
     Object.entries(visuals?.days ?? {}).map(([k, id]) => [k, getMedia(id)]),
   )
@@ -245,11 +247,13 @@ export default async function RoutePage({ params }: PageProps) {
                     {f.note && <dd className="mt-1 text-sm text-bone-mute">{f.note}</dd>}
                   </div>
                 ))}
-              <div>
-                <dt className="eyebrow">Price</dt>
-                <dd className="mt-2 text-bone leading-snug">{C.priceLine}</dd>
-                <dd className="mt-1 text-sm text-bone-mute">{C.priceFootnote}</dd>
-              </div>
+              {price && (
+                <div>
+                  <dt className="eyebrow">Price</dt>
+                  <dd className="mt-2 text-bone leading-snug">{C.priceLine(formatUsd(price.fromUsd))}</dd>
+                  <dd className="mt-1 text-sm text-bone-mute">{C.priceFootnote(price.year, price.nights)}</dd>
+                </div>
+              )}
             </dl>
           </section>
 

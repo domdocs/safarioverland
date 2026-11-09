@@ -2,12 +2,49 @@
 
 Everything here has a working placeholder, so the relaunch built around it. Nothing here blocks local review. Each item needs a yes, or a replacement value, before anything is pushed to the live site.
 
+## Dom's answers, 9 November 2026 (from QUESTIONS_FOR_DOM.md)
+
+| ID | Answer |
+|---|---|
+| D-01, D-32 | Planning fee US$250 per trip, credited against the booking; brief and first sketch free; not shown on the site at launch |
+| D-02 | Partners in place in Victoria Falls, Kasane and Maun; say Windhoek too (Dom arranging). Not named |
+| D-03 | Vehicle rental partners: yes, in place (not named on the site) |
+| D-04 | Support line 24/7; number in the road book, not on the site |
+| D-05 | Instagram is @safari_overland (answer read as a typo of this) |
+| D-09, D-34 | Regulatory: "carry on, it's fine" — UK ads not held back |
+| D-11 | Publish route "from" prices (costing in ROUTE_COSTING.md for Dom to check) |
+| D-12 | Publish the US$150–600 band on About |
+| D-13 | Niels's bio: lived across Africa for the last fifteen years, now calls the road his home |
+| D-14 | Keep the fuller "how we're paid" wording on About |
+| D-15 | Automatics: soften to "where available" |
+| D-33 | The three `public/images/about/` images are Dom's own — cleared for use |
+| D-41 | Zimbabwe route ends in Bulawayo |
+| D-44 | Retire Linkwasha and Somalisa (SQL in GO_LIVE.md, applied at go-live) |
+| D-22 | Keep Zimbabwe-first |
+| D-56 | Draft the lodge photo-permission email for Niels |
+| D-20, D-24, D-28, D-43 | Dom will check these with the partners himself |
+| D-07 | Delete the off-region Field Notes (with redirects) |
+| D-06 | Keep `/submit` |
+| D-48 | Rewrite the Southern Africa page for self-drive |
+| D-62 | Use the "Rhodes Matopos" sign photo |
+| D-58 | Routes stay above "Three things" on the homepage |
+| Launch | Social week 1 starts Monday 16 November 2026 |
+| D-30 | Google Ads: US$500 a month |
+| D-31 | Cookie-free tracking (click ID stored with the brief) |
+| D-35 | Send email through Resend. Still open: footer postal address, reply-to inbox, follow-up consent wording |
+| D-36 | Retire SOCIAL_LAUNCH_QUEUE.md; update SOCIAL_PLAYBOOK.md |
+| D-59, D-60 | Dom shoots the photography himself (shot list in design/SHOT_LIST_DOM.md) |
+| D-57 | Videos served from the site for now |
+| D-11 (prices) | From prices, accommodation only, per person sharing: Zimbabwe US$3,050 · Namibia US$2,800 · four corners US$2,900 (standard Chobe rates, not the US$2,550 special offer — chief of staff). Still to confirm: Grootberg rate basis, real rates for the Bulawayo and near-Windhoek nights (both assumed), whether levies go in. Full sheet: ROUTE_COSTING.md |
+
+## Original log
+
 | ID | Decision | Working placeholder | Where it shows |
 |---|---|---|---|
 | D-01 | Planning fee amount and terms | US$250 per trip, credited in full against the booking; not shown on the site yet | Internal only (STRATEGY §2) |
-| D-02 | Names of the DMC partners on the ground | "Our partners in Victoria Falls"; Windhoek and Maun not named until signed | Homepage offer, About, route pages |
+| D-02 | Names of the DMC partners on the ground | **Settled (Dom, 9 Nov):** partners in place in Victoria Falls, Kasane and Maun; Windhoek to be said as well (Dom arranging). Not named on the site | Homepage offer, About, route pages |
 | D-03 | Vehicle rental partner(s) | Unnamed — "a vehicle matched to the roads" | Route pages, the offer |
-| D-04 | Support line: hours, channel, whether a number is published | "A person you can call while you're on the road" — no number shown | Homepage, route pages |
+| D-04 | Support line: hours, channel, whether a number is published | **Settled (Dom, 9 Nov):** 24/7; no number on the site, number in the road book. The +44 number on Contact stays | Homepage, route pages, Contact |
 | D-05 | Instagram handle — `safari_overland` (JSON-LD) or `safarioverland` (CLAUDE.md) | Footer link left on `safari_overland`, matching the live JSON-LD | Footer, JSON-LD |
 | D-06 | `/submit` (operator submission form) — keep or retire | Kept, unlinked | — |
 | D-07 | Off-region Field Notes (Egypt, Morocco, Ghana, Kenya, Tanzania, gorillas…) — redirect, keep unlinked, or rewrite | Kept live but unlinked from navigation | Field Notes |
@@ -79,5 +116,17 @@ Everything here has a working placeholder, so the relaunch built around it. Noth
 | D-62 | A Matobo road sign reading "Rhodes Matopos" (the park's colonial-era name) | Not used, pending an editorial view | — |
 
 | D-63 | On-image photo credits shortened to "Photo: name" (Dom, 2026-11-09). Licence, source and the resized/converted note live on /credits, linked from every footer. Fine for the 26 CC 4.0 files; the 12 CC 2.0/3.0 files rely on the same reasonable-manner reading — accepted practice, but not legal advice | Done | Whole site |
+
+| D-64 | **New question.** The site already loads Google Analytics (GA4, `G-0F0QHDH7T0`), which sets cookies — at odds with "no cookies" in ANALYTICS.md and the cookie-free ad tracking. Keep GA4 (and add a UK consent banner), or remove it and rely on Vercel Analytics plus the click-ID tracking? | GA4 left as it is | Whole site |
+| D-65 | **New, already live:** the privacy policy shows a placeholder address and phone ("123 Livingstone Way", "+263 83 123 4567"). Needs the real contact details or removal | Unchanged | Privacy policy |
+| D-66 | Google now labels click-ID file uploads "legacy" in favour of Data Manager / enhanced conversions for leads. Check the weekly CSV upload is still accepted when setting up the account; upload gclid rows only | Built for the CSV upload; see ANALYTICS.md | Google Ads |
+
+| D-67 | Field Notes clean-up (done): 17 off-region notes deleted, each redirected to its section. Judgement calls: bird-watching, wildlife-events and off-the-beaten-path deleted as mostly off-region; the South Africa seasonal guide kept though we don't sell South Africa yet. Full list: FIELD_NOTES_CLEANUP.md | Done; keep or delete South Africa? | Field Notes |
+| D-68 | The southern-Africa wildlife events calendar on the seasonal guides page was rewritten from general knowledge, not a source — Niels or Dom to check | Unchecked | Field Notes |
+| D-69 | Kept notes that still lean on East Africa (photography, family safari, budget travel, best times, choosing destinations, FAQs) need a voice pass in Cowork; five downloadable PDFs for deleted regions were removed (old emailed links to them now fail) | For Cowork | Field Notes |
+
+| D-70 | **New question.** UK PECR treats browser storage (not just cookies) as needing consent unless strictly necessary. The ad click ID is kept in the visitor's browser storage for up to 90 days. Accept that (alongside D-64's consent decision), or switch to carrying the click ID only within the visit | Stored for 90 days | /plan, ads |
+| D-71 | Email: no follow-ups to UK addresses until there's an opt-in or opt-out line on the brief form (suggested wording in marketing/EMAIL_LAUNCH.md); a postal address is required before any email to US addresses | Not built | Brief form, email |
+| D-72 | Social calendar: swap posts 7 and 9 so the partners post isn't on US Thanksgiving (26 Nov)? | Not swapped | Social |
 
 Further entries are added as the team reports them.

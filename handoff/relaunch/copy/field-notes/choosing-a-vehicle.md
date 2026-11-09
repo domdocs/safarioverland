@@ -53,10 +53,10 @@ At the handover, check both spares, the jack and the wheel spanner, and that the
 
 ## Manual or automatic
 
-Manual gearboxes are more common in the fleets here, and automatics are fewer and book out first. If you do not drive a manual every day at home, ask for an automatic early. It is one less thing to think about on an unfamiliar road.
+Manual gearboxes are more common in the fleets here, and automatics are fewer and book out first. If you do not drive a manual every day at home, ask early for an automatic, where one is available. It is one less thing to think about on an unfamiliar road.
 
 ## What we'd do
 
-For a lodge-based route in Namibia: a 4×4 without camping kit, automatic if you want it, two spare tyres, and the top tier of cover with tyres and glass included. For Zimbabwe: a 4×4 if you want to drive Hwange's sand roads yourself, a good SUV if you would rather leave that to the guides. For the four corners, an SUV is usually enough if you stay off the park tracks.
+For a lodge-based route in Namibia: a 4×4 without camping kit, an automatic where available, two spare tyres, and the top tier of cover with tyres and glass included. For Zimbabwe: a 4×4 if you want to drive Hwange's sand roads yourself, a good SUV if you would rather leave that to the guides. For the four corners, an SUV is usually enough if you stay off the park tracks.
 
 We book the vehicle with the lodges, matched to the roads in the road book, with the cross-border letter arranged. Our partners on the ground hand it over, walk round it with you, and are the people you call if it lets you down.

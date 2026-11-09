@@ -46,7 +46,6 @@ export default function ContactPage() {
                     </div>
                   </div>
                   
-                  {/* D-04/D-49: confirm before go-live */}
                   <div className="flex items-center gap-3">
                     <Phone className="h-5 w-5 text-primary flex-shrink-0" />
                     <div>

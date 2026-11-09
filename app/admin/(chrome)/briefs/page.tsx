@@ -37,6 +37,10 @@ type BriefRowData = {
   drive_experience?: string | null
   drive_hours?: string | null
   countries?: string[] | null
+  // Ad click attribution (20261109) — absent until that migration is applied
+  gclid?: string | null
+  utm_source?: string | null
+  utm_campaign?: string | null
   // Triage
   status: BriefStatus
   assigned_to: string | null
@@ -49,7 +53,8 @@ async function loadData() {
 
   const baseColumns =
     "id, created_at, contact_name, contact_email, contact_phone, chapters, months, rhythm, nights, travelers, budget_per_person, notes, intent, pace, quiet_markers, wildlife_priorities, duration, season_preference, budget_tier, source_listing_id, status, assigned_to, internal_notes"
-  const selfDriveColumns = "drive_experience, drive_hours, countries"
+  const selfDriveColumns =
+    "drive_experience, drive_hours, countries, gclid, utm_source, utm_campaign"
 
   const query = (columns: string) =>
     supabase
@@ -61,11 +66,11 @@ async function loadData() {
   let { data, error } = await query(`${baseColumns}, ${selfDriveColumns}`)
 
   // Transitional fallback: until migration 20261109 is applied, selecting
-  // the self-drive columns fails with 42703 (undefined_column). Fall back
+  // the self-drive and attribution columns fails with 42703 (undefined_column). Fall back
   // to the base columns so the list still loads. Remove once applied.
   if (error?.code === "42703") {
     console.warn(
-      "briefs: self-drive columns missing (apply migration 20261109) — loading without them",
+      "briefs: self-drive/attribution columns missing (apply migration 20261109) — loading without them",
     )
     ;({ data, error } = await query(baseColumns))
   }

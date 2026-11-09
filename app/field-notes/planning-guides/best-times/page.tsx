@@ -106,7 +106,6 @@ export default function BestTimesPage() {
         },
       ]}
       relatedLinks={[
-        { href: "/field-notes/planning-guides/wildlife-events", label: "Planning Around Wildlife Events" },
         { href: "/field-notes/planning-guides/green-season", label: "Green Season Safari Benefits" },
         { href: "/field-notes/seasonal-guides", label: "All Seasonal Guides" },
       ]}

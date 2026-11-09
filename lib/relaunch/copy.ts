@@ -19,7 +19,7 @@ export const CAN_I = {
     },
     {
       title: "Driving on the left.",
-      body: "All of the countries on our routes drive on the left. Ask for an automatic and there's one less thing to think about; the first morning feels strange, and by the second day you're watching the road, not which side of it you're on. Bring your licence and an International Driving Permit.",
+      body: "All of the countries on our routes drive on the left. Ask for an automatic where one is available and there's one less thing to think about; the first morning feels strange, and by the second day you're watching the road, not which side of it you're on. Bring your licence and an International Driving Permit.",
     },
     {
       title: "Borders.",
@@ -59,8 +59,7 @@ export const ROUTES_INDEX = {
       },
       {
         title: "We're on the phone.",
-        // [support line hours]: D-04.
-        body: "While you're on the road there's a person to call, [support line hours]. Partners on the ground meet you, hand over the vehicle and are the backup if something goes wrong. The first of them are in Victoria Falls.",
+        body: "While you're on the road there's a person to call, day or night. Our partners on the ground — in Victoria Falls, Kasane, Maun and Windhoek — meet you, hand over the vehicle and are the backup if something goes wrong.",
       },
     ],
     closing:
@@ -72,10 +71,10 @@ export const ROUTES_INDEX = {
 /** §4 Route detail template. */
 export const ROUTE_DETAIL = {
   eyebrowPrefix: "Route",
-  // D-11: price and year stay as placeholders until route costing is checked.
-  priceLine: "From [US$X] per person, sharing",
-  priceFootnote:
-    "Indicative for [year], lodges only. The vehicle is priced with you. Confirmed when we hold your nights.",
+  // D-11: figures from lib/relaunch/route-prices.ts (handoff/relaunch/ROUTE_COSTING.md).
+  priceLine: (price: string) => `From ${price} per person sharing, accommodation only`,
+  priceFootnote: (year: string, nights: number) =>
+    `${year} rates, indicative, for the ${nights} nights shown. The vehicle is priced with you. Confirmed when we hold your nights.`,
   drive: {
     heading: "The drive",
     lede: "Day by day, with the drive time, the road surface and what's worth stopping for.",
@@ -165,7 +164,7 @@ export const LANDINGS: LandingCopy[] = [
     benefits: [
       "A road book with each day's drive time, road surface, fuel stop and park gate times.",
       "Camps and lodges with guides, hides and walking, so you're not just driving yourself round the park.",
-      "Partners on the ground in Victoria Falls, and a person to call while you're on the road.",
+      "Partners on the ground in Victoria Falls, where the route begins, and a person to call day or night.",
     ],
     notCamping: "No rooftop tent, no camp to pitch in the dark. You drive the day; someone else lights the fire.",
     cta: "Plan my Zimbabwe route →",
@@ -206,7 +205,7 @@ export const LANDINGS: LandingCopy[] = [
     benefits: [
       "Border crossings prepared before you leave, with the paperwork listed for each post.",
       "Lodges by the rivers, with boats and guided drives, so the wildlife comes to you as well.",
-      "Partners on the ground in Victoria Falls, where the route begins and ends.",
+      "Partners on the ground in Victoria Falls and Kasane, where the route begins and ends, and a person to call day or night.",
     ],
     notCamping:
       "No rooftop tent, no camp to pitch in the dark. You keep the freedom of your own vehicle and lose the camping kit.",

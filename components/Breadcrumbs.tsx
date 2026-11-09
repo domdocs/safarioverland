@@ -15,9 +15,9 @@ export type Crumb = { name: string; href?: string; item?: string }
  * Pair with `<BreadcrumbsJsonLd crumbs={...} />` for the structured
  * data; both take the same shape.
  *
- * Legacy `{ items: { label, link }[] }` callers (one usage on
- * /field-notes/seasonal-guides/bird-watching) are handled via a
- * transparent shim so renaming the API doesn't break the page.
+ * Legacy `{ items: { label, link }[] }` callers are handled via a
+ * transparent shim. Its one caller (the bird-watching seasonal guide)
+ * was deleted in the self-drive relaunch; the shim has no callers now.
  */
 type Props =
   | { crumbs: Crumb[]; items?: never }

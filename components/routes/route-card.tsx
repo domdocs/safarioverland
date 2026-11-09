@@ -6,6 +6,7 @@ import { RouteHoverTarget } from "@/components/maps/route-hover"
 import { RouteThumb } from "@/components/maps/route-thumb"
 import { MediaCaption } from "@/components/media/media-caption"
 import { cardSrc } from "@/lib/relaunch/media-select"
+import { formatUsd, getRoutePrice } from "@/lib/relaunch/route-prices"
 import { getRouteStats, numbersLine } from "@/lib/relaunch/route-stats"
 import type { RouteSummary } from "@/lib/relaunch/routes"
 import { routeCardMedia } from "@/lib/relaunch/visuals"
@@ -48,6 +49,7 @@ export function RouteCard({
 }: Props) {
   const photo = routeCardMedia(route.slug)
   const stats = getRouteStats(route.slug)
+  const price = getRoutePrice(route.slug)
   const row = variant === "row"
 
   const image = (
@@ -90,7 +92,12 @@ export function RouteCard({
         )}
       </div>
       <p className="mt-3 text-bone-mute leading-relaxed">{route.hook}</p>
-      {stats && <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-bone/70">{numbersLine(stats)}</p>}
+      {stats && (
+        <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-bone/70">
+          {numbersLine(stats)}
+          {price && ` · from ${formatUsd(price.fromUsd)} pp sharing, accommodation only (${price.year})`}
+        </p>
+      )}
       <span className="mt-5 inline-block mono text-amber transition-colors group-hover:text-amber-deep">{linkLabel}</span>
     </div>
   )

@@ -126,23 +126,22 @@ export default function SafetyTipsPage() {
                   icon: Binoculars,
                   excerpt:
                     "Essential guidelines for safe wildlife viewing, including proper behavior around different animal species.",
-                  link: "/field-notes/safety-tips/wildlife-viewing",
+                  link: "/field-notes/safety-tips/wildlife-behavior",
                 },
                 {
                   title: "Understanding Animal Behavior",
                   icon: PawPrint,
                   excerpt:
                     "Learn to recognize animal warning signs and behaviors to ensure safe and respectful wildlife encounters.",
-                  link: "/field-notes/safety-tips/animal-behavior",
+                  link: "/field-notes/safety-tips/wildlife-behavior",
                 },
                 {
                   title: "Vehicle Safety on Game Drives",
                   icon: CarFront,
                   excerpt:
                     "Important safety protocols for game drives, including proper positioning and behavior in safari vehicles.",
-                  link: "/field-notes/safety-tips/vehicle-safety",
                 },
-              ] as { title: string; icon: LucideIcon; excerpt: string; link: string }[]).map((guide) => (
+              ] as { title: string; icon: LucideIcon; excerpt: string; link?: string }[]).map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
                   <div className="h-48 bg-primary/10 flex items-center justify-center">
                     <guide.icon className="h-16 w-16 text-primary" strokeWidth={1.5} aria-hidden="true" />
@@ -150,9 +149,11 @@ export default function SafetyTipsPage() {
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
                     <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
-                    <Link href={guide.link} className="text-primary font-medium hover:underline flex items-center">
-                      Read More <ChevronRight className="h-4 w-4 ml-1" />
-                    </Link>
+                    {guide.link && (
+                      <Link href={guide.link} className="text-primary font-medium hover:underline flex items-center">
+                        Read More <ChevronRight className="h-4 w-4 ml-1" />
+                      </Link>
+                    )}
                   </CardContent>
                 </Card>
               ))}
@@ -167,22 +168,20 @@ export default function SafetyTipsPage() {
                   icon: Syringe,
                   excerpt:
                     "Essential information about required and recommended vaccinations and medications for safari travel.",
-                  link: "/field-notes/safety-tips/vaccinations",
+                  link: "/field-notes/planning-guides/before-you-go",
                 },
                 {
                   title: "First Aid on Safari",
                   icon: HeartPulse,
                   excerpt:
                     "What to include in your safari first aid kit and basic first aid knowledge for wilderness travel.",
-                  link: "/field-notes/safety-tips/first-aid",
                 },
                 {
                   title: "Water & Food Safety",
                   icon: GlassWater,
                   excerpt: "Guidelines for safe drinking water and food consumption during your safari adventure.",
-                  link: "/field-notes/safety-tips/water-food-safety",
                 },
-              ] as { title: string; icon: LucideIcon; excerpt: string; link: string }[]).map((guide) => (
+              ] as { title: string; icon: LucideIcon; excerpt: string; link?: string }[]).map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
                   <div className="h-48 bg-primary/10 flex items-center justify-center">
                     <guide.icon className="h-16 w-16 text-primary" strokeWidth={1.5} aria-hidden="true" />
@@ -190,9 +189,11 @@ export default function SafetyTipsPage() {
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
                     <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
-                    <Link href={guide.link} className="text-primary font-medium hover:underline flex items-center">
-                      Read More <ChevronRight className="h-4 w-4 ml-1" />
-                    </Link>
+                    {guide.link && (
+                      <Link href={guide.link} className="text-primary font-medium hover:underline flex items-center">
+                        Read More <ChevronRight className="h-4 w-4 ml-1" />
+                      </Link>
+                    )}
                   </CardContent>
                 </Card>
               ))}
@@ -206,23 +207,22 @@ export default function SafetyTipsPage() {
                   title: "Camp & Lodge Safety",
                   icon: Tent,
                   excerpt: "Safety guidelines for staying in safari camps and lodges, including nighttime protocols.",
-                  link: "/field-notes/safety-tips/camp-safety",
                 },
                 {
                   title: "Travel Insurance for Safaris",
                   icon: Shield,
                   excerpt:
                     "Understanding the importance of travel insurance and what to look for in a safari-specific policy.",
-                  link: "/field-notes/safety-tips/travel-insurance",
+                  link: "/field-notes/planning-guides/before-you-go",
                 },
                 {
                   title: "Communication & Emergency Plans",
                   icon: Radio,
                   excerpt:
                     "How to stay connected and what emergency plans to have in place for remote safari locations.",
-                  link: "/field-notes/safety-tips/emergency-plans",
+                  link: "/field-notes/planning-guides/before-you-go",
                 },
-              ] as { title: string; icon: LucideIcon; excerpt: string; link: string }[]).map((guide) => (
+              ] as { title: string; icon: LucideIcon; excerpt: string; link?: string }[]).map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
                   <div className="h-48 bg-primary/10 flex items-center justify-center">
                     <guide.icon className="h-16 w-16 text-primary" strokeWidth={1.5} aria-hidden="true" />
@@ -230,9 +230,11 @@ export default function SafetyTipsPage() {
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
                     <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
-                    <Link href={guide.link} className="text-primary font-medium hover:underline flex items-center">
-                      Read More <ChevronRight className="h-4 w-4 ml-1" />
-                    </Link>
+                    {guide.link && (
+                      <Link href={guide.link} className="text-primary font-medium hover:underline flex items-center">
+                        Read More <ChevronRight className="h-4 w-4 ml-1" />
+                      </Link>
+                    )}
                   </CardContent>
                 </Card>
               ))}
@@ -247,23 +249,21 @@ export default function SafetyTipsPage() {
                   icon: Pill,
                   excerpt:
                     "Comprehensive guide to malaria prevention, including medication options and practical prevention tips.",
-                  link: "/field-notes/safety-tips/malaria-prevention",
+                  link: "/field-notes/planning-guides/before-you-go",
                 },
                 {
                   title: "Insect Protection Guide",
                   icon: SprayCan,
                   excerpt:
                     "Effective strategies for protecting yourself from mosquitoes, tsetse flies, and other insects on safari.",
-                  link: "/field-notes/safety-tips/insect-protection",
                 },
                 {
                   title: "Dealing with Insect Bites & Stings",
                   icon: Bandage,
                   excerpt:
                     "What to do if you experience insect bites or stings, including identification and treatment options.",
-                  link: "/field-notes/safety-tips/insect-bites",
                 },
-              ] as { title: string; icon: LucideIcon; excerpt: string; link: string }[]).map((guide) => (
+              ] as { title: string; icon: LucideIcon; excerpt: string; link?: string }[]).map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
                   <div className="h-48 bg-primary/10 flex items-center justify-center">
                     <guide.icon className="h-16 w-16 text-primary" strokeWidth={1.5} aria-hidden="true" />
@@ -271,9 +271,11 @@ export default function SafetyTipsPage() {
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
                     <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
-                    <Link href={guide.link} className="text-primary font-medium hover:underline flex items-center">
-                      Read More <ChevronRight className="h-4 w-4 ml-1" />
-                    </Link>
+                    {guide.link && (
+                      <Link href={guide.link} className="text-primary font-medium hover:underline flex items-center">
+                        Read More <ChevronRight className="h-4 w-4 ml-1" />
+                      </Link>
+                    )}
                   </CardContent>
                 </Card>
               ))}
@@ -288,23 +290,20 @@ export default function SafetyTipsPage() {
                   icon: ThermometerSun,
                   excerpt:
                     "How to stay safe in hot safari climates, including preventing heat exhaustion and dehydration.",
-                  link: "/field-notes/safety-tips/heat-safety",
                 },
                 {
                   title: "Sun Protection Guide",
                   icon: Umbrella,
                   excerpt:
                     "Comprehensive sun protection strategies for the intense African sun, including clothing and sunscreen recommendations.",
-                  link: "/field-notes/safety-tips/sun-protection",
                 },
                 {
                   title: "Weather Hazards & Precautions",
                   icon: CloudLightning,
                   excerpt:
                     "Understanding potential weather hazards in different safari regions and how to prepare for them.",
-                  link: "/field-notes/safety-tips/weather-hazards",
                 },
-              ] as { title: string; icon: LucideIcon; excerpt: string; link: string }[]).map((guide) => (
+              ] as { title: string; icon: LucideIcon; excerpt: string; link?: string }[]).map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
                   <div className="h-48 bg-primary/10 flex items-center justify-center">
                     <guide.icon className="h-16 w-16 text-primary" strokeWidth={1.5} aria-hidden="true" />
@@ -312,9 +311,11 @@ export default function SafetyTipsPage() {
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
                     <p className="text-muted-foreground mb-4">{guide.excerpt}</p>
-                    <Link href={guide.link} className="text-primary font-medium hover:underline flex items-center">
-                      Read More <ChevronRight className="h-4 w-4 ml-1" />
-                    </Link>
+                    {guide.link && (
+                      <Link href={guide.link} className="text-primary font-medium hover:underline flex items-center">
+                        Read More <ChevronRight className="h-4 w-4 ml-1" />
+                      </Link>
+                    )}
                   </CardContent>
                 </Card>
               ))}

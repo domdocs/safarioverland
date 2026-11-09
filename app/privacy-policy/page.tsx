@@ -76,6 +76,9 @@ export default function PrivacyPolicyPage() {
               <li>Referring websites</li>
               <li>Geographic location (country and city level)</li>
             </ul>
+            <p className="mb-4">
+              If you reach us through an advert, we record the advertising campaign that brought you to the site (for example, a Google Ads click identifier) with your brief, to measure which adverts work. It is kept in your browser&apos;s local storage until you submit a brief, and no cookies are used for this.
+            </p>
           </section>
 
           <Separator />

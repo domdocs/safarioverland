@@ -10,6 +10,10 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Eyebrow } from "@/components/editorial/eyebrow"
 import { track } from "@/lib/analytics/track"
+import {
+  clearClickAttribution,
+  readClickAttribution,
+} from "@/lib/analytics/click-ids"
 import type { BriefSubmittedProps } from "@/lib/analytics/events"
 import {
   BUDGET_TIER_OPTIONS,
@@ -282,6 +286,8 @@ export function TripBuilderForm() {
         contact_email: state.contact_email.trim(),
         contact_phone: state.contact_phone.trim() || undefined,
         source_url: typeof window !== "undefined" ? window.location.href : undefined,
+        // Ad click ID + campaign, from localStorage (cookie-free; never throws)
+        ...readClickAttribution(),
       }
       const res = await fetch("/api/briefs/submit", {
         method: "POST",
@@ -306,6 +312,8 @@ export function TripBuilderForm() {
         has_source_listing: !!sourceListingId,
       }
       track("brief-submitted", briefEvent)
+      // The click ID now lives on the brief; drop the browser copy.
+      clearClickAttribution()
 
       // Hand off a snapshot for /plan/sent. No PII in the URL.
       try {

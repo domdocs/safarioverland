@@ -55,7 +55,7 @@ async function buildCategoriesColumn(): Promise<FooterColumn> {
 }
 
 // Instagram URL matches sameAs in components/JsonLd/GlobalJsonLd.tsx
-// (handle pending Dom's confirmation, D-05). Facebook and X are out of
+// (@safari_overland, confirmed by Dom, D-05). Facebook and X are out of
 // the social plan. LinkedIn is added once Niels' profile URL is supplied.
 const SOCIAL = [
   { href: "https://www.instagram.com/safari_overland", label: "Instagram", Icon: Instagram },

@@ -70,6 +70,28 @@ const nextConfig = {
       // Legacy directory-era URL (404 on production). /submit is left
       // alone pending Dom's decision (D-06).
       { source: "/community",                 destination: "/about",                        permanent: true },
+      // Off-region Field Notes deleted in the self-drive relaunch
+      // (inventory: handoff/relaunch/FIELD_NOTES_CLEANUP.md). Each goes to
+      // the closest surviving section index.
+      ...[
+        "egypt", "morocco", "ghana", "senegal", "kenya", "tanzania",
+        "uganda-rwanda", "west-africa", "north-africa-birds",
+        "gorilla-trekking", "great-migration", "bird-watching",
+      ].map((slug) => ({
+        source: `/field-notes/seasonal-guides/${slug}`,
+        destination: "/field-notes/seasonal-guides",
+        permanent: true,
+      })),
+      ...["kenya-corridors", "mountain-gorillas"].map((slug) => ({
+        source: `/field-notes/conservation/success-stories/${slug}`,
+        destination: "/field-notes/conservation",
+        permanent: true,
+      })),
+      ...["east-vs-southern", "wildlife-events", "off-the-beaten-path"].map((slug) => ({
+        source: `/field-notes/planning-guides/${slug}`,
+        destination: "/field-notes/planning-guides",
+        permanent: true,
+      })),
     ]
   },
   // Puppeteer and the slim Chromium binary need to stay outside the

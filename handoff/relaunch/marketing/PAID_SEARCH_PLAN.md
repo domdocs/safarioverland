@@ -1,8 +1,17 @@
-# Paid search plan — Google Ads, US and UK
+# Paid search plan — Google Ads, US$500 a month
 
-**Owner:** head of marketing (relaunch team). **Date:** 2026-11-09.
+**Owner:** head of marketing (relaunch team). **Date:** 2026-11-09, revised the same day after Dom's answers.
 **Status:** draft for Dom. Nothing here has been set up in Google Ads. No account changes, no tags installed.
 **Reads with:** `handoff/relaunch/STRATEGY.md`, `handoff/BRAND_VOICE.md`, `handoff/ANALYTICS.md`, `lib/analytics/events.ts`, `handoff/relaunch/marketing/COMPETITORS.md`.
+
+**What changed in this revision (Dom, 9 Nov):**
+
+- **Budget is US$500 a month** (D-30), not the US$2,000–3,400 first recommended. The structure below is rebuilt for that budget: one campaign, three ad groups, exact and phrase match only.
+- **Conversion tracking is option B** (D-31): cookie-free, click ID stored with the brief, offline upload weekly. Option A (Google tag and cookie banner) is no longer the plan.
+- **UK ads are not held back** for regulatory advice (D-09, D-34: "carry on").
+- **Support line is 24/7** (D-04), number in the road book. Ads can say so.
+- **Partners on the ground** in Victoria Falls, Kasane, Maun and Windhoek (D-02), never named.
+- The separate US and UK campaigns, the four-corners and road-trip ad groups, and the road-trip test are gone at this budget. They come back when spend rises (§8).
 
 ---
 
@@ -11,213 +20,229 @@
 - Organic presence is effectively zero: about 26 clicks from 1,790 impressions in the 12 months to 2026-11-09, mostly brand. US 697 impressions, UK 245, Canada 116.
 - The only non-brand queries we show for ("overland safari", "overland kenya safari") carry the wrong intent: overland truck tours, in a country we no longer sell. There are no self-drive queries yet.
 - Paid search is therefore the main source of qualified visitors at launch, not a supplement to SEO.
-- The category is contested by well-funded tailor-made specialists (Audley, Expert Africa, Rainbow Tours, Go2Africa and others — see `COMPETITORS.md`). We will not win on breadth or budget. We win on narrow, high-intent queries, a sharper offer (lodges, not tents; the road book; partners in Victoria Falls), and landing pages that answer the query directly.
+- The category is contested by well-funded tailor-made specialists (Audley, Expert Africa, Rainbow Tours, Go2Africa and others — see `COMPETITORS.md`). At US$500 a month we can't compete on breadth or bids anywhere. We can compete on narrow, high-intent queries where few specialists bid (Zimbabwe, Victoria Falls, Chobe from the Falls), a sharper offer (lodges, not tents; the road book; partners on the ground; a 24/7 line), and landing pages that answer the query directly.
 
 ### What I could and couldn't verify
 
-- **Search volumes:** I could not source a monthly search volume for "self drive safari", "namibia self drive" or any other keyword in this plan. Public pages returned nothing usable. **No volumes are quoted in this document.** Before launch, pull them from Google Keyword Planner inside the account (US and UK separately) and record them in §11.
-- **Demand evidence (qualitative):** the volume of competitor product pages is itself a signal that there is paid and organic demand for Namibia self-drive in particular. A single search surfaced Namibia self-drive itineraries from Responsible Travel, Rainbow Tours, Wexas, Eshores and On The Go Tours ([Responsible Travel](https://www.responsibletravel.com/holidays/namibia/travel-guide/self-drive-holidays-in-namibia), [Rainbow Tours](https://www.rainbowtours.co.uk/tours/africa/classic-namibia-selfdrive-holiday), [Wexas](https://wexas.com/itinerary-offers/best-of-namibia-self-drive-102490), [Eshores](https://www.eshores.co.uk/holidays/safaris/namibia-explorer-self-drive-safari/), [On The Go Tours](https://www.onthegotours.com/uk/Namibia/Etosha-Wildlife-Exploration-SelfDrive-5-days)). Zimbabwe self-drive has far fewer sellers (Far and Wild, Wild Foot Travel, Jenman-style operators, Wetu-hosted itineraries — [Far and Wild](https://farandwild.travel/africa/zimbabwe/zimbabwe-encounter), [Wild Foot Travel](https://www.wildfoottravel.com/itinerary/4170/zimbabwe-botswana-self-drive-16-days)). One Zimbabwe guide notes the country is "still finding its feet" as a self-drive destination (from the search summary; not read first-hand). Inference, not data: **Namibia has the volume and the competition; Zimbabwe has less of both.**
-- **CPCs:** see §8. Every CPC in this plan is an estimate.
+- **Search volumes:** I could not source a monthly search volume for any keyword in this plan. **No volumes are quoted in this document.** Before launch, pull them from Google Keyword Planner inside the account (US, UK and Canada separately) and record them in §10.
+- **Demand evidence (qualitative):** a single search surfaced Namibia self-drive itineraries from Responsible Travel, Rainbow Tours, Wexas, Eshores and On The Go Tours ([Responsible Travel](https://www.responsibletravel.com/holidays/namibia/travel-guide/self-drive-holidays-in-namibia), [Rainbow Tours](https://www.rainbowtours.co.uk/tours/africa/classic-namibia-selfdrive-holiday), [Wexas](https://wexas.com/itinerary-offers/best-of-namibia-self-drive-102490), [Eshores](https://www.eshores.co.uk/holidays/safaris/namibia-explorer-self-drive-safari/), [On The Go Tours](https://www.onthegotours.com/uk/Namibia/Etosha-Wildlife-Exploration-SelfDrive-5-days)). Zimbabwe self-drive has far fewer sellers ([Far and Wild](https://farandwild.travel/africa/zimbabwe/zimbabwe-encounter), [Wild Foot Travel](https://www.wildfoottravel.com/itinerary/4170/zimbabwe-botswana-self-drive-16-days)). Inference, not data: **Namibia has the volume and the competition; Zimbabwe has less of both.** At this budget that points us at Zimbabwe and the Falls first.
+- **CPCs:** every CPC in this plan is an estimate (§6).
 
 ---
 
-## 2. Account structure
+## 2. What US$500 a month buys, honestly
 
-Two campaigns per market at launch, plus an optional brand campaign. Search network only.
+US$500 a month is about **US$16.40 a day** (Google sets the monthly limit at the daily budget × 30.4, and may spend up to twice the daily budget on a busy day, balancing out across the month).
+
+At the CPCs estimated in §6, that is **one to ten clicks a day**. The original structure — two campaigns, eight to nine ad groups, around 90 keywords — would split those clicks so thinly that most ad groups would see a handful of clicks a month and most keywords none. Nothing would learn, and the search terms report would be too sparse to mine.
+
+So the rules at this budget:
+
+1. **One campaign.** Every click lands in one pot, so the budget isn't divided before it's spent.
+2. **Three ad groups, tightly themed.** Each maps to one landing page and one reason to choose us.
+3. **Exact and phrase match only.** No broad match, ever, at this budget.
+4. **Lead with the cheapest relevant clicks.** Zimbabwe and the Falls first, generic lodge-based self-drive second, Namibia only on long-tail phrases with a hard bid cap.
+5. **Cut waste hard.** The negative lists (§4) matter more here than the keyword lists.
+6. **Don't test what we can't measure.** No copy tests, no road-trip test, no smart bidding in the first 90 days.
+
+---
+
+## 3. Account structure
 
 ```
-Account: Safari Overland
-├── US | Search | Self-drive            (locations: United States + Canada, see below)
-│   ├── AG  Generic self-drive          → /routes
-│   ├── AG  Namibia                     → /self-drive/namibia
-│   ├── AG  Zimbabwe                    → /self-drive/zimbabwe
-│   ├── AG  Four corners (Botswana, Zambia) → /self-drive/botswana-zambia
-│   └── AG  Road trip (test)            → /routes, or the country page when the query names one
-├── UK | Search | Self-drive            (location: United Kingdom)
-│   ├── AG  Generic self-drive          → /routes
-│   ├── AG  Namibia                     → /self-drive/namibia
-│   ├── AG  Zimbabwe                    → /self-drive/zimbabwe
-│   └── AG  Four corners (Botswana, Zambia) → /self-drive/botswana-zambia
-└── (optional) Brand | Search | Exact   (US + UK; "safari overland" exact only — see Decisions)
+Account: Safari Overland   (time zone: US Eastern — set at account creation, can't be changed later)
+└── Search | Self-drive | US-UK-CA       US$16.40/day
+    ├── AG 1  Victoria Falls, Zimbabwe and Chobe   → /self-drive/zimbabwe  (Chobe keywords → /self-drive/botswana-zambia)
+    ├── AG 2  Lodge-based self-drive (generic)     → /routes
+    └── AG 3  Namibia, long-tail only              → /self-drive/namibia
 ```
 
-### Campaign settings (both markets)
+No brand campaign at launch. Organic brand clicks are already ours, and US$500 has no room for insurance.
+
+### Campaign settings
 
 | Setting | Recommendation | Why |
 |---|---|---|
-| Networks | Search only. Search partners **off**, Display **off** | Control. Partners and Display dilute a small budget before we know what converts |
-| Locations | US campaign: United States, plus Canada as a separate location row so it reports separately. UK campaign: United Kingdom | STRATEGY §1: Canada rides with the US |
-| Location option | **Presence**: "people in or regularly in your targeted locations". Not "presence or interest" | Stops spend on people searching from inside southern Africa (self-drive campers in Johannesburg, Windhoek locals) |
-| Location exclusions | South Africa, Namibia, Botswana, Zimbabwe, Zambia | Same reason, belt and braces |
+| Networks | Search only. Search partners **off**, Display **off** | Every dollar on Google Search, where intent is clearest |
+| Locations | United States, United Kingdom, Canada, each as its own location row | One budget, but reporting by country, and per-country bid adjustments if one market proves costly |
+| Location option | **Presence**: "people in or regularly in your targeted locations" | Stops spend on people searching from inside southern Africa |
+| Location exclusions | South Africa, Namibia, Botswana, Zimbabwe, Zambia | Belt and braces |
 | Language | English | — |
-| Bidding (weeks 1–6) | Manual CPC with enhanced CPC off, or Maximise clicks with a max CPC cap | No conversion history yet. Smart bidding needs data it doesn't have |
-| Bidding (from ~week 6–8) | Maximise conversions, then target CPA once the account has a steady conversion count | Google's own minimum-volume guidance varies by strategy; treat "about 15–30 conversions in 30 days per campaign" as a rule of thumb, not a fact |
-| Ad rotation | Optimise (default) for RSAs | — |
-| Schedule | All hours at launch. Review hour-of-day after eight weeks | Not enough data to daypart sooner |
+| Bidding | **Manual CPC**, enhanced CPC off, with a max CPC per ad group (§6). For the full 90 days | Smart bidding needs a steady conversion count we won't have (rule of thumb: about 15–30 conversions in 30 days per campaign; not a Google guarantee). Offline conversions also arrive days late (§7) |
+| Ad schedule | **07:00–23:00 US Eastern, seven days** | See below |
 | Devices | No adjustments at launch | — |
-| Audiences | Add in-market "Trips to Africa" style segments in **observation** mode only, if available in the account | Learn, don't restrict. Segment names in the UI change; check what exists |
-| Final URL suffix | `utm_source=google&utm_medium=cpc&utm_campaign={campaignid}&utm_content={adgroupid}&utm_term={keyword}` | Lets the site and the brief record attribute a lead to a campaign. Auto-tagging (gclid) on as well |
+| Audiences | "Trips to Africa"-style in-market segments in **observation** mode only, if available | Learn, don't restrict |
+| Auto-tagging | **On** | Required for the click ID (gclid) that option B depends on |
+| Final URL suffix | `utm_source=google&utm_medium=cpc&utm_campaign={campaignid}&utm_content={adgroupid}&utm_term={keyword}` | Lets the brief record show which ad group and keyword produced it |
 
-**Separate US and UK campaigns** (rather than one campaign with two locations) because budgets, wording and seasonality differ, and so the "road trip" test stays inside the US.
+### Ad schedule — booking hours, and the trade-off
+
+Google runs a campaign's schedule in the account's time zone, not the searcher's. With one campaign across three markets, the schedule is a compromise:
+
+| Schedule (US Eastern) | US East | US Pacific | UK |
+|---|---|---|---|
+| 07:00–23:00 | 07:00–23:00 | 04:00–20:00 | 12:00–04:00 (GMT, Nov–Mar) |
+
+- **Kept:** US and Canadian waking hours, and UK afternoons and evenings, when leisure trips get planned.
+- **Traded away:** UK mornings (07:00–12:00 UK), and late evenings on the US west coast. The UK is the smaller market (Search Console impressions about a third of the US), so I'd lose its mornings before I'd lose US evenings.
+- **Wasted:** a little UK spend between midnight and 04:00 UK. Schedule bid adjustments apply to every location in the campaign, so they can't trim UK hours alone. Watch it in the hour-of-day report; if it's material, the fix is the one below.
+- **Weekends stay on.** Holiday planning happens at weekends.
+- **Review at day 45** using the hour-of-day report split by country. If the UK converts well and its mornings matter, the fix is a separate UK campaign on a **shared budget** (one US$16.40 pot, two schedules). That's the first structural change I'd make when spend rises (§8), not before.
+- Clock changes: UK and US daylight-saving dates differ by one to three weeks in March and October/November, so the UK hours shift by an hour in those weeks. Not worth adjusting for.
 
 ---
 
-## 3. Keywords
+## 4. Keywords and negatives
 
-Match types: `[exact]` and `"phrase"` only at launch. **No broad match** until smart bidding has conversion data to steer it; broad match on "self drive safari" would pull in UK drive-through safari parks and US drive-thru wildlife parks (see negatives).
+Match types: `[exact]` and `"phrase"` only. Hyphenation: I believe Google treats "self drive" and "self-drive" as close variants, but I haven't confirmed it in Google's documentation. Add both spellings for the exact-match terms that matter most.
 
-Hyphenation: I believe Google treats "self drive" and "self-drive" as the same keyword under close variants, but I have not confirmed this in Google's documentation. Add both spellings for the exact-match terms that matter most; it costs nothing.
+About 30 keywords in total, down from about 90. If Keyword Planner shows a keyword with no measurable volume in all three countries, leave it out rather than carry dead weight.
 
-Keywords marked **(UK)** go only in the UK campaign; **(US)** only in the US campaign. Everything else goes in both.
+### AG 1 — Victoria Falls, Zimbabwe and Chobe → `/self-drive/zimbabwe`
 
-### AG Generic self-drive → `/routes`
-
-| Keyword | Match |
-|---|---|
-| self drive safari | [exact] |
-| self-drive safari | [exact] |
-| self drive safari africa | "phrase" |
-| self drive safari southern africa | "phrase" |
-| self drive african safari | "phrase" |
-| lodge based self drive safari | "phrase" |
-| self drive safari lodges | "phrase" |
-| self drive safari with lodges | "phrase" |
-| tailor made self drive safari | "phrase" |
-| self drive safari itinerary | "phrase" |
-| self guided safari africa | "phrase" |
-| self drive safari holiday **(UK)** | "phrase" |
-| self drive holiday africa **(UK)** | "phrase" |
-| fly drive safari **(UK)** | "phrase" |
-| self drive safari tour **(US)** | "phrase" |
-
-### AG Namibia → `/self-drive/namibia`
-
-| Keyword | Match |
-|---|---|
-| namibia self drive | [exact] |
-| namibia self-drive | [exact] |
-| namibia self drive safari | "phrase" |
-| namibia self drive itinerary | "phrase" |
-| namibia self drive tour | "phrase" |
-| self drive namibia lodges | "phrase" |
-| namibia self drive 2 weeks | "phrase" |
-| tailor made namibia self drive | "phrase" |
-| etosha self drive | "phrase" |
-| sossusvlei self drive | "phrase" |
-| windhoek to etosha self drive | "phrase" |
-| namibia self drive holiday **(UK)** | "phrase" |
-| namibia fly drive **(UK)** | "phrase" |
-| namibia self drive trip **(US)** | "phrase" |
-
-### AG Zimbabwe → `/self-drive/zimbabwe`
-
-| Keyword | Match |
-|---|---|
-| zimbabwe self drive | [exact] |
-| zimbabwe self drive safari | "phrase" |
-| zimbabwe self drive itinerary | "phrase" |
-| hwange self drive | "phrase" |
-| victoria falls self drive | "phrase" |
-| victoria falls hwange self drive | "phrase" |
-| victoria falls and hwange | "phrase" |
-| matobo self drive | "phrase" |
-| hwange and matobo | "phrase" |
-| zimbabwe self drive holiday **(UK)** | "phrase" |
-| zimbabwe self drive tour **(US)** | "phrase" |
-
-Expect low volume here. That's fine: this is the route we sell best and competitors sell least (see `COMPETITORS.md`). If Keyword Planner shows near-zero volume, keep the ad group and let "victoria falls and hwange" carry it.
-
-### AG Four corners (Botswana, Zambia) → `/self-drive/botswana-zambia`
-
-| Keyword | Match |
-|---|---|
-| chobe self drive | "phrase" |
-| kasane self drive | "phrase" |
-| caprivi self drive | "phrase" |
-| zambezi region self drive | "phrase" |
-| victoria falls chobe self drive | "phrase" |
-| victoria falls to chobe | "phrase" |
-| botswana self drive lodges | "phrase" |
-| botswana self drive safari | "phrase" |
-| zambia self drive safari | "phrase" |
-| livingstone self drive | "phrase" |
-| four corners africa | "phrase" |
-| kaza self drive | "phrase" |
-
-**Watch:** "botswana self drive" is camping-heavy intent (STRATEGY §3: Botswana's parks are camping country). The camping negatives below are essential for this group. "Four corners" on its own means the US Four Corners (Arizona, Utah, Colorado, New Mexico) — never bid on it unqualified, and see the negatives.
-
-### AG Road trip (test, US only) → `/routes`, or the country page when the query names one
+The ad group we lead with: our home ground, the route we sell best, partners on the ground at both ends, and few specialists bidding.
 
 | Keyword | Match | Final URL |
 |---|---|---|
-| southern africa road trip | "phrase" | /routes |
-| africa road trip | "phrase" | /routes |
-| african road trip | "phrase" | /routes |
-| safari road trip | "phrase" | /routes |
-| namibia road trip | "phrase" | /self-drive/namibia (keyword-level final URL) |
-| zimbabwe road trip | "phrase" | /self-drive/zimbabwe |
-| botswana road trip | "phrase" | /self-drive/botswana-zambia |
-| victoria falls road trip | "phrase" | /self-drive/zimbabwe |
+| zimbabwe self drive | [exact] | /self-drive/zimbabwe |
+| zimbabwe self-drive | [exact] | /self-drive/zimbabwe |
+| zimbabwe self drive safari | "phrase" | /self-drive/zimbabwe |
+| zimbabwe self drive itinerary | "phrase" | /self-drive/zimbabwe |
+| hwange self drive | "phrase" | /self-drive/zimbabwe |
+| victoria falls self drive | "phrase" | /self-drive/zimbabwe |
+| victoria falls and hwange | "phrase" | /self-drive/zimbabwe |
+| hwange and matobo | "phrase" | /self-drive/zimbabwe |
+| matobo self drive | "phrase" | /self-drive/zimbabwe |
+| chobe self drive | "phrase" | /self-drive/botswana-zambia (keyword-level final URL) |
+| victoria falls chobe self drive | "phrase" | /self-drive/botswana-zambia |
+| victoria falls to chobe | "phrase" | /self-drive/botswana-zambia |
+| kasane self drive | "phrase" | /self-drive/botswana-zambia |
 
-### Negative keywords
+Dropped at this budget: the rest of the old four-corners group ("botswana self drive safari", "zambia self drive safari", "caprivi self drive", "four corners africa" and similar). "Botswana self drive" is camping-heavy, and "four corners" alone pulls in Arizona.
 
-Apply as two shared negative lists. Phrase match unless shown. Review the search terms report **twice a week for the first four weeks**, then weekly. This list will grow.
+### AG 2 — Lodge-based self-drive (generic) → `/routes`
 
-**List A — Wrong trip (apply to all campaigns)**
+Only phrases that already say *lodges*, *southern Africa* or *tailor-made*: the qualifier does the filtering that a bigger budget would buy with bids.
+
+| Keyword | Match |
+|---|---|
+| self drive safari lodges | "phrase" |
+| self drive safari with lodges | "phrase" |
+| lodge based self drive safari | "phrase" |
+| self drive safari southern africa | "phrase" |
+| tailor made self drive safari | "phrase" |
+| self drive safari itinerary | "phrase" |
+| self drive safari holiday | "phrase" |
+| self drive safari africa | "phrase" |
+| self drive safari | [exact] — **paused at launch** |
+
+**`[self drive safari]` starts paused.** It's the biggest and most contested term, and the one most likely to match drive-through safari parks. Enable it only if the campaign underspends by more than 20% for two weeks running, with the lowest max CPC in the account.
+
+### AG 3 — Namibia, long-tail only → `/self-drive/namibia`
+
+Namibia is the bigger market and the most crowded auction (Audley alone will outbid us on "namibia self drive" in the US — `COMPETITORS.md`). At US$500 we don't bid on the head term. Long-tail phrases only, with a hard max CPC, and this is the first group to pause if it takes more than 35% of spend without briefs.
+
+| Keyword | Match |
+|---|---|
+| namibia self drive lodges | "phrase" |
+| tailor made namibia self drive | "phrase" |
+| namibia self drive itinerary | "phrase" |
+| namibia self drive 2 weeks | "phrase" |
+| windhoek to etosha self drive | "phrase" |
+| sossusvlei self drive | "phrase" |
+| etosha self drive | "phrase" |
+
+Not bid on at launch: `[namibia self drive]`, "namibia self drive safari", "namibia self drive tour", "namibia fly drive". Revisit when spend rises.
+
+### Negative keywords (kept in full)
+
+Apply as shared negative lists. Phrase match unless shown. At this budget a single wasted click is 5–15% of a day's spend, so **review the search terms report twice a week for the first six weeks**, then weekly. The lists will grow.
+
+**List A — Wrong trip**
 
 | Theme | Negatives |
 |---|---|
 | Camping and kit | camping, camp site, campsite, campsites, rooftop tent, roof top tent, rooftop, roof tent, tent hire, camping equipment, fully equipped, camper, campervan, camper van, motorhome, motor home, rv, 4x4 camper, bushcamp, bush camping, wild camping |
 | Overland trucks and group tours | overland truck, overland tour, overland tours, overlanding, overlander, truck tour, group tour, group tours, small group, participation safari, backpacker, backpackers, hostel |
 | Price-led | cheap, cheapest, budget, low cost, discount, deal, deals, free |
-| Vehicle-only | car hire, car rental, rent a car, 4x4 hire, 4x4 rental, vehicle hire, bakkie, hilux hire (revisit later: some of these may be future vehicle-plus-route buyers) |
+| Vehicle-only | car hire, car rental, rent a car, 4x4 hire, 4x4 rental, vehicle hire, bakkie, hilux hire (revisit later: some may be future vehicle-plus-route buyers) |
 | Wrong region | kenya, tanzania, serengeti, masai mara, maasai mara, ngorongoro, uganda, rwanda, gorilla, gorillas, egypt, morocco, madagascar, kruger, cape town, garden route, south africa (remove when South Africa launches) |
 | Jobs and study | job, jobs, career, careers, vacancy, vacancies, salary, hiring, internship, volunteer, volunteering, course, guide training, field guide course |
 | Research only | reddit, tripadvisor, forum, blog, pdf, map, wiki, wikipedia, lonely planet, youtube, video |
 | Browser / tech | safari browser, apple, iphone, ipad, mac, macbook, download, update, extension |
 
-**List B — Drive-through wildlife parks (critical; apply to all campaigns)**
+**List B — Drive-through wildlife parks (critical)**
 
-"Self drive safari" in the UK and "drive thru safari" in the US often means a drive-through safari park at home. Without these negatives the generic ad group will spend on day tickets.
+"Self drive safari" in the UK and "drive thru safari" in the US often mean a drive-through safari park at home.
 
 | Market | Negatives |
 |---|---|
-| Both | safari park, wildlife park, zoo, tickets, ticket, drive thru, drive through, drive-through, animal park, theme park, near me, day out |
+| All | safari park, wildlife park, zoo, tickets, ticket, drive thru, drive through, drive-through, animal park, theme park, near me, day out |
 | UK | woburn, knowsley, longleat, west midlands, blair drummond, uk, england, scotland, wales |
 | US | lion country, wild safari, wildlife safari oregon, fossil rim, six flags, natural bridge, texas, georgia, florida, virginia, pennsylvania, ohio, oregon, animal kingdom, disney |
+| Canada | african lion safari, hamilton, ontario, parc omega, quebec (my additions for Canada; check them in the search terms report) |
 
-Spot-check the US state list in the search terms report: a few states may appear in legitimate queries ("self drive safari from texas" is unlikely but possible). These are cheap to remove if they block anything real.
+Spot-check the US state list in the search terms report: a few states may appear in legitimate queries. They're cheap to remove if they block anything real.
 
 **List C — Ad-group-specific**
 
-- Four corners group: arizona, utah, colorado, new mexico, monument, navajo, four corners usa.
-- Generic group: add the country terms (namibia, zimbabwe, botswana, zambia, chobe, hwange, etosha) as **exact-match negatives** so country queries route to their own ad group and landing page.
-- Competitor brand names (audley, expert africa, rainbow tours, go2africa, wexas, responsible travel, jenman, discover africa, far and wild, wild foot): negatives at launch. We don't bid on competitor names (Decisions for Dom).
+- AG 1 (Chobe keywords): arizona, utah, colorado, new mexico, monument, navajo, four corners usa.
+- AG 2: the country and park terms (namibia, zimbabwe, botswana, zambia, chobe, hwange, etosha, victoria falls) as **exact-match negatives**, so country queries go to their own group and landing page.
+- AG 3: namibia self drive [exact], namibia self drive safari [exact] (keeps us out of the head-term auction even through close variants).
+- **Linkwasha, Somalisa:** add both as negatives. They've left the collection (D-44), and we shouldn't pay for their names.
+- Competitor brand names (audley, expert africa, rainbow tours, go2africa, wexas, responsible travel, jenman, discover africa, far and wild, wild foot): negatives. We don't bid on competitor names.
 
 ---
 
-## 4. Responsive search ads
+## 5. Responsive search ads
 
-One RSA per ad group at launch (two in the US groups that carry the wording test, see §6). Fifteen headlines (≤30 characters) and four descriptions (≤90 characters) each. Every line below was length-checked by script. Character counts include spaces and punctuation, as Google counts them.
+One RSA per ad group: three in all. Fifteen headlines (≤30 characters) and four descriptions (≤90 characters) each, character counts checked by script, including spaces and punctuation.
 
-House voice rules applied: sentence case, no exclamation marks (Google Ads also rejects them in headlines), none of the twelve unforgivables, no *overland* in the copy except our name, no price in the ad, no claim that a lodge is partnered with or exclusive to us. Victoria Falls is the only town where a partner is named (STRATEGY §5); Namibia ads say "someone to call on the road", not "partners in Windhoek".
+**One campaign means one set of ads for all three countries**, so the copy is market-neutral: *self-drive safari*, not *self-drive holiday* or *road trip*. The UK-specific ads (*holiday*, *car hire*, *fly-drive*) and the US road-trip ads from the first draft are retired for now; restore them from this file's history when the UK gets its own campaign (§8).
 
-**Pinning:** pin nothing at launch, except **H1 to position 1 in the Namibia and Zimbabwe groups** if Google's asset report shows the country headline being served below position 1 more than half the time. Country relevance matters more than variety on those queries.
+House voice rules: sentence case, no exclamation marks (Google also rejects them in headlines), none of the twelve unforgivables, no *overland* in the copy except our name, no price in the ad (route "from" prices go on the landing pages once `ROUTE_COSTING.md` is checked, not in ads), no claim that a lodge is partnered with or exclusive to us. Partners are named by town only, never by company (STRATEGY §5).
 
-**Wording by market:** US uses *self-drive safari*; UK uses *self-drive holiday* and *car hire*; the US test group uses *road trip* (STRATEGY §6).
+**Pinning:** none at launch, except H1 to position 1 in AG 1 and AG 3 if the asset report shows the country headline served below position 1 more than half the time.
 
-**Claims to check before launch** (marketing can't verify them; the research team or Dom must):
+**Claims to check before launch** (marketing can't verify them):
 
-- "Rhino tracking in Matobo" and "Guided walks in Hwange": only if at least one lodge on the R1 route offers them. Swap for "Rock art in the Matobo hills" or "A hide at a Hwange waterhole" if not.
-- "Boat safaris on the Chobe": only if the four-corners route includes a Kasane lodge that offers them.
-- "Border paperwork prepared": depends on the partner set-up (D-03).
-- "Someone to call on the road": depends on D-04. If the support line isn't confirmed by launch, remove the headline.
-- "Three routes within 48 hours": matches the existing `/plan` promise. If the team can't hold 48 hours at ad volume, change it everywhere at once.
-- "Send a brief. It's free": true under D-01 (the brief and first sketch are free). Don't mention the planning fee in ads.
+- "Rhino tracking in Matobo": only if a Matobo stay on R1 offers it. Swap for "Rock art in the Matobo hills" if not.
+- "Boat safaris on the Chobe": only if a Kasane stay on R3 offers them.
+- "Border paperwork prepared": partners are in place (D-03); confirm they prepare it.
+- "Three routes within 48 hours": matches the `/plan` promise. At this budget, volume won't threaten it.
+- "Send a brief. It's free": true under D-01. Don't mention the planning fee in ads.
+- "Support on the road, 24/7": confirmed (D-04). The number itself never appears in ads.
 
-### Ad copy
+### AG 1 — Victoria Falls, Zimbabwe and Chobe
 
-#### US — Generic self-drive
+**Final URL:** `/self-drive/zimbabwe` (Chobe keywords: `/self-drive/botswana-zambia`). Every line must be true on both pages.
+
+| # | Headline | Chars |
+|---|---|---|
+| H1 | Zimbabwe self-drive safari | 26 |
+| H2 | Victoria Falls to Hwange | 24 |
+| H3 | Hwange, Matobo and the Falls | 28 |
+| H4 | Victoria Falls and Chobe | 24 |
+| H5 | Chobe, Caprivi and the Falls | 28 |
+| H6 | Lodges, not rooftop tents | 25 |
+| H7 | We draw the route for you | 25 |
+| H8 | Lodges and vehicle booked | 25 |
+| H9 | Your route in a road book | 25 |
+| H10 | Partners in Victoria Falls | 26 |
+| H11 | Support on the road, 24/7 | 25 |
+| H12 | Three routes within 48 hours | 28 |
+| H13 | Send a brief. It's free | 23 |
+| H14 | Rhino tracking in Matobo | 24 |
+| H15 | Safari Overland | 15 |
+
+| # | Description | Chars |
+|---|---|---|
+| D1 | Victoria Falls, Hwange and Matobo, or the Falls and Chobe, in your own car, at lodges. | 86 |
+| D2 | Partners on the ground in Victoria Falls and Kasane, and a 24/7 line while you drive. | 85 |
+| D3 | Drive times, road surfaces, fuel and park gate times, worked out before you leave. | 82 |
+| D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
+
+### AG 2 — Lodge-based self-drive (generic)
 
 **Final URL:** `/routes`
 
@@ -230,8 +255,8 @@ House voice rules applied: sentence case, no exclamation marks (Google Ads also 
 | H5 | We draw the route for you | 25 |
 | H6 | We book the lodges and car | 26 |
 | H7 | Your route in a road book | 25 |
-| H8 | Someone to call on the road | 27 |
-| H9 | Partners in Victoria Falls | 26 |
+| H8 | Support on the road, 24/7 | 25 |
+| H9 | Partners on the ground | 22 |
 | H10 | Three routes within 48 hours | 28 |
 | H11 | Send a brief. It's free | 23 |
 | H12 | Namibia, Zimbabwe, Botswana | 27 |
@@ -242,11 +267,11 @@ House voice rules applied: sentence case, no exclamation marks (Google Ads also 
 | # | Description | Chars |
 |---|---|---|
 | D1 | Self-drive journeys through southern Africa, staying at camps and lodges, not in tents. | 87 |
-| D2 | We draw the route, book the lodges and the vehicle, and stay at the end of the phone. | 85 |
+| D2 | We draw the route, book the lodges and the vehicle, and answer the phone 24/7. | 78 |
 | D3 | Drive times, road surfaces, fuel and border crossings, worked out before you leave. | 83 |
 | D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
 
-#### US — Namibia
+### AG 3 — Namibia, long-tail only
 
 **Final URL:** `/self-drive/namibia`
 
@@ -260,225 +285,24 @@ House voice rules applied: sentence case, no exclamation marks (Google Ads also 
 | H6 | We draw the route for you | 25 |
 | H7 | Lodges and vehicle booked | 25 |
 | H8 | Your route in a road book | 25 |
-| H9 | Someone to call on the road | 27 |
-| H10 | Gravel roads, timed in advance | 30 |
-| H11 | Three routes within 48 hours | 28 |
-| H12 | Send a brief. It's free | 23 |
-| H13 | 14 to 16 nights, or shorter | 27 |
-| H14 | Guided drives at the lodges | 27 |
+| H9 | Partners in Windhoek | 20 |
+| H10 | Support on the road, 24/7 | 25 |
+| H11 | Gravel roads, timed in advance | 30 |
+| H12 | Three routes within 48 hours | 28 |
+| H13 | Send a brief. It's free | 23 |
+| H14 | 14 to 16 nights, or shorter | 27 |
 | H15 | Safari Overland | 15 |
 
 | # | Description | Chars |
 |---|---|---|
 | D1 | Windhoek, the Kalahari, Sossusvlei, the coast, Damaraland and Etosha, in your own car. | 86 |
-| D2 | We draw the route, book the lodges and the vehicle, and stay at the end of the phone. | 85 |
+| D2 | Partners on the ground in Windhoek, and a 24/7 line while you drive. | 68 |
 | D3 | Drive times and road surfaces in a road book, in print and offline on your phone. | 81 |
 | D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
 
-#### US — Zimbabwe
+**H9 and D2 depend on the Windhoek partner being in place when the ads go live.** Dom has said to say Windhoek (D-02) and is arranging it. If it isn't in place on launch day, remove H9 and use "We draw the route, book the lodges and the vehicle, and answer the phone 24/7." (78) for D2.
 
-**Final URL:** `/self-drive/zimbabwe`
-
-| # | Headline | Chars |
-|---|---|---|
-| H1 | Zimbabwe self-drive safari | 26 |
-| H2 | Victoria Falls to Hwange | 24 |
-| H3 | Hwange, Matobo and the Falls | 28 |
-| H4 | Rhino tracking in Matobo | 24 |
-| H5 | Lodges, not rooftop tents | 25 |
-| H6 | We draw the route for you | 25 |
-| H7 | Lodges and vehicle booked | 25 |
-| H8 | Your route in a road book | 25 |
-| H9 | Partners in Victoria Falls | 26 |
-| H10 | Someone to call on the road | 27 |
-| H11 | 10 to 12 nights, or shorter | 27 |
-| H12 | Three routes within 48 hours | 28 |
-| H13 | Send a brief. It's free | 23 |
-| H14 | Guided walks in Hwange | 22 |
-| H15 | Safari Overland | 15 |
-
-| # | Description | Chars |
-|---|---|---|
-| D1 | Victoria Falls, Hwange and Matobo in your own car, with guided activities at each camp. | 87 |
-| D2 | Partners in Victoria Falls hand over the vehicle, and are there if something goes wrong. | 88 |
-| D3 | Drive times, road surfaces, fuel and park gate times, worked out before you leave. | 82 |
-| D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
-
-#### US — Four corners (Botswana, Zambia)
-
-**Final URL:** `/self-drive/botswana-zambia`
-
-| # | Headline | Chars |
-|---|---|---|
-| H1 | Victoria Falls and Chobe | 24 |
-| H2 | Chobe, Caprivi and the Falls | 28 |
-| H3 | Self-drive from Victoria Falls | 30 |
-| H4 | Botswana and Zambia self-drive | 30 |
-| H5 | Where four countries meet | 25 |
-| H6 | Lodges, not rooftop tents | 25 |
-| H7 | We draw the route for you | 25 |
-| H8 | Border paperwork prepared | 25 |
-| H9 | Partners in Victoria Falls | 26 |
-| H10 | Someone to call on the road | 27 |
-| H11 | An easy add-on to the Falls | 27 |
-| H12 | Three routes within 48 hours | 28 |
-| H13 | Send a brief. It's free | 23 |
-| H14 | Boat safaris on the Chobe | 25 |
-| H15 | Safari Overland | 15 |
-
-| # | Description | Chars |
-|---|---|---|
-| D1 | Victoria Falls, Chobe and the Zambezi Region in 8 to 10 nights, staying at lodges. | 82 |
-| D2 | We prepare the border paperwork. Our partners in Victoria Falls hand over the vehicle. | 86 |
-| D3 | We draw the route, book the lodges and the vehicle, and stay at the end of the phone. | 85 |
-| D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
-
-#### US — Road trip (test)
-
-**Final URL:** `/routes (Namibia queries: /self-drive/namibia)`
-
-| # | Headline | Chars |
-|---|---|---|
-| H1 | Southern Africa road trip | 25 |
-| H2 | A Namibia road trip, planned | 28 |
-| H3 | An African road trip, planned | 29 |
-| H4 | A road trip with safari lodges | 30 |
-| H5 | Lodges, not rooftop tents | 25 |
-| H6 | We draw the route for you | 25 |
-| H7 | Lodges and vehicle booked | 25 |
-| H8 | Your route in a road book | 25 |
-| H9 | Someone to call on the road | 27 |
-| H10 | The drive is half the safari | 28 |
-| H11 | Zimbabwe, Namibia, Botswana | 27 |
-| H12 | Three routes within 48 hours | 28 |
-| H13 | Send a brief. It's free | 23 |
-| H14 | Gravel roads, timed in advance | 30 |
-| H15 | Safari Overland | 15 |
-
-| # | Description | Chars |
-|---|---|---|
-| D1 | A road trip through southern Africa, with a lodge and a guide at the end of the day. | 84 |
-| D2 | We draw the route, book the lodges and the vehicle, and stay at the end of the phone. | 85 |
-| D3 | Drive times, road surfaces, fuel and border crossings, worked out before you leave. | 83 |
-| D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
-
-#### UK — Generic self-drive
-
-**Final URL:** `/routes`
-
-| # | Headline | Chars |
-|---|---|---|
-| H1 | Self-drive safari holidays | 26 |
-| H2 | Southern Africa self-drive | 26 |
-| H3 | Drive yourself, sleep well | 26 |
-| H4 | Lodges, not rooftop tents | 25 |
-| H5 | We draw the route for you | 25 |
-| H6 | We book the lodges and car | 26 |
-| H7 | Your route in a road book | 25 |
-| H8 | Someone to call on the road | 27 |
-| H9 | Partners in Victoria Falls | 26 |
-| H10 | Three routes within 48 hours | 28 |
-| H11 | Send a brief. It's free | 23 |
-| H12 | Namibia, Zimbabwe, Botswana | 27 |
-| H13 | Tailor-made self-drive | 22 |
-| H14 | The drive is half the safari | 28 |
-| H15 | Safari Overland | 15 |
-
-| # | Description | Chars |
-|---|---|---|
-| D1 | Self-drive holidays in southern Africa, staying at camps and lodges, not in tents. | 82 |
-| D2 | We draw the route, book the lodges and the vehicle, and stay at the end of the phone. | 85 |
-| D3 | Drive times, road surfaces, fuel and border crossings, worked out before you leave. | 83 |
-| D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
-
-#### UK — Namibia
-
-**Final URL:** `/self-drive/namibia`
-
-| # | Headline | Chars |
-|---|---|---|
-| H1 | Namibia self-drive holiday | 26 |
-| H2 | Namibia fly-drive, planned | 26 |
-| H3 | Windhoek to Etosha, planned | 27 |
-| H4 | Sossusvlei, Damaraland, Etosha | 30 |
-| H5 | Lodges, not rooftop tents | 25 |
-| H6 | We draw the route for you | 25 |
-| H7 | Lodges and car hire booked | 26 |
-| H8 | Your route in a road book | 25 |
-| H9 | Someone to call on the road | 27 |
-| H10 | Gravel roads, timed in advance | 30 |
-| H11 | Three routes within 48 hours | 28 |
-| H12 | Send a brief. It's free | 23 |
-| H13 | 14 to 16 nights, or shorter | 27 |
-| H14 | Guided drives at the lodges | 27 |
-| H15 | Safari Overland | 15 |
-
-| # | Description | Chars |
-|---|---|---|
-| D1 | A Namibia self-drive holiday: the Kalahari, Sossusvlei, the coast, Damaraland, Etosha. | 86 |
-| D2 | We draw the route, book the lodges and the vehicle, and stay at the end of the phone. | 85 |
-| D3 | Drive times and road surfaces in a road book, in print and offline on your phone. | 81 |
-| D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
-
-#### UK — Zimbabwe
-
-**Final URL:** `/self-drive/zimbabwe`
-
-| # | Headline | Chars |
-|---|---|---|
-| H1 | Zimbabwe self-drive holiday | 27 |
-| H2 | Victoria Falls to Hwange | 24 |
-| H3 | Hwange, Matobo and the Falls | 28 |
-| H4 | Rhino tracking in Matobo | 24 |
-| H5 | Lodges, not rooftop tents | 25 |
-| H6 | We draw the route for you | 25 |
-| H7 | Lodges and car hire booked | 26 |
-| H8 | Your route in a road book | 25 |
-| H9 | Partners in Victoria Falls | 26 |
-| H10 | Someone to call on the road | 27 |
-| H11 | 10 to 12 nights, or shorter | 27 |
-| H12 | Three routes within 48 hours | 28 |
-| H13 | Send a brief. It's free | 23 |
-| H14 | Guided walks in Hwange | 22 |
-| H15 | Safari Overland | 15 |
-
-| # | Description | Chars |
-|---|---|---|
-| D1 | A Zimbabwe self-drive holiday: Victoria Falls, Hwange and Matobo, staying at lodges. | 84 |
-| D2 | Partners in Victoria Falls hand over the vehicle, and are there if something goes wrong. | 88 |
-| D3 | Drive times, road surfaces, fuel and park gate times, worked out before you leave. | 82 |
-| D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
-
-#### UK — Four corners (Botswana, Zambia)
-
-**Final URL:** `/self-drive/botswana-zambia`
-
-| # | Headline | Chars |
-|---|---|---|
-| H1 | Victoria Falls and Chobe | 24 |
-| H2 | Chobe, Caprivi and the Falls | 28 |
-| H3 | Self-drive from Victoria Falls | 30 |
-| H4 | Botswana and Zambia self-drive | 30 |
-| H5 | Where four countries meet | 25 |
-| H6 | Lodges, not rooftop tents | 25 |
-| H7 | We draw the route for you | 25 |
-| H8 | Border paperwork prepared | 25 |
-| H9 | Partners in Victoria Falls | 26 |
-| H10 | Someone to call on the road | 27 |
-| H11 | An easy add-on to the Falls | 27 |
-| H12 | Three routes within 48 hours | 28 |
-| H13 | Send a brief. It's free | 23 |
-| H14 | Boat safaris on the Chobe | 25 |
-| H15 | Safari Overland | 15 |
-
-| # | Description | Chars |
-|---|---|---|
-| D1 | A short self-drive holiday: Victoria Falls, Chobe and the Zambezi Region, 8 to 10 nights. | 89 |
-| D2 | We prepare the border paperwork. Our partners in Victoria Falls hand over the vehicle. | 86 |
-| D3 | We draw the route, book the lodges and the vehicle, and stay at the end of the phone. | 85 |
-| D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
-
-### Assets (all ad groups)
+### Assets (campaign level)
 
 #### Sitelinks (text ≤25, each description line ≤35)
 
@@ -498,205 +322,193 @@ House voice rules applied: sentence case, no exclamation marks (Google Ads also 
 | Partners on the ground | 22 |
 | First route sketch free | 23 |
 | Vehicle matched to roads | 24 |
-| Support while on the road | 25 |
+| 24/7 support on the road | 24 |
 
 #### Structured snippet
 
-Header **Destinations**: Namibia · Zimbabwe · Botswana · Zambia · Victoria Falls (each value ≤25).
-
+Header **Destinations**: Zimbabwe · Victoria Falls · Botswana · Namibia · Zambia.
 
 ---
 
-## 5. Landing page mapping
+## 6. Budget, CPC assumptions and what to expect
+
+### Budget
+
+| Item | Amount |
+|---|---|
+| Monthly | **US$500** (Dom, D-30) |
+| Daily budget setting | **US$16.40** |
+| Brand campaign | None |
+| Seasonal changes | None in the first 90 days. The budget is too small for a holiday dip or a January push to change anything we could measure |
+
+### Steering by ad group
+
+Ad groups share the campaign budget, so these are targets, steered with max CPCs, not hard caps.
+
+| Ad group | Target share | Max CPC at launch (estimate — replace with Keyword Planner's top-of-page range) |
+|---|---|---|
+| AG 1 Victoria Falls, Zimbabwe and Chobe | ~40% | US$3.00 |
+| AG 2 Lodge-based self-drive | ~35% | US$3.50 |
+| AG 3 Namibia, long-tail | ~25% (pause if over 35% with no briefs) | US$3.00 |
+
+If AG 1 can't spend its share because volume is thin — likely, since Zimbabwe self-drive is a small niche — let AG 2 take it. Don't raise AG 1 bids just to spend the money.
+
+### CPC assumptions (all estimates, all unverified)
+
+Published "travel" CPC benchmarks run from US$0.25 ([Pixis](https://pixis.ai/blog/2025-google-advertising-benchmarks-for-every-industry/)) to US$2.12 ([Search Engine Land](https://searchengineland.com/google-ads-costs-rise-again-but-conversions-improve-report-455663)). Both are cross-travel averages that include hotels and flights; neither describes tailor-made safari queries. **My working estimates, which are guesses** based on trip value and how many specialists bid:
+
+| Ad group | Estimated average CPC |
+|---|---|
+| AG 1 Victoria Falls, Zimbabwe and Chobe | US$1.00–3.00 (fewer bidders) |
+| AG 2 Lodge-based self-drive | US$2.00–5.00 |
+| AG 3 Namibia, long-tail | US$2.50–6.00 (crowded auction; the cap will limit how often we show) |
+| **Blended** | **US$1.75–4.50** |
+
+UK CPCs are probably a little lower in pounds than US CPCs in dollars, but I have no source for that. Treat the three countries as one blended estimate until the location report shows otherwise.
+
+### Expected clicks and briefs
+
+| | Per month | Over 90 days |
+|---|---|---|
+| Clicks (US$500 ÷ US$1.75–4.50) | **about 110–285** | about 330–860 |
+| Briefs, if 2–5% of clicks submit one (estimate; the site has no paid history) | **about 2–14** | about 7–43 |
+| A realistic middle | 4–8 briefs a month | **10–25 briefs** |
+
+If the campaign underspends because the long-tail keywords have too little volume, clicks fall but so does cost. That's information, not failure: it tells us how big the niche is.
+
+### What a booking is worth (internal, rough, unverified)
+
+A 12-night trip for two at US$300–400 per person per night is US$7,200–9,600 of lodge spend, plus the vehicle, plus the US$250 planning fee (D-01). Lodge margin and vehicle commission depend on contracts I haven't seen. **One booking a quarter from ads would very likely pay for the US$1,500 spent.** Whether we get one in the first 90 days is uncertain: a brief in December may not book until February or March.
+
+---
+
+## 7. Conversion tracking — option B, cookie-free
+
+Dom chose option B (D-31). The site stays cookieless. Google Ads learns from briefs (and later bookings) that we upload ourselves, once a week. **The capture is already built on this branch**; the operating detail, including the weekly SQL export, lives in `handoff/ANALYTICS.md` ("Google Ads offline conversions"). This section is the marketing view of it.
+
+### How it works
+
+1. **Auto-tagging is on**, so every ad click lands with a `gclid` (or, on some iPhone traffic, `gbraid` / `wbraid`) in the URL, plus the UTM values from the final URL suffix.
+2. **The site keeps them in the visitor's browser, not in a cookie.** `components/analytics/click-capture.tsx` and `lib/analytics/click-ids.ts` read the click ID and UTMs from the landing URL and hold them in `localStorage` for up to 90 days. Nothing is sent anywhere until a brief is submitted.
+3. **The brief record stores them**: `briefs.gclid`, `gbraid`, `wbraid`, `utm_*` and `click_captured_at` (migration `20261109_briefs_self_drive_fields.sql`, D-16, applied at go-live).
+4. **Weekly upload, every Monday**, as a CSV in Google Ads (Goals → Conversions → Uploads): Google Click ID, Conversion Name, Conversion Time. About 15 minutes; the query is in `ANALYTICS.md`. Google's import matches on gclid, conversion name and conversion time ([Google Ads Help](https://support.google.com/adwords/answer/6179720)).
+5. **Clicks older than 90 days can't be uploaded against.** With a weekly upload that never bites.
+
+### Conversion actions
+
+| Conversion action | What triggers it | Primary? | Count | Value (placeholder) | Window |
+|---|---|---|---|---|---|
+| Brief submitted | A brief with a gclid (name must match exactly: `Brief submitted`) | Yes | One | 1 — [Dom to confirm] | 90 days |
+| Planner call held | A planner call that can be matched to a brief with a gclid | Yes, once we start uploading it | One | 3 — [Dom to confirm] | 90 days |
+| Booking confirmed | A booking whose brief carries a gclid | Yes, once live | One | Actual margin + planning fee | 90 days |
+
+Start with **Brief submitted** only; that's what the built export produces. Add the other two when the admin records calls held and bookings against briefs. Calls booked straight from Calendly with no brief have no gclid and can't be uploaded; that's acceptable.
+
+The site's Vercel Analytics events (`brief-submitted`, `calendly-booking-completed` and the rest) carry on for site reporting. They can't be imported into Google Ads and don't need to be.
+
+### Caveats
+
+- **Delay.** Conversions reach Google up to a week late. With manual CPC that doesn't matter; it's one more reason not to switch to smart bidding in the first 90 days.
+- **Google's direction.** Google labels gclid file import "legacy" and points new advertisers to Data Manager and *enhanced conversions for leads*, which normally assumes the Google tag (`ANALYTICS.md` has the sources). The file upload still works as far as the docs say, but it may be retired. If it is, revisit this section.
+- **`localStorage` is still storage on the visitor's device.** It isn't a cookie, but UK PECR covers any storage on the user's device, not just cookies, and needs consent unless the storage is strictly necessary for a service the user asked for. Ad attribution probably isn't. **This is my reading, not legal advice**, and Dom has said to carry on with regulatory questions (D-09). If he wants to close the gap without a banner, the alternative is to carry the click ID in the URL from the landing page to `/plan` (no storage at all), at the cost of losing attribution when someone leaves and comes back later. A build-team decision; I haven't changed anything.
+- **Privacy policy.** A gclid stored against a named brief is personal data in the UK. The privacy policy needs a sentence saying that when someone arrives from an ad, we keep the ad's click reference with their brief and share it with Google to measure the ad. Dom / build team to add, if it isn't there already.
+- **Option A** (Google tag, Consent Mode v2, cookie banner) is not the plan. Revisit only if spend rises a lot and the weekly upload becomes the bottleneck.
+
+---
+
+## 8. What 90 days can teach us, and when to spend more
+
+### Realistic learning at US$500 a month
+
+**We can expect to learn:**
+
+1. **Which queries are real.** The search terms report will show what people actually type, and the negative lists will sharpen fast. This is the most valuable output of the first 90 days.
+2. **Real CPCs** per ad group and per country, replacing the estimates in §6.
+3. **Whether ad clicks become briefs at all**, and roughly at what rate (directional, from 330–860 clicks).
+4. **Whether ad briefs are qualified**: months, budget band, trip length, first-timer or not. The planner judges each brief from an ad as *qualified* or *not*; that judgement matters more than the count.
+5. **A rough read on Zimbabwe vs generic vs Namibia**, and US vs UK vs Canada, as a direction, not a result.
+
+**We can't expect to learn:**
+
+- Anything statistically significant about ad copy. No A/B tests.
+- Whether *road trip* beats *self-drive* for Americans. Deferred.
+- A reliable cost per booking. Bookings lag briefs by weeks or months; we may see zero to three in 90 days.
+- What smart bidding would do. It needs more conversions than we'll have.
+
+### Review points
+
+| When | What |
+|---|---|
+| Twice a week, weeks 1–6 | Search terms report; add negatives |
+| Every Monday | Offline conversion upload (§7) |
+| Day 30 | Real CPCs vs §6; adjust max CPCs; check spend split by ad group |
+| Day 45 | Hour-of-day by country (schedule, §3); first read of brief quality |
+| Day 90 | Full review against the triggers below; write the result into this file |
+
+### Trigger for raising spend
+
+Raise the budget (suggested next step: **US$1,000 a month**) when **all three** hold:
+
+1. **Budget is the limit.** Google reports the campaign "limited by budget", and search lost impression share (budget) is above ~30% on AG 1 or AG 2 — there's more qualified demand than we're paying for.
+2. **The funnel holds.** At least **10 briefs from ads**, at least half judged qualified by the planner, and every one answered within the 48-hour promise.
+3. **The cost is affordable.** Cost per qualified brief at or below **[target — Dom to set once margins are known]**. As a working placeholder only: US$150 per qualified brief, on the assumption (unverified) that around one in ten qualified briefs books.
+
+A first confirmed booking from an ad, with a margin above three months' spend (US$1,500), overrides condition 3.
+
+**What the next money buys, in order:** (1) a separate UK campaign on a shared budget, so UK copy and UK hours come back; (2) `[self drive safari]` exact and the Namibia head terms with a sensible cap; (3) the road-trip copy test in the US.
+
+### Trigger for pausing
+
+If after **60 days and roughly 250 clicks** there are **no briefs**, pause the campaign and fix the landing pages and the brief form before spending more. Clicks without briefs at that volume point to the page, not the keywords.
+
+---
+
+## 9. Landing pages and timing
 
 | Ad group | Final URL | What the page must do above the fold |
 |---|---|---|
-| Generic self-drive (US, UK) | `/routes` | Name the three routes, say "lodges, not tents" in the first screen, and show a brief CTA |
-| Namibia (US, UK) | `/self-drive/namibia` | Repeat the query's words ("Namibia self-drive") in the H1 or eyebrow; the R2 route at a glance (nights, drive-day range, road surfaces); one brief CTA |
-| Zimbabwe (US, UK) | `/self-drive/zimbabwe` | Same, for R1; name the Victoria Falls partners on the ground |
-| Four corners (US, UK) | `/self-drive/botswana-zambia` | Same, for R3; explain the borders plainly |
-| Road trip test (US) | `/routes`, or country page by keyword | Same pages. The test is in the ad and the query, not the page |
+| AG 1 Victoria Falls, Zimbabwe and Chobe | `/self-drive/zimbabwe`; Chobe keywords `/self-drive/botswana-zambia` | Repeat the query's words in the H1 or eyebrow; the route at a glance (nights, drive-day range, road surfaces); partners on the ground in Victoria Falls (Zimbabwe) or Kasane (four corners — the vehicle is collected and returned in Kasane, D-37); one brief CTA |
+| AG 2 Lodge-based self-drive | `/routes` | Name the three routes and say "lodges, not tents" in the first screen; one brief CTA |
+| AG 3 Namibia, long-tail | `/self-drive/namibia` | "Namibia self-drive" in the H1 or eyebrow; R2 at a glance; partners on the ground in Windhoek; one brief CTA |
+
+Route "from" prices (D-11) should appear on these pages once `handoff/relaunch/ROUTE_COSTING.md` exists and Dom has checked it. A visible starting price filters out people who would never book, which matters more at this budget than at any other.
 
 **Dependencies (outside marketing's files):**
 
-1. The four landing pages are phase-2 builds. **Ads can't launch until they're live on production**, not just the preview.
-2. The landing pages' "Start a brief" CTAs need their own `source` values in `StartBriefSource` (`lib/analytics/events.ts`), for example `self-drive-landing` and `routes`, so the dashboard shows which page converts. Today the union has no value for them. Reported for the build team; I haven't changed the file.
-3. The brief form should carry the landing page and UTM values (or gclid) into the brief record, so a booking can be traced to a campaign. See §7.
-4. Landing pages need `noindex` **off** and should be in the sitemap. They double as the organic pages we don't have yet.
+1. The landing pages must be live on production before any ad runs.
+2. The click-ID capture (§7) and the briefs migration (D-16) must be on production. Both are built on this branch; the migration is applied at go-live.
+3. `StartBriefSource` in `lib/analytics/events.ts` needs values for these pages (for example `self-drive-landing` and `routes`) so the site dashboard shows which page converts.
+4. Landing pages indexable and in the sitemap; they double as the organic pages we don't have yet.
+
+### Timing
+
+Social week 1 starts Monday 16 November 2026. **Ads go live as soon as the landing pages and the click-ID capture are on production**, ideally the same week or the one after. Travellers booking the July–October 2027 dry season are in their booking window now and through roughly March 2027. Industry blogs put peak-season southern Africa bookings 9–18 months ahead ([Rhino Africa](https://blog.rhinoafrica.com/2026/07/23/how-far-in-advance-should-i-book-my-african-safari/), [Secret Africa](https://secretafrica.com/when-should-i-book-my-african-safari/), [Holidify](https://holidify.com/pages/how-far-in-advance-to-book-african-safari-6938.html)); those describe premier camps, and mid-range road-accessible lodges probably fill later (my inference, unverified). Ad copy names no year, so it never needs rewriting; landing pages do when the season switches to 2028 (around July 2027).
+
+### Launch checklist
+
+1. Landing pages live on production; `curl -I` each one.
+2. Click-ID capture tested on production: open a landing page with `?gclid=TEST123`, submit a test brief, confirm the brief record holds it (tag the test brief so it's excluded from the upload).
+3. Account created with the **US Eastern** time zone. Auto-tagging on.
+4. The `Brief submitted` offline conversion action created (§7); the other two later.
+5. Keyword Planner pull recorded in §10; drop keywords with no volume; set max CPCs from the top-of-page ranges.
+6. Shared negative lists A and B, and the list C entries, attached before any ad goes live.
+7. Campaign built paused; Dom reviews in the UI; then enabled.
+8. First Monday upload done, even if empty, so the routine starts.
 
 ---
 
-## 6. Test plan — "road trip" vs "self-drive" (US only)
+## 10. To fill in after the Keyword Planner pull
 
-**Question:** do American travellers respond better to *road trip* than to *self-drive*, and are the people who search *road trip* worth as much as those who search *self-drive*?
-
-Two separate tests, because they answer different questions:
-
-### Test 1 — Query test (who searches what)
-
-- **Arms:** the Road trip ad group (road-trip keywords, road-trip copy) vs the Generic and country self-drive groups (self-drive keywords, self-drive copy).
-- **Measures:** cost per brief submitted, brief-to-call rate, and (once bookings happen) cost per booking. CTR is secondary.
-- **What it tells us:** whether road-trip searchers are a different, cheaper or poorer-quality audience.
-
-### Test 2 — Copy test (same searcher, different word)
-
-- **Set-up:** in the US Generic and US Namibia groups, run a Google Ads ad variation (Experiments → Ad variations, find-and-replace "self-drive" → "road trip" in headlines), 50/50 split. If ad variations aren't available for RSAs in the account, run a second RSA in each group with the road-trip headlines and compare at the ad level (less clean, because Google's rotation favours the early winner).
-- **Measures:** CTR first (it moves fastest), then brief rate per click.
-- **Hold constant:** landing page, descriptions, all other headlines.
-
-### Rules
-
-- **Duration:** at least six weeks, or until each arm has about 1,000 impressions **and** at least 10 briefs, whichever comes later. Stop at 12 weeks regardless.
-- **Expect a directional answer, not a significant one.** At launch volumes this test may never reach statistical significance on briefs. Make the call on CTR plus a clear direction in cost per brief, and write the result into this file.
-- **Don't** run Test 2 in the UK. UK copy stays *self-drive holiday*.
-- **Decision rule:** if *road trip* wins on CTR by a clear margin and cost per brief is no worse, roll *road trip* into US headlines 1–3 and the US landing page H1 tests. If road-trip queries bring cheap clicks and few briefs, keep the copy and cut the Road trip ad group's budget.
-
----
-
-## 7. Conversion tracking
-
-### What exists today
-
-The site uses **Vercel Web Analytics**, cookieless, no PII (`handoff/ANALYTICS.md`). Relevant events in `lib/analytics/events.ts`:
-
-| Event | Fires when | Use for ads |
-|---|---|---|
-| `brief-submitted` | `/plan` submission returns 2xx | **Primary conversion: Brief submitted** |
-| `calendly-booking-completed` | Calendly posts `calendly.event_scheduled` | **Primary conversion: Planner call booked** |
-| `speak-to-planner-click` | Calendly modal opened | Secondary (observation only) |
-| `start-brief-click` | Any "Start a brief" CTA clicked | Secondary (observation only) |
-| `newsletter-signup` | Dispatch signup succeeds | Secondary (observation only) |
-
-**Vercel Analytics events can't be imported into Google Ads.** Google Ads needs its own signal. There are two ways to give it one. This is a real choice for Dom, because the site is cookieless today and the first option changes that.
-
-### Option A — Google tag with Consent Mode v2 (standard)
-
-- Add the Google tag (gtag.js) and fire two Google Ads conversion actions alongside the existing `track()` calls, at the same two moments: `brief-submitted` and `calendly-booking-completed`. The cleanest place is inside `lib/analytics/track.ts`, so the two systems can't drift. That file is outside marketing's scope; this is a recommendation for the build team.
-- The Google tag uses cookies. For UK visitors this needs a consent banner, and Google requires **Consent Mode v2** for advertisers using Google Ads measurement and remarketing with UK and EEA users (in force since March 2024, per [Usercentrics](https://usercentrics.com/us/resources/google-consent-mode-gcm-checklist/?output_format=md) and [Cardinal Path](https://www.cardinalpath.com/blog/navigating-changes-to-google-consent-mode); I couldn't reach Google's own help page to confirm the exact terms). Without consent, UK conversions are modelled or lost.
-- The privacy policy and ANALYTICS.md ("No cookies") would both need to change.
-- **Pro:** standard, real-time, feeds smart bidding properly. **Con:** a cookie banner on an editorial site, and a change to a stated privacy principle.
-
-### Option B — Cookieless capture and offline import (recommended to start)
-
-- The landing page reads `gclid` and the UTM values from the URL and passes them through the brief form into the `briefs` row (new nullable columns; a migration, outside marketing's scope).
-- Weekly, upload briefs and planner calls that carry a gclid to Google Ads as offline conversions (CSV upload in the UI at our volume; Google's API or a Zapier connector later). Google's offline import matches on gclid, conversion name and conversion time ([Google Ads Help](https://support.google.com/adwords/answer/6179720), [Relevant Audience](https://www.relevantaudience.com/google-ads-en/google-ads-offline-conversion-import-guide/)).
-- Later, upload **"Booking confirmed"** as a third offline conversion with its real value. This is the signal that matters most, and only Option B (or A plus B) can send it.
-- **Caveats (unverified, check before building):** one third-party guide says Google now calls gclid-only import "legacy" and steers new advertisers to *enhanced conversions for leads*, which normally needs the Google tag ([Relevant Audience](https://www.relevantaudience.com/google-ads-en/google-ads-offline-conversion-import-guide/)). Another says clicks older than 90 days can't be uploaded against. A gclid stored against a named brief is personal data in the UK, so it needs to be covered in the privacy policy. Get a view on that as part of D-09.
-- **Pro:** keeps the site cookieless; measures bookings, not just form fills. **Con:** conversions arrive days late, so smart bidding learns more slowly; there's a weekly manual task.
-
-### Conversion actions to create (either option)
-
-| Conversion action | Source event | Category | Primary? | Count | Value (placeholder) | Window |
-|---|---|---|---|---|---|---|
-| Brief submitted | `brief-submitted` | Submit lead form | Yes | One | [Value — Dom to confirm], suggest a relative value of 1 | 90 days click-through |
-| Planner call booked | `calendly-booking-completed` | Book appointment | Yes | One | [Value — Dom to confirm], suggest about 3× a brief | 90 days |
-| Booking confirmed (offline, later) | Manual / CRM | Purchase | Yes, once live | One | Actual margin + planning fee | 90 days (maximum available) |
-| Start brief click | `start-brief-click` | Other | No (observation) | One | — | 30 days |
-| Speak to planner click | `speak-to-planner-click` | Other | No (observation) | One | — | 30 days |
-
-90-day windows because this is a long-consideration purchase (§9).
-
-**Source parameters:** `calendly-booking-completed` and `speak-to-planner-click` carry a `source` limited to `home | plan | plan-sent | listing-detail | field-notes`. If the landing pages get a "Speak to a planner" button, `SpeakToPlannerSource` needs a new value too. Reported for the build team.
-
----
-
-## 8. Budget
-
-**[Monthly budget — Dom to confirm]**
-
-### Recommended starting range
-
-| Market | Recommended start | Share |
-|---|---|---|
-| US (incl. Canada) | US$1,400–2,400 per month | ~70% |
-| UK | US$600–1,000 per month (about £470–790 at roughly 1.27 $/£, rate unverified, check on the day) | ~30% |
-| **Total** | **US$2,000–3,400 per month** for the first three months | |
-
-Optional brand campaign: cap at US$100 per month.
-
-### Reasoning
-
-- **CPC assumptions are estimates, not facts.** The published 2025 benchmark for "travel" ranges from US$0.25 ([Pixis, ~100 brands](https://pixis.ai/blog/2025-google-advertising-benchmarks-for-every-industry/)) to US$2.12 ([Search Engine Land](https://searchengineland.com/google-ads-costs-rise-again-but-conversions-improve-report-455663)). Both are cross-travel averages that include hotels and flights, and neither describes high-value tailor-made safari queries. **My working estimate for our keywords is US$2–6 per click in the US and £1.50–4.50 in the UK, and it is a guess** based on the price of the trip (US$4,000–7,000+ per person at competitors, see `COMPETITORS.md`) and the number of specialists bidding. Replace it with Keyword Planner's top-of-page bid ranges before launch.
-- **Clicks the range buys:** at US$2–6, US$2,000–3,400 buys roughly 330–1,700 clicks a month across both markets. That's a wide band, which is why the CPC check matters.
-- **Briefs it might produce:** assuming 2–5% of clicks submit a brief (my estimate, unverified for this site; it has no paid history), that's roughly 7–85 briefs a month. The midpoint, around 20–30, is enough to read the road-trip test directionally and to move to smart bidding by month two or three.
-- **What a booking is worth (internal, rough, unverified):** a 12-night trip for two at US$300–400 per person per night is US$7,200–9,600 of lodge spend, plus the vehicle. Lodge margin and vehicle commission depend on contracts we haven't seen. Add the US$250 planning fee (D-01). Even a modest margin makes an acquisition cost of several hundred dollars per *booking* affordable, but that only holds if briefs convert to bookings at a reasonable rate. **We'll know the real figure after the first 20–30 briefs. Set the month-four budget from that, not from this paragraph.**
-- **Why not lower:** below about US$1,500 a month in total, the four ad groups per market each get too few clicks to learn anything in a quarter, and the test is meaningless.
-- **Why not higher:** the landing pages, the brief form and the 48-hour reply are untested at volume. Spend more once the funnel is shown to hold.
-- **Split:** US-first per STRATEGY §1; US impressions in Search Console are almost three times the UK's. The UK gets enough to learn, not to scale. The UK may also convert worse at first, because UK competitors show ATOL and ABTA protection and we can't yet (see `COMPETITORS.md`, D-09).
-
-### Within-market split at launch
-
-| Ad group | Share of market budget |
-|---|---|
-| Namibia | 40% |
-| Generic self-drive | 25% |
-| Zimbabwe | 15% (spend will be capped by volume anyway) |
-| Four corners | 10% |
-| Road trip (US only; UK re-allocates this to Namibia) | 10% |
-
-Ad groups share a campaign budget, so these are steering targets, set through bids, not hard caps. If a group needs a guaranteed share, split it into its own campaign.
-
----
-
-## 9. Seasonality and timing
-
-### When people travel
-
-The dry winter months are peak season for Namibia. Guides put it at July to October or June to September depending on the source ([Wild Wings Safaris](https://wild-wings-safaris.com/travel-guide-calendars/when-to-visit-namibia), [Rough Guides](https://www.roughguides.com/destinations/africa/namibia/when-to-go)). I'm assuming the same broadly holds for Hwange, Chobe and the Zambezi Region; the research team should confirm. One operator also names April, October and November as shoulder months worth selling.
-
-### When they book July–October trips
-
-Industry guidance is consistent that peak-season southern Africa trips are booked **9 to 18 months ahead**:
-
-- 12–18 months for peak-season Botswana and premier camps ([Rhino Africa](https://blog.rhinoafrica.com/2026/07/23/how-far-in-advance-should-i-book-my-african-safari/), [Secret Africa](https://secretafrica.com/when-should-i-book-my-african-safari/)).
-- 9–12 months for most standard East or southern African safaris ([Holidify](https://holidify.com/pages/how-far-in-advance-to-book-african-safari-6938.html)).
-- Some South African and Botswana lodges confirm July and August a year or more ahead ([Africa Geographic](https://travel-origin.africageographic.com/experiences/honeymoon-safaris/honeymoon-safari-booking-timeline)).
-
-These are operators' marketing blogs, so treat them as industry convention, not data. Mid-range, road-accessible lodges (our band, US$150–600 per person per night) probably fill later than the premier fly-in camps the sources describe. That's my inference, unverified.
-
-I couldn't find a US vs UK breakdown of booking lead times. **Widely repeated but unsourced here:** UK holiday booking concentrates in January ("peak booking season" after New Year), and US travellers plan international trips somewhat later. Treat both as hypotheses to check in our own data, not plan assumptions.
-
-### What that means for the calendar
-
-Today is 2026-11-09. Travellers booking July–October **2027** are in their booking window now and through roughly March 2027.
-
-| Period | US | UK | Message emphasis |
-|---|---|---|---|
-| Launch (once landing pages are live; target late Nov / early Dec 2026) | Full recommended budget | Full recommended budget | 2027 dry season: "July to October 2027 — the small camps fill first" (on landing pages, not as a pressure line in ads) |
-| 20 Dec – 1 Jan | Reduce ~30% | Reduce ~30% | Low intent over the holidays (assumption; check the data) |
-| Jan – Mar 2027 | Full, consider +20% if cost per brief is in line | Full, consider +30% (if the January hypothesis shows in the data) | 2027 peak season; last good availability |
-| Apr – Jun 2027 | Hold or trim | Hold or trim | Late 2027 bookers, shoulder months (Oct–Nov 2027) |
-| Jul – Sep 2027 | Hold | Hold | Switch to **2028** dry season; people on the road now are next year's referrals |
-| Oct – Dec 2027 | Full | Full | 2028 dry season |
-
-Ad copy doesn't name a year, so it doesn't need rewriting at the switch. Landing pages and sitelinks do.
-
----
-
-## 10. Launch checklist (in order)
-
-1. Dom confirms budget, conversion option (A or B), and the claims in §4.
-2. Landing pages live on production; `curl -I` each one.
-3. Conversion actions created; test conversions recorded from a test brief and a test Calendly booking (on production, tagged so they're excluded from reporting).
-4. Keyword Planner pull: volumes and top-of-page bid ranges recorded in §11; drop keywords with no volume, adjust CPC caps.
-5. Shared negative lists A and B attached to both campaigns before any ad goes live.
-6. Campaigns built paused; Dom reviews in the UI; then enabled.
-7. Search terms report twice a week for four weeks.
-8. Week-four review: CPCs vs estimate, brief rate, first read of the road-trip test, negative-list additions.
-
----
-
-## 11. To fill in after the Keyword Planner pull
-
-| Keyword | US avg monthly searches | UK avg monthly searches | US top-of-page bid (low–high) | UK top-of-page bid (low–high) |
-|---|---|---|---|---|
-| self drive safari | | | | |
-| namibia self drive | | | | |
-| zimbabwe self drive | | | | |
-| victoria falls and hwange | | | | |
-| chobe self drive | | | | |
-| southern africa road trip | | | | |
-| namibia road trip | | | | |
+| Keyword | US searches/mo | UK searches/mo | CA searches/mo | US top-of-page bid (low–high) | UK top-of-page bid (low–high) |
+|---|---|---|---|---|---|
+| zimbabwe self drive | | | | | |
+| victoria falls and hwange | | | | | |
+| chobe self drive | | | | | |
+| self drive safari lodges | | | | | |
+| self drive safari southern africa | | | | | |
+| self drive safari | | | | | |
+| namibia self drive itinerary | | | | | |
+| windhoek to etosha self drive | | | | | |
 
 ---
 
@@ -709,32 +521,23 @@ Ad copy doesn't name a year, so it doesn't need rewriting at the switch. Landing
 - Eshores, Namibia explorer self-drive — https://www.eshores.co.uk/holidays/safaris/namibia-explorer-self-drive-safari/
 - On The Go Tours, Etosha self-drive — https://www.onthegotours.com/uk/Namibia/Etosha-Wildlife-Exploration-SelfDrive-5-days
 - Far and Wild, Classic Zimbabwe self-drive — https://farandwild.travel/africa/zimbabwe/zimbabwe-encounter
-- Wild Foot Travel, Zimbabwe and Botswana self-drive — https://www.wildfoottravel.com/itinerary/4170/zimbabwe-botswana-self-drive-16-days (page returned 403 to my fetch; listed from search results only)
+- Wild Foot Travel, Zimbabwe and Botswana self-drive — https://www.wildfoottravel.com/itinerary/4170/zimbabwe-botswana-self-drive-16-days (listed from search results only)
 - Pixis, 2025 Google advertising benchmarks — https://pixis.ai/blog/2025-google-advertising-benchmarks-for-every-industry/
 - Search Engine Land, Google Ads costs 2025 — https://searchengineland.com/google-ads-costs-rise-again-but-conversions-improve-report-455663
-- Usercentrics, Consent Mode checklist — https://usercentrics.com/us/resources/google-consent-mode-gcm-checklist/?output_format=md
-- Cardinal Path, Consent Mode changes — https://www.cardinalpath.com/blog/navigating-changes-to-google-consent-mode
 - Google Ads Help, offline conversion import — https://support.google.com/adwords/answer/6179720
 - Relevant Audience, gclid import vs enhanced conversions for leads — https://www.relevantaudience.com/google-ads-en/google-ads-offline-conversion-import-guide/
 - Rhino Africa, booking lead times — https://blog.rhinoafrica.com/2026/07/23/how-far-in-advance-should-i-book-my-african-safari/
 - Secret Africa, booking lead times — https://secretafrica.com/when-should-i-book-my-african-safari/
 - Holidify, booking lead times — https://holidify.com/pages/how-far-in-advance-to-book-african-safari-6938.html
-- Africa Geographic, booking timeline — https://travel-origin.africageographic.com/experiences/honeymoon-safaris/honeymoon-safari-booking-timeline
-- Wild Wings Safaris, when to visit Namibia — https://wild-wings-safaris.com/travel-guide-calendars/when-to-visit-namibia
-- Rough Guides, when to go to Namibia — https://www.roughguides.com/destinations/africa/namibia/when-to-go
 
 ---
 
-## Decisions for Dom
+## Still open for Dom
 
-1. **Monthly budget.** Recommended US$2,000–3,400 total for the first three months, ~70% US / ~30% UK. Confirm a figure, or a cap.
-2. **Conversion tracking: Option A (Google tag, cookie banner, Consent Mode v2) or Option B (cookieless gclid capture plus weekly offline upload).** I recommend B to start, which keeps the site's no-cookie principle, then revisit at month three. Either option needs build work outside marketing's files: `lib/analytics/track.ts` (A), or a `briefs` migration plus form changes (B).
-3. **Conversion values.** Placeholders: brief = 1, planner call = 3. Confirm, or give real numbers once margins are known.
-4. **Ad claims to confirm:** support line (D-04), border paperwork (D-03), rhino tracking in Matobo, guided walks in Hwange, boat safaris on the Chobe, and that the 48-hour promise holds at ad volume.
-5. **Brand campaign** (exact "safari overland", ≤US$100/month): yes or no. It protects the name cheaply, but organic brand clicks are already ours, so it's optional.
-6. **Competitor brand terms:** I recommend we don't bid on competitors' names (off-voice, and expensive). Confirm.
-7. **Launch date.** Ads wait for the four landing pages to be live on production. Target late November or early December 2026 to catch the 2027 dry-season booking window.
-8. **Who runs the account day to day** (search terms twice a week for the first month, a weekly offline upload under Option B). Is that Dom or someone else?
-9. **Canada:** inside the US campaign as a separate location row (recommended), or its own campaign?
-10. **UK trust gap:** UK competitors display ATOL/ABTA protection. Until D-09 is settled, expect weaker UK conversion. Factor that into whether the UK starts at the same time as the US or a month later.
-11. **New analytics `source` values** for the landing pages (`StartBriefSource`, and `SpeakToPlannerSource` if a planner button is added). This is a build-team change to `lib/analytics/events.ts`.
+1. **Conversion values.** Placeholders: brief = 1, planner call = 3. Confirm, or give real numbers once margins are known.
+2. **Target cost per qualified brief** for the spend trigger (§8). Working placeholder US$150.
+3. **Ad claims to confirm:** rhino tracking in Matobo, boat safaris on the Chobe, border paperwork prepared by partners.
+4. **Windhoek partner in place by ad launch?** If not, AG 3 drops H9 and D2 changes (§5).
+5. **Who runs the account day to day:** search terms twice a week for six weeks, and the Monday upload. Dom, or someone else?
+6. **`localStorage` and PECR** (§7 caveats): accept the current build, or ask for URL-only carry-through.
+7. **Build work** (not marketing's files): the privacy-policy sentence about click references, and new `StartBriefSource` values for the landing pages. Click-ID capture and the briefs columns are already built.

@@ -7,7 +7,7 @@ eyebrow: "Self-drive · 7 min"
 
 It is the question we are asked most often, and the honest answer is that both are good first trips, for different people. Namibia is the country most people picture when they imagine a self-drive safari: empty gravel roads, red dunes, a desert coast, Etosha's white pan with elephants coming in to drink. Zimbabwe is the one fewer people have thought of, with shorter distances, greener country, the Falls at one end and some of the best guiding on the continent along the way.
 
-We plan and book both, and our first partners on the ground are in Victoria Falls, so take our bias into account. What follows is the comparison as we see it, with the parts that suit some travellers and not others left in.
+We plan and book both, with partners on the ground in Windhoek as well as Victoria Falls, but two of our three routes begin at the Falls, so take our bias into account. What follows is the comparison as we see it, with the parts that suit some travellers and not others left in.
 
 ## Namibia: space, and a lot of gravel
 

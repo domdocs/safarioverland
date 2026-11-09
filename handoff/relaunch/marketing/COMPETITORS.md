@@ -29,7 +29,7 @@ Ten companies. The first eight were read on their own pages; the last two only p
 - **Offers:** Tailor-made Namibia self-drives on its US site: *Classic Namibia self-drive safari*, 12 days from US$7,100 per person (Windhoek, Sesriem/Sossusvlei, Etosha, Okonjima, Windhoek), a 13-day family self-drive from US$3,875, and an 11-day wildlife highlights self-drive from US$6,600. A *Caprivi explorer* drives northern Namibia to Kasane, where the car is left and a driver takes travellers into Zambia. **Source:** search summaries of [Audley US, Classic Namibia](https://www.audleytravel.com/us/namibia/tours/classic-namibia) and [Audley CA, Caprivi explorer](https://audleytravel.com/ca/namibia/tours/caprivi-explorer). The self-drive guide page blocked my fetch, so the prices are **unverified first-hand**.
 - **Inclusions (per search summary, unverified):** international flights, insured vehicle hire, accommodation, 24/7 support. A 2024 trade review describes a 4×4 Hilux, automatic, two spare tyres ([TravelAge West](https://www.travelagewest.com/Travel/Africa-Middle-East/self-drive-namibia-tour)).
 - **Positioning:** a large, polished tailor-made brand with US and UK offices ([ATTA listing](https://atta.travel/organisation/audley-travel.html)). Country specialists, sample itineraries, and a lot of content.
-- **Where we differ:** Audley sells Namibia as one country among many. We sell three routes, with a road book and partners in Victoria Falls. Audley's prices include flights, so per-person comparisons need care. **Expect Audley to outbid us on "namibia self drive" in the US.** Don't compete head-on there; win on Zimbabwe and four corners, and on the "lodges, not tents" plus road book message.
+- **Where we differ:** Audley sells Namibia as one country among many. We sell three routes, with a road book and partners on the ground in Victoria Falls, Kasane, Maun and Windhoek. Audley's prices include flights, so per-person comparisons need care. **Expect Audley to outbid us on "namibia self drive" in the US.** Don't compete head-on there; win on Zimbabwe and four corners, and on the "lodges, not tents" plus road book message.
 
 ## 2. Expert Africa
 
@@ -106,7 +106,7 @@ Also seen, not profiled: Eshores, On The Go Tours, ATI Holidays, Oasis Travel (A
 
 Say these, in this order, everywhere:
 
-1. **We start in Victoria Falls, and we're there.** Partners on the ground in Victoria Falls, and Zimbabwe as a lead route. No one else leads with it.
+1. **We start in Victoria Falls, and we're there.** Partners on the ground in Victoria Falls, Kasane, Maun and Windhoek (never named), a line answered 24/7, and Zimbabwe as a lead route. No one else leads with Zimbabwe.
 2. **The road book.** Drive times as ranges, road surfaces named, fuel, borders, gate times, in print and offline. Show a sample spread on the landing pages, Instagram and in the nurture emails.
 3. **A collection, not a tier.** Each night is a place chosen for one thing only it offers. Competitors sell "Superior" and "Classic". We sell the hide, the walking guide, the rhino morning.
 4. **The drive is part of the safari.** "On the road" stopovers (the farm stall, the night before a border) are content no competitor writes.
@@ -117,7 +117,7 @@ Say these, in this order, everywhere:
 ## Decisions for Dom
 
 1. **Planning fee (D-01):** no competitor I found charges one up front, and several advertise free consultations. Consider presenting it as "credited in full against the booking" from the first mention, or deferring it until the second route revision. The decision affects ad and email copy.
-2. **Financial protection (D-09):** UK competitors show ATOL/ABTA; US buyers may expect seller-of-travel registration. Decide whether the UK campaign launches before this is settled.
+2. **Financial protection (D-09):** UK competitors show ATOL/ABTA; US buyers may expect seller-of-travel registration. *Dom, 9 Nov: carry on; UK ads aren't held back.* Expect UK conversion to lag the US while we can't show the same protection.
 3. **Road book sample:** approve producing a sample road book spread (one real route day) for landing pages and social. It's the strongest visible differentiator, and it doesn't exist yet.
 4. **Wild Foot Travel:** please take a manual look. It may be the closest route competitor for R1 + R3, and I couldn't read its page.
-5. **Competitor bidding:** confirm we don't bid on competitor brand names (the paid search plan assumes not).
+5. **Competitor bidding:** the paid search plan treats competitor names as negatives. Confirm.

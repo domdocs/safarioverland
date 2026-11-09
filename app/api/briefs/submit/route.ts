@@ -4,6 +4,10 @@ import { z } from "zod"
 import { getSupabaseServerClient } from "@/lib/supabase"
 import { sendBriefReceived, sendBriefNotify } from "@/lib/briefs/email"
 import type { Brief } from "@/lib/briefs/types"
+import {
+  clickAttributionColumns,
+  clickAttributionFields,
+} from "@/lib/analytics/click-ids"
 
 export const dynamic = "force-dynamic"
 
@@ -55,6 +59,11 @@ const submissionSchema = z.object({
   // Attribution
   source_url: z.string().max(500).optional(),
   utm: z.record(z.string()).optional(),
+
+  // Ad click ID + campaign (cookie-free capture, lib/analytics/click-ids.ts).
+  // Each field drops to undefined when malformed, so tracking data can
+  // never make a brief fail validation.
+  ...clickAttributionFields,
 })
 
 /**
@@ -141,27 +150,33 @@ export async function POST(request: NextRequest) {
     ...(input.countries.length > 0 ? { countries: input.countries } : {}),
   }
 
+  // Ad click attribution (also migration 20261109). Only the columns with
+  // values are sent.
+  const attributionPayload = clickAttributionColumns(input)
+
+  const newColumnsPayload = { ...selfDrivePayload, ...attributionPayload }
+
   const insertBrief = (payload: Record<string, unknown>) =>
     supabase.from("briefs").insert(payload).select("*").single()
 
   let { data: created, error: insertErr } = await insertBrief({
     ...basePayload,
-    ...selfDrivePayload,
+    ...newColumnsPayload,
   })
 
   // Transitional fallback: code can reach an environment (including local
   // dev, which points at production Supabase) before migration 20261109 is
   // applied there. The missing column comes back as Postgres 42703
   // (undefined_column), or as PostgREST's PGRST204 ("column not in schema
-  // cache") — retry once without the self-drive fields rather than lose
-  // the brief. Remove this block once the migration is applied in
-  // production.
+  // cache") — retry once without the self-drive and attribution fields
+  // rather than lose the brief. Remove this block once the migration is
+  // applied in production.
   if (
     (insertErr?.code === "42703" || insertErr?.code === "PGRST204") &&
-    Object.keys(selfDrivePayload).length > 0
+    Object.keys(newColumnsPayload).length > 0
   ) {
     console.warn(
-      "briefs: self-drive columns missing (apply migration 20261109) — retrying insert without them",
+      "briefs: self-drive/attribution columns missing (apply migration 20261109) — retrying insert without them",
       insertErr.message,
     )
     ;({ data: created, error: insertErr } = await insertBrief(basePayload))

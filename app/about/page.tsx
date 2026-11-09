@@ -8,11 +8,11 @@ import { getMedia } from "@/lib/relaunch/media-select"
 import { ABOUT_VISUALS } from "@/lib/relaunch/visuals"
 
 // Copy from handoff/relaunch/copy/SITE_COPY.md §2 (draft for Dom's
-// approval, D-10). Bracketed placeholders stay visible until Dom
-// supplies the value (D-12, D-13).
+// approval, D-10). D-12 (price band) and D-13 (Niels' bio) answered
+// by Dom, 9 Nov.
 
-// The offer. Partner towns (D-02): Victoria Falls only until another
-// hub's partner is signed.
+// The offer. Partner towns (D-02): Victoria Falls, Kasane, Maun and
+// Windhoek. Support line is 24/7 (D-04).
 const PRINCIPLES = [
   {
     title: "We draw the route.",
@@ -24,7 +24,7 @@ const PRINCIPLES = [
   },
   {
     title: "We stay on the line.",
-    body: "While you're on the road there's a person to call, and partners on the ground who can reach you. Help that is close by, not a ticket number.",
+    body: "While you're on the road there's a person to call, day or night, and partners on the ground who can reach you. Help that is close by, not a ticket number.",
   },
 ]
 
@@ -35,8 +35,7 @@ const VALUES = [
   },
   {
     title: "Worth what it asks.",
-    // [US$150] and [US$600]: D-12, confirm Dom is happy to publish the band.
-    body: "Honest value at any price. Most of the collection sits between [US$150] and [US$600] per person per night; where a place costs more, we've decided it's worth it, and we say why. Last of all, the friend test: would we send a friend there.",
+    body: "Honest value at any price. Most of the collection sits between US$150 and US$600 per person per night; where a place costs more, we've decided it's worth it, and we say why. Last of all, the friend test: would we send a friend there.",
   },
   {
     title: "Good for the place.",
@@ -142,8 +141,8 @@ export default function AboutPage() {
       {/*
        * Replaces the retired "Our home" section (see
        * handoff/briefs/2026-05-DROP_OUR_HOME_SECTION.md) with a
-       * working-hub framing: no personal home base. Name another hub
-       * only once its partner is signed (D-02).
+       * working-hub framing: no personal home base. Partner towns
+       * (D-02): Victoria Falls, Kasane, Maun and Windhoek; not named.
        */}
       <FullBleedImage item={getMedia(ABOUT_VISUALS.fromVictoriaFalls)} kenBurns height="h-[60vh] min-h-[400px] md:h-[75vh]" />
 
@@ -159,14 +158,13 @@ export default function AboutPage() {
             <p>
               Two of our routes begin at Victoria Falls — Mosi-oa-Tunya, the smoke
               that thunders — where Zimbabwe, Zambia, Botswana and Namibia sit within
-              a day&apos;s drive of each other. It&apos;s where the first of our
-              partners on the ground are.
+              a day&apos;s drive of each other. Our partners on the ground are
+              here, and in Kasane, Maun and Windhoek.
             </p>
             <p>
               Partners on the ground meet you, hand over the vehicle, walk you
               through the road book, and are the people who come if something goes
-              wrong. When a partner is signed in another hub, we&apos;ll name
-              the town here, and not before.
+              wrong. There is a person to call 24 hours a day.
             </p>
           </div>
         </div>
@@ -195,7 +193,7 @@ export default function AboutPage() {
       <SectionRule className="container" />
 
       {/* ─── Who we are, and how we're paid ───────────────────── */}
-      {/* D-13 (Niels' bio) and D-14 (how much of the commercials to say). */}
+      {/* D-13 (Niels' bio) and D-14 (how much of the commercials to say), answered 9 Nov. */}
       <section className="container py-24 md:py-32">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
@@ -207,8 +205,9 @@ export default function AboutPage() {
           <div className="lg:col-span-7 space-y-6 text-bone-mute leading-relaxed">
             <p>
               The collection is edited by Niels van de Meer. He decides what&apos;s in
-              it and what comes out, and he writes most of what you read here. [One-line
-              bio for Niels.]
+              it and what comes out, and he writes most of what you read here. A passionate
+              traveller, he has lived across Africa for the last fifteen years and
+              now calls the road his home.
             </p>
             <p>
               Operators never pay to be listed, and a place can&apos;t pay its way in
