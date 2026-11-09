@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Facebook, Instagram, Twitter } from "lucide-react"
+import { Instagram } from "lucide-react"
 
 import { getActiveCategories } from "@/lib/categories"
 
@@ -10,12 +10,10 @@ type FooterColumn = { label: string; links: FooterLink[] }
 
 const STATIC_COLUMNS: FooterColumn[] = [
   {
-    label: "Regions",
+    label: "Where we drive",
     links: [
-      { href: "/destinations/east-africa", label: "East Africa" },
+      { href: "/routes", label: "Routes" },
       { href: "/destinations/southern-africa", label: "Southern Africa" },
-      { href: "/destinations/west-africa", label: "West Africa" },
-      { href: "/destinations/north-africa", label: "North Africa" },
     ],
   },
   {
@@ -52,10 +50,11 @@ async function buildCategoriesColumn(): Promise<FooterColumn> {
   return { label: "Categories", links }
 }
 
+// Instagram URL matches sameAs in components/JsonLd/GlobalJsonLd.tsx
+// (handle pending Dom's confirmation, D-05). Facebook and X are out of
+// the social plan. LinkedIn is added once Niels' profile URL is supplied.
 const SOCIAL = [
-  { href: "#", label: "Facebook", Icon: Facebook },
-  { href: "#", label: "Twitter", Icon: Twitter },
-  { href: "#", label: "Instagram", Icon: Instagram },
+  { href: "https://www.instagram.com/safari_overland", label: "Instagram", Icon: Instagram },
 ]
 
 const POLICY = [
@@ -73,7 +72,7 @@ const POLICY = [
  *
  * Async server component — the Categories column reads
  * `getActiveCategories()` so empty categories drop out automatically.
- * Regions + Field notes stay static (they're not data-driven).
+ * Where we drive + Field notes stay static (they're not data-driven).
  */
 export async function EditorialFooter() {
   const categoriesColumn = await buildCategoriesColumn()

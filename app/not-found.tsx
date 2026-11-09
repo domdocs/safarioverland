@@ -54,7 +54,7 @@ export default function NotFound() {
                   className="rounded-none px-8 py-6 mono border-bone/30 text-bone hover:border-amber hover:text-amber bg-transparent"
                   asChild
                 >
-                  <Link href="/destinations">Open the atlas</Link>
+                  <Link href="/destinations/southern-africa">Southern Africa</Link>
                 </Button>
                 <Button
                   size="lg"

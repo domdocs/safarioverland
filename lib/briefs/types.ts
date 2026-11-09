@@ -1,7 +1,7 @@
 /**
  * Trip Builder brief — types shared between the form, the API, the
  * results page, and the admin views. Keep in lockstep with the briefs
- * table schema (migrations 20260507 + 20260513).
+ * table schema (migrations 20260507 + 20260513 + 20261109).
  */
 
 export type BriefStatus = "new" | "reviewing" | "sent" | "closed"
@@ -30,6 +30,12 @@ export type Brief = {
   budget_tier: "budget" | "mid" | "luxury" | "exclusive" | "discuss" | null
   source_listing_id: string | null
 
+  // Self-drive intake (20261109). Optional until that migration is applied
+  // everywhere: rows read before then don't carry the columns at all.
+  drive_experience?: "never" | "once-or-twice" | "often" | null
+  drive_hours?: "under-3h" | "3-5h" | "5h-plus" | null
+  countries?: string[] | null
+
   contact_name: string
   contact_email: string
   contact_phone: string | null
@@ -40,7 +46,7 @@ export type Brief = {
   utm: Record<string, string> | null
 }
 
-/** Shape submitted from the eight-question intake. */
+/** Shape submitted from the /plan intake. */
 export type BriefSubmission = {
   // Step 01
   months: string[]
@@ -48,6 +54,10 @@ export type BriefSubmission = {
   intent: string[]
   // Step 03
   pace?: "slow" | "mixed" | "active"
+  // Self-drive steps (after the rhythm)
+  drive_experience?: "never" | "once-or-twice" | "often"
+  drive_hours?: "under-3h" | "3-5h" | "5h-plus"
+  countries: string[]
   // Step 04 (optional)
   quiet_markers: string[]
   // Step 05

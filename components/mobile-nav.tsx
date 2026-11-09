@@ -28,11 +28,11 @@ export function MobileNav() {
             Categories
           </Link>
           <Link
-            href="/destinations"
+            href="/destinations/southern-africa"
             className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent"
           >
             <ChevronRight className="h-4 w-4" />
-            Destinations
+            Southern Africa
           </Link>
           <Link
             href="/about"

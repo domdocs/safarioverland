@@ -39,6 +39,9 @@ const briefFixture: Brief = {
   season_preference: "dry-high",
   budget_tier: "luxury",
   source_listing_id: null,
+  drive_experience: "once-or-twice",
+  drive_hours: "3-5h",
+  countries: ["zimbabwe", "namibia"],
   contact_name: "Test Traveller",
   contact_email: "test@example.com",
   contact_phone: null,
@@ -68,6 +71,31 @@ describe("Email templates render", () => {
     expect(html).toContain("Jul, Aug")
     // Label for the pace enum
     expect(html).toContain("Slow")
+    // Self-drive answers
+    expect(html).toContain("Once or twice")
+    expect(html).toContain("Three to five hours, with stops")
+    expect(html).toContain("Zimbabwe, Namibia")
+  })
+
+  test("Brief emails still label retired intent + wildlife values", async () => {
+    const legacyBrief: Brief = {
+      ...briefFixture,
+      intent: ["migration"],
+      wildlife_priorities: ["primates", "migration"],
+      drive_experience: undefined,
+      drive_hours: undefined,
+      countries: undefined,
+    }
+    const html = await render(
+      <BriefNotifyEmail
+        brief={legacyBrief}
+        adminUrl="https://example.com/admin/briefs"
+      />,
+    )
+    expect(html).toContain("The big migrations and crossings")
+    expect(html).toContain("Gorillas or chimpanzees on foot")
+    expect(html).toContain("The great migration — wildebeest crossings")
+    expect(html).not.toContain("Daily drive")
   })
 
   test("BriefNotifyEmail includes admin URL and contact email", async () => {

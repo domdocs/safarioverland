@@ -16,23 +16,86 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { Button } from "@/components/ui/button"
 import { getFeaturedListings } from "@/lib/listings"
 import { getSettings } from "@/lib/settings"
+import { ROUTES } from "@/lib/relaunch/routes"
 
 export const revalidate = 60
 
+// ─── Homepage copy ───────────────────────────────────────────────
+// Draft copy from handoff/briefs/2026-11-SELF_DRIVE_PHASE_1.md (PR A).
+// Every user-facing string for the relaunch sections lives in these
+// consts so the copywriter's final copy can be swapped in without
+// touching the markup.
+
+const HERO = {
+  eyebrow: "Self-drive · southern Africa",
+  // Headline stays "Africa, slowly." — rendered in markup with the
+  // amber italic word.
+  subhead:
+    "Self-drive journeys through southern Africa, staying at camps and lodges that give you more than a bed. We plan the route, book every night, and stay at the end of the phone while you're on the road.",
+  primaryCta: "Start a brief →",
+  secondaryCta: "Open the collection",
+}
+
+const OFFER = {
+  eyebrow: "What we do",
+  // Headline: "Three things we promise to do properly." (amber italic
+  // on "properly") — rendered in markup.
+}
+
+// The offer, in the house structure of three.
+// Partner towns: name only the hubs where a partner on the ground is
+// signed. Victoria Falls is in place. Add Windhoek and Maun to pillar
+// 03 only once their partners are confirmed.
 const PILLARS = [
   {
-    title: "Curation, not catalogue.",
-    body: "We list the lodges and operators we'd send our friends to. Each one earns a place by the depth of the experience it offers — not by paying for one.",
+    title: "We draw the route.",
+    body: "Every drive timed, every road surface named, fuel and border crossings and park gate times worked out before you leave. It arrives as a road book, in print and offline on your phone.",
   },
   {
-    title: "Trips that leave a mark.",
-    body: "We are drawn to stays that ask something of you: a slower pace, a closer look, a moment to listen. The kind that linger long after the dust settles.",
+    title: "We book every night, and the vehicle.",
+    body: "Camps and lodges we'd send our friends to, chosen for what they give you at the end of a day's drive. A vehicle suited to the roads, not a camper you'll never unpack.",
   },
   {
-    title: "Travel with consequence.",
-    body: "Every operator here contributes to conservation, community, or both. Your booking is part of the work that keeps these places wild.",
+    title: "We're at the end of the phone.",
+    body: "A person you can call while you're on the road, and partners on the ground in Victoria Falls who hand over your vehicle and are there if something goes wrong.",
   },
 ]
+
+const ROUTES_TEASER = {
+  eyebrow: "Routes",
+  // Headline: "Three routes, drawn by hand." (amber italic on "drawn")
+  headlineLead: "Three routes,",
+  headlineAccent: "drawn",
+  headlineTail: " by hand.",
+  lede: "Each one can be stretched, shortened or joined to another. Start from one, and we'll redraw it around you.",
+  allLink: "All routes →",
+}
+
+const CAN_I = {
+  eyebrow: "Before you ask",
+  // Headline: "Yes, you can drive this." (amber italic on "drive")
+  headlineLead: "Yes, you can",
+  headlineAccent: "drive",
+  headlineTail: " this.",
+  items: [
+    {
+      title: "The roads",
+      body: "Mostly tar and good gravel. You need a 4×4 where it matters, not everywhere, and the road book tells you which is which.",
+    },
+    {
+      title: "Driving on the left",
+      body: "It takes a morning to settle in. For American travellers we ask for an automatic gearbox, and you'll want an International Driving Permit.",
+    },
+    {
+      title: "Borders",
+      body: "We prepare the paperwork before you leave. Our partners on the ground meet you at a crossing where it helps.",
+    },
+    {
+      title: "Wildlife and the dark",
+      body: "You don't drive after sunset. Park gate times make sure of it, and so does the way we draw each day.",
+    },
+  ],
+}
 
 const FIELD_NOTES = [
   {
@@ -91,17 +154,16 @@ export default async function HomePage() {
 
           <div className="container relative h-full flex flex-col justify-end pb-20 md:pb-28">
             <div className="max-w-4xl">
-              <Eyebrow withRule>African safaris, reconsidered</Eyebrow>
+              <Eyebrow withRule>{HERO.eyebrow}</Eyebrow>
               <h1 className="mt-6 font-serif text-display-fluid text-bone leading-[0.96] tracking-tighter text-balance">
                 Africa, <span className="italic text-amber">slowly</span>.
               </h1>
               <p className="mt-8 max-w-2xl font-serif italic text-h4-fluid text-bone-mute leading-snug">
-                A small collection of lodges and operators chosen for what the wild does to you
-                — not just what it shows you.
+                {HERO.subhead}
               </p>
               <div className="mt-10 flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
-                  <StartBriefLink source="hero">Start a brief →</StartBriefLink>
+                  <StartBriefLink source="hero">{HERO.primaryCta}</StartBriefLink>
                 </Button>
                 <Button
                   size="lg"
@@ -109,7 +171,7 @@ export default async function HomePage() {
                   className="rounded-none px-8 py-6 mono border-bone/30 text-bone hover:border-amber hover:text-amber bg-transparent"
                   asChild
                 >
-                  <Link href="/categories">Open the collection</Link>
+                  <Link href="/categories">{HERO.secondaryCta}</Link>
                 </Button>
               </div>
             </div>
@@ -164,10 +226,10 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* ─── Three-pillar manifesto ────────────────────────────── */}
+        {/* ─── The offer: three things ───────────────────────────── */}
         <section className="container py-24 md:py-32">
           <div className="max-w-3xl mb-16">
-            <Eyebrow withRule>What this collection is for</Eyebrow>
+            <Eyebrow withRule>{OFFER.eyebrow}</Eyebrow>
             <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
               Three things we promise to do
               <span className="italic text-amber"> properly</span>.
@@ -179,6 +241,75 @@ export default async function HomePage() {
             twoColumn={false}
             className="max-w-4xl"
           />
+        </section>
+
+        {/* ─── Routes teaser (empty-safe) ────────────────────────── */}
+        {ROUTES.length > 0 && (
+          <section className="bg-ink border-y border-rule py-24 md:py-32">
+            <div className="container">
+              <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+                <div className="max-w-2xl">
+                  <Eyebrow withRule>{ROUTES_TEASER.eyebrow}</Eyebrow>
+                  <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
+                    {ROUTES_TEASER.headlineLead}{" "}
+                    <span className="italic text-amber">{ROUTES_TEASER.headlineAccent}</span>
+                    {ROUTES_TEASER.headlineTail}
+                  </h2>
+                  <p className="mt-6 text-bone-mute leading-relaxed">{ROUTES_TEASER.lede}</p>
+                </div>
+                <Link
+                  href="/routes"
+                  className="mono text-amber hover:text-amber-deep transition-colors"
+                >
+                  {ROUTES_TEASER.allLink}
+                </Link>
+              </div>
+
+              <div className="grid gap-12 md:grid-cols-3">
+                {ROUTES.map((route, i) => (
+                  <Link
+                    key={route.slug}
+                    href={`/routes/${route.slug}`}
+                    className="group block border-t border-rule pt-6 transition-colors hover:border-amber"
+                  >
+                    <div className="relative aspect-[4/3] overflow-hidden bg-card mb-6">
+                      <EditorialImage
+                        src={route.heroImage}
+                        alt={route.title}
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                      <BlendOverlay />
+                    </div>
+                    <div className="flex items-baseline gap-3 mb-3">
+                      <span className="mono text-amber">{String(i + 1).padStart(2, "0")}</span>
+                      <span className="eyebrow">
+                        {[route.countries.join(" · "), route.nights].filter(Boolean).join(" — ")}
+                      </span>
+                    </div>
+                    <h3 className="font-serif text-h3-fluid text-bone leading-tight transition-colors group-hover:text-amber text-balance">
+                      {route.title}
+                    </h3>
+                    <p className="mt-3 text-bone-mute leading-relaxed">{route.hook}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ─── Can I do this? ────────────────────────────────────── */}
+        <section className="container py-24 md:py-32">
+          <div className="max-w-3xl mb-16">
+            <Eyebrow withRule>{CAN_I.eyebrow}</Eyebrow>
+            <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
+              {CAN_I.headlineLead}{" "}
+              <span className="italic text-amber">{CAN_I.headlineAccent}</span>
+              {CAN_I.headlineTail}
+            </h2>
+          </div>
+
+          <NumberedList items={CAN_I.items} className="max-w-5xl" />
         </section>
 
         {/* ─── Featured listings (real data) ─────────────────────── */}

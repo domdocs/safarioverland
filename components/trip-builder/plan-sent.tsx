@@ -313,7 +313,7 @@ export function PlanSent() {
               variant="outline"
               className="rounded-none px-8 py-6 mono border-rule text-bone hover:border-amber hover:text-amber"
             >
-              <Link href="/destinations">Open the atlas</Link>
+              <Link href="/destinations/southern-africa">Southern Africa</Link>
             </Button>
           </div>
         </div>

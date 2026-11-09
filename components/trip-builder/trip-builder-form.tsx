@@ -13,6 +13,9 @@ import { track } from "@/lib/analytics/track"
 import type { BriefSubmittedProps } from "@/lib/analytics/events"
 import {
   BUDGET_TIER_OPTIONS,
+  COUNTRY_OPTIONS,
+  DRIVE_EXPERIENCE_OPTIONS,
+  DRIVE_HOURS_OPTIONS,
   DURATION_OPTIONS,
   INTENT_MAX,
   INTENT_OPTIONS,
@@ -23,6 +26,9 @@ import {
   WILDLIFE_OPTIONS,
   labelFor,
   type BudgetTierOption,
+  type CountryOption,
+  type DriveExperienceOption,
+  type DriveHoursOption,
   type DurationOption,
   type IntentOption,
   type MonthOption,
@@ -44,6 +50,10 @@ type FormState = {
   intent_other: string
   // Step 03
   pace: PaceOption | ""
+  // Self-drive steps (after the rhythm)
+  drive_experience: DriveExperienceOption | ""
+  drive_hours: DriveHoursOption | ""
+  countries: CountryOption[]
   // Step 04
   quiet_markers: QuietOption[]
   // Step 05
@@ -68,6 +78,9 @@ const EMPTY: FormState = {
   intent: [],
   intent_other: "",
   pace: "",
+  drive_experience: "",
+  drive_hours: "",
+  countries: [],
   quiet_markers: [],
   wildlife_priorities: [],
   rare_specialist_text: "",
@@ -89,16 +102,39 @@ const STEPS = [
   { key: "when", title: "When could you travel?", lede: "Months shape season, game-viewing, climate." },
   { key: "intent", title: "What kind of trip are you chasing?", lede: `Pick up to ${INTENT_MAX}.` },
   { key: "pace", title: "The rhythm.", lede: "How busy should the days feel?" },
+  { key: "drive_experience", title: "Have you driven in Africa before?", lede: "It changes how we pace the first few days." },
+  { key: "drive_hours", title: "How long are you happy to drive in a day?", lede: "Be honest — it shapes the whole route." },
+  { key: "countries", title: "Where are you drawn to?", lede: "Pick as many as you like." },
   { key: "quiet", title: "The kind of quiet you want.", lede: "Optional. The texture more than the substance." },
   { key: "wildlife", title: "The wildlife or landscape you're after.", lede: "The specifics anchor everything." },
   { key: "duration", title: "How long, give or take?", lede: "Rough is fine — we'll narrow on the call." },
   { key: "season", title: "Season preference, if any.", lede: "Different months read different ways on the ground." },
-  { key: "budget", title: "A comfortable budget, per person per night.", lede: "Honest is more useful than aspirational." },
+  { key: "budget", title: "A comfortable budget, per person per night.", lede: "Lodges only — we'll price the vehicle with you." },
   { key: "you", title: "Who shall we get back to?", lede: "Name + email. We'll reply within 48 hours." },
   { key: "review", title: "A last look.", lede: "Everything in one place. Edit anything before sending." },
 ] as const
 
 type StepKey = (typeof STEPS)[number]["key"]
+
+/** Questions only — excludes the contact and review steps. Drives the
+ *  "Step NN / NN" eyebrow. */
+const QUESTION_COUNT = STEPS.filter((s) => s.key !== "you" && s.key !== "review").length
+
+function stepIndex(key: StepKey): number {
+  return STEPS.findIndex((s) => s.key === key)
+}
+
+// Drop values that are no longer offered (e.g. a retired intent saved in
+// localStorage before the self-drive relaunch), so they can't be submitted
+// invisibly or count against the intent limit.
+function liveOnly<T extends string>(
+  saved: unknown,
+  options: readonly { value: T }[],
+): T[] {
+  if (!Array.isArray(saved)) return []
+  const live = new Set<string>(options.map((o) => o.value))
+  return saved.filter((v): v is T => typeof v === "string" && live.has(v))
+}
 
 function isStepValid(step: StepKey, s: FormState): boolean {
   switch (step) {
@@ -108,6 +144,12 @@ function isStepValid(step: StepKey, s: FormState): boolean {
       return s.intent.length > 0 && s.intent.length <= INTENT_MAX
     case "pace":
       return !!s.pace
+    case "drive_experience":
+      return !!s.drive_experience
+    case "drive_hours":
+      return !!s.drive_hours
+    case "countries":
+      return s.countries.length > 0
     case "quiet":
       return true // optional
     case "wildlife":
@@ -146,7 +188,13 @@ export function TripBuilderForm() {
       const saved = localStorage.getItem(STORAGE_KEY)
       if (saved) {
         const parsed = JSON.parse(saved)
-        setState({ ...EMPTY, ...parsed })
+        setState({
+          ...EMPTY,
+          ...parsed,
+          intent: liveOnly(parsed.intent, INTENT_OPTIONS),
+          wildlife_priorities: liveOnly(parsed.wildlife_priorities, WILDLIFE_OPTIONS),
+          countries: liveOnly(parsed.countries, COUNTRY_OPTIONS),
+        })
       }
     } catch {
       /* ignore */
@@ -173,7 +221,7 @@ export function TripBuilderForm() {
   }
 
   function toggleArray<T extends string>(
-    key: "months" | "intent" | "quiet_markers" | "wildlife_priorities",
+    key: "months" | "intent" | "quiet_markers" | "wildlife_priorities" | "countries",
     value: T,
     max?: number,
   ) {
@@ -213,6 +261,9 @@ export function TripBuilderForm() {
         months: state.flexible_months ? [] : state.months,
         intent: state.intent,
         pace: state.pace || undefined,
+        drive_experience: state.drive_experience || undefined,
+        drive_hours: state.drive_hours || undefined,
+        countries: state.countries,
         quiet_markers: state.quiet_markers,
         wildlife_priorities: state.wildlife_priorities,
         duration: state.duration || undefined,
@@ -264,6 +315,9 @@ export function TripBuilderForm() {
               flexible: state.flexible_months,
               intent: payload.intent,
               pace: payload.pace ?? null,
+              drive_experience: payload.drive_experience ?? null,
+              drive_hours: payload.drive_hours ?? null,
+              countries: payload.countries,
               quiet_markers: payload.quiet_markers,
               wildlife_priorities: payload.wildlife_priorities,
               duration: payload.duration ?? null,
@@ -346,7 +400,11 @@ export function TripBuilderForm() {
       {/* Step body */}
       <div className="lg:col-span-8">
         <p className="eyebrow">
-          {step.key === "review" ? "Final look" : `Step ${String(stepIdx + 1).padStart(2, "0")} / 08`}
+          {step.key === "review"
+            ? "Final look"
+            : step.key === "you"
+              ? "Your details"
+              : `Step ${String(stepIdx + 1).padStart(2, "0")} / ${String(QUESTION_COUNT).padStart(2, "0")}`}
         </p>
         <h2 className="mt-4 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
           {step.title}
@@ -490,6 +548,114 @@ export function TripBuilderForm() {
                         )}
                       </div>
                       <p className="mt-1 text-bone-mute">{opt.lede}</p>
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          )}
+
+          {step.key === "drive_experience" && (
+            <ul className="space-y-3 max-w-2xl">
+              {DRIVE_EXPERIENCE_OPTIONS.map((opt) => {
+                const selected = state.drive_experience === opt.value
+                return (
+                  <li key={opt.value}>
+                    <button
+                      type="button"
+                      onClick={() => update("drive_experience", opt.value)}
+                      aria-pressed={selected}
+                      className={cn(
+                        "block w-full text-left border px-5 py-4 transition-colors",
+                        selected
+                          ? "border-amber bg-amber/10"
+                          : "border-rule hover:border-amber",
+                      )}
+                    >
+                      <div className="flex items-baseline gap-3">
+                        <span className="font-serif text-lg text-bone leading-snug">
+                          {opt.label}
+                        </span>
+                        {selected && (
+                          <Check className="h-4 w-4 text-amber ml-auto shrink-0" aria-hidden />
+                        )}
+                      </div>
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          )}
+
+          {step.key === "drive_hours" && (
+            <ul className="space-y-3 max-w-2xl">
+              {DRIVE_HOURS_OPTIONS.map((opt) => {
+                const selected = state.drive_hours === opt.value
+                return (
+                  <li key={opt.value}>
+                    <button
+                      type="button"
+                      onClick={() => update("drive_hours", opt.value)}
+                      aria-pressed={selected}
+                      className={cn(
+                        "block w-full text-left border px-5 py-4 transition-colors",
+                        selected
+                          ? "border-amber bg-amber/10"
+                          : "border-rule hover:border-amber",
+                      )}
+                    >
+                      <div className="flex items-baseline gap-3">
+                        <span className="font-serif text-lg text-bone leading-snug">
+                          {opt.label}
+                        </span>
+                        {selected && (
+                          <Check className="h-4 w-4 text-amber ml-auto shrink-0" aria-hidden />
+                        )}
+                      </div>
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          )}
+
+          {step.key === "countries" && (
+            <ul className="grid sm:grid-cols-2 gap-3">
+              {COUNTRY_OPTIONS.map((opt) => {
+                const selected = (state.countries as string[]).includes(opt.value)
+                return (
+                  <li key={opt.value}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        // "Not sure yet" stands alone: picking it clears the
+                        // countries, picking a country clears it.
+                        if (opt.value === "unsure") {
+                          update("countries", selected ? [] : ["unsure"])
+                          return
+                        }
+                        if (state.countries.includes("unsure")) {
+                          update("countries", [opt.value])
+                          return
+                        }
+                        toggleArray("countries", opt.value)
+                      }}
+                      aria-pressed={selected}
+                      className={cn(
+                        "block w-full h-full text-left border px-4 py-4 transition-colors",
+                        selected
+                          ? "border-amber bg-amber/10"
+                          : "border-rule hover:border-amber",
+                      )}
+                    >
+                      <div className="flex items-baseline gap-3">
+                        <span className="font-serif text-base text-bone leading-snug">
+                          {opt.label}
+                        </span>
+                        {selected && (
+                          <Check className="h-4 w-4 text-amber shrink-0 ml-auto" aria-hidden />
+                        )}
+                      </div>
                     </button>
                   </li>
                 )
@@ -805,26 +971,43 @@ function ReviewSummary({
         : state.months.length
           ? state.months.join(" · ")
           : null,
-      stepIdx: 0,
+      stepIdx: stepIndex("when"),
     },
     {
       label: "Trip",
       value: state.intent.length
         ? state.intent.map((v) => labelFor(INTENT_OPTIONS, v)).filter(Boolean).join(", ")
         : null,
-      stepIdx: 1,
+      stepIdx: stepIndex("intent"),
     },
     {
       label: "Rhythm",
       value: labelFor(PACE_OPTIONS, state.pace),
-      stepIdx: 2,
+      stepIdx: stepIndex("pace"),
+    },
+    {
+      label: "Driven before",
+      value: labelFor(DRIVE_EXPERIENCE_OPTIONS, state.drive_experience),
+      stepIdx: stepIndex("drive_experience"),
+    },
+    {
+      label: "Daily drive",
+      value: labelFor(DRIVE_HOURS_OPTIONS, state.drive_hours),
+      stepIdx: stepIndex("drive_hours"),
+    },
+    {
+      label: "Countries",
+      value: state.countries.length
+        ? state.countries.map((v) => labelFor(COUNTRY_OPTIONS, v)).filter(Boolean).join(", ")
+        : null,
+      stepIdx: stepIndex("countries"),
     },
     {
       label: "Quiet",
       value: state.quiet_markers.length
         ? state.quiet_markers.map((v) => labelFor(QUIET_OPTIONS, v)).filter(Boolean).join(", ")
         : "—",
-      stepIdx: 3,
+      stepIdx: stepIndex("quiet"),
     },
     {
       label: "Wildlife",
@@ -834,22 +1017,22 @@ function ReviewSummary({
             .filter(Boolean)
             .join(", ")
         : null,
-      stepIdx: 4,
+      stepIdx: stepIndex("wildlife"),
     },
     {
       label: "Duration",
       value: labelFor(DURATION_OPTIONS, state.duration),
-      stepIdx: 5,
+      stepIdx: stepIndex("duration"),
     },
     {
       label: "Season",
       value: labelFor(SEASON_OPTIONS, state.season_preference),
-      stepIdx: 6,
+      stepIdx: stepIndex("season"),
     },
     {
       label: "Budget",
       value: labelFor(BUDGET_TIER_OPTIONS, state.budget_tier),
-      stepIdx: 7,
+      stepIdx: stepIndex("budget"),
     },
     {
       label: "From",
@@ -857,7 +1040,7 @@ function ReviewSummary({
         state.contact_name && state.contact_email
           ? `${state.contact_name} · ${state.contact_email}`
           : null,
-      stepIdx: 8,
+      stepIdx: stepIndex("you"),
     },
   ]
 

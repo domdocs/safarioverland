@@ -8,6 +8,9 @@ import type { BriefStatus } from "@/lib/briefs/types"
 import { STATUS_LABELS } from "@/lib/briefs/types"
 import {
   BUDGET_TIER_OPTIONS,
+  COUNTRY_OPTIONS,
+  DRIVE_EXPERIENCE_OPTIONS,
+  DRIVE_HOURS_OPTIONS,
   DURATION_OPTIONS,
   INTENT_OPTIONS,
   PACE_OPTIONS,
@@ -41,6 +44,10 @@ type Brief = {
   season_preference: string | null
   budget_tier: "budget" | "mid" | "luxury" | "exclusive" | "discuss" | null
   source_listing_id: string | null
+  // Self-drive intake (20261109) — absent until that migration is applied
+  drive_experience?: string | null
+  drive_hours?: string | null
+  countries?: string[] | null
   // Triage
   status: BriefStatus
   assigned_to: string | null
@@ -96,6 +103,9 @@ export function BriefRow({ brief: initial }: { brief: Brief }) {
   const wildlifeLine = listFromOptions(brief.wildlife_priorities, WILDLIFE_OPTIONS)
   const quietLine = listFromOptions(brief.quiet_markers, QUIET_OPTIONS)
   const paceLine = labelFor(PACE_OPTIONS, brief.pace) ?? brief.rhythm
+  const driveExperienceLine = labelFor(DRIVE_EXPERIENCE_OPTIONS, brief.drive_experience)
+  const driveHoursLine = labelFor(DRIVE_HOURS_OPTIONS, brief.drive_hours)
+  const countriesLine = listFromOptions(brief.countries ?? null, COUNTRY_OPTIONS)
   const durationLine = labelFor(DURATION_OPTIONS, brief.duration)
   const seasonLine = labelFor(SEASON_OPTIONS, brief.season_preference)
   const budgetLine =
@@ -160,6 +170,9 @@ export function BriefRow({ brief: initial }: { brief: Brief }) {
             <div className="grid gap-6 md:grid-cols-2 max-w-5xl">
               <div className="space-y-3 text-sm">
                 <Field label="Phone" value={brief.contact_phone} />
+                <Field label="Driven in Africa before" value={driveExperienceLine} />
+                <Field label="Daily drive" value={driveHoursLine} />
+                <Field label="Countries" value={countriesLine} />
                 <Field label="Wildlife / landscape" value={wildlifeLine} multiline />
                 <Field label="Quiet markers" value={quietLine} multiline />
                 <Field label="Duration" value={durationLine} />

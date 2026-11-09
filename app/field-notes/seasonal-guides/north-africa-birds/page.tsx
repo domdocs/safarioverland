@@ -112,7 +112,6 @@ export default function NorthAfricaBirdsPage() {
       ]}
       relatedLinks={[
         { href: "/field-notes/seasonal-guides/bird-watching", label: "Africa Bird Watching Seasonal Guide" },
-        { href: "/destinations/north-africa", label: "North Africa Destinations" },
         { href: "/field-notes/seasonal-guides/morocco", label: "Morocco Seasonal Guide" },
       ]}
     />

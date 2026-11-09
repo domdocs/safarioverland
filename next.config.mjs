@@ -60,6 +60,16 @@ const nextConfig = {
     return [
       { source: "/resources",        destination: "/field-notes",        permanent: true },
       { source: "/resources/:path*", destination: "/field-notes/:path*", permanent: true },
+      // Self-drive relaunch: southern Africa is the only region. The
+      // off-region atlas pages and the /destinations index were deleted
+      // in the same change, so nothing sits unreachable behind these.
+      { source: "/destinations",              destination: "/destinations/southern-africa", permanent: true },
+      { source: "/destinations/east-africa",  destination: "/destinations/southern-africa", permanent: true },
+      { source: "/destinations/west-africa",  destination: "/destinations/southern-africa", permanent: true },
+      { source: "/destinations/north-africa", destination: "/destinations/southern-africa", permanent: true },
+      // Legacy directory-era URL (404 on production). /submit is left
+      // alone pending Dom's decision (D-06).
+      { source: "/community",                 destination: "/about",                        permanent: true },
     ]
   },
   // Puppeteer and the slim Chromium binary need to stay outside the

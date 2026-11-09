@@ -1,9 +1,13 @@
 /**
- * Static option sets for the /plan eight-question intake.
+ * Static option sets for the /plan intake (self-drive relaunch).
  *
  * The option `value` strings are what we persist to the `briefs` table —
  * they should stay stable. Labels and ledes are the user-facing copy and
  * can change without a migration.
+ *
+ * Retired values are not deleted: they move to a `LEGACY_*` list so
+ * `labelFor` can still render them on old briefs (admin + emails), while
+ * the form only maps over the live arrays.
  */
 
 // ── Step 01 — When could you travel? ─────────────────────────────────────
@@ -25,9 +29,9 @@ export type MonthOption = (typeof MONTH_OPTIONS)[number]
 
 // ── Step 02 — What kind of trip are you chasing? ────────────────────────
 export const INTENT_OPTIONS = [
+  { value: "first-self-drive", label: "My first self-drive in Africa" },
   { value: "first-safari", label: "A first proper safari" },
   { value: "walking", label: "Walking and tracking on foot" },
-  { value: "migration", label: "The big migrations and crossings" },
   { value: "photography", label: "Wildlife photography" },
   { value: "slow", label: "A slower trip — fewer moves, longer stays" },
   { value: "wellness", label: "A wellness rhythm — yoga, silence, sleep-outs" },
@@ -39,6 +43,12 @@ export const INTENT_OPTIONS = [
 ] as const
 export type IntentOption = (typeof INTENT_OPTIONS)[number]["value"]
 export const INTENT_MAX = 3
+
+/** Retired intent values — not shown in the form, still labelled on old
+ *  briefs. */
+export const LEGACY_INTENT_OPTIONS = [
+  { value: "migration", label: "The big migrations and crossings" },
+] as const
 
 // ── Step 03 — The rhythm ────────────────────────────────────────────────
 export const PACE_OPTIONS = [
@@ -85,37 +95,22 @@ export const WILDLIFE_OPTIONS = [
   {
     value: "elephants",
     label: "Elephants in large herds",
-    regions: ["Southern Africa", "East Africa"] as const,
-  },
-  {
-    value: "primates",
-    label: "Gorillas or chimpanzees on foot",
-    regions: ["East Africa"] as const,
-  },
-  {
-    value: "migration",
-    label: "The great migration — wildebeest crossings",
-    regions: ["East Africa"] as const,
+    regions: ["Southern Africa"] as readonly string[],
   },
   {
     value: "walking-landscapes",
-    label: "Big walking landscapes — Mana Pools, South Luangwa",
-    regions: ["Southern Africa"] as const,
+    label: "Big landscapes on foot — Hwange, Matobo, Mana Pools",
+    regions: ["Southern Africa"] as readonly string[],
   },
   {
     value: "desert",
     label: "Desert / dune country — Namibia, the Skeleton Coast",
-    regions: ["Southern Africa"] as const,
+    regions: ["Southern Africa"] as readonly string[],
   },
   {
     value: "wetlands",
     label: "Wetland country — the Okavango, the Linyanti",
-    regions: ["Southern Africa"] as const,
-  },
-  {
-    value: "mountain-forest",
-    label: "Mountain or forest — Bwindi, Mahale, the Aberdares",
-    regions: ["East Africa"] as const,
+    regions: ["Southern Africa"] as readonly string[],
   },
   {
     value: "rare-specialist",
@@ -124,6 +119,17 @@ export const WILDLIFE_OPTIONS = [
   },
 ] as const
 export type WildlifeOption = (typeof WILDLIFE_OPTIONS)[number]["value"]
+
+/** Retired wildlife values — not shown in the form, still labelled on old
+ *  briefs. They carry no region hint any more. */
+export const LEGACY_WILDLIFE_OPTIONS = [
+  { value: "primates", label: "Gorillas or chimpanzees on foot" },
+  { value: "migration", label: "The great migration — wildebeest crossings" },
+  {
+    value: "mountain-forest",
+    label: "Mountain or forest — Bwindi, Mahale, the Aberdares",
+  },
+] as const
 
 // ── Step 06 — How long, give or take? ───────────────────────────────────
 export const DURATION_OPTIONS = [
@@ -162,23 +168,24 @@ export type SeasonOption = (typeof SEASON_OPTIONS)[number]["value"]
 
 // ── Step 08 — Comfortable budget per person per night ───────────────────
 // `value` is the persisted tier (matches directory_listings.price_tier
-// enum), plus a `discuss` escape hatch. `label` is the nightly band.
+// enum), plus a `discuss` escape hatch. `label` is the nightly band for
+// lodges only — the vehicle is priced separately.
 export const BUDGET_TIER_OPTIONS = [
   {
     value: "budget",
-    label: "Up to $500 per person per night, all-in",
+    label: "Up to $250 per person per night",
   },
   {
     value: "mid",
-    label: "$500–$1,000 per person per night, all-in",
+    label: "$250–$500 per person per night",
   },
   {
     value: "luxury",
-    label: "$1,000–$2,000 per person per night, all-in",
+    label: "$500–$1,000 per person per night",
   },
   {
     value: "exclusive",
-    label: "$2,000+ per person per night, all-in",
+    label: "$1,000+ per person per night",
   },
   {
     value: "discuss",
@@ -186,6 +193,37 @@ export const BUDGET_TIER_OPTIONS = [
   },
 ] as const
 export type BudgetTierOption = (typeof BUDGET_TIER_OPTIONS)[number]["value"]
+
+// ── Self-drive — Have you driven in Africa before? ──────────────────────
+export const DRIVE_EXPERIENCE_OPTIONS = [
+  { value: "never", label: "Never" },
+  { value: "once-or-twice", label: "Once or twice" },
+  { value: "often", label: "Often" },
+] as const
+export type DriveExperienceOption =
+  (typeof DRIVE_EXPERIENCE_OPTIONS)[number]["value"]
+
+// ── Self-drive — How long are you happy to drive in a day? ──────────────
+export const DRIVE_HOURS_OPTIONS = [
+  {
+    value: "under-3h",
+    label: "Up to three hours — the drive is a means, not the point",
+  },
+  { value: "3-5h", label: "Three to five hours, with stops" },
+  { value: "5h-plus", label: "A long day at the wheel doesn't bother me" },
+] as const
+export type DriveHoursOption = (typeof DRIVE_HOURS_OPTIONS)[number]["value"]
+
+// ── Self-drive — Where are you drawn to? (multi-select) ─────────────────
+export const COUNTRY_OPTIONS = [
+  { value: "zimbabwe", label: "Zimbabwe" },
+  { value: "namibia", label: "Namibia" },
+  { value: "botswana", label: "Botswana" },
+  { value: "zambia", label: "Zambia" },
+  { value: "south-africa", label: "South Africa" },
+  { value: "unsure", label: "Not sure yet — show me" },
+] as const
+export type CountryOption = (typeof COUNTRY_OPTIONS)[number]["value"]
 
 // ── Helpers ─────────────────────────────────────────────────────────────
 
@@ -206,12 +244,31 @@ export function inferRegionsFromWildlife(
   return [...set]
 }
 
-/** Look up a label from a value across any option set. Useful for the
- *  results summary and admin views. */
+type LabelledOption = { value: string; label: string }
+
+/** Retired options per live option set. Keyed by array identity because
+ *  the same value can mean different things in different sets
+ *  (`migration` is both a retired intent and a retired wildlife option). */
+const LEGACY_OPTIONS = new Map<
+  readonly LabelledOption[],
+  readonly LabelledOption[]
+>([
+  [INTENT_OPTIONS, LEGACY_INTENT_OPTIONS],
+  [WILDLIFE_OPTIONS, LEGACY_WILDLIFE_OPTIONS],
+])
+
+/** Look up a label from a value across any option set. Falls back to the
+ *  set's `LEGACY_*` list so retired values still read properly on old
+ *  briefs, then to the raw value. Useful for the results summary and
+ *  admin views. */
 export function labelFor(
-  options: readonly { value: string; label: string }[],
+  options: readonly LabelledOption[],
   value: string | null | undefined,
 ): string | null {
   if (!value) return null
-  return options.find((o) => o.value === value)?.label ?? value
+  return (
+    options.find((o) => o.value === value)?.label ??
+    LEGACY_OPTIONS.get(options)?.find((o) => o.value === value)?.label ??
+    value
+  )
 }
