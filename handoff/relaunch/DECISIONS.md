@@ -57,4 +57,12 @@ Everything here has a working placeholder, so the relaunch built around it. Noth
 | D-44 | The existing live listings Linkwasha and Somalisa are private Hwange concessions self-drivers can't drive into — keep in the collection (as fly-in "set pieces") or retire | Unchanged for now; collection review comes next phase | The collection |
 | D-45 | Lodge photographs: none of the ~45 new stays has a licensed image; cards are typographic until lodges supply images | Typographic cards | Route pages |
 
+| D-46 | The homepage "In season" strip showed Kenya, the Mara and Bwindi, and is out of date | Hidden until there is southern-Africa seasonal data | Homepage |
+| D-47 | Old-direction Field Notes one click from navigation (seasonal guides, Great Migration card, East-vs-Southern) — part of D-07 | Great Migration card removed; footer links to Self-drive guides instead of Seasonal guides; the rest unchanged | Field Notes |
+| D-48 | /destinations/southern-africa still reads as the old directory (mock listings, Kruger, South Luangwa) | Inflated counts and unforgivables removed; needs a full rewrite in Cowork or a merge into /routes | Atlas |
+| D-49 | /contact still published a +44 phone number and an old FAQ | "Based in Victoria Falls"; phone kept pending D-04 | Contact |
+| D-50 | "The collection" category description in the database still says "across Africa … exclusive private reserves" | Code fallbacks updated; database text needs one edit at go-live | The collection |
+| D-51 | Source lists on route pages link to rental companies' pages | Rental-company URLs hidden from the public sources list (kept in research) | Route pages |
+| D-52 | Pre-existing broken links: /field-notes/safety-tips → three missing sub-pages; success-stories breadcrumb; two h1s on bird-watching | Not fixed (outside the relaunch) | Field Notes |
+
 Further entries are added as the team reports them.

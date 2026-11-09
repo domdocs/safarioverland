@@ -95,7 +95,7 @@ describe("Email templates render", () => {
     expect(html).toContain("The big migrations and crossings")
     expect(html).toContain("Gorillas or chimpanzees on foot")
     expect(html).toContain("The great migration — wildebeest crossings")
-    expect(html).not.toContain("Daily drive")
+    expect(html).not.toContain("Hours at the wheel")
   })
 
   test("BriefNotifyEmail includes admin URL and contact email", async () => {

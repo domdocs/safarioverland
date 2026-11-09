@@ -160,10 +160,44 @@ export function getRouteDetail(slug: string): RouteDetail | undefined {
 }
 
 /** Every source URL in a route record, de-duplicated, in first-seen order. */
+/**
+ * STRATEGY §5: the site doesn't name rental companies, so their pages are
+ * left out of the public Sources list. Matched against the host's labels
+ * (hertz.co.za, www.sixt.com). The research data files are unchanged.
+ */
+const RENTAL_HOSTS = [
+  "europcar",
+  "sixt",
+  "drivesouthafrica",
+  "avis",
+  "hertz",
+  "budget",
+  "thrifty",
+  "bushlore",
+  "britz",
+  "maui",
+  "asco",
+  "bidvestcarrental",
+  "firstcarrental",
+  "tempestcarhire",
+  "woodford",
+]
+
+function isRentalHost(url: string): boolean {
+  try {
+    const labels = new URL(url).hostname.toLowerCase().split(".")
+    return labels.some((l) => RENTAL_HOSTS.includes(l))
+  } catch {
+    return false
+  }
+}
+
 export function collectRouteSources(detail: RouteDetail): string[] {
   const seen = new Set<string>()
   const add = (u: unknown) => {
-    if (typeof u === "string" && /^https?:\/\//.test(u.trim())) seen.add(u.trim())
+    if (typeof u !== "string") return
+    const url = u.trim()
+    if (/^https?:\/\//.test(url) && !isRentalHost(url)) seen.add(url)
   }
   detail.sources.forEach(add)
   detail.stays.forEach((s) => s.sources?.forEach(add))

@@ -10,7 +10,6 @@ import { Eyebrow } from "@/components/editorial/eyebrow"
 import { SectionRule } from "@/components/editorial/section-rule"
 import { NumberedList } from "@/components/editorial/numbered-list"
 import { ListingCardEditorial } from "@/components/editorial/listing-card-editorial"
-import { InSeasonStrip } from "@/components/editorial/in-season-strip"
 import { BlendOverlay } from "@/components/editorial/blend-overlay"
 import { PlannerCallTrigger } from "@/components/planner-call/planner-call-trigger"
 import { EditorialImage } from "@/components/editorial/editorial-image"
@@ -64,7 +63,7 @@ const PILLARS = [
   },
   {
     title: "We're at the end of the phone.",
-    body: "A person you can call while you're on the road. Our partners on the ground in Victoria Falls hand over the vehicle, meet you where it helps, and are there if something goes wrong.",
+    body: "A person you can call while you're on the road. Partners on the ground meet you, hand over the vehicle and are there if something goes wrong. The first of them are in Victoria Falls.",
   },
 ]
 
@@ -196,8 +195,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* ─── In-season strip ───────────────────────────────────── */}
-        <InSeasonStrip />
+        {/* In-season strip (InSeasonStrip) hidden pending southern-Africa seasonal data. */}
 
         {/* ─── Plan-with-us card ─────────────────────────────────── */}
         <section className="container py-24 md:py-32">

@@ -170,8 +170,8 @@ export function BriefRow({ brief: initial }: { brief: Brief }) {
             <div className="grid gap-6 md:grid-cols-2 max-w-5xl">
               <div className="space-y-3 text-sm">
                 <Field label="Phone" value={brief.contact_phone} />
-                <Field label="Driven in Africa before" value={driveExperienceLine} />
-                <Field label="Daily drive" value={driveHoursLine} />
+                <Field label="Driven in Africa" value={driveExperienceLine} />
+                <Field label="Hours at the wheel" value={driveHoursLine} />
                 <Field label="Countries" value={countriesLine} />
                 <Field label="Wildlife / landscape" value={wildlifeLine} multiline />
                 <Field label="Quiet markers" value={quietLine} multiline />

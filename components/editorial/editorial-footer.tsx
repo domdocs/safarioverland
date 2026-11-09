@@ -24,7 +24,7 @@ const FIELD_NOTES_COLUMN: FooterColumn[] = [
     label: "Field Notes",
     links: [
       { href: "/field-notes/planning-guides", label: "Planning guides" },
-      { href: "/field-notes/seasonal-guides", label: "Seasonal guides" },
+      { href: "/field-notes/self-drive", label: "Self-drive guides" },
       { href: "/field-notes/conservation", label: "Conservation" },
       { href: "/field-notes/safety-tips", label: "Safety" },
     ],

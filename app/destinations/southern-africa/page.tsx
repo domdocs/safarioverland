@@ -38,17 +38,17 @@ const southernAfricaAttractions = [
     name: "Okavango Delta",
     location: "Botswana",
     description:
-      "The world's largest inland delta creates an oasis in the Kalahari Desert, attracting enormous concentrations of wildlife. This UNESCO World Heritage site offers a unique ecosystem where seasonal floods transform the landscape, creating islands, channels, and floodplains that support incredible biodiversity.",
+      "The world's largest inland delta creates an oasis in the Kalahari Desert, attracting enormous concentrations of wildlife. This UNESCO World Heritage site offers a unique ecosystem where seasonal floods reshape the landscape, creating islands, channels, and floodplains that support a rich range of wildlife.",
     image: null,
-    highlights: ["Mokoro Excursions", "Island Camping", "Exceptional Wildlife", "Bird Paradise"],
+    highlights: ["Mokoro excursions", "Island camping", "Wildlife", "Birding"],
     bestTime: "June to September (peak flood season)",
   },
   {
     name: "Kruger National Park",
     location: "South Africa",
-    description: "One of Africa's oldest and largest protected areas, spanning nearly 20,000 square kilometers of diverse habitats. Home to the Big Five and over 500 bird species, Kruger offers exceptional safari experiences with excellent infrastructure ranging from self-drive options to exclusive luxury lodges.",
+    description: "One of Africa's oldest and largest protected areas, spanning nearly 20,000 square kilometers of diverse habitats. Home to the Big Five and over 500 bird species, Kruger offers exceptional safari experiences with excellent infrastructure ranging from self-drive options to private lodges.",
     image: null,
-    highlights: ["Big Five Viewing", "Self-Drive Options", "Diverse Ecosystems", "Excellent Infrastructure"],
+    highlights: ["Big Five viewing", "Self-drive options", "Varied habitats", "Good roads and camps"],
     bestTime: "May to September (dry season)",
   },
   {
@@ -57,7 +57,7 @@ const southernAfricaAttractions = [
     description:
       "Known locally as 'The Smoke That Thunders,' this UNESCO World Heritage site creates the world's largest curtain of falling water. Beyond the spectacular falls, the surrounding area offers wildlife viewing, adventure activities, and river cruises on the mighty Zambezi.",
     image: null,
-    highlights: ["Spectacular Waterfall", "Adventure Activities", "Zambezi Cruises", "Border Safari Loop"],
+    highlights: ["The Falls", "Adventure activities", "Zambezi cruises", "Border safari loop"],
     bestTime: "February to May (highest water volume), June to August (moderate flow)",
   },
   {
@@ -66,7 +66,7 @@ const southernAfricaAttractions = [
     description:
       "Famous for having one of Africa's highest concentrations of elephants, with herds sometimes exceeding 100 individuals. The Chobe River creates a wildlife magnet during the dry season, offering spectacular boat safaris with unique perspectives on wildlife interactions.",
     image: null,
-    highlights: ["Elephant Herds", "River Safaris", "Predator Action", "Photography Paradise"],
+    highlights: ["Elephant herds", "River safaris", "Predators", "Photography"],
     bestTime: "May to October (dry season)",
   },
   {
@@ -75,7 +75,7 @@ const southernAfricaAttractions = [
     description:
       "A salt and clay pan surrounded by towering red dunes in the heart of the Namib Desert. This otherworldly landscape features some of the world's highest sand dunes, creating a photographer's paradise of geometric shapes, shadows, and contrasting colors against blue skies.",
     image: null,
-    highlights: ["Towering Red Dunes", "Dead Vlei", "Namib Desert Ecology", "Spectacular Photography"],
+    highlights: ["Red dunes", "Deadvlei", "Namib Desert ecology", "Photography"],
     bestTime: "April to October (cooler months, clearer skies)",
   },
   {
@@ -84,7 +84,7 @@ const southernAfricaAttractions = [
     description:
       "The birthplace of walking safaris, offering one of Africa's most authentic wilderness experiences. The Luangwa River sustains exceptional wildlife concentrations, with particularly strong leopard populations and endemic subspecies like Thornicroft's giraffe and Crawshay's zebra.",
     image: null,
-    highlights: ["Walking Safaris", "Leopard Sightings", "Night Drives", "Authentic Bush Camps"],
+    highlights: ["Walking safaris", "Leopard sightings", "Night drives", "Bush camps"],
     bestTime: "June to October (dry season)",
   },
 ]
@@ -92,7 +92,7 @@ const southernAfricaAttractions = [
 // Enhanced wildlife data with more detailed descriptions
 const southernAfricaWildlife = [
   {
-    name: "African Elephant",
+    name: "African elephant",
     description: "Southern Africa is home to the continent's largest populations, particularly in Botswana, Zimbabwe, and northern Namibia.",
     image: "/images/destinations/wildlife/elephant.jpg",
   },
@@ -107,12 +107,12 @@ const southernAfricaWildlife = [
     image: "/images/destinations/wildlife/leopard.jpg",
   },
   {
-    name: "White Rhino",
+    name: "White rhino",
     description: "South Africa protects the vast majority of remaining white rhinos, with good populations in protected reserves and private conservancies.",
     image: "/images/destinations/wildlife/white-rhino.jpg",
   },
   {
-    name: "Cape Buffalo",
+    name: "Cape buffalo",
     description: "Massive herds can be found throughout Southern Africa's savannah regions, making dramatic sightings common.",
     image: "/images/destinations/wildlife/buffalo.jpg",
   },
@@ -126,12 +126,12 @@ const southernAfricaWildlife = [
 // Enhanced seasonal information
 const southernAfricaSeasons = [
   {
-    name: "Dry Season",
+    name: "Dry season",
     months: "May to October",
     weather: "Mild days (18-28°C), cold nights (0-10°C), minimal rainfall",
     wildlife: "Excellent viewing as animals concentrate around water sources. Sparse vegetation improves visibility.",
     crowds: "High season with premium pricing and advance booking required",
-    pros: ["Peak Wildlife Viewing", "Malaria Risk Lower", "Comfortable Daytime Temperatures", "Clear Skies"],
+    pros: ["Peak wildlife viewing", "Lower malaria risk", "Comfortable daytime temperatures", "Clear skies"],
     cons: [
       "Cold nights (especially June/July)",
       "Dusty conditions",
@@ -141,12 +141,12 @@ const southernAfricaSeasons = [
     icon: "sun",
   },
   {
-    name: "Green Season",
+    name: "Green season",
     months: "November to April",
     weather: "Hot days (25-35°C), warm nights (15-20°C), afternoon thunderstorms",
     wildlife: "Lush landscapes, birthing season, migratory birds present. More dispersed wildlife.",
     crowds: "Lower visitor numbers with value pricing available",
-    pros: ["Dramatic Landscapes", "Birthing Season", "Incredible Bird Watching", "Value Pricing"],
+    pros: ["Green landscapes", "Birthing season", "Good birding", "Lower prices"],
     cons: [
       "Higher temperatures and humidity",
       "Afternoon thunderstorms may interrupt activities",
@@ -156,12 +156,12 @@ const southernAfricaSeasons = [
     icon: "cloud",
   },
   {
-    name: "Shoulder Season",
+    name: "Shoulder season",
     months: "November and April",
     weather: "Variable conditions transitioning between seasons",
     wildlife: "Good wildlife viewing with fewer visitors and interesting transitional landscapes",
     crowds: "Moderate visitor numbers with good availability",
-    pros: ["Good Value", "Fewer Visitors", "Interesting Photography", "Pleasant Temperatures"],
+    pros: ["Good value", "Fewer visitors", "Changing light for photography", "Pleasant temperatures"],
     cons: [
       "Unpredictable weather patterns",
       "Some roads may be affected by early/late rains",
@@ -171,12 +171,12 @@ const southernAfricaSeasons = [
     icon: "thermometer",
   },
   {
-    name: "Migration Season",
+    name: "Migration season",
     months: "November to December, March to April",
     weather: "Variable, typically warm with some rainfall",
     wildlife: "Zebra migrations in Botswana, excellent predator action, birthing season for many species",
     crowds: "Moderate visitor numbers in migration areas",
-    pros: ["Unique Wildlife Spectacles", "Dramatic Predator Action", "Good Photography", "Lush Landscapes"],
+    pros: ["Zebra migration", "Predator activity", "Good photography", "Green landscapes"],
     cons: [
       "Limited to specific regions (mainly Botswana)",
       "Weather can be unpredictable",
@@ -193,8 +193,7 @@ const southernAfricaCountries = [
     name: "South Africa",
     description:
       "Home to the iconic Kruger National Park and diverse landscapes from coastal regions to bushveld, South Africa offers exceptional wildlife viewing and infrastructure. The perfect introduction to African safaris with excellent roads, accommodation options for all budgets, and malaria-free reserves ideal for families.",
-    highlights: ["Kruger National Park", "Sabi Sands", "Madikwe", "Eastern Cape Reserves"],
-    listings: 187,
+    highlights: ["Kruger National Park", "Sabi Sands", "Madikwe", "Eastern Cape reserves"],
     flag: "/images/destinations/flags/south-africa.svg",
     // No self-drive page yet (South Africa comes later, STRATEGY §3).
     href: null as string | null,
@@ -202,9 +201,8 @@ const southernAfricaCountries = [
   {
     name: "Botswana",
     description:
-      "Known for its pristine wilderness and conservation-focused tourism, Botswana's Okavango Delta and Chobe National Park offer some of Africa's most exclusive safari experiences. The country's low-impact, high-value tourism model protects vast wilderness areas while providing extraordinary wildlife encounters.",
+      "Known for its pristine wilderness and conservation-focused tourism, Botswana's Okavango Delta and Chobe National Park offer some of Africa's least crowded safari country. The country's low-impact, high-value tourism model protects vast wilderness areas while providing extraordinary wildlife encounters.",
     highlights: ["Okavango Delta", "Chobe", "Moremi", "Kalahari"],
-    listings: 112,
     flag: "/images/destinations/flags/botswana.svg",
     href: "/self-drive/botswana-zambia" as string | null,
   },
@@ -213,7 +211,6 @@ const southernAfricaCountries = [
     description:
       "Characterized by dramatic desert landscapes, Namibia offers unique wildlife adapted to arid conditions, ancient cultures, and striking scenery from Sossusvlei to Etosha. The country pioneered community-based conservation, creating a model where local communities directly benefit from and participate in wildlife protection.",
     highlights: ["Etosha", "Sossusvlei", "Damaraland", "Skeleton Coast"],
-    listings: 98,
     flag: "/images/destinations/flags/namibia.svg",
     href: "/self-drive/namibia" as string | null,
   },
@@ -222,7 +219,6 @@ const southernAfricaCountries = [
     description:
       "From the thundering Victoria Falls to the wildlife-rich Hwange National Park, Zimbabwe combines natural wonders with authentic safari experiences and warm hospitality. The country's exceptional guides are renowned as some of Africa's best, providing in-depth interpretation of the bush.",
     highlights: ["Hwange", "Mana Pools", "Victoria Falls", "Matobo Hills"],
-    listings: 76,
     flag: "/images/destinations/flags/zimbabwe.svg",
     href: "/self-drive/zimbabwe" as string | null,
   },
@@ -333,10 +329,10 @@ export default async function SouthernAfricaPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent">
               <div className="absolute bottom-0 left-0 p-6 md:p-10 max-w-3xl">
                 <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                  Southern Africa Safari Destinations
+                  Southern Africa safari destinations
                 </h1>
                 <p className="text-xl text-white/90 mb-6">
-                  Explore iconic wildlife experiences from the Okavango Delta to Kruger National Park and the breathtaking Victoria Falls
+                  Explore iconic wildlife experiences from the Okavango Delta to Kruger National Park and Victoria Falls
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Badge variant="outline" className="bg-white/10 text-white border-white/30 px-3 py-1 text-sm">
@@ -346,10 +342,10 @@ export default async function SouthernAfricaPage() {
                     Victoria Falls
                   </Badge>
                   <Badge variant="outline" className="bg-white/10 text-white border-white/30 px-3 py-1 text-sm">
-                    Big Five Safari
+                    Big Five safari
                   </Badge>
                   <Badge variant="outline" className="bg-white/10 text-white border-white/30 px-3 py-1 text-sm">
-                    Desert Landscapes
+                    Desert landscapes
                   </Badge>
                 </div>
               </div>
@@ -361,21 +357,21 @@ export default async function SouthernAfricaPage() {
       {/* Introduction */}
       <section className="mb-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6 text-center">The Heart of African Safari Experiences</h2>
+          <h2 className="text-3xl font-bold mb-6 text-center">The heart of African safari experiences</h2>
           <div className="prose prose-lg max-w-none">
             <p>
               Southern Africa represents the quintessential African safari destination, where pristine wilderness areas, 
               abundant wildlife, and diverse ecosystems combine to create unparalleled safari experiences. From the 
               water-rich Okavango Delta to the dramatic dunes of Namibia and the iconic Kruger National Park, this 
-              region offers an incredible variety of landscapes and wildlife encounters.
+              region offers a wide variety of landscapes and wildlife encounters.
             </p>
             <p>
-              With well-developed tourism infrastructure in countries like South Africa, exclusive private concessions 
+              With well-developed tourism infrastructure in countries like South Africa, private concessions 
               in Botswana, and emerging destinations like Zambia and Zimbabwe, Southern Africa caters to all types of 
               safari travelers—from first-timers to seasoned safari enthusiasts seeking authentic wilderness experiences.
             </p>
             <p>
-              The region is renowned for its exceptional Big Five viewing opportunities, unique experiences like mokoro excursions in the Okavango Delta, and the breathtaking Victoria Falls – one of the Seven Natural Wonders of the World. Whether you're seeking luxury lodges, self-drive adventures, or authentic camping safaris, Southern Africa offers unmatched diversity and quality of safari experiences.
+              The region is renowned for its exceptional Big Five viewing opportunities, unique experiences like mokoro excursions in the Okavango Delta, and Victoria Falls – one of the Seven Natural Wonders of the World. Whether you want a lodge at the end of each day, a self-drive route or a camping safari, the region has room for it.
             </p>
           </div>
         </div>
@@ -383,7 +379,7 @@ export default async function SouthernAfricaPage() {
 
       {/* Key Attractions Section */}
       <section className="mb-16">
-        <h2 className="text-3xl font-bold mb-8 text-center">Iconic Destinations</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center">Iconic destinations</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {southernAfricaAttractions.map((attraction) => (
             <Card key={attraction.name} className="overflow-hidden h-full hover:shadow-lg transition-all duration-300">
@@ -423,7 +419,7 @@ export default async function SouthernAfricaPage() {
       
       {/* Wildlife Showcase */}
       <section className="mb-16 bg-muted p-8 rounded-xl">
-        <h2 className="text-3xl font-bold mb-8 text-center">Iconic Wildlife</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center">Iconic wildlife</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
           {southernAfricaWildlife.map((animal) => (
             <div key={animal.name} className="text-center">
@@ -440,7 +436,7 @@ export default async function SouthernAfricaPage() {
 
       {/* Countries Section */}
       <section className="mb-16">
-        <h2 className="text-3xl font-bold mb-8 text-center">Southern African Countries</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center">Southern African countries</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {southernAfricaCountries.map((country) => (
             <Card key={country.name} className="overflow-hidden h-full hover:shadow-lg transition-all duration-300">
@@ -484,7 +480,7 @@ export default async function SouthernAfricaPage() {
 
       {/* Seasons Section */}
       <section className="mb-16">
-        <h2 className="text-3xl font-bold mb-8 text-center">When to Visit Southern Africa</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center">When to visit Southern Africa</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {southernAfricaSeasons.map((season) => (
             <Card key={season.name} className="h-full hover:shadow-lg transition-all duration-300">
@@ -501,7 +497,7 @@ export default async function SouthernAfricaPage() {
                   <p className="text-sm text-muted-foreground">{season.weather}</p>
                 </div>
                 <div className="mb-4">
-                  <p className="font-medium mb-1">Wildlife Viewing</p>
+                  <p className="font-medium mb-1">Wildlife viewing</p>
                   <p className="text-sm text-muted-foreground">{season.wildlife}</p>
                 </div>
                 <div className="mb-4">
@@ -540,16 +536,16 @@ export default async function SouthernAfricaPage() {
       <section>
         <div className="bg-primary text-white p-8 md:p-12 rounded-xl">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Plan Your Southern Africa Safari Adventure</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">Plan your Southern Africa safari</h2>
             <p className="mb-6">
-              Discover our curated selection of tours, accommodations, and safari experiences across Southern Africa. From luxury lodges to self-drive adventures, we have options to match your dream safari.
+              Browse our curated selection of tours, accommodations, and safari experiences across Southern Africa. From lodges to self-drive routes, we can help you plan the trip.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="secondary" size="lg">
-                Browse Southern Africa Safaris
+                Browse Southern Africa safaris
               </Button>
               <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white/10" size="lg">
-                Contact a Safari Specialist
+                Contact a safari specialist
               </Button>
             </div>
           </div>

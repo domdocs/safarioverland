@@ -205,7 +205,9 @@ const ZIMBABWE: RouteEditorial = {
     "the-elephant-camp": { stepUp: true },
     "the-hide": { accessLabel: "4×4 only, or a transfer from Main Camp" },
     "davisons-camp": { stepUp: true, accessLabel: "Park and transfer: hand over the keys" },
-    "camelthorn-lodge": { accessLabel: "Park-and-transfer, by arrangement" },
+    // Research: parking at Halfway House unconfirmed; "do not sell as
+    // park-and-transfer until Imvelo confirms" (D-42).
+    "camelthorn-lodge": { accessLabel: "Park-and-transfer, by arrangement", unverified: true },
     "bulawayo-club": {
       rateOnRequest: true,
       setsItApart: "A members' club in the city centre, with a library, a garden and fifteen en-suite rooms.",
@@ -214,6 +216,11 @@ const ZIMBABWE: RouteEditorial = {
       activities: [],
     },
     "travellers-guest-house-bulawayo": { rateOnRequest: true },
+    // Research sets_it_apart has the lounge, not a bar, round the boulder.
+    "big-cave-camp": {
+      whyWeListIt:
+        "Owner-run, ten chalets on a whaleback of granite, with the lounge built round a boulder and trees coming up through the thatch. Rhino tracking in the park goes out with licensed guides, at a lower price than Amalinda.",
+    },
   },
   beforeYouGo: [
     {
@@ -227,7 +234,7 @@ const ZIMBABWE: RouteEditorial = {
     },
     {
       heading: "Borders on this route",
-      body: "None. You arrive at Victoria Falls and fly out from Bulawayo. Join the route to the four corners and the Botswana crossing applies.",
+      body: "None. You arrive at Victoria Falls and fly out from Bulawayo. Join the route to the four corners and the Botswana crossing applies: you return this vehicle first, cross at Kazungula as a passenger, and collect another in Kasane.",
     },
     {
       heading: "Money and fuel",
@@ -248,7 +255,7 @@ const ZIMBABWE: RouteEditorial = {
     "The Imvelo version of Hwange: swap The Hide for Camelthorn Lodge, and meet the guide at Halfway House on the A8, which is on the way to Bulawayo.",
     "Hand over the keys: leave the car under guard at Ngweshla and spend the deep-Hwange nights at Davison's Camp, with the camp's guides.",
     "Shorter, at 8–9 nights: the Falls two, Hwange three at one camp, Bulawayo one, the Matobo two.",
-    "Falls, both ways: join the four corners, through Chobe and the Zambezi Region, before or after this route.",
+    "Falls, both ways: join the four corners, through Chobe and the Zambezi Region, before or after this route. The Zimbabwe vehicle stays in Zimbabwe and is returned before you cross at Kazungula; the four-corners vehicle is collected in Kasane.",
   ],
   fieldNotes: [
     "namibia-or-zimbabwe-first",
@@ -464,7 +471,8 @@ const NAMIBIA: RouteEditorial = {
     "etango-ranch-guest-farm": { unverified: true },
     "kulala-desert-lodge": { stepUp: true },
     "the-delight-swakopmund": { activities: ["The Living Desert tour, booked for you"] },
-    "strand-hotel-swakopmund": { activities: ["The Living Desert tour, booked for you"] },
+    // Research rate is undated; STRATEGY §5 wants a year on every rate.
+    "strand-hotel-swakopmund": { rateOnRequest: true, activities: ["The Living Desert tour, booked for you"] },
     "damaraland-camp": { stepUp: true },
     "grootberg-lodge": { rateNote: "to be confirmed" },
     "okonjima-plains-camp": { activities: ["Leopard tracking, sightings not guaranteed"] },
@@ -483,7 +491,7 @@ const NAMIBIA: RouteEditorial = {
     },
     {
       heading: "Borders on this route",
-      body: "None: the route stays inside Namibia. The longer version that runs on to Victoria Falls needs the rental company's written permission to cross, and road charges at each border.",
+      body: "None: the route stays inside Namibia. The longer version that runs on towards Victoria Falls needs the rental company's written permission to cross into Botswana, and road charges at each border. That drive ends in Kasane, where the vehicle is returned, and a road transfer takes you on to Victoria Falls.",
     },
     {
       heading: "Gravel",
@@ -507,7 +515,7 @@ const NAMIBIA: RouteEditorial = {
   variants: [
     "Shorter, at 12 nights: drive from Windhoek straight to Sesriem, spend one night in Swakopmund rather than two, and one at each end of Etosha. It loses the slack days, and we wouldn't suggest it for a first time on gravel.",
     "The Waterberg instead of Okonjima: the Waterberg Plateau Park, near Otjiwarongo, works as the last night before Windhoek.",
-    "Windhoek to the Falls: from eastern Etosha, go on north-east to the Zambezi Region and Victoria Falls rather than back to Windhoek, joining the four corners. It adds roughly five to seven nights.",
+    "Windhoek to the Falls: from eastern Etosha, go on north-east through the Zambezi Region rather than back to Windhoek, joining the four corners. The drive ends in Kasane, where the vehicle is returned, with a road transfer to Victoria Falls. It adds roughly five to seven nights.",
     "More Damaraland: a night at Palmwag, or a second at Twyfelfontein, for desert elephant, and less pressure on the long day 7.",
   ],
   fieldNotes: ["gravel-roads", "choosing-a-vehicle", "fuel-cash-and-signal", "namibia-or-zimbabwe-first"],
@@ -553,6 +561,7 @@ const FOUR_CORNERS: RouteEditorial = {
       drive: "1–1.5 hours to Kasane by road transfer, then about an hour's drive",
       distance: "80–90 km to Kasane, then about 60 km west",
       surface: "Tar",
+      estimate: true,
       notes:
         "A road transfer takes you over the Kazungula border to Kasane as a passenger, and you collect the vehicle there. An afternoon boat on the Chobe from Kasane, then a full day in Chobe National Park. Muchenje is on the quieter western riverfront, close to the Ngoma border.",
     },
@@ -604,11 +613,24 @@ const FOUR_CORNERS: RouteEditorial = {
   ],
   stays: {
     "vic-falls-victoria-falls-safari-lodge": { accessLabel: "No car needed: a shuttle to the Falls" },
-    "vic-falls-ilala-lodge": { accessLabel: "No car needed: a walk to the Falls", rateOnRequest: true },
+    // Research: walking distance and everything beyond the rate unverified.
+    "vic-falls-ilala-lodge": {
+      accessLabel: "No car needed: a walk to the Falls",
+      rateOnRequest: true,
+      unverified: true,
+      whyWeListIt:
+        "For travellers who would rather walk to the Falls than be driven. A town hotel rather than a safari lodge, and the right price for the first two nights of a long trip.",
+    },
     "muchenje-safari-lodge": { accessLabel: "Arrival by arrangement" },
     "chobe-game-lodge": { accessLabel: "Arrival by arrangement", stepUp: true },
-    "nambwa-tented-lodge": { stepUp: true },
+    // Research rate came from a badly extracted rate card.
+    "nambwa-tented-lodge": { stepUp: true, rateOnRequest: true },
     "nunda-river-lodge": { rateOnRequest: true },
+    // Research: spa, ownership and activities not confirmed with the lodge.
+    "divava-okavango-lodge": {
+      whyWeListIt:
+        "The more comfortable alternative at Divundu, for travellers who want a better room after a week on the road. Popa Falls is a short boat ride away.",
+    },
   },
   borders: {
     lede: "Hours are as of the date shown; confirm before travel. The road book carries the current charges at each post.",
@@ -664,7 +686,7 @@ const FOUR_CORNERS: RouteEditorial = {
     "Without the panhandle, at 8 nights: the Falls two, Chobe two, the Kwando two, Nkasa Rupara two, then back by way of Ngoma and Kasane. Less driving, more time on the water.",
     "Out through Zambia: return the vehicle in Kasane and go on by road transfer over the Kazungula Bridge to Livingstone, for a night or two on the Zambian bank of the Zambezi (Tongabezi, upstream of the Falls, is one we'd book, above our usual price), then over the Victoria Falls Bridge into Zimbabwe.",
     "The Botswana panhandle: from Divundu through Mahango to the Mohembo border, and on to Shakawe on the Okavango, returning the same way. Two more borders; the places to stay are still being chosen.",
-    "Falls, both ways: join this route to Victoria Falls, Hwange and the Matobo.",
+    "Falls, both ways: join this route to Victoria Falls, Hwange and the Matobo. This vehicle is returned in Kasane, and a separate one collected in Zimbabwe for that route.",
     "Windhoek to the Falls: come in from Namibia along the B8 through Rundu and Divundu, joining this route at day 7.",
   ],
   fieldNotes: [

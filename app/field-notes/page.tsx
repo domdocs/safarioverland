@@ -74,7 +74,7 @@ const PILLARS: Pillar[] = [
   {
     href: "/field-notes/seasonal-guides",
     label: "Seasonal",
-    lede: "When to go, region by region. Migration timing, weather windows, shoulder months.",
+    lede: "When to go, region by region. Weather windows, dry and green seasons, shoulder months.",
     icon: Calendar,
   },
 ]
@@ -94,13 +94,6 @@ const ARTICLES = [
     title: "Reading wildlife behaviour",
     lede: "The single most useful safety skill on safari is reading what an animal is telling you.",
     image: "/images/destinations/wildlife/lion.jpg",
-  },
-  {
-    href: "/field-notes/seasonal-guides/great-migration",
-    eyebrow: "Seasonal · 05 min",
-    title: "The Great Migration, by month",
-    lede: "Where the herds are now, where they'll be in eight weeks, when the crossings happen.",
-    image: "/images/seasonal-guides/kenya-migration.jpg",
   },
 ]
 
@@ -262,7 +255,7 @@ export default async function ResourcesPage() {
           </Link>
         </div>
 
-        <div className="grid gap-12 md:grid-cols-3">
+        <div className="grid gap-12 md:grid-cols-2">
           {ARTICLES.map((a, i) => (
             <Link
               key={a.href}

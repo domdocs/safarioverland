@@ -153,15 +153,15 @@ export default function AboutPage() {
           </div>
           <div className="lg:col-span-7 space-y-6 text-bone-mute leading-relaxed">
             <p>
-              Our routes begin at Victoria Falls — Mosi-oa-Tunya, the smoke that
-              thunders — where Zimbabwe, Zambia, Botswana and Namibia sit within a
-              day&apos;s drive of each other. It&apos;s where our partners on the
-              ground are.
+              Two of our routes begin at Victoria Falls — Mosi-oa-Tunya, the smoke
+              that thunders — where Zimbabwe, Zambia, Botswana and Namibia sit within
+              a day&apos;s drive of each other. It&apos;s where the first of our
+              partners on the ground are.
             </p>
             <p>
-              They hand over your vehicle, walk you through the road book, meet you
-              at a border where it helps, and are the people who come if something
-              goes wrong. When a partner is signed in another hub, we&apos;ll name
+              Partners on the ground meet you, hand over the vehicle, walk you
+              through the road book, and are the people who come if something goes
+              wrong. When a partner is signed in another hub, we&apos;ll name
               the town here, and not before.
             </p>
           </div>

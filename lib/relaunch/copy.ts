@@ -60,7 +60,7 @@ export const ROUTES_INDEX = {
       {
         title: "We're on the phone.",
         // [support line hours]: D-04.
-        body: "While you're on the road there's a person to call, [support line hours]. Our partners on the ground in Victoria Falls hand over the vehicle and are the backup if something goes wrong.",
+        body: "While you're on the road there's a person to call, [support line hours]. Partners on the ground meet you, hand over the vehicle and are the backup if something goes wrong. The first of them are in Victoria Falls.",
       },
     ],
     closing:
@@ -82,7 +82,7 @@ export const ROUTE_DETAIL = {
   },
   stay: {
     heading: "Where you stay",
-    lede: "The camps and lodges we'd book on this route. Each one is in the collection, and each can be swapped.",
+    lede: "The camps and lodges we'd book on this route. Places we'd send a friend to, chosen for what they give you at the end of a day's drive. Each can be swapped.",
     alternativesLabel: "Or",
     ratesNote:
       "Rates are indicative, from, per person sharing per night, in the year shown. They change with the season and are confirmed only when we hold your nights. “A step up” marks places above our usual price band that we think are worth it.",

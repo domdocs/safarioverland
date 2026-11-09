@@ -73,11 +73,11 @@ export function BriefReceivedEmail({ brief }: Props) {
           value={labelFor(PACE_OPTIONS, brief.pace) ?? brief.rhythm}
         />
         <Field
-          label="Driven in Africa before"
+          label="Driven in Africa"
           value={labelFor(DRIVE_EXPERIENCE_OPTIONS, brief.drive_experience)}
         />
         <Field
-          label="Daily drive"
+          label="Hours at the wheel"
           value={labelFor(DRIVE_HOURS_OPTIONS, brief.drive_hours)}
         />
         <Field label="Countries" value={countriesLine} />
