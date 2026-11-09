@@ -12,7 +12,7 @@ describe("CategoryEmptyState", () => {
     expect(screen.getByTestId("category-empty-state")).toBeTruthy()
     expect(
       screen.getByTestId("category-empty-state-headline").textContent,
-    ).toContain("No properties on the kept list here yet.")
+    ).toContain("Nothing here yet.")
 
     const cta = screen.getByTestId("category-empty-state-cta")
     expect(cta.getAttribute("href")).toBe("/plan")

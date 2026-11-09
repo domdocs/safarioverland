@@ -313,6 +313,46 @@ export const FIELD_NOTE_DATES: Record<string, FieldNoteDates> = {
     "datePublished": "2026-05-20",
     "dateModified": "2026-05-20",
     "editorId": "editor-niels"
+  },
+  "/field-notes/self-drive": {
+    "datePublished": "2026-11-09",
+    "dateModified": "2026-11-09",
+    "editorId": "editor-niels"
+  },
+  "/field-notes/self-drive/after-dark-and-wildlife-on-the-road": {
+    "datePublished": "2026-11-09",
+    "dateModified": "2026-11-09",
+    "editorId": "editor-niels"
+  },
+  "/field-notes/self-drive/border-crossings": {
+    "datePublished": "2026-11-09",
+    "dateModified": "2026-11-09",
+    "editorId": "editor-niels"
+  },
+  "/field-notes/self-drive/choosing-a-vehicle": {
+    "datePublished": "2026-11-09",
+    "dateModified": "2026-11-09",
+    "editorId": "editor-niels"
+  },
+  "/field-notes/self-drive/driving-on-the-left": {
+    "datePublished": "2026-11-09",
+    "dateModified": "2026-11-09",
+    "editorId": "editor-niels"
+  },
+  "/field-notes/self-drive/fuel-cash-and-signal": {
+    "datePublished": "2026-11-09",
+    "dateModified": "2026-11-09",
+    "editorId": "editor-niels"
+  },
+  "/field-notes/self-drive/gravel-roads": {
+    "datePublished": "2026-11-09",
+    "dateModified": "2026-11-09",
+    "editorId": "editor-niels"
+  },
+  "/field-notes/self-drive/namibia-or-zimbabwe-first": {
+    "datePublished": "2026-11-09",
+    "dateModified": "2026-11-09",
+    "editorId": "editor-niels"
   }
 } as const
 

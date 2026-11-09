@@ -154,17 +154,18 @@ export const SEASON_OPTIONS = [
     lede: "Quieter, lush, fewer animals at waterholes.",
   },
   {
-    value: "migration-window",
-    label: "Migration windows",
-    lede: "Specific to East Africa.",
-  },
-  {
     value: "no-preference",
     label: "No preference",
     lede: "Work it around our months.",
   },
 ] as const
 export type SeasonOption = (typeof SEASON_OPTIONS)[number]["value"]
+
+/** Retired season values — not shown in the form, still labelled on old
+ *  briefs. `migration-window` was East Africa only. */
+export const LEGACY_SEASON_OPTIONS = [
+  { value: "migration-window", label: "Migration windows" },
+] as const
 
 // ── Step 08 — Comfortable budget per person per night ───────────────────
 // `value` is the persisted tier (matches directory_listings.price_tier
@@ -196,9 +197,9 @@ export type BudgetTierOption = (typeof BUDGET_TIER_OPTIONS)[number]["value"]
 
 // ── Self-drive — Have you driven in Africa before? ──────────────────────
 export const DRIVE_EXPERIENCE_OPTIONS = [
-  { value: "never", label: "Never" },
+  { value: "never", label: "Never — this would be my first time" },
   { value: "once-or-twice", label: "Once or twice" },
-  { value: "often", label: "Often" },
+  { value: "often", label: "Often — I know the roads" },
 ] as const
 export type DriveExperienceOption =
   (typeof DRIVE_EXPERIENCE_OPTIONS)[number]["value"]
@@ -207,10 +208,15 @@ export type DriveExperienceOption =
 export const DRIVE_HOURS_OPTIONS = [
   {
     value: "under-3h",
-    label: "Up to three hours — the drive is a means, not the point",
+    label: "Under three hours",
+    lede: "The drive is a means, not the point.",
   },
-  { value: "3-5h", label: "Three to five hours, with stops" },
-  { value: "5h-plus", label: "A long day at the wheel doesn't bother me" },
+  { value: "3-5h", label: "Three to five hours", lede: "With stops along the way." },
+  {
+    value: "5h-plus",
+    label: "Five hours or more",
+    lede: "A long day at the wheel doesn't bother me.",
+  },
 ] as const
 export type DriveHoursOption = (typeof DRIVE_HOURS_OPTIONS)[number]["value"]
 
@@ -255,6 +261,7 @@ const LEGACY_OPTIONS = new Map<
 >([
   [INTENT_OPTIONS, LEGACY_INTENT_OPTIONS],
   [WILDLIFE_OPTIONS, LEGACY_WILDLIFE_OPTIONS],
+  [SEASON_OPTIONS, LEGACY_SEASON_OPTIONS],
 ])
 
 /** Look up a label from a value across any option set. Falls back to the

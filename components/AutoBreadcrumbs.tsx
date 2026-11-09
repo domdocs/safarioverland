@@ -35,6 +35,15 @@ export function AutoBreadcrumbs({
   // those paths — reserved slugs are the static level-3 pages
   // (planning-guides, conservation, etc.) which still want the auto trail.
   const segments = pathname.split("/").filter(Boolean)
+  // Self-drive guides (/field-notes/self-drive/<slug>) also render their
+  // own trail with the guide's title.
+  if (
+    segments.length === 3 &&
+    segments[0] === "field-notes" &&
+    segments[1] === "self-drive"
+  ) {
+    return null
+  }
   if (
     segments.length === 2 &&
     segments[0] === "field-notes" &&

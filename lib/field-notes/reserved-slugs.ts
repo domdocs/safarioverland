@@ -13,4 +13,5 @@ export const RESERVED_ARTICLE_SLUGS = [
   "planning-guides",
   "safety-tips",
   "seasonal-guides",
+  "self-drive",
 ] as const

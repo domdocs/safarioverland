@@ -102,8 +102,8 @@ const STEPS = [
   { key: "when", title: "When could you travel?", lede: "Months shape season, game-viewing, climate." },
   { key: "intent", title: "What kind of trip are you chasing?", lede: `Pick up to ${INTENT_MAX}.` },
   { key: "pace", title: "The rhythm.", lede: "How busy should the days feel?" },
-  { key: "drive_experience", title: "Have you driven in Africa before?", lede: "It changes how we pace the first few days." },
-  { key: "drive_hours", title: "How long are you happy to drive in a day?", lede: "Be honest — it shapes the whole route." },
+  { key: "drive_experience", title: "Have you driven in Africa before?", lede: "No wrong answer. It tells us how much to put in the road book." },
+  { key: "drive_hours", title: "How long are you happy to drive in a day?", lede: "We'll keep most days inside it, and tell you about any that aren't." },
   { key: "countries", title: "Where are you drawn to?", lede: "Pick as many as you like." },
   { key: "quiet", title: "The kind of quiet you want.", lede: "Optional. The texture more than the substance." },
   { key: "wildlife", title: "The wildlife or landscape you're after.", lede: "The specifics anchor everything." },
@@ -194,6 +194,13 @@ export function TripBuilderForm() {
           intent: liveOnly(parsed.intent, INTENT_OPTIONS),
           wildlife_priorities: liveOnly(parsed.wildlife_priorities, WILDLIFE_OPTIONS),
           countries: liveOnly(parsed.countries, COUNTRY_OPTIONS),
+          // A retired season value (e.g. migration-window) saved before the
+          // relaunch is dropped so the step asks again.
+          season_preference: SEASON_OPTIONS.some(
+            (o) => o.value === parsed.season_preference,
+          )
+            ? parsed.season_preference
+            : "",
         })
       }
     } catch {
@@ -283,7 +290,7 @@ export function TripBuilderForm() {
       })
       const data = await res.json().catch(() => ({}))
       if (!res.ok) {
-        setError(data.message || data.error || `Submission failed (HTTP ${res.status})`)
+        setError(data.message || "Something went wrong sending that. Your answers are saved — try again in a moment.")
         setSubmitting(false)
         return
       }
@@ -334,7 +341,7 @@ export function TripBuilderForm() {
 
       router.push("/plan/sent")
     } catch {
-      setError("Network error. Try again?")
+      setError("Something went wrong sending that. Your answers are saved — try again in a moment.")
       setSubmitting(false)
     }
   }
@@ -391,7 +398,7 @@ export function TripBuilderForm() {
           </ol>
           {hydrated && (
             <p className="mt-12 mono text-bone-mute text-[11px]">
-              Saved locally. Close the tab and pick up where you left off.
+              Brief saved. Continue when you&apos;re ready.
             </p>
           )}
         </div>
@@ -612,6 +619,7 @@ export function TripBuilderForm() {
                           <Check className="h-4 w-4 text-amber ml-auto shrink-0" aria-hidden />
                         )}
                       </div>
+                      <p className="mt-1 text-bone-mute">{opt.lede}</p>
                     </button>
                   </li>
                 )
@@ -986,12 +994,12 @@ function ReviewSummary({
       stepIdx: stepIndex("pace"),
     },
     {
-      label: "Driven before",
+      label: "Driven in Africa",
       value: labelFor(DRIVE_EXPERIENCE_OPTIONS, state.drive_experience),
       stepIdx: stepIndex("drive_experience"),
     },
     {
-      label: "Daily drive",
+      label: "Hours at the wheel",
       value: labelFor(DRIVE_HOURS_OPTIONS, state.drive_hours),
       stepIdx: stepIndex("drive_hours"),
     },

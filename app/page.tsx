@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
 
@@ -17,23 +18,29 @@ import { Button } from "@/components/ui/button"
 import { getFeaturedListings } from "@/lib/listings"
 import { getSettings } from "@/lib/settings"
 import { ROUTES } from "@/lib/relaunch/routes"
+import { CAN_I } from "@/lib/relaunch/copy"
 
 export const revalidate = 60
 
 // ─── Homepage copy ───────────────────────────────────────────────
-// Draft copy from handoff/briefs/2026-11-SELF_DRIVE_PHASE_1.md (PR A).
-// Every user-facing string for the relaunch sections lives in these
-// consts so the copywriter's final copy can be swapped in without
-// touching the markup.
+// Copy from handoff/relaunch/copy/SITE_COPY.md §1 (draft for Dom's
+// approval, D-10). Every user-facing string for the relaunch sections
+// lives in these consts so copy changes don't touch the markup.
+
+export const metadata: Metadata = {
+  title: { absolute: "Self-drive safari in southern Africa | Safari Overland" },
+  description:
+    "Self-drive safaris in Zimbabwe, Namibia, Botswana and Zambia. Drive yourself, sleep in camps and lodges, not a rooftop tent. We draw the route and book it.",
+}
 
 const HERO = {
   eyebrow: "Self-drive · southern Africa",
   // Headline stays "Africa, slowly." — rendered in markup with the
   // amber italic word.
   subhead:
-    "Self-drive journeys through southern Africa, staying at camps and lodges that give you more than a bed. We plan the route, book every night, and stay at the end of the phone while you're on the road.",
+    "Drive yourself through southern Africa, and end each day at a camp or lodge that gives you more than a bed. We draw the route, book the nights and the vehicle, and stay at the end of the phone while you're on the road.",
   primaryCta: "Start a brief →",
-  secondaryCta: "Open the collection",
+  secondaryCta: "See the routes",
 }
 
 const OFFER = {
@@ -43,81 +50,92 @@ const OFFER = {
 }
 
 // The offer, in the house structure of three.
-// Partner towns: name only the hubs where a partner on the ground is
-// signed. Victoria Falls is in place. Add Windhoek and Maun to pillar
-// 03 only once their partners are confirmed.
+// Partner towns (D-02): name only towns where a partner on the ground
+// is signed. Victoria Falls only, for now. Add Windhoek, then Maun or
+// Kasane, to pillar 03 when Dom confirms them.
 const PILLARS = [
   {
     title: "We draw the route.",
-    body: "Every drive timed, every road surface named, fuel and border crossings and park gate times worked out before you leave. It arrives as a road book, in print and offline on your phone.",
+    body: "Drive times given as honest ranges, the road surface named for each stretch, and the fuel, border crossings and park gate times worked out before you leave. It comes to you as a road book, in print and offline on your phone.",
   },
   {
-    title: "We book every night, and the vehicle.",
-    body: "Camps and lodges we'd send our friends to, chosen for what they give you at the end of a day's drive. A vehicle suited to the roads, not a camper you'll never unpack.",
+    title: "We book the nights, and the vehicle.",
+    body: "Camps and lodges we'd send our friends to, chosen for what waits at the end of a day's drive: a guide who can read a track, a hide at a waterhole, a fire. And a 4×4 or SUV matched to the roads, not a camper you'll never unpack.",
   },
   {
     title: "We're at the end of the phone.",
-    body: "A person you can call while you're on the road, and partners on the ground in Victoria Falls who hand over your vehicle and are there if something goes wrong.",
+    body: "A person you can call while you're on the road. Our partners on the ground in Victoria Falls hand over the vehicle, meet you where it helps, and are there if something goes wrong.",
   },
 ]
 
 const ROUTES_TEASER = {
-  eyebrow: "Routes",
-  // Headline: "Three routes, drawn by hand." (amber italic on "drawn")
-  headlineLead: "Three routes,",
-  headlineAccent: "drawn",
-  headlineTail: " by hand.",
-  lede: "Each one can be stretched, shortened or joined to another. Start from one, and we'll redraw it around you.",
+  eyebrow: "Where we drive",
+  // Headline: "Three routes to start from." (amber italic on "start")
+  headlineLead: "Three routes to",
+  headlineAccent: "start",
+  headlineTail: " from.",
+  lede: "Each one is a shape, not a package. Lengthen it, shorten it, join two together. We draw the final version around your dates.",
   allLink: "All routes →",
+  cardLink: "See the route →",
 }
 
-const CAN_I = {
-  eyebrow: "Before you ask",
-  // Headline: "Yes, you can drive this." (amber italic on "drive")
-  headlineLead: "Yes, you can",
-  headlineAccent: "drive",
-  headlineTail: " this.",
-  items: [
-    {
-      title: "The roads",
-      body: "Mostly tar and good gravel. You need a 4×4 where it matters, not everywhere, and the road book tells you which is which.",
-    },
-    {
-      title: "Driving on the left",
-      body: "It takes a morning to settle in. For American travellers we ask for an automatic gearbox, and you'll want an International Driving Permit.",
-    },
-    {
-      title: "Borders",
-      body: "We prepare the paperwork before you leave. Our partners on the ground meet you at a crossing where it helps.",
-    },
-    {
-      title: "Wildlife and the dark",
-      body: "You don't drive after sunset. Park gate times make sure of it, and so does the way we draw each day.",
-    },
+// "Can I do this?" (deck §1.3) is shared with the /self-drive landing
+// pages, so it lives in lib/relaunch/copy.ts.
+
+const BY_HAND = {
+  eyebrow: "By hand — open",
+  // Headline: "A route, drawn by hand." (amber italic on "by hand")
+  subhead:
+    "Tell us how you like to travel and how long you're happy at the wheel. We'll come back with three routes within 48 hours.",
+  primaryCta: "Start a brief →",
+  secondaryCta: "Speak to a planner",
+  stepsEyebrow: "How it works — in three steps",
+  steps: [
+    ["01", "You tell us the months, the pace, and how far you like to drive."],
+    ["02", "We draw three routes — at different paces and budgets."],
+    ["03", "You pick one. We book it and send the road book."],
   ],
 }
 
+const FEATURED = {
+  eyebrow: "From the collection",
+  headline: "A few we'd send our friends to.",
+  link: "Open the collection →",
+}
+
+const FIELD_NOTES_BLOCK = {
+  eyebrow: "Field Notes",
+  // Headline: "What to read before you drive." (amber italic on "drive")
+  headlineLead: "What to read before you",
+  headlineAccent: "drive",
+  headlineTail: ".",
+  link: "All Field Notes →",
+}
+
+// Three of the self-drive planning guides (handoff/relaunch/copy/field-notes).
+// Titles, ledes and eyebrows from each guide's frontmatter. Images are
+// existing site images, never public/rentals.jpg (rooftop tent).
 const FIELD_NOTES = [
   {
-    href: "/field-notes/planning-guides/east-vs-southern",
-    eyebrow: "Planning · 04 min",
-    title: "East vs Southern Africa",
-    lede: "Two extraordinary safari regions, two different experiences. A direct comparison on landscapes, game viewing, and cost.",
-    image: "/images/planning-guides/destinations/east-vs-southern.jpg",
+    href: "/field-notes/self-drive/namibia-or-zimbabwe-first",
+    eyebrow: "Self-drive · 7 min",
+    title: "Namibia or Zimbabwe for your first self-drive",
+    lede: "An honest comparison of Namibia and Zimbabwe for a first lodge-based self-drive in southern Africa, and where Botswana fits.",
+    image: "/images/about/zimbabwe.jpg",
   },
   {
-    href: "/field-notes/planning-guides/luxury-vs-budget",
-    eyebrow: "Budgeting · 06 min",
-    title: "Luxury vs budget safaris",
-    lede: "What you actually get at each price point — and how to spend smart at any budget.",
-    image: "/images/planning-guides/budgeting/budget-vs-luxury.jpg",
+    href: "/field-notes/self-drive/choosing-a-vehicle",
+    eyebrow: "Self-drive · 6 min",
+    title: "Choosing a vehicle for a lodge-based self-drive",
+    lede: "SUV, 4×4 or camper. Why sleeping in lodges lets you leave the rooftop tent behind, and what to check in the insurance before you sign.",
+    image: "/images/planning-guides/destinations/off-the-beaten-path.jpg",
   },
   {
-    href: "/field-notes/conservation/community-conservation",
-    eyebrow: "Conservation · 05 min",
-    title: "Community conservation",
-    lede: "How conservancies are reshaping African wildlife protection — and how to choose trips that fund the model.",
-    image: "/images/planning-guides/destinations/safari-destinations.jpg",
+    href: "/field-notes/self-drive/driving-on-the-left",
+    eyebrow: "Self-drive · 6 min",
+    title: "Driving on the left, for American drivers",
+    lede: "The left side, manual or automatic, the International Driving Permit and roundabouts. What changes when you drive yourself in southern Africa.",
+    image: "/images/regions/southern-africa.jpg",
   },
 ]
 
@@ -171,7 +189,7 @@ export default async function HomePage() {
                   className="rounded-none px-8 py-6 mono border-bone/30 text-bone hover:border-amber hover:text-amber bg-transparent"
                   asChild
                 >
-                  <Link href="/categories">{HERO.secondaryCta}</Link>
+                  <Link href="/routes">{HERO.secondaryCta}</Link>
                 </Button>
               </div>
             </div>
@@ -185,35 +203,30 @@ export default async function HomePage() {
         <section className="container py-24 md:py-32">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
-              <Eyebrow withRule>By hand — open</Eyebrow>
+              <Eyebrow withRule>{BY_HAND.eyebrow}</Eyebrow>
               <h2 className="mt-6 font-serif text-h1-fluid text-bone leading-tight tracking-tight text-balance">
-                A safari, drawn{" "}
+                A route, drawn{" "}
                 <span className="italic text-amber">by hand</span>.
               </h2>
               <p className="mt-8 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
-                Tell us what you&apos;re chasing — the months, the rhythm, the kind of quiet you want.
-                We&apos;ll come back with three routes within 48 hours.
+                {BY_HAND.subhead}
               </p>
               <div className="mt-12 flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
                   <StartBriefLink source="home-plan-card">
-                    Start a brief →
+                    {BY_HAND.primaryCta}
                   </StartBriefLink>
                 </Button>
                 <PlannerCallTrigger size="lg" source="home">
-                  Speak to a planner
+                  {BY_HAND.secondaryCta}
                 </PlannerCallTrigger>
               </div>
             </div>
 
             <div className="lg:col-span-5 lg:border-l lg:border-rule lg:pl-12">
-              <p className="eyebrow mb-6">How it works — in three steps</p>
+              <p className="eyebrow mb-6">{BY_HAND.stepsEyebrow}</p>
               <ol className="space-y-6">
-                {[
-                  ["01", "You tell us the months, the regions, and the rhythm."],
-                  ["02", "We draft three routes — at different rhythms and budgets."],
-                  ["03", "You pick one, we make the introduction."],
-                ].map(([n, t]) => (
+                {BY_HAND.steps.map(([n, t]) => (
                   <li key={n} className="flex gap-5 border-t border-rule pt-6">
                     <span className="mono text-amber pt-1 shrink-0" aria-hidden>
                       {n}
@@ -241,6 +254,23 @@ export default async function HomePage() {
             twoColumn={false}
             className="max-w-4xl"
           />
+        </section>
+
+        {/* ─── Can I do this? ────────────────────────────────────── */}
+        <section className="container py-24 md:py-32">
+          <div className="max-w-3xl mb-16">
+            <Eyebrow withRule>{CAN_I.eyebrow}</Eyebrow>
+            <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
+              {CAN_I.headlineLead}{" "}
+              <span className="italic text-amber">{CAN_I.headlineAccent}</span>
+              {CAN_I.headlineTail}
+            </h2>
+            <p className="mt-6 font-serif italic text-h4-fluid text-bone-mute leading-snug">
+              {CAN_I.lede}
+            </p>
+          </div>
+
+          <NumberedList items={CAN_I.items} className="max-w-5xl" />
         </section>
 
         {/* ─── Routes teaser (empty-safe) ────────────────────────── */}
@@ -291,6 +321,9 @@ export default async function HomePage() {
                       {route.title}
                     </h3>
                     <p className="mt-3 text-bone-mute leading-relaxed">{route.hook}</p>
+                    <span className="mt-4 inline-block mono text-amber transition-colors group-hover:text-amber-deep">
+                      {ROUTES_TEASER.cardLink}
+                    </span>
                   </Link>
                 ))}
               </div>
@@ -298,36 +331,22 @@ export default async function HomePage() {
           </section>
         )}
 
-        {/* ─── Can I do this? ────────────────────────────────────── */}
-        <section className="container py-24 md:py-32">
-          <div className="max-w-3xl mb-16">
-            <Eyebrow withRule>{CAN_I.eyebrow}</Eyebrow>
-            <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
-              {CAN_I.headlineLead}{" "}
-              <span className="italic text-amber">{CAN_I.headlineAccent}</span>
-              {CAN_I.headlineTail}
-            </h2>
-          </div>
-
-          <NumberedList items={CAN_I.items} className="max-w-5xl" />
-        </section>
-
         {/* ─── Featured listings (real data) ─────────────────────── */}
         {featured.length > 0 && (
-          <section className="bg-ink border-y border-rule py-24 md:py-32">
+          <section className="py-24 md:py-32">
             <div className="container">
               <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
                 <div className="max-w-2xl">
-                  <Eyebrow>This week on the collection</Eyebrow>
+                  <Eyebrow>{FEATURED.eyebrow}</Eyebrow>
                   <h2 className="mt-4 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
-                    A few we&apos;d send our friends to.
+                    {FEATURED.headline}
                   </h2>
                 </div>
                 <Link
                   href="/categories"
                   className="mono text-amber hover:text-amber-deep transition-colors"
                 >
-                  Open the collection →
+                  {FEATURED.link}
                 </Link>
               </div>
               <div>
@@ -366,16 +385,18 @@ export default async function HomePage() {
         <section className="container py-24 md:py-32">
           <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
             <div className="max-w-2xl">
-              <Eyebrow withRule>Field notes</Eyebrow>
+              <Eyebrow withRule>{FIELD_NOTES_BLOCK.eyebrow}</Eyebrow>
               <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
-                Long reads from the bush.
+                {FIELD_NOTES_BLOCK.headlineLead}{" "}
+                <span className="italic text-amber">{FIELD_NOTES_BLOCK.headlineAccent}</span>
+                {FIELD_NOTES_BLOCK.headlineTail}
               </h2>
             </div>
             <Link
               href="/field-notes"
               className="mono text-amber hover:text-amber-deep transition-colors"
             >
-              All field notes →
+              {FIELD_NOTES_BLOCK.link}
             </Link>
           </div>
 

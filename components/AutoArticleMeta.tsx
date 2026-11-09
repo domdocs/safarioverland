@@ -48,6 +48,9 @@ export function AutoArticleMeta({
   // Those paths are not in FIELD_NOTE_DATES — skip auto meta rather
   // than falling back to a placeholder date that would duplicate the
   // page-level byline.
+  // Self-drive guides and their index render their own byline and
+  // Article JSON-LD (real title as headline), so skip them here.
+  if (pathname.startsWith("/field-notes/self-drive")) return null
   const dates = FIELD_NOTE_DATES[pathname]
   if (!dates) return null
   const editor = getEditorById(dates.editorId)

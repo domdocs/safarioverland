@@ -26,7 +26,7 @@ import { RelatedListings } from "@/components/RelatedListings"
 import { getBlurDataURL } from "@/lib/images/blur"
 
 export const metadata: Metadata = {
-  title: "Southern Africa Safaris | Ultimate Safari Guide",
+  title: "Southern Africa: a self-drive safari guide",
   description: "Explore the diverse wilderness of Southern Africa with our comprehensive safari guide. From Botswana's Okavango Delta to Kruger National Park and Victoria Falls.",
   alternates: { canonical: "https://safarioverland.com/destinations/southern-africa" },
   keywords: "Southern Africa safari, Botswana safari, South Africa safari, Zimbabwe safari, Kruger National Park, Okavango Delta, Victoria Falls, safari destinations"
@@ -195,7 +195,9 @@ const southernAfricaCountries = [
       "Home to the iconic Kruger National Park and diverse landscapes from coastal regions to bushveld, South Africa offers exceptional wildlife viewing and infrastructure. The perfect introduction to African safaris with excellent roads, accommodation options for all budgets, and malaria-free reserves ideal for families.",
     highlights: ["Kruger National Park", "Sabi Sands", "Madikwe", "Eastern Cape Reserves"],
     listings: 187,
-    flag: "/images/destinations/flags/south-africa.svg"
+    flag: "/images/destinations/flags/south-africa.svg",
+    // No self-drive page yet (South Africa comes later, STRATEGY §3).
+    href: null as string | null,
   },
   {
     name: "Botswana",
@@ -203,7 +205,8 @@ const southernAfricaCountries = [
       "Known for its pristine wilderness and conservation-focused tourism, Botswana's Okavango Delta and Chobe National Park offer some of Africa's most exclusive safari experiences. The country's low-impact, high-value tourism model protects vast wilderness areas while providing extraordinary wildlife encounters.",
     highlights: ["Okavango Delta", "Chobe", "Moremi", "Kalahari"],
     listings: 112,
-    flag: "/images/destinations/flags/botswana.svg"
+    flag: "/images/destinations/flags/botswana.svg",
+    href: "/self-drive/botswana-zambia" as string | null,
   },
   {
     name: "Namibia",
@@ -211,7 +214,8 @@ const southernAfricaCountries = [
       "Characterized by dramatic desert landscapes, Namibia offers unique wildlife adapted to arid conditions, ancient cultures, and striking scenery from Sossusvlei to Etosha. The country pioneered community-based conservation, creating a model where local communities directly benefit from and participate in wildlife protection.",
     highlights: ["Etosha", "Sossusvlei", "Damaraland", "Skeleton Coast"],
     listings: 98,
-    flag: "/images/destinations/flags/namibia.svg"
+    flag: "/images/destinations/flags/namibia.svg",
+    href: "/self-drive/namibia" as string | null,
   },
   {
     name: "Zimbabwe",
@@ -219,7 +223,8 @@ const southernAfricaCountries = [
       "From the thundering Victoria Falls to the wildlife-rich Hwange National Park, Zimbabwe combines natural wonders with authentic safari experiences and warm hospitality. The country's exceptional guides are renowned as some of Africa's best, providing in-depth interpretation of the bush.",
     highlights: ["Hwange", "Mana Pools", "Victoria Falls", "Matobo Hills"],
     listings: 76,
-    flag: "/images/destinations/flags/zimbabwe.svg"
+    flag: "/images/destinations/flags/zimbabwe.svg",
+    href: "/self-drive/zimbabwe" as string | null,
   },
 ]
 
@@ -461,11 +466,15 @@ export default async function SouthernAfricaPage() {
                     </div>
                   </div>
                   <p className="text-muted-foreground mb-4">{country.description}</p>
-                  <Link href={`/destinations/southern-africa/${country.name.toLowerCase().replace(/\s+/g, '-')}`}>
-                    <Button variant="outline" size="sm">
-                      Explore {country.name} ({country.listings} listings)
-                    </Button>
-                  </Link>
+                  {/* Per-country atlas pages never existed; link to the
+                      self-drive landing page where there is one. */}
+                  {country.href && (
+                    <Link href={country.href}>
+                      <Button variant="outline" size="sm">
+                        Self-drive in {country.name} →
+                      </Button>
+                    </Link>
+                  )}
                 </div>
               </div>
             </Card>

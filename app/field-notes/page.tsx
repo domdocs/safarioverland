@@ -12,6 +12,7 @@ import { BlendOverlay } from "@/components/editorial/blend-overlay"
 import { Button } from "@/components/ui/button"
 import { EditorialImage } from "@/components/editorial/editorial-image"
 import { getArticles, type Article } from "@/lib/articles"
+import { SELF_DRIVE_NOTES } from "@/lib/field-notes/self-drive-notes"
 
 /**
  * Revalidate every hour so the DB-backed "Latest field notes" rail
@@ -123,6 +124,47 @@ export default async function ResourcesPage() {
             The kind of writing we wish had existed when we were planning our own first safari.
             Practical, opinionated, occasionally annoying — never PR.
           </p>
+        </div>
+      </section>
+
+      <SectionRule className="container" />
+
+      {/* ─── Self-drive guides (first section since the relaunch) ── */}
+      <section className="container py-20">
+        <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+          <div className="max-w-2xl">
+            <Eyebrow withRule>Self-drive</Eyebrow>
+            <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
+              What to read before you <span className="italic text-amber">drive</span>.
+            </h2>
+          </div>
+          <Link
+            href="/field-notes/self-drive"
+            className="mono text-amber hover:text-amber-deep transition-colors"
+          >
+            All self-drive guides →
+          </Link>
+        </div>
+
+        <div className="grid gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+          {SELF_DRIVE_NOTES.map((n, i) => (
+            <Link
+              key={n.slug}
+              href={`/field-notes/self-drive/${n.slug}`}
+              className="group block border-t border-rule pt-6 transition-colors hover:border-amber"
+            >
+              <div className="flex items-baseline gap-3 mb-3">
+                <span className="mono text-amber" aria-hidden>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="eyebrow">{n.eyebrow}</span>
+              </div>
+              <h3 className="font-serif text-h3-fluid text-bone leading-tight transition-colors group-hover:text-amber text-balance">
+                {n.title}
+              </h3>
+              <p className="mt-3 text-bone-mute leading-relaxed">{n.description}</p>
+            </Link>
+          ))}
         </div>
       </section>
 

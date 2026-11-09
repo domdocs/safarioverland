@@ -73,7 +73,7 @@ describe("Email templates render", () => {
     expect(html).toContain("Slow")
     // Self-drive answers
     expect(html).toContain("Once or twice")
-    expect(html).toContain("Three to five hours, with stops")
+    expect(html).toContain("Three to five hours")
     expect(html).toContain("Zimbabwe, Namibia")
   })
 

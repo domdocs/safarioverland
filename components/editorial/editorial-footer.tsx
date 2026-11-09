@@ -8,16 +8,20 @@ import { SectionRule } from "./section-rule"
 type FooterLink = { href: string; label: string }
 type FooterColumn = { label: string; links: FooterLink[] }
 
-const STATIC_COLUMNS: FooterColumn[] = [
+// Footer copy: handoff/relaunch/copy/SITE_COPY.md §7.2.
+const WHERE_WE_DRIVE: FooterColumn = {
+  label: "Where we drive",
+  links: [
+    { href: "/routes/zimbabwe-falls-hwange-matobo", label: "Zimbabwe: Falls, Hwange, Matobo" },
+    { href: "/routes/namibia-kalahari-to-etosha", label: "Namibia: Kalahari to Etosha" },
+    { href: "/routes/four-corners-falls-chobe-caprivi", label: "The four corners" },
+    { href: "/destinations/southern-africa", label: "Southern Africa" },
+  ],
+}
+
+const FIELD_NOTES_COLUMN: FooterColumn[] = [
   {
-    label: "Where we drive",
-    links: [
-      { href: "/routes", label: "Routes" },
-      { href: "/destinations/southern-africa", label: "Southern Africa" },
-    ],
-  },
-  {
-    label: "Field notes",
+    label: "Field Notes",
     links: [
       { href: "/field-notes/planning-guides", label: "Planning guides" },
       { href: "/field-notes/seasonal-guides", label: "Seasonal guides" },
@@ -47,7 +51,7 @@ async function buildCategoriesColumn(): Promise<FooterColumn> {
   } catch (err) {
     console.error("editorial footer: getActiveCategories failed", err)
   }
-  return { label: "Categories", links }
+  return { label: "The collection", links }
 }
 
 // Instagram URL matches sameAs in components/JsonLd/GlobalJsonLd.tsx
@@ -72,11 +76,11 @@ const POLICY = [
  *
  * Async server component — the Categories column reads
  * `getActiveCategories()` so empty categories drop out automatically.
- * Where we drive + Field notes stay static (they're not data-driven).
+ * Where we drive + Field Notes stay static (they're not data-driven).
  */
 export async function EditorialFooter() {
   const categoriesColumn = await buildCategoriesColumn()
-  const columns: FooterColumn[] = [categoriesColumn, ...STATIC_COLUMNS]
+  const columns: FooterColumn[] = [WHERE_WE_DRIVE, categoriesColumn, ...FIELD_NOTES_COLUMN]
 
   return (
     <footer className="bg-ink text-bone border-t border-rule">
@@ -86,11 +90,11 @@ export async function EditorialFooter() {
           <div className="lg:col-span-5 max-w-md">
             <p className="eyebrow mb-4">Safari Overland</p>
             <p className="font-serif text-h3-fluid text-bone leading-tight mb-6">
-              A small collection of African safaris, by hand.
+              Self-drive safaris in southern Africa, by hand.
             </p>
             <p className="text-bone-mute leading-relaxed">
-              Lodges and operators chosen for what the wild does to you —
-              not just what it shows you. From Victoria Falls.
+              Routes we draw, camps and lodges we&apos;d send our friends to, and
+              someone at the end of the phone. From Victoria Falls.
             </p>
           </div>
 

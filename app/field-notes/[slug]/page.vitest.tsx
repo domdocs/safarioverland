@@ -46,6 +46,7 @@ const FIXTURE = {
   category: "planning",
   status: "published" as const,
   hero_image: null,
+  image_attribution: null,
   excerpt: "A short excerpt.",
   body_md: "# Heading\n\nParagraph body with a [link](https://example.com).",
   read_minutes: 4,

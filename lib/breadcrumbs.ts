@@ -32,6 +32,7 @@ const NAMED_SEGMENTS: Record<string, string> = {
   "seasonal-guides": "Seasonal guides",
   conservation: "Conservation",
   "safety-tips": "Safety",
+  "self-drive": "Self-drive",
   faqs: "FAQs",
   "east-africa": "East Africa",
   "southern-africa": "Southern Africa",

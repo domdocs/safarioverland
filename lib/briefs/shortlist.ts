@@ -43,18 +43,13 @@ function priceTierForFilter(
 }
 
 /**
- * Compute a list of regions implied by the intake. Right now only
- * Step 05 wildlife answers contribute. Step 07 `migration-window`
- * implies East Africa.
+ * Compute a list of regions implied by the intake. Only Step 05
+ * wildlife answers contribute. (The retired season value
+ * `migration-window` used to add East Africa; the self-drive relaunch
+ * covers southern Africa only, so it no longer implies a region.)
  */
 function regionsFor(criteria: ShortlistCriteria): string[] {
-  const fromWildlife = inferRegionsFromWildlife(
-    criteria.wildlife_priorities ?? [],
-  )
-  if (criteria.season_preference === "migration-window") {
-    if (!fromWildlife.includes("East Africa")) fromWildlife.push("East Africa")
-  }
-  return fromWildlife
+  return inferRegionsFromWildlife(criteria.wildlife_priorities ?? [])
 }
 
 /**

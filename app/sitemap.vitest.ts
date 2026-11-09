@@ -50,6 +50,17 @@ describe("sitemap", () => {
       "https://safarioverland.com/field-notes/a-db-published-article",
     )
 
+    // Self-drive relaunch: routes, a route page, an ad landing page and
+    // a self-drive Field Note — all from static imports.
+    expect(urls).toContain("https://safarioverland.com/routes")
+    expect(urls).toContain(
+      "https://safarioverland.com/routes/namibia-kalahari-to-etosha",
+    )
+    expect(urls).toContain("https://safarioverland.com/self-drive/zimbabwe")
+    expect(urls).toContain(
+      "https://safarioverland.com/field-notes/self-drive/gravel-roads",
+    )
+
     // DB-sourced listing
     expect(urls).toContain(
       "https://safarioverland.com/listings/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",

@@ -51,7 +51,7 @@ const newsreader = Newsreader({
 export const metadata: Metadata = {
   metadataBase: new URL("https://safarioverland.com"),
   title: {
-    default: "Safari Overland — Self-drive safaris in southern Africa",
+    default: "Safari Overland — Self-drive safaris in southern Africa, by hand",
     template: "%s | Safari Overland",
   },
   description:
@@ -101,13 +101,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://safarioverland.com",
     siteName: "Safari Overland",
-    title: "Safari Overland — Self-drive safaris in southern Africa",
+    title: "Safari Overland — Self-drive safaris in southern Africa, by hand",
     description:
       "Self-drive safari journeys through Zimbabwe, Namibia and Botswana, staying at camps and lodges that give you more than a bed. We draw the route, book every night and the vehicle, and stay at the end of the phone. From Victoria Falls.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Safari Overland — Self-drive safaris in southern Africa",
+    title: "Safari Overland — Self-drive safaris in southern Africa, by hand",
     description:
       "Self-drive safari journeys through southern Africa, staying at camps and lodges that give you more than a bed. From Victoria Falls.",
   },
