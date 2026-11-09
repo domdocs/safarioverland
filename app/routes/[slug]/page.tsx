@@ -85,7 +85,7 @@ function MakeItYours({ slug }: { slug: string }) {
           {C.cta.body}
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-4">
-          <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
+          <Button size="lg" className="rounded-none px-8 py-6 mono h-auto max-w-full whitespace-normal text-center" asChild>
             <StartBriefLink source="route-page" href={`/plan?route=${slug}`}>
               {C.cta.primary}
             </StartBriefLink>

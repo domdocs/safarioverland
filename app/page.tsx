@@ -179,13 +179,13 @@ export default async function HomePage() {
                 {HERO.subhead}
               </p>
               <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
+                <Button size="lg" className="rounded-none px-8 py-6 mono h-auto max-w-full whitespace-normal text-center" asChild>
                   <StartBriefLink source="hero">{HERO.primaryCta}</StartBriefLink>
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="rounded-none px-8 py-6 mono border-bone/30 text-bone hover:border-amber hover:text-amber bg-transparent"
+                  className="rounded-none px-8 py-6 mono h-auto max-w-full whitespace-normal text-center border-bone/30 text-bone hover:border-amber hover:text-amber bg-transparent"
                   asChild
                 >
                   <Link href="/routes">{HERO.secondaryCta}</Link>
@@ -210,7 +210,7 @@ export default async function HomePage() {
                 {BY_HAND.subhead}
               </p>
               <div className="mt-12 flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
+                <Button size="lg" className="rounded-none px-8 py-6 mono h-auto max-w-full whitespace-normal text-center" asChild>
                   <StartBriefLink source="home-plan-card">
                     {BY_HAND.primaryCta}
                   </StartBriefLink>

@@ -132,7 +132,7 @@ export default async function SelfDriveNotePage({ params }: PageProps) {
             come back with three routes within 48 hours.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
+            <Button size="lg" className="rounded-none px-8 py-6 mono h-auto max-w-full whitespace-normal text-center" asChild>
               <StartBriefLink source="field-notes">Start a brief →</StartBriefLink>
             </Button>
             <PlannerCallTrigger size="lg" source="field-notes">

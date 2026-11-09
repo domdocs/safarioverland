@@ -315,7 +315,9 @@ export default async function SouthernAfricaPage() {
       {/* Hero Section */}
       <section className="mb-16">
         <div className="relative rounded-xl overflow-hidden">
-          <div className="aspect-video relative">
+          {/* Taller on phones: at 16:9 the overlaid text outgrew the image
+              and spilled up over the breadcrumb. */}
+          <div className="aspect-[4/5] sm:aspect-[4/3] md:aspect-video relative">
             <Image
               src="/images/destinations/southern-africa.jpg"
               alt="Elephants at a Chobe waterhole at sunset, northern Botswana"

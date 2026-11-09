@@ -69,7 +69,11 @@ export default async function SelfDriveLandingPage({ params }: PageProps) {
   ]
 
   const cta = (
-    <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
+    <Button
+      size="lg"
+      className="rounded-none px-8 py-6 mono h-auto max-w-full whitespace-normal text-center"
+      asChild
+    >
       <StartBriefLink source="self-drive-landing">{page.cta}</StartBriefLink>
     </Button>
   )

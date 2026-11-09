@@ -54,7 +54,7 @@ export default function SelfDriveNotesIndex() {
         </ol>
 
         <div className="mt-16 max-w-4xl border-t border-rule pt-10">
-          <Button size="lg" className="rounded-none px-8 py-6 mono" asChild>
+          <Button size="lg" className="rounded-none px-8 py-6 mono h-auto max-w-full whitespace-normal text-center" asChild>
             <StartBriefLink source="field-notes">Start a brief →</StartBriefLink>
           </Button>
         </div>

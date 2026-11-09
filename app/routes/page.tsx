@@ -71,7 +71,7 @@ export default function RoutesIndexPage() {
             <p className="font-serif italic text-h4-fluid text-bone-mute leading-snug max-w-xl">
               {C.how.closing}
             </p>
-            <Button size="lg" className="rounded-none px-8 py-6 mono shrink-0" asChild>
+            <Button size="lg" className="rounded-none px-8 py-6 mono h-auto max-w-full whitespace-normal text-center shrink-0" asChild>
               <StartBriefLink source="routes-index">{C.how.button}</StartBriefLink>
             </Button>
           </div>

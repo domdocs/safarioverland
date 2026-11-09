@@ -31,8 +31,11 @@ export function StayCard({ stay, variant = "primary", className }: Props) {
   return (
     <article
       className={cn(
-        "flex h-full flex-col border border-rule bg-ink",
-        primary ? "p-6 md:p-8" : "p-5 md:p-6",
+        // h-full only on the primary card, where it fills its grid cell.
+        // Alternatives stack in a column; h-full there made each one as
+        // tall as the whole column, overflowing into the next night.
+        "flex flex-col border border-rule bg-ink",
+        primary ? "h-full p-6 md:p-8" : "p-5 md:p-6",
         className,
       )}
     >
