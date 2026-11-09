@@ -172,8 +172,8 @@ export const LANDINGS: LandingCopy[] = [
     metaTitle: "Self-drive safari in Zimbabwe: Victoria Falls, Hwange, Matobo",
     metaDescription:
       "A lodge-based self-drive safari in Zimbabwe, from Victoria Falls to Hwange and the Matobo hills. We draw the route, book the nights and the vehicle.",
-    heroImage: "/images/about/zimbabwe.jpg",
-    heroAlt: "Victoria Falls and the Batoka Gorge, with elephants on the rim",
+    heroImage: "/media/zimbabwe/matobo-granite-kopjes.webp",
+    heroAlt: "Granite boulders and a lone tree on a whaleback dome in the Matobo Hills under storm cloud",
   },
   {
     country: "namibia",
@@ -193,8 +193,8 @@ export const LANDINGS: LandingCopy[] = [
     metaTitle: "Self-drive safari in Namibia: Kalahari, Sossusvlei, Etosha",
     metaDescription:
       "A lodge-based self-drive safari in Namibia, from the Kalahari and Sossusvlei to Etosha. A road book for each day, lodges booked, a vehicle matched to the roads.",
-    heroImage: "/images/about/namibia.jpg",
-    heroAlt: "Dead camel thorn trees on the white pan at Deadvlei, below a red dune",
+    heroImage: "/media/namibia/sossusvlei-dune-45-sunrise.webp",
+    heroAlt: "Dune 45 at sunrise, one face lit and one in shadow",
   },
   {
     country: "botswana-zambia",
@@ -214,8 +214,8 @@ export const LANDINGS: LandingCopy[] = [
     metaTitle: "Self-drive safari in Botswana and Zambia, from Victoria Falls",
     metaDescription:
       "A short lodge-based self-drive safari from Victoria Falls through Chobe and the Zambezi Region. Borders prepared, lodges booked, a road book for each day.",
-    heroImage: "/images/about/botswana.jpg",
-    heroAlt: "A line of elephants crossing a flooded plain at sunset",
+    heroImage: "/media/four-corners/chobe-elephants-crossing.webp",
+    heroAlt: "Elephants wading across the Chobe River in single file",
   },
 ]
 

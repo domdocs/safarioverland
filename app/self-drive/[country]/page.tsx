@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import { notFound } from "next/navigation"
 
 import { Eyebrow } from "@/components/editorial/eyebrow"
@@ -12,6 +11,14 @@ import { RouteCard } from "@/components/routes/route-card"
 import { Button } from "@/components/ui/button"
 import { CAN_I, LANDINGS, LANDING_SHARED as S, getLanding } from "@/lib/relaunch/copy"
 import { getRouteSummary, type RouteSummary } from "@/lib/relaunch/routes"
+import { HeroMedia } from "@/components/media/hero-media"
+import { FullBleedImage } from "@/components/media/full-bleed-image"
+import { ImageNumberedList } from "@/components/media/image-numbered-list"
+import { Mosaic } from "@/components/media/mosaic"
+import { NumbersStrip, type NumberItem } from "@/components/media/numbers-strip"
+import { getMedia } from "@/lib/relaunch/media-select"
+import { formatKm, getRouteStats } from "@/lib/relaunch/route-stats"
+import { COUNTRY_VISUALS } from "@/lib/relaunch/visuals"
 
 const SITE = "https://safarioverland.com"
 
@@ -43,9 +50,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: page.metaTitle,
       description: page.metaDescription,
       url,
-      images: [{ url: page.heroImage }],
+      images: [{ url: COUNTRY_VISUALS[page.country] ? getMedia(COUNTRY_VISUALS[page.country].hero).src : page.heroImage }],
     },
   }
+}
+
+function BriefCta({ cta }: { cta: React.ReactNode }) {
+  return (
+    <div className="container max-w-3xl">
+      <Eyebrow withRule>By hand — open</Eyebrow>
+      <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
+        A route, drawn <span className="italic text-amber">by hand</span>.
+      </h2>
+      <p className="mt-6 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
+        Tell us how you like to travel and how long you&apos;re happy at the wheel. We&apos;ll come
+        back with three routes within 48 hours.
+      </p>
+      <div className="mt-10">{cta}</div>
+      <p className="mt-6 mono text-bone-mute">{S.reassurance}</p>
+    </div>
+  )
 }
 
 /** The compact "Can I do this?": each answer's first sentence. */
@@ -62,6 +86,19 @@ export default async function SelfDriveLandingPage({ params }: PageProps) {
   const routes = page.routeSlugs
     .map((s) => getRouteSummary(s))
     .filter((r): r is RouteSummary => Boolean(r))
+
+  const visuals = COUNTRY_VISUALS[page.country]
+  const heroItem = visuals ? getMedia(visuals.hero) : undefined
+  // Numbers from the lead route's data only; anything not computable is left out.
+  const stats = routes[0] ? getRouteStats(routes[0].slug) : undefined
+  const numbers: NumberItem[] = []
+  numbers.push({ value: String(routes.length), label: routes.length === 1 ? "Signature route" : "Signature routes" })
+  if (stats) {
+    numbers.push({ value: stats.nights, label: "Nights" })
+    if (stats.km) numbers.push({ value: formatKm(stats.km), label: "Kilometres, about" })
+    numbers.push({ value: String(stats.stays), label: "Places to stay" })
+    if (stats.bestMonths) numbers.push({ value: stats.bestMonths, label: "Best months" })
+  }
 
   const crumbs: Crumb[] = [
     { name: "Home", href: "/", item: SITE },
@@ -80,51 +117,49 @@ export default async function SelfDriveLandingPage({ params }: PageProps) {
 
   return (
     <>
-      {/* ─── Hero ─────────────────────────────────────────────── */}
-      <section className="relative h-[82vh] min-h-[620px] w-full overflow-hidden bg-night">
-        <Image
-          src={page.heroImage}
-          alt={page.heroAlt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-gradient-to-b from-night/40 via-night/30 to-night"
-        />
-        <div className="container relative h-full flex flex-col justify-end pb-16 md:pb-24">
-          <div className="max-w-4xl">
-            <Eyebrow withRule>Self-drive · {page.label}</Eyebrow>
-            <h1 className="mt-6 font-serif text-display-fluid text-bone leading-[0.96] tracking-tighter text-balance">
-              {page.h1.lead} <span className="italic text-amber">{page.h1.accent}</span>
-              {page.h1.tail}
-            </h1>
-            <p className="mt-8 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
-              {page.subhead}
-            </p>
-            <div className="mt-10">{cta}</div>
-            <p className="mt-5 mono text-bone-mute">{S.reassurance}</p>
+      {/* ─── Hero: a fast still, no video (paid traffic) ──────── */}
+      {heroItem ? (
+        <HeroMedia still={heroItem} height="h-[82vh] min-h-[620px]">
+          <div className="container relative h-full flex flex-col justify-end pb-20 md:pb-24">
+            <div className="max-w-4xl">
+              <Eyebrow withRule>Self-drive · {page.label}</Eyebrow>
+              <h1 className="mt-6 font-serif text-display-fluid text-bone leading-[0.96] tracking-tighter text-balance">
+                {page.h1.lead} <span className="italic text-amber">{page.h1.accent}</span>
+                {page.h1.tail}
+              </h1>
+              <p className="mt-8 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
+                {page.subhead}
+              </p>
+              <div className="mt-10">{cta}</div>
+              <p className="mt-5 mono text-bone-mute">{S.reassurance}</p>
+            </div>
           </div>
-        </div>
-      </section>
+        </HeroMedia>
+      ) : null}
 
       <div className="container mx-auto px-4 pt-6">
         <Breadcrumbs crumbs={crumbs} />
         <BreadcrumbsJsonLd crumbs={crumbs} />
       </div>
 
+      {/* ─── By the numbers ───────────────────────────────────── */}
+      <section className="container pt-10">
+        <NumbersStrip items={numbers} />
+      </section>
+
       {/* ─── What we do (three things) ─────────────────────────── */}
       <section className="container py-24 md:py-32">
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <Eyebrow withRule>{S.benefitsEyebrow}</Eyebrow>
-            <NumberedList
-              items={page.benefits.map((b) => ({ title: b }))}
-              twoColumn={false}
-              className="mt-10"
-            />
+            {visuals ? (
+              <ImageNumberedList
+                items={page.benefits.map((b, i) => ({ title: b, item: getMedia(visuals.benefits[i]) }))}
+                className="mt-10"
+              />
+            ) : (
+              <NumberedList items={page.benefits.map((b) => ({ title: b }))} twoColumn={false} className="mt-10" />
+            )}
           </div>
           <div className="lg:col-span-5 lg:border-l lg:border-rule lg:pl-12">
             <Eyebrow withRule>{S.notCampingEyebrow}</Eyebrow>
@@ -151,6 +186,13 @@ export default async function SelfDriveLandingPage({ params }: PageProps) {
         </section>
       )}
 
+      {/* ─── The country in three photographs ─────────────────── */}
+      {visuals && (
+        <section className="container pt-24 md:pt-32">
+          <Mosaic items={visuals.gallery.map((id) => getMedia(id))} label={page.label} />
+        </section>
+      )}
+
       {/* ─── Can I do this? (compact) ─────────────────────────── */}
       <section className="container py-24 md:py-32">
         <div className="max-w-3xl mb-12">
@@ -166,21 +208,18 @@ export default async function SelfDriveLandingPage({ params }: PageProps) {
         />
       </section>
 
-      {/* ─── Brief CTA ────────────────────────────────────────── */}
-      <section className="border-y border-rule bg-ink py-24">
-        <div className="container max-w-3xl">
-          <Eyebrow withRule>By hand — open</Eyebrow>
-          <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
-            A route, drawn <span className="italic text-amber">by hand</span>.
-          </h2>
-          <p className="mt-6 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
-            Tell us how you like to travel and how long you&apos;re happy at the wheel. We&apos;ll come
-            back with three routes within 48 hours.
-          </p>
-          <div className="mt-10">{cta}</div>
-          <p className="mt-6 mono text-bone-mute">{S.reassurance}</p>
-        </div>
-      </section>
+      {/* ─── Brief CTA, over the country after dark ────────────── */}
+      {visuals ? (
+        <FullBleedImage item={getMedia(visuals.closing)} height="min-h-[600px] md:min-h-[75vh]" position="50% 60%">
+          <div className="flex min-h-[600px] items-center py-24 md:min-h-[75vh]">
+            <BriefCta cta={cta} />
+          </div>
+        </FullBleedImage>
+      ) : (
+        <section className="border-y border-rule bg-ink py-24">
+          <BriefCta cta={cta} />
+        </section>
+      )}
 
       <SectionRule className="container my-16" />
     </>

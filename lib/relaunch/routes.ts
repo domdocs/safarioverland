@@ -45,7 +45,7 @@ export const ROUTES: RouteSummary[] = [
     countries: ["Zimbabwe"],
     nights: "About 10–12 nights",
     hook: "Spray from the Falls, elephants at Hwange's waterholes, then granite hills and old rock art in the Matobo.",
-    heroImage: "/images/about/zimbabwe.jpg",
+    heroImage: "/media/zimbabwe/victoria-falls-aerial-zambezi.webp",
   },
   {
     slug: "namibia-kalahari-to-etosha",
@@ -53,7 +53,7 @@ export const ROUTES: RouteSummary[] = [
     countries: ["Namibia"],
     nights: "About 14–16 nights",
     hook: "Red Kalahari sand, the dunes at Sossusvlei, a cold Atlantic coast, and the white pan at Etosha, with long gravel roads in between.",
-    heroImage: "/images/about/namibia.jpg",
+    heroImage: "/media/namibia/deadvlei-camelthorn-trees.webp",
   },
   {
     slug: "four-corners-falls-chobe-caprivi",
@@ -61,7 +61,7 @@ export const ROUTES: RouteSummary[] = [
     countries: ["Zimbabwe", "Botswana", "Namibia"],
     nights: "About 8–10 nights",
     hook: "A short loop from the Falls along the Chobe and into the Zambezi Region, where four countries meet on the rivers.",
-    heroImage: "/images/about/botswana.jpg",
+    heroImage: "/media/four-corners/chobe-elephants-evening-crossing.webp",
   },
 ]
 

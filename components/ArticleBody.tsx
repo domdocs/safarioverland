@@ -93,9 +93,17 @@ const components: Components = {
   ),
 }
 
-export function ArticleBody({ markdown }: { markdown: string }) {
+/** Lead-paragraph treatment: bone text and an amber drop cap. */
+const DROP_CAP =
+  "[&>p:first-of-type]:text-bone [&>p:first-of-type]:first-letter:font-serif [&>p:first-of-type]:first-letter:text-amber [&>p:first-of-type]:first-letter:text-[5rem] [&>p:first-of-type]:first-letter:leading-[0.9] [&>p:first-of-type]:first-letter:float-left [&>p:first-of-type]:first-letter:mr-3 [&>p:first-of-type]:first-letter:mt-1"
+
+/**
+ * `continued` drops the lead-paragraph treatment, for a body that's
+ * split around an inline image and rendered in several parts.
+ */
+export function ArticleBody({ markdown, continued = false }: { markdown: string; continued?: boolean }) {
   return (
-    <div className="text-[19px] leading-[1.7] text-bone-mute [&>p:first-of-type]:text-bone [&>p:first-of-type]:first-letter:font-serif [&>p:first-of-type]:first-letter:text-amber [&>p:first-of-type]:first-letter:text-[5rem] [&>p:first-of-type]:first-letter:leading-[0.9] [&>p:first-of-type]:first-letter:float-left [&>p:first-of-type]:first-letter:mr-3 [&>p:first-of-type]:first-letter:mt-1">
+    <div className={`text-[19px] leading-[1.7] text-bone-mute${continued ? "" : ` ${DROP_CAP}`}`}>
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
         {markdown}
       </ReactMarkdown>

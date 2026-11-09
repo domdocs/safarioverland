@@ -2,7 +2,10 @@ import Image from "next/image"
 
 import { Eyebrow } from "@/components/editorial/eyebrow"
 import { SectionRule } from "@/components/editorial/section-rule"
-import { NumberedList } from "@/components/editorial/numbered-list"
+import { FullBleedImage } from "@/components/media/full-bleed-image"
+import { ImageNumberedList } from "@/components/media/image-numbered-list"
+import { getMedia } from "@/lib/relaunch/media-select"
+import { ABOUT_VISUALS } from "@/lib/relaunch/visuals"
 
 // Copy from handoff/relaunch/copy/SITE_COPY.md §2 (draft for Dom's
 // approval, D-10). Bracketed placeholders stay visible until Dom
@@ -84,9 +87,8 @@ export default function AboutPage() {
             <span className="italic text-amber"> always</span>.
           </h2>
         </div>
-        <NumberedList
-          items={PRINCIPLES.map((p) => ({ title: p.title, body: p.body }))}
-          twoColumn={false}
+        <ImageNumberedList
+          items={PRINCIPLES.map((p, i) => ({ title: p.title, body: p.body, item: getMedia(ABOUT_VISUALS.principles[i]) }))}
           className="max-w-4xl"
         />
       </section>
@@ -143,6 +145,8 @@ export default function AboutPage() {
        * working-hub framing: no personal home base. Name another hub
        * only once its partner is signed (D-02).
        */}
+      <FullBleedImage item={getMedia(ABOUT_VISUALS.fromVictoriaFalls)} kenBurns height="h-[60vh] min-h-[400px] md:h-[75vh]" />
+
       <section className="bg-ink border-y border-rule py-24 md:py-32">
         <div className="container grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
@@ -182,9 +186,8 @@ export default function AboutPage() {
             car. After that, these three.
           </p>
         </div>
-        <NumberedList
-          items={VALUES.map((v) => ({ title: v.title, body: v.body }))}
-          twoColumn={false}
+        <ImageNumberedList
+          items={VALUES.map((v, i) => ({ title: v.title, body: v.body, item: getMedia(ABOUT_VISUALS.values[i]) }))}
           className="max-w-4xl"
         />
       </section>

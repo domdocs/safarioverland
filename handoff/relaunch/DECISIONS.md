@@ -74,4 +74,8 @@ Everything here has a working placeholder, so the relaunch built around it. Noth
 | D-58 | Homepage order: routes section moved above "Three things" (per the visual brief) | Moved, for review | Homepage |
 | D-59 | Photograph a printed road book (on a car seat) once one exists — the most tangible image of the offer | Placeholder | By hand section |
 
+| D-60 | Photo gaps to fill with our own or commissioned photography: Hwange woodland and a hero-quality Hwange waterhole, an empty Zimbabwe or Botswana road, a Chobe boat at sunset, Kasane, a guide walking, a 4×4 on gravel (no rooftop tent), a Victoria Falls aerial, elephants crossing a river | Nearest licensed stand-ins, captioned generically | Route pages |
+| D-61 | Some atmosphere shots are from outside our routes (a game-drive photo from Kruger, an elephant video from South Africa, a fire in Lusaka) | Used only with generic captions, never labelled as our places; replace when we have our own | Homepage, route pages |
+| D-62 | A Matobo road sign reading "Rhodes Matopos" (the park's colonial-era name) | Not used, pending an editorial view | — |
+
 Further entries are added as the team reports them.

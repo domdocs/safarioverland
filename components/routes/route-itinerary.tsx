@@ -1,3 +1,5 @@
+import { CaptionedImage } from "@/components/media/captioned-image"
+import type { MediaItem } from "@/lib/relaunch/media-select"
 import type { DayView } from "@/lib/relaunch/route-editorial"
 import { cn } from "@/lib/utils"
 
@@ -11,12 +13,13 @@ import { cn } from "@/lib/utils"
  * those are styled by the Trip Designer's own print stylesheet and typed
  * to its Chapter/Transit records, not to the route research.
  */
-export function RouteItinerary({ days }: { days: DayView[] }) {
+export function RouteItinerary({ days, media = {} }: { days: DayView[]; media?: Record<string, MediaItem> }) {
   return (
     <ol className="relative">
       {days.map((day, i) => {
         const last = i === days.length - 1
         const optional = Boolean(day.optional)
+        const photo = media[day.key]
         return (
           <li
             key={day.key}
@@ -47,6 +50,15 @@ export function RouteItinerary({ days }: { days: DayView[] }) {
                   optional && "border border-dashed border-amber/40 p-5 md:p-6",
                 )}
               >
+                {photo && (
+                  <CaptionedImage
+                    item={photo}
+                    card
+                    aspect="aspect-[4/3] sm:aspect-[16/9]"
+                    sizes="(min-width: 1024px) 40vw, (min-width: 768px) 55vw, 90vw"
+                    className="mb-6"
+                  />
+                )}
                 <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
                   <span className="mono text-amber">{day.label}</span>
                   {day.optional && (

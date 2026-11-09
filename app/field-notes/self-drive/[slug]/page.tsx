@@ -16,6 +16,32 @@ import { StickyCTA } from "@/components/editorial/sticky-cta"
 import { StartBriefLink } from "@/components/analytics/start-brief-link"
 import { PlannerCallTrigger } from "@/components/planner-call/planner-call-trigger"
 import { Button } from "@/components/ui/button"
+import { CaptionedImage } from "@/components/media/captioned-image"
+import { MediaCaption } from "@/components/media/media-caption"
+import { cardSrc, getMedia, type MediaItem } from "@/lib/relaunch/media-select"
+import { GUIDE_VISUALS, guideHero } from "@/lib/relaunch/visuals"
+import Image from "next/image"
+
+/**
+ * Splits a guide body before each H2 that has an inline image, so the
+ * image sits between the sections it belongs to.
+ */
+function splitBody(body: string, inline: { beforeHeading: string; id: string }[]): { md: string; image?: MediaItem }[] {
+  const parts: { md: string; image?: MediaItem }[] = []
+  let current: string[] = []
+  let pendingImage: MediaItem | undefined
+  for (const line of body.split("\n")) {
+    const hit = inline.find((i) => line === `## ${i.beforeHeading}`)
+    if (hit) {
+      parts.push({ md: current.join("\n"), image: pendingImage })
+      current = []
+      pendingImage = getMedia(hit.id)
+    }
+    current.push(line)
+  }
+  parts.push({ md: current.join("\n"), image: pendingImage })
+  return parts
+}
 
 const SITE = "https://safarioverland.com"
 
@@ -50,6 +76,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: note.description,
       url,
       type: "article",
+      ...(guideHero(note.slug) ? { images: [{ url: guideHero(note.slug)!.src }] } : {}),
     },
   }
 }
@@ -70,6 +97,10 @@ export default async function SelfDriveNotePage({ params }: PageProps) {
     { name: note.title, item: `${SITE}${path}` },
   ]
 
+  const visuals = GUIDE_VISUALS[note.slug]
+  const heroItems = (visuals?.hero ?? []).map((id) => getMedia(id))
+  const bodyParts = splitBody(note.body, visuals?.inline ?? [])
+
   // The next three guides in reading order, wrapping round to the start.
   const index = SELF_DRIVE_NOTES.findIndex((n) => n.slug === note.slug)
   const readNext = [1, 2, 3]
@@ -86,14 +117,14 @@ export default async function SelfDriveNotePage({ params }: PageProps) {
       <ArticleJsonLd
         headline={note.title}
         url={`${SITE}${path}`}
-        image={null}
+        image={guideHero(note.slug)?.src ?? null}
         datePublished={dates.datePublished}
         dateModified={dates.dateModified}
         editor={editor}
       />
 
-      {/* ─── Title block (typographic; the guides carry no hero image) ── */}
-      <section className="container py-24 md:py-32">
+      {/* ─── Title block, then a wide image of the subject ─────── */}
+      <section className="container pt-24 pb-12 md:pt-32 md:pb-16">
         <div className="max-w-4xl">
           <Eyebrow withRule>{note.eyebrow}</Eyebrow>
           <h1 className="mt-6 font-serif text-h1-fluid text-bone leading-[0.96] tracking-tighter text-balance">
@@ -104,6 +135,22 @@ export default async function SelfDriveNotePage({ params }: PageProps) {
           </p>
         </div>
       </section>
+
+      {heroItems.length > 0 && (
+        <section className="container pb-16 md:pb-20">
+          <div className={heroItems.length > 1 ? "grid gap-4 md:grid-cols-2" : undefined}>
+            {heroItems.map((item) => (
+              <CaptionedImage
+                key={item.id}
+                item={item}
+                priority
+                aspect={heroItems.length > 1 ? "aspect-[4/3] md:aspect-[4/3] max-h-[60vh]" : "aspect-[16/9] md:aspect-[21/9] max-h-[60vh] w-full"}
+                sizes={heroItems.length > 1 ? "(min-width: 768px) 50vw, 100vw" : "100vw"}
+              />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ─── Guide body ───────────────────────────────────────── */}
       <article className="container pb-16 md:pb-20 max-w-3xl">
@@ -117,7 +164,20 @@ export default async function SelfDriveNotePage({ params }: PageProps) {
 
         <Byline editor={editor} published={dates.datePublished} updated={dates.dateModified} />
 
-        <ArticleBody markdown={note.body} />
+        {bodyParts.map((part, i) => (
+          <div key={i}>
+            {part.image && (
+              <CaptionedImage
+                item={part.image}
+                card
+                aspect="aspect-[3/2]"
+                sizes="(min-width: 768px) 768px, 100vw"
+                className="my-12"
+              />
+            )}
+            <ArticleBody markdown={part.md} continued={i > 0} />
+          </div>
+        ))}
       </article>
 
       {/* ─── Brief CTA ────────────────────────────────────────── */}
@@ -147,19 +207,36 @@ export default async function SelfDriveNotePage({ params }: PageProps) {
         <section className="container py-24">
           <Eyebrow withRule>More self-drive guides</Eyebrow>
           <div className="mt-10 grid gap-12 md:grid-cols-3">
-            {readNext.map((n) => (
+            {readNext.map((n) => {
+              const img = guideHero(n.slug)
+              return (
               <Link
                 key={n.slug}
                 href={`/field-notes/self-drive/${n.slug}`}
                 className="group block border-t border-rule pt-6 transition-colors hover:border-amber"
               >
+                {img && (
+                  <div className="mb-5">
+                    <div className="relative aspect-[16/10] overflow-hidden bg-card">
+                      <Image
+                        src={cardSrc(img)}
+                        alt={img.alt}
+                        fill
+                        sizes="(min-width: 768px) 33vw, 100vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                    <MediaCaption item={img} creditOnly className="mt-2" />
+                  </div>
+                )}
                 <span className="eyebrow">{n.eyebrow}</span>
                 <h3 className="mt-3 font-serif text-h3-fluid text-bone leading-tight transition-colors group-hover:text-amber text-balance">
                   {n.title}
                 </h3>
                 <p className="mt-3 text-bone-mute leading-relaxed">{n.description}</p>
               </Link>
-            ))}
+              )
+            })}
           </div>
         </section>
       )}

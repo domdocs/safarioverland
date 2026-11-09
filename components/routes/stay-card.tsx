@@ -3,6 +3,8 @@ import { cn } from "@/lib/utils"
 
 type Props = {
   stay: StayView
+  /** Optional photograph above the text: the area, never presented as the lodge. */
+  figure?: React.ReactNode
   /** "Primary" card is larger; alternatives are compact. */
   variant?: "primary" | "alternative"
   className?: string
@@ -22,11 +24,12 @@ function Tag({ children, tone = "rule" }: { children: React.ReactNode; tone?: "r
 }
 
 /**
- * Typographic stay card. No lodge photographs are used on route pages
- * (STRATEGY §5: never hotlink or copy third-party images), so the card
- * carries the name in serif instead of an image.
+ * Stay card. No lodge photographs are used on route pages (STRATEGY §5:
+ * never hotlink or copy third-party images). The route page may pass a
+ * `figure` with a photograph of the area, captioned with the place and
+ * "Photograph of the lodge to come", or a placeholder block.
  */
-export function StayCard({ stay, variant = "primary", className }: Props) {
+export function StayCard({ stay, figure, variant = "primary", className }: Props) {
   const primary = variant === "primary"
   return (
     <article
@@ -39,6 +42,7 @@ export function StayCard({ stay, variant = "primary", className }: Props) {
         className,
       )}
     >
+      {figure && <div className="-mx-6 -mt-6 mb-6 md:-mx-8 md:-mt-8">{figure}</div>}
       <p className="eyebrow">
         {stay.typeLabel} · {stay.country}
       </p>

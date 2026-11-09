@@ -65,6 +65,7 @@ const POLICY = [
   { href: "/privacy-policy", label: "Privacy" },
   { href: "/terms-of-service", label: "Terms" },
   { href: "/contact", label: "Contact" },
+  { href: "/credits", label: "Photo credits" },
 ]
 
 /**
