@@ -103,7 +103,7 @@ export default function PhotographyGearPage() {
       relatedLinks={[
         { href: "/field-notes/planning-guides/packing-list", label: "Ultimate Safari Packing List" },
         { href: "/field-notes/seasonal-guides/photography", label: "Photography Seasonal Guide" },
-        { href: "/field-notes/planning-guides/wildlife-events", label: "Planning Around Wildlife Events" },
+        { href: "/field-notes/planning-guides/best-times", label: "Best times to go" },
       ]}
     />
   )

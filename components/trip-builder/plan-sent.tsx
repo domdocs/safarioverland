@@ -292,11 +292,7 @@ export function PlanSent() {
         <div className="max-w-3xl">
           <Eyebrow>What happens next</Eyebrow>
           <p className="mt-6 text-bone-mute leading-relaxed">
-            Niels and the planning team will read your brief and come back
-            with three drawn-by-hand routes, at different rhythms and
-            budgets, within 48 hours. We don&apos;t take commission, we
-            don&apos;t add markup, and we&apos;ll tell you when a
-            different specialist is a better fit than we are.
+            We&apos;ll come back with three routes within 48 hours, by email.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Button
@@ -313,7 +309,7 @@ export function PlanSent() {
               variant="outline"
               className="rounded-none px-8 py-6 mono border-rule text-bone hover:border-amber hover:text-amber"
             >
-              <Link href="/destinations">Open the atlas</Link>
+              <Link href="/destinations/southern-africa">Southern Africa</Link>
             </Button>
           </div>
         </div>

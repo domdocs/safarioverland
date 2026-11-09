@@ -47,8 +47,8 @@ export function Header() {
           <Link href="/categories" className="transition-colors hover:text-amber">
             Categories
           </Link>
-          <Link href="/destinations" className="transition-colors hover:text-amber">
-            Destinations
+          <Link href="/destinations/southern-africa" className="transition-colors hover:text-amber">
+            Southern Africa
           </Link>
           <Link href="/about" className="transition-colors hover:text-amber">
             About

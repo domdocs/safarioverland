@@ -29,7 +29,8 @@ export function CategoryEmptyState({ noun = "category" }: Props) {
         className="mt-6 font-serif italic text-h3-fluid text-bone leading-snug text-balance max-w-2xl"
         data-testid="category-empty-state-headline"
       >
-        No properties on the kept list here yet.
+        Nothing here yet. We&apos;d rather list nothing than something we
+        wouldn&apos;t send a friend to.
       </p>
       <p className="mt-6 text-bone-mute leading-relaxed max-w-2xl">
         The collection grows by hand. When we feature a {noun} property,

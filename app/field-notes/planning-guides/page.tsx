@@ -107,18 +107,18 @@ export default function PlanningGuidesPage() {
                   link: "/field-notes/planning-guides/choosing-destinations",
                 },
                 {
-                  title: "East Africa vs. Southern Africa",
-                  image: "/images/planning-guides/destinations/east-vs-southern.jpg",
+                  title: "Zimbabwe and Zambia seasonal guide",
+                  image: "/images/seasonal-guides/travel-guide-zambia-zimbabwe.jpg",
                   excerpt:
-                    "An in-depth comparison of East Africa and Southern Africa safari experiences, highlighting the unique features of each region.",
-                  link: "/field-notes/planning-guides/east-vs-southern",
+                    "Best times for visiting Victoria Falls and the wildlife-rich national parks of Zimbabwe and Zambia.",
+                  link: "/field-notes/seasonal-guides/zimbabwe-zambia",
                 },
                 {
-                  title: "Off-the-Beaten-Path Safari Destinations",
-                  image: "/images/planning-guides/destinations/off-the-beaten-path.jpg",
+                  title: "Botswana seasonal guide",
+                  image: "/images/seasonal-guides/travel-guide-botswana.jpg",
                   excerpt:
-                    "Discover lesser-known but equally rewarding safari destinations for travelers seeking unique experiences away from the crowds.",
-                  link: "/field-notes/planning-guides/off-the-beaten-path",
+                    "Detailed information on Botswana's dramatic seasonal changes, from dry season to Okavango floods.",
+                  link: "/field-notes/seasonal-guides/botswana",
                 },
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
@@ -233,18 +233,18 @@ export default function PlanningGuidesPage() {
                   link: "/field-notes/planning-guides/best-times",
                 },
                 {
-                  title: "Planning Around Wildlife Events",
-                  image: "/images/planning-guides/timing/great-migration.jpg",
-                  excerpt:
-                    "Time your safari to witness spectacular wildlife events like the Great Migration, calving season, or bird migrations.",
-                  link: "/field-notes/planning-guides/wildlife-events",
-                },
-                {
                   title: "Green Season Safari Benefits",
                   image: "/images/planning-guides/timing/green-season.jpg",
                   excerpt:
                     "Discover the advantages of traveling during the less crowded green season, from lower prices to unique wildlife viewing.",
                   link: "/field-notes/planning-guides/green-season",
+                },
+                {
+                  title: "Photography seasonal guide",
+                  image: "/images/seasonal-guides/safari-seasons.jpg",
+                  excerpt:
+                    "Best seasons for wildlife photography in different regions, considering light, landscapes, and animal behavior.",
+                  link: "/field-notes/seasonal-guides/photography",
                 },
               ].map((guide) => (
                 <Card key={guide.title} className="overflow-hidden">
@@ -359,7 +359,6 @@ export default function PlanningGuidesPage() {
             { slug: "safari-budget-calculator", icon: <DollarSign className="h-8 w-8 text-primary" /> },
             { slug: "ultimate-packing-list", icon: <Luggage className="h-8 w-8 text-primary" /> },
             { slug: "safari-calendar-planner", icon: <Calendar className="h-8 w-8 text-primary" /> },
-            { slug: "destination-comparison-chart", icon: <Compass className="h-8 w-8 text-primary" /> },
             { slug: "family-safari-planner", icon: <Users className="h-8 w-8 text-primary" /> },
           ].map(({ slug, icon }) => {
             const resource = RESOURCES[slug]

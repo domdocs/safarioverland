@@ -25,7 +25,7 @@ export default function ListingNotFound() {
               <Link href="/categories">Browse categories</Link>
             </Button>
             <Button size="lg" variant="outline" className="rounded-none px-8 py-6 mono" asChild>
-              <Link href="/destinations">Browse by region</Link>
+              <Link href="/destinations/southern-africa">Southern Africa</Link>
             </Button>
           </div>
         </div>

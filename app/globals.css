@@ -172,3 +172,32 @@
     color: rgb(var(--amber));
   }
 }
+
+/* ── Media motion (VISUAL_BRIEF §3) ─────────────────────────────
+   Ken Burns: one slow zoom, 1.00 → 1.06, no pan. Parallax: CSS
+   scroll-driven only (no scroll listeners), and only where supported.
+   Both are off under prefers-reduced-motion. */
+@keyframes so-ken-burns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+@keyframes so-parallax {
+  from { transform: translateY(-6%); }
+  to   { transform: translateY(6%); }
+}
+@layer components {
+  @media (prefers-reduced-motion: no-preference) {
+    .ken-burns {
+      animation: so-ken-burns 28s ease-out both;
+      transform-origin: 50% 55%;
+    }
+  }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .parallax-media {
+        animation: so-parallax linear both;
+        animation-timeline: view();
+      }
+    }
+  }
+}

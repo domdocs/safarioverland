@@ -13,9 +13,9 @@ export type DrawerLink = {
 }
 
 type MobileDrawerProps = {
-  /** Top-level nav items (Categories, Destinations, About, Resources). */
+  /** Top-level nav items (Routes, The collection, Southern Africa, …). */
   links: DrawerLink[]
-  /** Optional auth shortcuts — Sign in / Register. */
+  /** Optional buttons pinned to the bottom of the drawer (e.g. Start a brief). */
   authLinks?: DrawerLink[]
   /** Footer rail of secondary links — Contact, Submit, etc. */
   secondaryLinks?: DrawerLink[]
@@ -65,7 +65,7 @@ export function MobileDrawer({
         aria-expanded={open}
         onClick={() => setOpen(true)}
         className={cn(
-          "inline-flex items-center justify-center h-9 w-9 text-bone hover:text-amber transition-colors lg:hidden",
+          "inline-flex items-center justify-center h-9 w-9 text-bone hover:text-amber transition-colors xl:hidden",
           className,
         )}
       >
@@ -77,7 +77,7 @@ export function MobileDrawer({
         aria-modal="true"
         aria-hidden={!open}
         className={cn(
-          "fixed inset-0 z-[100] lg:hidden",
+          "fixed inset-0 z-[100] xl:hidden",
           "transition-opacity duration-200",
           open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
         )}

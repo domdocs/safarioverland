@@ -23,16 +23,12 @@ export function GlobalJsonLd() {
         url: "https://safarioverland.com",
         logo: "https://safarioverland.com/images/logo/safari-overland-horizontal-600.png",
         description:
-          "A small, opinionated collection of African safari lodges and operators, written from Victoria Falls.",
+          "Lodge-based self-drive safari journeys through southern Africa, planned and booked from Victoria Falls.",
         foundingLocation: {
           "@type": "Place",
           name: "Victoria Falls, Zimbabwe",
         },
         areaServed: [
-          "Kenya",
-          "Tanzania",
-          "Uganda",
-          "Rwanda",
           "Botswana",
           "Namibia",
           "Zambia",
@@ -40,12 +36,11 @@ export function GlobalJsonLd() {
           "South Africa",
         ],
         knowsAbout: [
+          "Self-drive safari",
           "African safari",
-          "Great Migration",
           "Walking safari",
           "Community conservancy",
-          "Mobile tented camp",
-          "Gorilla trekking",
+          "Safari lodges",
         ],
         sameAs: ["https://www.instagram.com/safari_overland"],
       },

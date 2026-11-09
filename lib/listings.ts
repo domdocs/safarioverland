@@ -745,7 +745,7 @@ export async function getCategories() {
       name: "Safari Lodges",
       slug: "lodges",
       description:
-        "Discover the finest safari lodges across Africa, from luxury tented camps to exclusive private reserves.",
+        "Camps and lodges in southern Africa we'd send a friend to, chosen for what they give you at the end of a day's drive.",
     },
     {
       name: "Safari Campsites",
@@ -1004,7 +1004,7 @@ export function getCategoriesSync() {
       name: "Safari Lodges",
       slug: "lodges",
       description:
-        "Discover the finest safari lodges across Africa, from luxury tented camps to exclusive private reserves.",
+        "Camps and lodges in southern Africa we'd send a friend to, chosen for what they give you at the end of a day's drive.",
     },
     {
       name: "Safari Campsites",

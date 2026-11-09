@@ -309,8 +309,8 @@ const ChoosingDestinationsPage = () => {
                     
                     <div className="flex items-center gap-4">
                         <span className="text-muted-foreground">Related:</span>
-                        <Link href="/field-notes/planning-guides/wildlife-events" className="text-primary hover:text-primary/80 bg-primary/5 px-4 py-2 rounded-lg font-medium transition-colors">
-                            Wildlife Events
+                        <Link href="/field-notes/planning-guides/best-times" className="text-primary hover:text-primary/80 bg-primary/5 px-4 py-2 rounded-lg font-medium transition-colors">
+                            Best times to go
                         </Link>
                     </div>
                 </div>

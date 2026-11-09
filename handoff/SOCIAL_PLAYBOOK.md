@@ -6,11 +6,21 @@ Reads like BRAND_VOICE.md does — once, then kept open while you work.
 The brand voice is set in `BRAND_VOICE.md`. Don't restate it here. This
 file is about *what we post, when, where, and how*.
 
+> **Updated 9 November 2026 for the self-drive relaunch.** Cadence, posting
+> times, the launch calendar (from Monday 16 November 2026), content
+> pillars and hashtags now live in
+> `handoff/relaunch/marketing/SOCIAL_RELAUNCH.md`, which overrides this
+> file wherever they differ. This file keeps the channel roles, templates,
+> batching, scheduling and engagement rules. `SOCIAL_LAUNCH_QUEUE.md` is
+> retired. Southern Africa only; we earn from the trips we book, never
+> from who we list.
+
 ---
 
 ## In one sentence
 
-Two channels. Three posts a week. Editorial register. Batched monthly.
+Two channels. Five posts a week at relaunch (three Instagram, two
+LinkedIn). Editorial register. Batched monthly.
 Photo-first on Instagram, text-first on LinkedIn, both cross-referencing
 the work on the site.
 
@@ -18,32 +28,31 @@ the work on the site.
 
 ## Channels and voices
 
-### LinkedIn — Niels van de Meer (founder)
+### LinkedIn — Niels van de Meer (editor)
 
 First person. *I* and *we*. The "we" is Safari Overland; the "I" is Niels.
 
-LinkedIn is where the editorial repositioning is *argued*. Long-form is
-fine — readers self-select for it. Niels' role here is to show up as a
-real founder in a real place (Victoria Falls), with opinions earned from
-being on the ground. Not a content marketer pretending to be a founder.
+LinkedIn is where the self-drive case is *argued*. Long-form is fine —
+readers self-select for it. Niels is the editor (one editor; Dom is
+acknowledged in operations only). His role here is to show up as a real
+editor who knows the road, with opinions earned from being on the
+ground. Not a content marketer pretending to be an editor.
 
 Posting from Niels' personal profile — not the company page. The company
 page can repost; the original goes out under his name. That's the lever.
 
-### Instagram — @safarioverland (company)
+### Instagram — @safari_overland (company)
 
 Photo-first. The image carries 80% of the post. The caption earns the
 rest with a single sensory image, a quote pulled from a Field Note, or a
-plain practical detail (*"In season this week: walking safaris in Hwange.
-The bush thins, the river runs high, the camp at Linkwasha re-opens."*).
+plain practical detail (*"In season now: the dry months in Hwange, when
+the game comes to the pumped waterholes."*).
 
 Captions are short — three short paragraphs at most. Hashtags below a
-line break, kept to six or fewer. No hashtag salad; we look like the
-editorial brand we are, not a bot.
+line break, four at most (see `SOCIAL_RELAUNCH.md` §4). No hashtag
+salad; we look like the editorial brand we are, not a bot.
 
-If the Safari Overland Instagram handle isn't already set up, register
-`@safarioverland`; if taken, `@safari.overland` or `@safarioverland.co`
-in that order.
+The handle is **@safari_overland** (confirmed by Dom, 9 November 2026).
 
 ### What we don't do
 
@@ -57,97 +66,52 @@ in that order.
 
 ## Cadence
 
-Set the tempo low and keep it. Three posts a week, every week, for at
-least three months. Then reassess.
+Five posts a week at relaunch: Instagram Monday, Wednesday and Friday;
+LinkedIn Tuesday and Thursday. Times are set for US and UK readers, not
+CAT. The table, the reasoning and the dated launch calendar are in
+`handoff/relaunch/marketing/SOCIAL_RELAUNCH.md` §3 and §6.
 
-| Channel   | Day            | Owner | Local time |
-|-----------|----------------|-------|------------|
-| LinkedIn  | Tuesday        | Niels | 09:00 CAT  |
-| Instagram | Monday         | Dom   | 17:00 CAT  |
-| Instagram | Friday         | Dom   | 09:00 CAT  |
-
-Why these slots:
-- **Tuesday morning LinkedIn** — best engagement window for B2B and
-  founder content; people are scrolling on commutes / at desks.
-- **Monday 5pm Instagram** — end of weekend, planning-mode mindset,
-  high engagement for travel content.
-- **Friday morning Instagram** — weekend-prep window, evocative content
-  performs.
-
-Adjust if data tells you otherwise after 8 weeks. Don't tinker before
-that — there's no signal yet.
+If five a week can't be held, drop to two Instagram and one LinkedIn
+rather than posting unevenly. Adjust times only after 8 weeks of data —
+don't tinker before that; there's no signal yet.
 
 ---
 
 ## The launch series — first four weeks
 
-Twelve posts. Sequenced to walk the audience through the repositioning
-without ever using the word *repositioning*.
+Superseded. The relaunch series (twenty posts, 16 November to 11
+December 2026) is drafted in `handoff/relaunch/marketing/SOCIAL_RELAUNCH.md`
+§6–§8. The old twelve-post series (directory to collection, East and
+southern Africa) is retired with `SOCIAL_LAUNCH_QUEUE.md`.
 
-### Week 1 — *The directory is gone.*
-
-Theme: introduce the shift. From directory to curated collection.
-
-| # | Channel  | Day     | Theme                                          | Asset                                           |
-|---|----------|---------|------------------------------------------------|-------------------------------------------------|
-| 1 | Instagram | Mon    | The new opening line. *Africa, slowly.*        | `/safari-tent.jpg` (homepage hero)              |
-| 2 | LinkedIn  | Tue    | Founder note. Niels announces the shift.       | None (text only) or `/safari-tent.jpg`          |
-| 3 | Instagram | Fri    | Three things we promise to do properly.        | `/images/regions/southern-africa.jpg`           |
-
-### Week 2 — *What changed.*
-
-Theme: explain the editorial principle. Restraint as a position.
-
-| # | Channel  | Day     | Theme                                          | Asset                                           |
-|---|----------|---------|------------------------------------------------|-------------------------------------------------|
-| 4 | Instagram | Mon    | "What the wild does to you, not just what it shows you." | `/images/destinations/wildlife/elephant.jpg`    |
-| 5 | LinkedIn  | Tue    | Why we cut more than we kept.                  | None (text only)                                |
-| 6 | Instagram | Fri    | A specific lodge moment — the kept-list teaser. | `/images/category-img/luxury-safari-lodges.jpg` |
-
-### Week 3 — *By hand.*
-
-Theme: introduce the planning service. The 48-hour route-drafting.
-
-| # | Channel  | Day     | Theme                                          | Asset                                           |
-|---|----------|---------|------------------------------------------------|-------------------------------------------------|
-| 7 | Instagram | Mon    | Three steps, three lines.                      | `/images/planning-guides/destinations/east-vs-southern.jpg` |
-| 8 | LinkedIn  | Tue    | How we plan a safari. The brief, the routes, the introduction. | `/images/planning-guides/first-time-safari-guide.jpg` |
-| 9 | Instagram | Fri    | A founder's pull-quote, set serif.             | `/images/regions/east-africa.jpg`               |
-
-### Week 4 — *Travel with consequence.*
-
-Theme: conservation and community. The third pillar.
-
-| # | Channel  | Day     | Theme                                          | Asset                                           |
-|---|----------|---------|------------------------------------------------|-------------------------------------------------|
-| 10 | Instagram | Mon   | A bed-night levy, in plain numbers.            | `/images/conservation/wildlife/anti-poaching.jpg`  |
-| 11 | LinkedIn  | Tue   | Why conservancies matter. The most quietly important thing in African travel. | `/images/conservation/community/community-conservation.jpg` |
-| 12 | Instagram | Fri   | A small thank-you to the operators who said yes. | `/images/seasonal-guides/travel-guide-zambia-zimbabwe.jpg` |
-
-After Week 4, the rhythm switches to ongoing — no theme arc, just a
-mix of: *in season*, *kept-list lodges*, *Field Notes teasers*, *planning
-service reminders*, *conservation news*, *the occasional honest opinion*.
+After the launch weeks, the rhythm switches to ongoing — no theme arc,
+just a mix of: *the road*, *kept-list stays on the three routes*,
+*practicalities* (driving on the left, borders, gravel), *partners on
+the ground*, *Field Notes teasers*, *the occasional honest opinion*.
 
 ---
 
 ## Hashtag strategy
 
-Light. Six or fewer per Instagram post. Two on LinkedIn, max.
+Light. Four or fewer per Instagram post. Two on LinkedIn, max. The full
+list is in `SOCIAL_RELAUNCH.md` §4.
 
-**Always-on (use one or two per post):**
-- #safarioverland — own it, build it
-- #fromvictoriafalls — geographic anchor
+**Core:** #safarioverland · #selfdrivesafari
 
-**Rotate (pick three or four to fit the post):**
-- #africansafari · #safariplanning · #curatedtravel
-- #responsibletravel · #conservationtravel · #ethicaltravel
-- #okavango · #serengeti · #masaimara · #southluangwa · #hwange
-- #walkingsafari · #greenseason · #migration
+**Place (one per post, matching the content):** #namibia · #zimbabwe ·
+#victoriafalls · #hwange · #botswana · #chobe · #southernafrica
+
+**Occasional:** #roadtrip (US-facing posts only) · #fromvictoriafalls
+(partner posts)
+
+**Retired:** the pan-African tags (#serengeti, #masaimara, #migration,
+#southluangwa) and the generic ones (#curatedtravel, #africansafari).
+We post about southern Africa by road, nothing else.
 
 **Avoid:**
+- #overlanding, #overland, #4x4life, #rooftoptent, #vanlife — wrong audience
 - #travelgram, #wanderlust, #instatravel, #blessed, #goals — wrong register
-- #luxurysafari — we don't claim it; the operators we list might be luxurious
-- More than six hashtags total — desperate
+- #luxurysafari — we don't claim it
 
 ---
 
@@ -163,17 +127,20 @@ it.
    Engagement, link clicks, profile visits. Don't optimise; just note.
 2. **Pick the next month's themes** (15 min).
    What did we ship that's worth talking about? New kept lodges,
-   published Field Notes, in-season news, founder POV pieces.
-3. **Draft 12 posts** in one sitting (60 min).
+   published Field Notes, in-season news, the editor's opinion pieces.
+3. **Draft the month's posts** in one sitting (about 20 at five a week; allow 90 min).
    Apply BRAND_VOICE.md while you write — don't fix in post. Use the
    templates in the *Templates* section below.
 4. **Match each post to an asset** (15 min).
-   From `public/images/` — the website asset library is the default
-   source. Operator-supplied photography only when permissioned.
+   Dom's own photography first (`handoff/relaunch/design/SHOT_LIST_DOM.md`),
+   then `public/images/`. Lodge photography only when permissioned in
+   writing (`handoff/relaunch/marketing/LODGE_PHOTO_REQUEST.md`). Never
+   `public/rentals.jpg` (rooftop tent), never Linkwasha or Somalisa
+   (retired from the collection).
 5. **Schedule everything** (15 min).
    Per the *Scheduling and automation* section below.
 
-That's two hours. Once a month. Done.
+That's about two and a half hours. Once a month. Done.
 
 ---
 
@@ -224,7 +191,7 @@ Recommendation: **Buffer**, only if you actually feel the friction.
   brand voice this specific will collapse. Captions are written by
   hand (or by Claude with BRAND_VOICE.md loaded — same thing).
 - **Buying followers, like-pods, mass-DM tools.** Not our register.
-- **Posting on weekends.** The cadence is Mon / Tue / Fri. Weekends
+- **Posting on weekends.** The cadence is Monday to Friday. Weekends
   are off. Niels is allowed to be a person.
 
 ### Master content calendar — minimum schema
@@ -235,13 +202,13 @@ Whether Notion, Airtable, or Sheets, capture these fields:
 |-----------------|------------------------------------------------------|
 | Post #          | 1                                                    |
 | Channel         | LinkedIn / Instagram                                 |
-| Scheduled date  | 2026-05-12                                           |
-| Scheduled time  | 09:00 CAT                                            |
-| Theme           | Founder note — directory is gone                     |
+| Scheduled date  | 2026-11-17                                           |
+| Scheduled time  | 13:00 UK / 08:00 US Eastern                          |
+| Theme           | Niels: what we do now, and why                       |
 | Voice anchor    | Niels (I) / Safari Overland (we)                     |
-| Asset path      | `public/safari-tent.jpg`                             |
+| Asset path      | None (text only)                                     |
 | Caption         | (full post body)                                     |
-| Hashtags        | #safarioverland #fromvictoriafalls #curatedtravel    |
+| Hashtags        | #selfdrivesafari                                     |
 | Status          | Draft / Approved / Scheduled / Posted / Archived     |
 | Performance     | (back-fill after posting — likes, comments, link clicks) |
 
@@ -256,7 +223,7 @@ of inbox-zero anxiety and inside the workflow.
 Six post shapes. Most posts are one of these. Use them; vary them;
 don't be precious about reusing structures.
 
-### LinkedIn — *founder note* (long form)
+### LinkedIn — *editor's note* (long form)
 
 > [Hook — one sentence, often a small surprise.]
 >
@@ -289,7 +256,7 @@ don't be precious about reusing structures.
 >
 > [Link in bio.]
 >
-> [Hashtags below a line break, six max.]
+> [Hashtags below a line break, four max.]
 
 ### Instagram — *the pull-quote*
 
@@ -334,9 +301,9 @@ follow. Reply, but reply well.
 
 - Respond to every comment within 24 hours, *but only with substance*.
   No "Thanks!" — that's a missed opportunity. Reply with one sensory
-  detail, one specific add. *"You'll know Mana Pools more if you go in
-  September. By then the river's pulled back and the elephants are in
-  the riverbed."*
+  detail, one specific add. *"Go in the dry months if you can. Hwange's
+  game gathers at the pumped waterholes, and the afternoons at a hide
+  are worth the drive."*
 - DMs from prospective travellers go to the planning queue — paste the
   contents into the brief form yourself if they're substantial.
 - Operator DMs (the kept ones) get a personal reply from Niels. The
@@ -360,8 +327,8 @@ The numbers we care about, in order:
 3. **Newsletter sign-ups** from social link-in-bio referrals. Track
    the source.
 4. **LinkedIn dwell-time / saves on long-form posts.** Comments are
-   nice; saves are the real signal that the founder content is doing
-   work.
+   nice; saves are the real signal that the editor's long posts are
+   doing work.
 5. *Then* engagement metrics — likes, follows, comments. Useful
    directionally, not as the goal.
 

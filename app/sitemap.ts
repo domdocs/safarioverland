@@ -4,6 +4,8 @@ import { getActiveCategories } from "@/lib/categories"
 import { getArticles } from "@/lib/articles"
 import { FIELD_NOTE_DATES } from "@/lib/field-note-dates"
 import { getListings } from "@/lib/listings"
+import { ROUTES } from "@/lib/relaunch/routes"
+import { LANDINGS } from "@/lib/relaunch/copy"
 
 const BASE = "https://safarioverland.com"
 
@@ -16,16 +18,12 @@ const BASE = "https://safarioverland.com"
 export const revalidate = 3600
 
 /**
- * The four region pages live under `app/destinations/[country]/`.
- * They're hard-coded rather than loaded from a data source — list
- * them explicitly here.
+ * Region pages live under `app/destinations/[region]/`. Since the
+ * self-drive relaunch only southern-africa remains; /destinations and the
+ * old East/West/North Africa pages redirect to it (next.config.mjs), so
+ * they stay out of the sitemap.
  */
-const DESTINATIONS = [
-  "east-africa",
-  "southern-africa",
-  "west-africa",
-  "north-africa",
-] as const
+const DESTINATIONS = ["southern-africa"] as const
 
 /**
  * Dynamic sitemap that pulls live content from the codebase's actual
@@ -60,11 +58,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${BASE}/categories`,
-      priority: 0.9,
-      changeFrequency: "weekly",
-    },
-    {
-      url: `${BASE}/destinations`,
       priority: 0.9,
       changeFrequency: "weekly",
     },
@@ -118,6 +111,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: "monthly" as const,
   }))
 
+  // Self-drive routes and the ad landing pages: static data in
+  // lib/relaunch/, so a static import works at runtime.
+  const routes: MetadataRoute.Sitemap = [
+    { url: `${BASE}/routes`, priority: 0.9, changeFrequency: "monthly" as const },
+    ...ROUTES.map((r) => ({
+      url: `${BASE}/routes/${r.slug}`,
+      priority: 0.9,
+      changeFrequency: "monthly" as const,
+    })),
+    ...LANDINGS.map((l) => ({
+      url: `${BASE}/self-drive/${l.country}`,
+      priority: 0.8,
+      changeFrequency: "monthly" as const,
+    })),
+  ]
+
   // Hand-authored field-note routes come from the generated
   // FIELD_NOTE_DATES map rather than a filesystem walk: `app/field-notes/`
   // exists at build time but not inside the deployed serverless function,
@@ -154,6 +163,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...staticPages,
+    ...routes,
     ...listings,
     ...categories,
     ...destinations,

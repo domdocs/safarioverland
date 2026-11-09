@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Social launch mockups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Safari Overland's own world: night ground, bone type, amber accent. Single theme by choice. */
+  --night: #0E110F;
+  --ink: #161A17;
+  --bone: #EDE7D8;
+  --bone-mute: #A9A497;
+  --amber: #D6A24A;
+  --rule: #2A2F2B;
+  --phone: #000000;
+  --phone-text: #F5F5F5;
+  --phone-mute: #A8A8A8;
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Inter", system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  /* Layout: a page header, then two bands (Instagram, LinkedIn) of post mockups in a wrapping grid, each with a mono label naming its slot in the calendar. */
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--night); color: var(--bone); font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--amber); }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+.eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--amber); display: flex; align-items: center; gap: 12px; }
+.eyebrow::before { content: ""; width: 32px; height: 1px; background: var(--amber); }
+header.top { padding: 56px 0 24px; border-bottom: 1px solid var(--rule); }
+h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 6vw, 72px); line-height: .98; letter-spacing: -.02em; margin: 18px 0 0; text-wrap: balance; }
+h1 em, h2 em { color: var(--amber); }
+.lede { font-family: var(--serif); font-style: italic; font-size: 21px; color: var(--bone-mute); max-width: 60ch; margin: 18px 0 0; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 28px 0 0; padding: 0; list-style: none; font-family: var(--mono); font-size: 12px; color: var(--bone-mute); }
+.facts b { color: var(--bone); font-weight: 500; }
+section.band { padding: 56px 0 24px; }
+h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 4vw, 44px); margin: 14px 0 6px; line-height: 1.05; }
+.band > .wrap > p { color: var(--bone-mute); max-width: 68ch; margin: 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 40px 28px; margin-top: 36px; align-items: start; }
+.slot { display: flex; flex-direction: column; gap: 10px; }
+.slot-label { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--bone-mute); display: flex; justify-content: space-between; gap: 8px; }
+.slot-label span:first-child { color: var(--amber); }
+.note { font-family: var(--mono); font-size: 11px; color: var(--bone-mute); border-left: 2px solid var(--amber); padding: 4px 0 4px 10px; }
+
+/* ── Instagram frame ── */
+.ig { background: var(--phone); color: var(--phone-text); border: 1px solid #262626; border-radius: 14px; overflow: hidden; font-size: 14px; max-width: 420px; width: 100%; }
+.ig-head { display: flex; align-items: center; gap: 10px; padding: 10px 12px; }
+.avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--night); border: 1px solid #333; overflow: hidden; flex: none; }
+.avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ig-who { line-height: 1.2; }
+.ig-who b { font-weight: 600; font-size: 13.5px; }
+.ig-who small { display: block; color: var(--phone-mute); font-size: 12px; }
+.ig-dots { margin-left: auto; color: var(--phone-text); letter-spacing: 1px; }
+.media { position: relative; aspect-ratio: 4 / 5; background: var(--ink); }
+.media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; aspect-ratio: 4 / 5; scrollbar-width: none; }
+.track::-webkit-scrollbar { display: none; }
+.slide { flex: 0 0 100%; scroll-snap-align: start; position: relative; aspect-ratio: 4 / 5; }
+.slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.count { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,.6); color: #fff; font-size: 12px; padding: 3px 9px; border-radius: 999px; font-family: var(--sans); }
+.overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,17,15,.0) 35%, rgba(14,17,15,.85)); display: flex; flex-direction: column; justify-content: flex-end; padding: 26px 24px; }
+.overlay .kicker { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--amber); }
+.overlay .line { font-family: var(--serif); font-size: 34px; line-height: 1.02; color: var(--bone); margin-top: 8px; text-wrap: balance; }
+.overlay .line em { color: var(--amber); }
+.overlay .credit { font-family: var(--mono); font-size: 9.5px; color: rgba(237,231,216,.6); margin-top: 14px; }
+.overlay.dark { background: rgba(14,17,15,.62); justify-content: center; text-align: left; }
+.type-slide { background: var(--bone); color: var(--night); display: flex; flex-direction: column; justify-content: space-between; padding: 30px 28px; height: 100%; }
+.type-slide .num { font-family: var(--mono); color: #A8792F; font-size: 13px; letter-spacing: .14em; }
+.type-slide .t { font-family: var(--serif); font-size: 34px; line-height: 1.04; margin: 0; }
+.type-slide .t em { color: #A8792F; }
+.type-slide p { font-size: 15.5px; line-height: 1.5; margin: 14px 0 0; color: #2C2F2B; }
+.type-slide .foot { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #6F6A5E; display: flex; justify-content: space-between; }
+.pips { display: flex; justify-content: center; gap: 4px; padding-top: 8px; }
+.pips i { width: 6px; height: 6px; border-radius: 50%; background: #555; display: block; }
+.pips i.on { background: #3897F0; }
+.ig-actions { display: flex; align-items: center; gap: 14px; padding: 8px 12px 4px; }
+.ig-actions svg { width: 24px; height: 24px; stroke: var(--phone-text); fill: none; stroke-width: 1.8; }
+.ig-actions .save { margin-left: auto; }
+.ig-cap { padding: 4px 12px 14px; font-size: 13.5px; line-height: 1.45; }
+.ig-cap p { margin: 0 0 8px; }
+.ig-cap b { font-weight: 600; }
+.tags { color: #E0F1FF; }
+
+/* ── LinkedIn frame ── */
+.li { background: #1B1F23; color: #E8E8E8; border: 1px solid #333; border-radius: 10px; max-width: 560px; width: 100%; font-size: 14px; }
+.li-head { display: flex; gap: 10px; padding: 14px 16px 6px; align-items: center; }
+.li-av { width: 48px; height: 48px; border-radius: 50%; background: #3A3F38; color: var(--bone); display: grid; place-items: center; font-family: var(--serif); font-size: 20px; flex: none; }
+.li-who b { font-weight: 600; display: block; }
+.li-who small { color: #A0A0A0; display: block; font-size: 12px; line-height: 1.35; }
+.li-body { padding: 6px 16px 10px; line-height: 1.5; }
+.li-body p { margin: 0 0 12px; }
+.li-body .sign { color: #E8E8E8; }
+.li-tags { color: #71B7FB; }
+.li-bar { border-top: 1px solid #333; display: grid; grid-template-columns: repeat(4, 1fr); padding: 6px 8px; color: #B0B0B0; font-size: 13px; font-weight: 600; text-align: center; }
+.li-comment { margin: 0 16px 14px; padding: 10px 12px; background: #262B30; border-radius: 8px; font-size: 13px; color: #CFCFCF; }
+.li-comment b { color: #E8E8E8; }
+
+footer.end { border-top: 1px solid var(--rule); margin-top: 48px; padding: 28px 0 56px; color: var(--bone-mute); font-size: 13.5px; }
+footer.end ul { margin: 10px 0 0; padding-left: 18px; }
+footer.end li { margin: 4px 0; }
+:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+@media (max-width: 400px) { .grid { grid-template-columns: 1fr; } .overlay .line, .type-slide .t { font-size: 28px; } }
+@media (prefers-reduced-motion: reduce) { .track { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="eyebrow">Safari Overland · social relaunch</div>
+    <h1>The first posts, <em>as they'd look</em>.</h1>
+    <p class="lede">Mockups of the drafted launch posts for Instagram and Niels's LinkedIn, built from the site's licensed photographs and the house type.</p>
+    <ul class="facts">
+      <li><b>8</b> Instagram mockups</li>
+      <li><b>3</b> LinkedIn mockups</li>
+      <li>Copy from <b>SOCIAL_RELAUNCH.md</b></li>
+      <li>Handle: <b>@safari_overland</b> (confirmed)</li>
+    </ul>
+  </div>
+</header>
+
+<section class="band">
+  <div class="wrap">
+    <div class="eyebrow">Instagram</div>
+    <h2>The view from the <em>driver's seat</em>.</h2>
+    <p>Three posts a week: Monday, Wednesday, Friday. Carousels scroll sideways, as they would on a phone.</p>
+
+    <div class="grid">
+
+      <!-- Post 1 -->
+      <div class="slot">
+        <div class="slot-label"><span>Post 1 · Mon 16 Nov</span><span>The road</span></div>
+        <article class="ig" aria-label="Instagram post 1 mockup">
+          <div class="ig-head"><div class="avatar"><img src="img/mark.webp" alt=""></div><div class="ig-who"><b>safari_overland</b><small>Damaraland, Namibia</small></div><span class="ig-dots">•••</span></div>
+          <div class="media">
+            <img src="img/p1.webp" alt="A gravel road running away across Damaraland in warm light">
+            <div class="overlay"><div class="line">The drive is part of the <em>safari</em>.</div><div class="credit">Photo: Lidine Mia</div></div>
+          </div>
+          <div class="ig-actions" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-3.2-6.4L20 4l-.6 4A8 8 0 0 1 20 12z"/></svg><svg viewBox="0 0 24 24"><path d="M21 4 3 11l7 2 2 7z"/></svg><svg class="save" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></div>
+          <div class="ig-cap">
+            <p><b>safari_overland</b> <i>The drive is part of the safari.</i></p>
+            <p>We now plan and book self-drive journeys through southern Africa. You drive. Each night ends at a camp or lodge that gives you more than a bed: a guide who can read a track, a hide at a waterhole, a view worth the road.</p>
+            <p>Three routes to start. Zimbabwe from Victoria Falls. Namibia from Windhoek. And the four corners, where Zimbabwe, Botswana, Namibia and Zambia meet.</p>
+            <p>Link in bio.</p>
+            <p class="tags">#safarioverland #selfdrivesafari #southernafrica</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Post 3 carousel -->
+      <div class="slot">
+        <div class="slot-label"><span>Post 3 · Wed 18 Nov</span><span>The offer · carousel</span></div>
+        <article class="ig" aria-label="Instagram post 3 carousel mockup">
+          <div class="ig-head"><div class="avatar"><img src="img/mark.webp" alt=""></div><div class="ig-who"><b>safari_overland</b><small>Victoria Falls, Zimbabwe</small></div><span class="ig-dots">•••</span></div>
+          <div class="media">
+            <div class="track" tabindex="0" aria-label="Carousel, 4 slides, scroll sideways" data-pips="p3pips">
+              <div class="slide"><img src="img/p3.webp" alt="Victoria Falls in late light"><div class="overlay dark"><div class="kicker">Safari Overland</div><div class="line">Three things we promise to do <em>properly</em>.</div><div class="credit">Photo: Diego Delso</div></div></div>
+              <div class="slide"><div class="type-slide"><div><div class="num">01</div><p class="t" style="margin-top:14px">We draw the <em>route</em>.</p><p>Drive times, road surfaces, fuel, borders and gate times, worked out before you leave. In print, and offline on your phone.</p></div><div class="foot"><span>Safari Overland</span><span>2 / 4</span></div></div></div>
+              <div class="slide"><div class="type-slide"><div><div class="num">02</div><p class="t" style="margin-top:14px">We book every night, and the <em>vehicle</em>.</p><p>Camps and lodges chosen for what they give you at the end of a day's drive. A vehicle suited to the roads, not a camper you'll never unpack.</p></div><div class="foot"><span>Safari Overland</span><span>3 / 4</span></div></div></div>
+              <div class="slide"><div class="type-slide"><div><div class="num">03</div><p class="t" style="margin-top:14px">We're at the end of the <em>phone</em>.</p><p>A line answered day and night; the number is in your road book. And partners on the ground in Victoria Falls, Kasane, Maun and Windhoek.</p></div><div class="foot"><span>Safari Overland</span><span>4 / 4</span></div></div></div>
+            </div>
+            <span class="count" data-count>1/4</span>
+          </div>
+          <div class="pips" id="p3pips" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+          <div class="ig-actions" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-3.2-6.4L20 4l-.6 4A8 8 0 0 1 20 12z"/></svg><svg viewBox="0 0 24 24"><path d="M21 4 3 11l7 2 2 7z"/></svg><svg class="save" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></div>
+          <div class="ig-cap">
+            <p><b>safari_overland</b> Three things, done properly.</p>
+            <p>The route, every night and the vehicle, and a person at the end of the phone. Swipe for the detail.</p>
+            <p>Link in bio.</p>
+            <p class="tags">#safarioverland #selfdrivesafari #victoriafalls</p>
+          </div>
+        </article>
+        <div class="note">Slide 4 updated: support line 24/7, number in the road book only (D-04); partners in four towns (D-02).</div>
+      </div>
+
+      <!-- Post 5 -->
+      <div class="slot">
+        <div class="slot-label"><span>Post 5 · Fri 20 Nov</span><span>Route 1</span></div>
+        <article class="ig" aria-label="Instagram post 5 mockup">
+          <div class="ig-head"><div class="avatar"><img src="img/mark.webp" alt=""></div><div class="ig-who"><b>safari_overland</b><small>Matobo National Park, Zimbabwe</small></div><span class="ig-dots">•••</span></div>
+          <div class="media">
+            <img src="img/p5.webp" alt="Granite kopjes in the Matobo hills">
+            <div class="overlay"><div class="kicker">Route 01 · 10–12 nights</div><div class="line">Zimbabwe, from <em>Victoria Falls</em>.</div><div class="credit">Photo: Digr</div></div>
+          </div>
+          <div class="ig-actions" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-3.2-6.4L20 4l-.6 4A8 8 0 0 1 20 12z"/></svg><svg viewBox="0 0 24 24"><path d="M21 4 3 11l7 2 2 7z"/></svg><svg class="save" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></div>
+          <div class="ig-cap">
+            <p><b>safari_overland</b> <i>Zimbabwe, from Victoria Falls.</i></p>
+            <p>Victoria Falls, then south and east to Hwange's waterholes, then on to the granite hills of Matobo, finishing in Bulawayo. About ten to twelve nights, and you can shorten it or join it to another route.</p>
+            <p>We start here because it's home ground. Our partners on the ground in Victoria Falls hand over the vehicle and are there if something goes wrong, and there's a line answered day and night while you drive.</p>
+            <p>The full route is on the site. Link in bio.</p>
+            <p class="tags">#safarioverland #zimbabwe #victoriafalls #hwange</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Post 6 carousel -->
+      <div class="slot">
+        <div class="slot-label"><span>Post 6 · Mon 23 Nov</span><span>Practicalities · carousel</span></div>
+        <article class="ig" aria-label="Instagram post 6 carousel mockup">
+          <div class="ig-head"><div class="avatar"><img src="img/mark.webp" alt=""></div><div class="ig-who"><b>safari_overland</b><small>Zambezi Region, Namibia</small></div><span class="ig-dots">•••</span></div>
+          <div class="media">
+            <div class="track" tabindex="0" aria-label="Carousel, 5 slides, scroll sideways" data-pips="p6pips">
+              <div class="slide"><img src="img/p6.webp" alt="The B8 through the Zambezi Region"><div class="overlay dark"><div class="kicker">Before you ask</div><div class="line">Yes, you can <em>drive</em> this.</div><div class="credit">Photo: Jedesto</div></div></div>
+              <div class="slide"><div class="type-slide"><div><div class="num">The roads</div><p class="t" style="margin-top:14px">Tar, and good <em>gravel</em>.</p><p>A 4×4 where it matters, not everywhere. Your road book names the surface for each day.</p></div><div class="foot"><span>Safari Overland</span><span>2 / 5</span></div></div></div>
+              <div class="slide"><div class="type-slide"><div><div class="num">Driving on the left</div><p class="t" style="margin-top:14px">An automatic, where <em>available</em>.</p><p>And an International Driving Permit alongside your licence. Most people stop thinking about it on the first morning.</p></div><div class="foot"><span>Safari Overland</span><span>3 / 5</span></div></div></div>
+              <div class="slide"><div class="type-slide"><div><div class="num">Borders</div><p class="t" style="margin-top:14px">We prepare the <em>paperwork</em>.</p><p>Our partners meet you where it helps.</p></div><div class="foot"><span>Safari Overland</span><span>4 / 5</span></div></div></div>
+              <div class="slide"><div class="type-slide"><div><div class="num">Wildlife and the dark</div><p class="t" style="margin-top:14px">You don't drive after <em>sunset</em>.</p><p>Park gate times make sure of it, and so do we.</p></div><div class="foot"><span>Safari Overland</span><span>5 / 5</span></div></div></div>
+            </div>
+            <span class="count" data-count>1/5</span>
+          </div>
+          <div class="pips" id="p6pips" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+          <div class="ig-actions" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-3.2-6.4L20 4l-.6 4A8 8 0 0 1 20 12z"/></svg><svg viewBox="0 0 24 24"><path d="M21 4 3 11l7 2 2 7z"/></svg><svg class="save" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></div>
+          <div class="ig-cap">
+            <p><b>safari_overland</b> The four questions we're asked before anyone books.</p>
+            <p>Swipe through. If you have a fifth, send it, and we'll answer it here.</p>
+            <p>Link in bio.</p>
+            <p class="tags">#safarioverland #selfdrivesafari #roadtrip</p>
+          </div>
+        </article>
+        <div class="note">Automatic now "where available" (D-15). The IDP line still needs checking (D-23).</div>
+      </div>
+
+      <!-- Post 8 carousel -->
+      <div class="slot">
+        <div class="slot-label"><span>Post 8 · Wed 25 Nov</span><span>Route 2 · carousel</span></div>
+        <article class="ig" aria-label="Instagram post 8 carousel mockup">
+          <div class="ig-head"><div class="avatar"><img src="img/mark.webp" alt=""></div><div class="ig-who"><b>safari_overland</b><small>Namibia</small></div><span class="ig-dots">•••</span></div>
+          <div class="media">
+            <div class="track" tabindex="0" aria-label="Carousel, 5 photographs, scroll sideways" data-pips="p8pips">
+              <div class="slide"><img src="img/p8a.webp" alt="Camelthorn trees at sunset in the Kalahari"><div class="overlay"><div class="kicker">Route 02 · 14–16 nights</div><div class="line">Namibia, the long way <em>round</em>.</div><div class="credit">Photo: Giles Laurent</div></div></div>
+              <div class="slide"><img src="img/p8b.webp" alt="Dune 45 at Sossusvlei at sunrise"><div class="overlay"><div class="kicker">Sossusvlei</div><div class="credit">Photo: Giles Laurent</div></div></div>
+              <div class="slide"><img src="img/p8c.webp" alt="Fog over the Skeleton Coast"><div class="overlay"><div class="kicker">The coast</div><div class="credit">Photo: Joachim Huber from Switzerland</div></div></div>
+              <div class="slide"><img src="img/p8d.webp" alt="A desert-adapted elephant raising dust in Damaraland"><div class="overlay"><div class="kicker">Damaraland</div><div class="credit">Photo: Giles Laurent</div></div></div>
+              <div class="slide"><img src="img/p8e.webp" alt="The waterhole at Okaukuejo, Etosha, at dusk"><div class="overlay"><div class="kicker">Etosha</div><div class="credit">Photo: MarcoTabasso</div></div></div>
+            </div>
+            <span class="count" data-count>1/5</span>
+          </div>
+          <div class="pips" id="p8pips" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+          <div class="ig-actions" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-3.2-6.4L20 4l-.6 4A8 8 0 0 1 20 12z"/></svg><svg viewBox="0 0 24 24"><path d="M21 4 3 11l7 2 2 7z"/></svg><svg class="save" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></div>
+          <div class="ig-cap">
+            <p><b>safari_overland</b> <i>Namibia, the long way round.</i></p>
+            <p>Windhoek, the Kalahari, the dunes at Sossusvlei, the cold coast at Swakopmund, Damaraland, and Etosha, then back to Windhoek. Fourteen to sixteen nights, much of it on gravel, and Africa's best-known self-drive country.</p>
+            <p>We plan the days so you arrive before the light goes, and book places where someone will take you out on foot or by vehicle once you've parked. Our partners on the ground in Windhoek hand over the vehicle.</p>
+            <p>Link in bio.</p>
+            <p class="tags">#safarioverland #namibia #selfdrivesafari #roadtrip</p>
+          </div>
+        </article>
+        <div class="note">Uses the cautious wording the draft suggested ("Africa's best-known self-drive country").</div>
+      </div>
+
+      <!-- Post 11 -->
+      <div class="slot">
+        <div class="slot-label"><span>Post 11 · Mon 30 Nov</span><span>Route 3</span></div>
+        <article class="ig" aria-label="Instagram post 11 mockup">
+          <div class="ig-head"><div class="avatar"><img src="img/mark.webp" alt=""></div><div class="ig-who"><b>safari_overland</b><small>Chobe River, Botswana</small></div><span class="ig-dots">•••</span></div>
+          <div class="media">
+            <img src="img/p11.webp" alt="Elephants crossing the Chobe River in the evening">
+            <div class="overlay"><div class="kicker">Route 03 · 8–10 nights</div><div class="line">The four <em>corners</em>.</div><div class="credit">Photo: LBM1948</div></div>
+          </div>
+          <div class="ig-actions" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-3.2-6.4L20 4l-.6 4A8 8 0 0 1 20 12z"/></svg><svg viewBox="0 0 24 24"><path d="M21 4 3 11l7 2 2 7z"/></svg><svg class="save" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></div>
+          <div class="ig-cap">
+            <p><b>safari_overland</b> <i>The four corners.</i></p>
+            <p>A short route that follows the water: Victoria Falls, the Chobe riverfront in Botswana, then west into Namibia's Zambezi Region and back. Eight to ten nights, four countries meeting on the river.</p>
+            <p>It works on its own, or as the end of something longer. You collect the vehicle in Kasane and hand it back there; our partners on the ground in Kasane look after both ends. We prepare the border paperwork.</p>
+            <p>Link in bio.</p>
+            <p class="tags">#safarioverland #chobe #victoriafalls #selfdrivesafari</p>
+          </div>
+        </article>
+        <div class="note">Caption updated to match the site: the car is collected in Kasane, not Victoria Falls (D-37).</div>
+      </div>
+
+      <!-- Post 20 -->
+      <div class="slot">
+        <div class="slot-label"><span>Post 20 · Fri 11 Dec</span><span>Pull quote</span></div>
+        <article class="ig" aria-label="Instagram post 20 mockup">
+          <div class="ig-head"><div class="avatar"><img src="img/mark.webp" alt=""></div><div class="ig-who"><b>safari_overland</b><small>Southern Africa</small></div><span class="ig-dots">•••</span></div>
+          <div class="media">
+            <img src="img/p20.webp" alt="A long gravel road at sunrise">
+            <div class="overlay dark"><div class="kicker">On the road</div><div class="line">"The drive is half the <em>safari</em>."</div><div class="credit">Photo: Francesco Ungaro (Pexels)</div></div>
+          </div>
+          <div class="ig-actions" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-3.2-6.4L20 4l-.6 4A8 8 0 0 1 20 12z"/></svg><svg viewBox="0 0 24 24"><path d="M21 4 3 11l7 2 2 7z"/></svg><svg class="save" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></div>
+          <div class="ig-cap">
+            <p><b>safari_overland</b> Four weeks in. Three routes, one road book each, and a question we keep coming back to: what do you remember from a safari?</p>
+            <p>Link in bio.</p>
+            <p class="tags">#safarioverland #selfdrivesafari</p>
+          </div>
+        </article>
+        <div class="note">Post 20 was only outlined; this caption is new and needs your voice pass.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="eyebrow">LinkedIn</div>
+    <h2>Niels, the editor's <em>argument</em>.</h2>
+    <p>Tuesdays and Thursdays. Text-led, one idea per post, links in the first comment.</p>
+
+    <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));">
+
+      <div class="slot">
+        <div class="slot-label"><span>Post 4 · Thu 19 Nov</span><span>The stays</span></div>
+        <article class="li" aria-label="LinkedIn post 4 mockup">
+          <div class="li-head"><div class="li-av">N</div><div class="li-who"><b>Niels van de Meer</b><small>Editor, Safari Overland · Self-drive journeys in southern Africa</small><small>1d · Edited</small></div></div>
+          <div class="li-body">
+            <p>Search for a self-drive safari and most of what comes back is camping.</p>
+            <p>Rooftop tents. Fully equipped 4×4s with a fridge and a gas bottle. Campsite bookings. For a certain kind of traveller, that is exactly right, and southern Africa does it better than anywhere.</p>
+            <p>But I keep meeting a different traveller. They want the freedom of their own vehicle: to stop when they like, to take the long way, to sit at a waterhole until they're ready to leave. And they want to finish the day somewhere with a bed, a shower, a fire, and a guide who'll take them out at first light.</p>
+            <p>That's the trip we plan. The places in the collection aren't all expensive. Many sit between US$150 and US$600 per person per night. What they share is that each one offers something only it offers: a hide sunk at the edge of a pan, a walking guide who grew up in the area, rhino on foot, a community that owns the land.</p>
+            <p>You drive yourself to the gate. Then someone who knows the place takes over.</p>
+            <p class="sign">— Niels</p>
+            <p class="li-tags">#selfdrivesafari #southernafrica</p>
+          </div>
+          <div class="li-bar" aria-hidden="true"><span>Like</span><span>Comment</span><span>Repost</span><span>Send</span></div>
+        </article>
+        <div class="note">The US$150–600 band is approved for About (D-12).</div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-label"><span>Post 9 · Thu 26 Nov</span><span>Partners</span></div>
+        <article class="li" aria-label="LinkedIn post 9 mockup">
+          <div class="li-head"><div class="li-av">N</div><div class="li-who"><b>Niels van de Meer</b><small>Editor, Safari Overland · Self-drive journeys in southern Africa</small><small>2d</small></div></div>
+          <div class="li-body">
+            <p>We won't sell a route unless there's someone on the ground at the start of it.</p>
+            <p>On paper, a self-drive needs a hire car, a route and a list of bookings. In practice, it needs a person who can hand over the vehicle and walk round it with you, who knows which garage in town fixes what, and who answers when a tyre goes on a Sunday afternoon two hours from anywhere.</p>
+            <p>We have that in four places: Victoria Falls, Kasane, Maun and Windhoek. Partners on the ground who meet travellers, hand over the vehicle, and are the backup if something goes wrong. It's why our routes start where they do: Zimbabwe from Victoria Falls, the four corners from Kasane, Namibia from Windhoek. Maun is there for the Okavango.</p>
+            <p>Behind them is a line answered day and night. The number isn't on our website. It's in the road book, because the people who need it are the ones already on the road.</p>
+            <p>It's the part of the trip nobody photographs. It's also the part that lets you relax on the road.</p>
+            <p class="sign">— Niels</p>
+            <p class="li-tags">#fromvictoriafalls</p>
+          </div>
+          <div class="li-bar" aria-hidden="true"><span>Like</span><span>Comment</span><span>Repost</span><span>Send</span></div>
+        </article>
+        <div class="note">Updated 9 Nov: partners in four towns (D-02), 24/7 line (D-04). Windhoek no longer described as "being worked on".</div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-label"><span>Post 12 · Tue 1 Dec</span><span>Honest second opinion</span></div>
+        <article class="li" aria-label="LinkedIn post 12 mockup">
+          <div class="li-head"><div class="li-av">N</div><div class="li-who"><b>Niels van de Meer</b><small>Editor, Safari Overland · Self-drive journeys in southern Africa</small><small>3d</small></div></div>
+          <div class="li-body">
+            <p>Self-drive isn't for everyone, and it's worth saying who it isn't for.</p>
+            <p>It isn't for you if you'd rather not make a decision for a fortnight. On the road you choose when to leave, where to stop, how long to sit at a waterhole. Some people find that freedom is the whole point. Others find it tiring.</p>
+            <p>It isn't for you if a long day at the wheel spoils the evening. Some days on our routes are short. A few are long, on gravel, and we say so in the road book.</p>
+            <p>And it isn't for you if your main goal is seeing as much game as possible in as few days as possible. A fly-in safari does that better.</p>
+            <p>It is for you if you want the country between the parks as much as the parks themselves.</p>
+            <p>Most of the people who send us a brief already know which they are. When they don't, we'd rather tell them than sell them the wrong trip.</p>
+            <p class="sign">— Niels</p>
+            <p class="li-tags">#selfdrivesafari</p>
+          </div>
+          <div class="li-bar" aria-hidden="true"><span>Like</span><span>Comment</span><span>Repost</span><span>Send</span></div>
+          <div class="li-comment"><b>Niels van de Meer</b> · The routes, with drive times and road surfaces: safarioverland.com/routes</div>
+        </article>
+        <div class="note">Shortened from the draft to fit a mockup; full text is in SOCIAL_RELAUNCH.md.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="end">
+  <div class="wrap">
+    <div class="eyebrow">Before any of this posts</div>
+    <ul>
+      <li>Week 1 starts Monday 16 November 2026; Instagram is @safari_overland. Route "from" prices are left out of these mockups until ROUTE_COSTING.md is checked.</li>
+      <li>Voice pass on every caption in Cowork; Niels keeps only lines that are true for him.</li>
+      <li>Photographs are licensed stock with credits; our own road, handover and road-book shots replace them as they arrive.</li>
+      <li>Full plan: handoff/relaunch/marketing/SOCIAL_RELAUNCH.md.</li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.track').forEach(function (track) {
+  var media = track.parentElement;
+  var count = media.querySelector('[data-count]');
+  var pips = document.getElementById(track.dataset.pips);
+  var n = track.children.length;
+  function update() {
+    var i = Math.round(track.scrollLeft / track.clientWidth);
+    if (count) count.textContent = (i + 1) + '/' + n;
+    if (pips) Array.prototype.forEach.call(pips.children, function (p, j) { p.classList.toggle('on', j === i); });
+  }
+  track.addEventListener('scroll', update, { passive: true });
+  track.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { track.scrollBy({ left: track.clientWidth, behavior: 'smooth' }); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' }); e.preventDefault(); }
+  });
+});
+</script>
+</body>
+</html>

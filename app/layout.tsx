@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { SupabaseProvider } from "@/components/supabase-provider"
 import { DownloadGateProvider } from "@/components/download-gate-provider"
 import { VercelProviders } from "@/components/analytics/vercel-providers"
+import { ClickCapture } from "@/components/analytics/click-capture"
 import { GlobalJsonLd } from "@/components/JsonLd/GlobalJsonLd"
 import Script from "next/script"
 
@@ -51,11 +52,11 @@ const newsreader = Newsreader({
 export const metadata: Metadata = {
   metadataBase: new URL("https://safarioverland.com"),
   title: {
-    default: "Safari Overland — A small collection of African safaris, by hand",
+    default: "Safari Overland — Self-drive safaris in southern Africa, by hand",
     template: "%s | Safari Overland",
   },
   description:
-    "A small, opinionated collection of African lodges and operators chosen for what the wild does to you — not just what it shows you. Curated from Victoria Falls.",
+    "Plan a self-drive safari through southern Africa, staying at camps and lodges that give you more than a bed. We draw the route, book every night and the vehicle, and stay at the end of the phone while you're on the road.",
   alternates: {
     // Default canonical for the homepage. Every other page sets its
     // own via metadata.alternates.canonical or generateMetadata so
@@ -88,28 +89,28 @@ export const metadata: Metadata = {
     telephone: false,
   },
   keywords: [
-    "African safari",
-    "safari operators",
+    "self-drive safari",
+    "southern Africa self-drive",
+    "Namibia self-drive",
+    "Zimbabwe self-drive",
+    "Botswana self-drive",
     "safari lodges",
     "safari planning",
-    "Africa travel",
-    "wildlife conservation",
-    "safari guides",
   ],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://safarioverland.com",
     siteName: "Safari Overland",
-    title: "Safari Overland — A small collection of African safaris, by hand",
+    title: "Safari Overland — Self-drive safaris in southern Africa, by hand",
     description:
-      "A curated collection of African lodges and operators — chosen for what the wild does to you, not just what it shows you. Field notes, planning briefs, and an honest second opinion. From Victoria Falls.",
+      "Self-drive safari journeys through Zimbabwe, Namibia and Botswana, staying at camps and lodges that give you more than a bed. We draw the route, book every night and the vehicle, and stay at the end of the phone. From Victoria Falls.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Safari Overland — A small collection of African safaris, by hand",
+    title: "Safari Overland — Self-drive safaris in southern Africa, by hand",
     description:
-      "A curated collection of African lodges and operators — chosen for what the wild does to you, not just what it shows you. From Victoria Falls.",
+      "Self-drive safari journeys through southern Africa, staying at camps and lodges that give you more than a bed. From Victoria Falls.",
   },
   robots: {
     index: true,
@@ -172,6 +173,8 @@ export default function RootLayout({
          * Cookieless, no PII by design.
          */}
         <VercelProviders />
+        {/* Cookie-free ad-click capture for Google Ads offline import — see handoff/ANALYTICS.md */}
+        <ClickCapture />
         <GlobalJsonLd />
       </body>
     </html>

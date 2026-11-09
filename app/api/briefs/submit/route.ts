@@ -4,6 +4,10 @@ import { z } from "zod"
 import { getSupabaseServerClient } from "@/lib/supabase"
 import { sendBriefReceived, sendBriefNotify } from "@/lib/briefs/email"
 import type { Brief } from "@/lib/briefs/types"
+import {
+  clickAttributionColumns,
+  clickAttributionFields,
+} from "@/lib/analytics/click-ids"
 
 export const dynamic = "force-dynamic"
 
@@ -14,6 +18,22 @@ const submissionSchema = z.object({
   intent: z.array(z.string().max(40)).max(11).default([]),
   // Step 03
   pace: z.enum(["slow", "mixed", "active"]).optional(),
+  // Self-drive steps (after the rhythm)
+  drive_experience: z.enum(["never", "once-or-twice", "often"]).optional(),
+  drive_hours: z.enum(["under-3h", "3-5h", "5h-plus"]).optional(),
+  countries: z
+    .array(
+      z.enum([
+        "zimbabwe",
+        "namibia",
+        "botswana",
+        "zambia",
+        "south-africa",
+        "unsure",
+      ]),
+    )
+    .max(6)
+    .default([]),
   // Step 04
   quiet_markers: z.array(z.string().max(40)).max(10).default([]),
   // Step 05
@@ -39,6 +59,11 @@ const submissionSchema = z.object({
   // Attribution
   source_url: z.string().max(500).optional(),
   utm: z.record(z.string()).optional(),
+
+  // Ad click ID + campaign (cookie-free capture, lib/analytics/click-ids.ts).
+  // Each field drops to undefined when malformed, so tracking data can
+  // never make a brief fail validation.
+  ...clickAttributionFields,
 })
 
 /**
@@ -70,6 +95,9 @@ export async function POST(request: NextRequest) {
     input.months.length > 0 ||
     input.intent.length > 0 ||
     !!input.pace ||
+    !!input.drive_experience ||
+    !!input.drive_hours ||
+    input.countries.length > 0 ||
     input.wildlife_priorities.length > 0 ||
     !!input.duration ||
     !!input.budget_tier ||
@@ -89,7 +117,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "server_unavailable" }, { status: 503 })
   }
 
-  const insertPayload = {
+  const basePayload = {
     // New structured fields
     months: input.months,
     intent: input.intent,
@@ -112,18 +140,56 @@ export async function POST(request: NextRequest) {
     utm: input.utm ?? null,
   }
 
-  const { data: created, error: insertErr } = await supabase
-    .from("briefs")
-    .insert(insertPayload)
-    .select("*")
-    .single()
+  // Self-drive fields (migration 20261109). Only sent when answered, so a
+  // brief without them never references the new columns.
+  const selfDrivePayload = {
+    ...(input.drive_experience
+      ? { drive_experience: input.drive_experience }
+      : {}),
+    ...(input.drive_hours ? { drive_hours: input.drive_hours } : {}),
+    ...(input.countries.length > 0 ? { countries: input.countries } : {}),
+  }
+
+  // Ad click attribution (also migration 20261109). Only the columns with
+  // values are sent.
+  const attributionPayload = clickAttributionColumns(input)
+
+  const newColumnsPayload = { ...selfDrivePayload, ...attributionPayload }
+
+  const insertBrief = (payload: Record<string, unknown>) =>
+    supabase.from("briefs").insert(payload).select("*").single()
+
+  let { data: created, error: insertErr } = await insertBrief({
+    ...basePayload,
+    ...newColumnsPayload,
+  })
+
+  // Transitional fallback: code can reach an environment (including local
+  // dev, which points at production Supabase) before migration 20261109 is
+  // applied there. The missing column comes back as Postgres 42703
+  // (undefined_column), or as PostgREST's PGRST204 ("column not in schema
+  // cache") — retry once without the self-drive and attribution fields
+  // rather than lose the brief. Remove this block once the migration is
+  // applied in production.
+  if (
+    (insertErr?.code === "42703" || insertErr?.code === "PGRST204") &&
+    Object.keys(newColumnsPayload).length > 0
+  ) {
+    console.warn(
+      "briefs: self-drive/attribution columns missing (apply migration 20261109) — retrying insert without them",
+      insertErr.message,
+    )
+    ;({ data: created, error: insertErr } = await insertBrief(basePayload))
+  }
 
   if (insertErr || !created) {
     console.error("brief insert failed", insertErr)
     return NextResponse.json({ error: "brief_create_failed" }, { status: 500 })
   }
 
-  const brief = created as Brief
+  // Merge the self-drive answers back in so the emails show them even if
+  // the fallback above dropped them from the row.
+  const brief = { ...(created as Brief), ...selfDrivePayload }
 
   // Fire-and-forget emails — don't block the response.
   sendBriefReceived(brief).catch((err) =>

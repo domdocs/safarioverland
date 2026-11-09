@@ -2,6 +2,9 @@ import { Section } from "@react-email/components"
 
 import {
   BUDGET_TIER_OPTIONS,
+  COUNTRY_OPTIONS,
+  DRIVE_EXPERIENCE_OPTIONS,
+  DRIVE_HOURS_OPTIONS,
   DURATION_OPTIONS,
   INTENT_OPTIONS,
   PACE_OPTIONS,
@@ -41,6 +44,12 @@ export function BriefReceivedEmail({ brief }: Props) {
       .filter(Boolean)
       .join(", ") || null
 
+  const countriesLine =
+    brief.countries
+      ?.map((v) => labelFor(COUNTRY_OPTIONS, v))
+      .filter(Boolean)
+      .join(", ") || null
+
   const quietLine =
     brief.quiet_markers
       ?.map((v) => labelFor(QUIET_OPTIONS, v))
@@ -63,6 +72,15 @@ export function BriefReceivedEmail({ brief }: Props) {
           label="Rhythm"
           value={labelFor(PACE_OPTIONS, brief.pace) ?? brief.rhythm}
         />
+        <Field
+          label="Driven in Africa"
+          value={labelFor(DRIVE_EXPERIENCE_OPTIONS, brief.drive_experience)}
+        />
+        <Field
+          label="Hours at the wheel"
+          value={labelFor(DRIVE_HOURS_OPTIONS, brief.drive_hours)}
+        />
+        <Field label="Countries" value={countriesLine} />
         <Field label="Wildlife / landscape" value={wildlifeLine} />
         <Field label="Quiet markers" value={quietLine} />
         <Field

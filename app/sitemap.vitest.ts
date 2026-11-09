@@ -50,6 +50,33 @@ describe("sitemap", () => {
       "https://safarioverland.com/field-notes/a-db-published-article",
     )
 
+    // Self-drive relaunch: routes, a route page, an ad landing page and
+    // a self-drive Field Note — all from static imports.
+    expect(urls).toContain("https://safarioverland.com/routes")
+    expect(urls).toContain(
+      "https://safarioverland.com/routes/namibia-kalahari-to-etosha",
+    )
+    expect(urls).toContain("https://safarioverland.com/self-drive/zimbabwe")
+    expect(urls).toContain(
+      "https://safarioverland.com/field-notes/self-drive/gravel-roads",
+    )
+
+    // Off-region Field Notes deleted in the self-drive relaunch must not
+    // linger via FIELD_NOTE_DATES (they now 308 to their section index).
+    for (const gone of [
+      "/field-notes/seasonal-guides/kenya",
+      "/field-notes/seasonal-guides/great-migration",
+      "/field-notes/seasonal-guides/bird-watching",
+      "/field-notes/conservation/success-stories/mountain-gorillas",
+      "/field-notes/planning-guides/east-vs-southern",
+    ]) {
+      expect(urls).not.toContain(`https://safarioverland.com${gone}`)
+    }
+    // Southern Africa notes stay.
+    expect(urls).toContain(
+      "https://safarioverland.com/field-notes/seasonal-guides/zimbabwe-zambia",
+    )
+
     // DB-sourced listing
     expect(urls).toContain(
       "https://safarioverland.com/listings/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",

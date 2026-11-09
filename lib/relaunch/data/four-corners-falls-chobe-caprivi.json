@@ -1,0 +1,539 @@
+{
+  "slug": "four-corners-falls-chobe-caprivi",
+  "title": "The four corners: Victoria Falls, Chobe and the Zambezi Region",
+  "countries": ["Zimbabwe", "Botswana", "Namibia", "Zambia"],
+  "nights": "8–10",
+  "best_months": "May to October for game and comfortable driving. June to August is the best balance: dry roads, rivers still high enough for boats. From September to December boat activities at some Namibian river lodges are limited or stop as water drops (operator-stated). December to March brings rain; some lodge access roads become 4x4-only.",
+  "summary": "Zimbabwe, Botswana, Namibia and Zambia all reach the rivers within a day's drive of Victoria Falls, and this route follows the water between them: the Falls, the Chobe riverfront, the channels of the Kwando and the Okavango at Popa Falls. Most days are three or four hours on tar, with a border to cross, and most afternoons end on a boat with a guide.",
+  "vehicle": "SUV or 4x4 with good clearance, collected in Kasane rather than Victoria Falls (see rental_and_cross_border). Main roads are tar. A 4x4 is needed only for some lodge access tracks, mostly in the rainy season, and several of those lodges offer a park-and-transfer instead.",
+  "start": "Victoria Falls, Zimbabwe (Victoria Falls International Airport). No vehicle needed for the first two nights.",
+  "end": "Victoria Falls, Zimbabwe — or Kasane, Botswana (Kasane International Airport) if the vehicle is returned there.",
+  "days": [
+    {
+      "days": "1–2",
+      "from": "Victoria Falls International Airport",
+      "to": "Victoria Falls town",
+      "distance_km": "unverified (short airport transfer)",
+      "drive_hours": "transfer by our partners in Victoria Falls; no self-drive",
+      "road_surface": "tar",
+      "stay_slug": "vic-falls-victoria-falls-safari-lodge",
+      "alt_stay_slugs": ["vic-falls-ilala-lodge"],
+      "notes": "Two nights without a car. The Falls on foot (Zimbabwe Rainforest entry US$58 for international visitors since January 2026), a sunset cruise on the upper Zambezi, and time to collect visas and cash. Overlaps with route R1."
+    },
+    {
+      "days": "3–4",
+      "from": "Victoria Falls",
+      "to": "Kasane, then west along the Chobe riverfront to the Chobe Forest Reserve",
+      "distance_km": "80–90 to Kasane, then about 60 west of Kasane",
+      "drive_hours": "1–1.5 to Kasane excluding border formalities; about 1 more to Muchenje",
+      "road_surface": "tar (Kasane–Muchenje 'largely' tar per Expert Africa; transit road through Chobe NP is tar)",
+      "stay_slug": "muchenje-safari-lodge",
+      "alt_stay_slugs": ["chobe-safari-lodge", "chobe-game-lodge"],
+      "notes": "Recommended: transfer from Victoria Falls to Kasane and collect the vehicle there, crossing the Kazungula road border (Zimbabwe–Botswana) as a passenger. A Chobe river cruise from Kasane in the afternoon. Day 4 is a full day in Chobe National Park. Muchenje sits on the quieter western riverfront, close to the Ngoma border used on day 5."
+    },
+    {
+      "days": "5–6",
+      "from": "Chobe Forest Reserve (Muchenje)",
+      "to": "Kwando River, near Kongola (Bwabwata National Park)",
+      "distance_km": "about 200–230 (unverified total; Katima Mulilo–Kongola is 118–120, Kongola–Namushasha 24)",
+      "drive_hours": "3–4 plus the Ngoma border (unverified)",
+      "road_surface": "tar on the B8 via Katima Mulilo; surface of the C49/D3501 to Namushasha not stated by the lodge (unverified)",
+      "stay_slug": "nambwa-tented-lodge",
+      "alt_stay_slugs": ["namushasha-river-lodge", "nkasa-lupala-tented-lodge"],
+      "notes": "Cross into Namibia at Ngoma (07:00–18:00). Fuel and cash in Katima Mulilo. Nambwa is park-and-transfer: leave the car at The Sijwa Project, 2.5 km of gravel off the road. Nkasa Lupala is the alternative for a wetter, more remote two nights in Nkasa Rupara, about 75 km from Kongola."
+    },
+    {
+      "days": "7–8",
+      "from": "Kwando River (Kongola)",
+      "to": "Okavango River at Divundu / Popa Falls",
+      "distance_km": "about 200 (unverified; the B8 runs about 180 km through Bwabwata)",
+      "drive_hours": "2.5–3.5 (unverified)",
+      "road_surface": "tar (B8 Trans-Caprivi)",
+      "stay_slug": "nunda-river-lodge",
+      "alt_stay_slugs": ["divava-okavango-lodge"],
+      "notes": "Optional panhandle leg. The B8 crosses Bwabwata with no facilities between Kongola and Divundu; refuel at Kongola. Watch for elephant on the road. Game drives into the Mahango Core Area, boat trips on the Okavango near Popa Falls. A Botswana panhandle extension via Mohembo is listed under variants."
+    },
+    {
+      "days": "9",
+      "from": "Divundu",
+      "to": "Ngoma (Namibian bank of the Chobe)",
+      "distance_km": "about 380–400 (unverified)",
+      "drive_hours": "5–6 (unverified) — the long day",
+      "road_surface": "tar to Ngoma; the last stretch to Chobe River Camp is a track that is muddy and 4x4-only in the rains (lodge escorts vehicles, or park at Ngoma Police Station)",
+      "stay_slug": "chobe-river-camp",
+      "alt_stay_slugs": ["zambezi-mubala-lodge"],
+      "notes": "On the road. Overnight four kilometres from the Ngoma border so the last morning is short. Zambezi Mubala Lodge, 40 km east of Katima Mulilo, shortens today by roughly an hour at the cost of a longer day 10. Start early; avoid driving after dark."
+    },
+    {
+      "days": "10",
+      "from": "Ngoma",
+      "to": "Kasane (vehicle return) and Victoria Falls",
+      "distance_km": "about 150 to Victoria Falls (Gondwana figure from Chobe River Camp)",
+      "drive_hours": "about 1 to Kasane via the transit road; transfer onward to Victoria Falls",
+      "road_surface": "tar (Sedudu–Ngoma transit road through Chobe NP)",
+      "stay_slug": null,
+      "alt_stay_slugs": ["livingstone-tongabezi-lodge", "livingstone-waterberry-zambezi-lodge"],
+      "notes": "Cross Ngoma, transit Chobe National Park on the tar road (no stopping or leaving the road), return the vehicle in Kasane and transfer to Victoria Falls, or fly out of Kasane. The Livingstone stays are for the 'out through Zambia' variant."
+    }
+  ],
+  "stays": [
+    {
+      "slug": "vic-falls-victoria-falls-safari-lodge",
+      "name": "Victoria Falls Safari Lodge",
+      "area": "Victoria Falls, edge of town",
+      "country": "Zimbabwe",
+      "lat": null,
+      "lng": null,
+      "type": "lodge",
+      "self_drive_access": "drive-in",
+      "access_notes": "On the edge of Victoria Falls town; complimentary shuttle to town and the Rainforest (07:45–17:45). On this route no car is needed here.",
+      "nightly_from_usd": 288,
+      "rate_year": "2026",
+      "rate_basis": "Per person per night, bed and breakfast, Lodge Standard Room, green season 1 Jan–30 Jun 2026 (US$330 sharing 1 Jul–31 Dec 2026). Includes 2% levy and 15.5% VAT. 2027 rates not yet seen.",
+      "sets_it_apart": "Rooms and a central deck facing a floodlit waterhole, a hide at the waterhole, and Vulture Culture — a daily feeding of scavenging birds at about 1pm, run for more than 20 years.",
+      "guided_activities": ["Vulture Culture talk and feeding", "activities desk: Zambezi cruises, Zambezi NP drives, guided Falls tours"],
+      "ownership": "Part of the Victoria Falls Safari Collection. Africa Albida Tourism named as operator in trade press (unverified against an owner statement).",
+      "why_we_list_it": "A sensible first two nights: the waterhole does the work while you recover from the flight, and the shuttle takes you to the Falls without a car. The vulture feeding at lunchtime is odd, educational and worth an hour.",
+      "cautions": "Large lodge, not a small camp. Room count not published on the page fetched. Vulture Culture details come from brochure and trade press, not the lodge page.",
+      "sources": [
+        "https://victoria-falls-safari-collection.com/en-US/accommodation/victoria-falls-safari-lodge/rates",
+        "https://victoria-falls-safari-collection.com/en-US/accommodation/victoria-falls-safari-lodge",
+        "https://wetu.com/iBrochure/en/Information/92-17760/dmAFRICA/Activities",
+        "https://www.tourismupdate.com/article/victoria-falls-safari-lodge-supports-vulture-conservation"
+      ]
+    },
+    {
+      "slug": "vic-falls-ilala-lodge",
+      "name": "Ilala Lodge Hotel",
+      "area": "Victoria Falls town",
+      "country": "Zimbabwe",
+      "lat": null,
+      "lng": null,
+      "type": "lodge",
+      "self_drive_access": "drive-in",
+      "access_notes": "In town, about an eight-minute walk from the Falls.",
+      "nightly_from_usd": 271,
+      "rate_year": "2026–27",
+      "rate_basis": "Per person per night sharing, bed and breakfast, Classic Room, 1 Apr 2026–31 Mar 2027 (US$285 for 2027–28). Includes 2% tourism levy and 15% VAT.",
+      "sets_it_apart": "The closest of the established hotels to the Falls on foot; you can walk to the Rainforest gate at first light.",
+      "guided_activities": ["game drives", "guided walks", "boating and canoeing", "fishing", "cultural visits", "town tours"],
+      "ownership": "Described as family-run (Chalo Africa). Owner not confirmed.",
+      "why_we_list_it": "For travellers who would rather walk to the Falls than be driven. A town hotel rather than a safari lodge, run with care, and the right price for the first two nights of a long trip.",
+      "cautions": "Town setting with traffic noise possible (unverified). Activities are booked through operators rather than run by the hotel.",
+      "sources": [
+        "https://www.chaloafrica.com/accommodation/ilala-lodge-victoria-falls/",
+        "https://www.go2africa.com/accommodation/ilala-lodge",
+        "https://www.safari.com/ilala-lodge-hotel"
+      ]
+    },
+    {
+      "slug": "muchenje-safari-lodge",
+      "name": "Muchenje Safari Lodge",
+      "area": "Western Chobe riverfront, Chobe Forest Reserve, about 60 km west of Kasane",
+      "country": "Botswana",
+      "lat": null,
+      "lng": null,
+      "type": "lodge",
+      "self_drive_access": "drive-in",
+      "access_notes": "Lodge transfers from Kasane run about 50 minutes, 'largely along a tar road' (Expert Africa). Third-party listings place it on the Ngoma/Kachikau road a few minutes from Ngoma Bridge. Self-drive arrival and parking not confirmed by the lodge — unverified.",
+      "nightly_from_usd": 585,
+      "rate_year": "2026–27",
+      "rate_basis": "Per person per night sharing, all-inclusive: US$585 standard rate 1 Dec 2026–31 Mar 2027 (US$390 special offer at time of research); US$785 shoulder 1–30 Nov 2026. Includes unlimited activities, a full-day Chobe excursion with river cruise, meals, drinks, park fees, laundry, Kasane airport transfers.",
+      "sets_it_apart": "The quiet western end of the Chobe riverfront, on a private concession above the floodplain, with game drives that stay away from the Kasane traffic. Walks, night drives and seasonal mokoro, which the national-park lodges cannot offer.",
+      "guided_activities": ["game drives (western Chobe)", "full-day Chobe excursion with river cruise from Kasane", "morning boat from a nearby jetty (roughly Feb–Sep, flood-dependent)", "night drives", "guided walks", "mokoro (water permitting)", "village visit"],
+      "ownership": "Not stated on pages fetched — unverified.",
+      "why_we_list_it": "The Chobe riverfront without the queue of vehicles at the Kasane end, and a sensible base the night before the Ngoma border. Walking and night drives here are something the park itself does not allow.",
+      "cautions": "Upper end of the price band. Self-drive arrival not confirmed. Children under 8 by request in low season only; families with 8–12s must book a private vehicle. Room count stated as 11 or 12.",
+      "sources": [
+        "https://www.safari.com/muchenje",
+        "https://expertafrica.com/botswana/chobe-national-park/muchenje-safari-lodge/in-detail",
+        "https://www.chobe.com/muchenje-safari-lodge.php"
+      ]
+    },
+    {
+      "slug": "chobe-safari-lodge",
+      "name": "Chobe Safari Lodge",
+      "area": "Kasane, Chobe riverfront",
+      "country": "Botswana",
+      "lat": null,
+      "lng": null,
+      "type": "lodge",
+      "self_drive_access": "drive-in",
+      "access_notes": "In Kasane on the river, about 10 minutes from the Chobe National Park gate and Kasane airport. Has a campsite for self-drivers, so vehicles are expected.",
+      "nightly_from_usd": 430,
+      "rate_year": "2026–27",
+      "rate_basis": "Per person per night sharing, all-inclusive (meals, selected drinks, selected activities). US$600 standard green-season rate 1 Apr 2026–30 Nov 2027; US$430 special offer on some dates in December 2026 and 6 Jan–25 Mar 2027 (season table on the source page overlaps; confirm). Plus US$5 pppn impact levy. Room-only or B&B rates not confirmed.",
+      "sets_it_apart": "Established in 1959 and still the practical base in Kasane: its own boats on the Chobe, including small eight-seat photographic boats, and game drives into the park three times a day.",
+      "guided_activities": ["Chobe river cruises (morning and sunset)", "photographic boats with specialist guides", "game drives in Chobe NP (06:00, 08:00, 15:00)", "tiger fishing (catch and release)", "village tours"],
+      "ownership": "Website lists Kwando Safaris, Chobe Safari Lodge and Nata Lodge as 'our lodges'; exact ownership not stated.",
+      "why_we_list_it": "The Kasane option: a river lodge with its own boats, where a self-driver can step off the jetty into a guided cruise in the afternoon. Large and busy, but honest about what it is.",
+      "cautions": "Big: 107 rooms plus suites and a campsite. Fails the 'only it offers' test on its own; listed as the in-town alternative for the boat cruises. Check whether a lower B&B rate exists for self-drivers.",
+      "sources": [
+        "https://www.chobesafarilodge.com/",
+        "https://www.safari.com/chobe-safari",
+        "https://www.go2africa.com/accommodation/chobe-safari-lodge"
+      ]
+    },
+    {
+      "slug": "chobe-game-lodge",
+      "name": "Chobe Game Lodge",
+      "area": "Inside Chobe National Park, Chobe riverfront",
+      "country": "Botswana",
+      "lat": null,
+      "lng": null,
+      "type": "lodge",
+      "self_drive_access": "park-and-transfer",
+      "access_notes": "Inside the national park, reached through the Sedudu gate near Kasane. Whether self-drivers may drive to the lodge or must leave the car in Kasane is not confirmed — unverified; park rules may prohibit self-driving to some in-park lodges.",
+      "nightly_from_usd": 990,
+      "rate_year": "2026–27",
+      "rate_basis": "Per person per night sharing, all-inclusive. From US$990 low season 6 Jan–31 Mar 2027; US$1,290 1 Nov 2026–5 Jan 2027 (Safari.com); 'Fully Inclusive Plus' from US$1,570 1 May–31 Oct 2026 (Safari.co.za). Sources differ.",
+      "sets_it_apart": "The only permanent lodge inside Chobe National Park, guided by Africa's first all-female guiding team, with solar-powered boats and electric game-drive vehicles.",
+      "guided_activities": ["game drives (including electric vehicles)", "boat safaris on solar-powered boats", "guided by the all-female 'Chobe Angels' team"],
+      "ownership": "Operated by Desert & Delta Safaris.",
+      "why_we_list_it": "Above our usual band, and we say so: you are paying to be first into the park in the morning and last out at night, with guides who changed who gets to guide in Botswana. Worth it for one splurge night on the route.",
+      "cautions": "Well above the US$150–600 band. Self-drive access unconfirmed. 40 rooms plus four suites — not small. Formation date of the female guiding team given as 2010 or 2014 depending on source.",
+      "sources": [
+        "https://www.chobegamelodge.com/",
+        "https://www.chobegamelodge.com/the-lodge/",
+        "https://www.safari.com/chobe-game-lodge",
+        "https://www.safari.co.za/Chobe_National_Park_Lodge-travel/pricing_chobe-game-lodge-botswana.html",
+        "https://www.afar.com/magazine/changing-safaris-with-chobe-game-lodges-women-guide-teams"
+      ]
+    },
+    {
+      "slug": "nambwa-tented-lodge",
+      "name": "Nambwa Tented Lodge",
+      "area": "Bwabwata National Park, Kwando River, near Kongola",
+      "country": "Namibia",
+      "lat": null,
+      "lng": null,
+      "type": "camp",
+      "self_drive_access": "park-and-transfer",
+      "access_notes": "A 4x4 is needed from the park gate. Without one, drive 2.5 km of gravel to The Sijwa Project, park, and take the lodge transfer (request when booking). Transfers also offered from Katima Mulilo, Kasane, Livingstone and Victoria Falls (rates on request).",
+      "nightly_from_usd": 732,
+      "rate_year": "2026",
+      "rate_basis": "Rack rate N$11,999 per person per night sharing, fully inclusive, green season (Apr–Jun 2026, Dec 2026–Mar 2027); N$15,500 peak (Jul–Nov 2026). USD figure converted at about N$16.4 to US$1 (November 2026, indicative). Dinner, bed and breakfast rates also published but not read. Sustainability levy and transfers extra.",
+      "sets_it_apart": "Ten tented suites on raised platforms in the woodland canopy, inside Bwabwata on the Kwando floodplain — the operator describes them as the only private lodges within the park — with a community project, Sijwa, on the way in.",
+      "guided_activities": ["game drives", "guided bush walks", "boat cruises on the Kwando", "Sijwa Project tour", "catch-and-release fishing", "bush dining"],
+      "ownership": "Marketed by African Monarch Journeys (formerly African Monarch Lodges). Conservancy partnership not confirmed on pages read — unverified.",
+      "why_we_list_it": "The Kwando at its most private: elephant on the floodplain below raised tents, and a guide who knows the channels. The park-and-transfer arrangement means a standard SUV is enough.",
+      "cautions": "Above the band at rack rates; check dinner, bed and breakfast with self-guided options. Rates read from a rate card that extracts poorly — confirm against the PDF. Self-drive guidance on one third-party site conflicts with the operator's own fact sheet.",
+      "sources": [
+        "https://www.africanmonarchjourneys.com/nambwa-tented-lodge/",
+        "https://stwetuproduction.blob.core.windows.net/azure-blob-resources-wetu-production/Resources/103613/1745573512312_African-Monarch-Lodges-Rack-Rates-2026.pdf",
+        "https://stwetuproduction.blob.core.windows.net/azure-blob-resources-wetu-production/Resources/44988/1780049090650_nambwa-tented-lodge-fact-sheet.pdf",
+        "https://www.currency.me.uk/convert/usd/zar?amount=1"
+      ]
+    },
+    {
+      "slug": "namushasha-river-lodge",
+      "name": "Namushasha River Lodge",
+      "area": "Kwando River, 24 km south of Kongola",
+      "country": "Namibia",
+      "lat": -17.98639,
+      "lng": 23.2956,
+      "type": "lodge",
+      "self_drive_access": "drive-in",
+      "access_notes": "24 km south of Kongola on the C49 (D3501). Road surface not stated by the lodge — unverified.",
+      "nightly_from_usd": 222,
+      "rate_year": "2026–27 (validity not stated on page)",
+      "rate_basis": "N$3,640 per person sharing, bed and breakfast (about US$222 at N$16.4 to US$1). Activities extra: Bwabwata game drive N$1,300 pp (incl. park fees), sunset cruise N$670, afternoon cruise N$990.",
+      "sets_it_apart": "Drive-in on the Kwando with guided drives across the river into Bwabwata, so a self-driver can stop driving for two days at a fair price.",
+      "guided_activities": ["game drive in Bwabwata NP (incl. short boat transfer)", "morning or sunset boat cruise", "3-hour afternoon cruise", "catch-and-release fishing"],
+      "ownership": "Gondwana Collection Namibia.",
+      "why_we_list_it": "The sensible Kwando stay: drive in, park, and let a guide take you over the river into Bwabwata in the afternoon. Recently refurbished, and priced for a two-night stop.",
+      "cautions": "Boat trips depend on water levels and are limited between September and December. Lodge closed January–March 2026 for a revamp and reopened 2 April 2026 (reported). 24 rooms.",
+      "sources": [
+        "https://gondwana-collection.com/accommodation/namushasha-river-lodge",
+        "https://gondwana-collection.com/blog/namushasha-river-lodge-received-a-breath-of-fresh-air"
+      ]
+    },
+    {
+      "slug": "nkasa-lupala-tented-lodge",
+      "name": "Nkasa Lupala Tented Lodge",
+      "area": "Edge of Nkasa Rupara National Park, Wuparo Conservancy",
+      "country": "Namibia",
+      "lat": null,
+      "lng": null,
+      "type": "camp",
+      "self_drive_access": "park-and-transfer",
+      "access_notes": "About 75 km from Kongola and 130 km from Katima Mulilo. Guest reviews describe leaving a saloon car at the park / Wuparo Conservancy offices for a 4x4 transfer; one describes the self-drive track in as rough. Transfers on request. Confirm current arrangement with the lodge.",
+      "nightly_from_usd": 224,
+      "rate_year": "2026–27",
+      "rate_basis": "From R3,669 per person sharing, half board, 1 Nov 2026–28 Feb 2027 (R4,032 Jun–Oct 2026; R4,237 Mar–Jun 2027). About US$224 at R16.4 to US$1. Guideline rates from an agent, not the lodge.",
+      "sets_it_apart": "The wettest, least-visited corner of the Zambezi Region: game drives in Nkasa Rupara, walks with an armed community ranger, and boats on the Linyanti channels, from a camp part-owned by the local conservancy.",
+      "guided_activities": ["game drives in Nkasa Rupara NP and Wuparo Conservancy", "night drives", "walking safaris with a community ranger", "boat cruises on the Harubandi channel / Linyanti", "village visit"],
+      "ownership": "Joint venture between private owners (an Italian family) and the Wuparo Conservancy; part of Wild Waters Lodges.",
+      "why_we_list_it": "For the traveller who wants one stop that feels far from the main road. The conservancy has a stake in the lodge, and the walking and boating are done with people from the area.",
+      "cautions": "Access is the hardest on the route; parts of the park flood in the rains. Rates are from an agent's guideline page. Tent count not confirmed.",
+      "sources": [
+        "https://nkasalupalalodge.com",
+        "https://www.siyabona.com/pricing_nkasa-lupala-tented-lodge.html",
+        "https://www.siyabona.com/nkasa-lupala-tented-lodge_activities.html",
+        "https://www.expertafrica.com/namibia/caprivi-strip/nkasa-lupala-tented-lodge/in-detail",
+        "https://expertafrica.com/namibia/caprivi-strip/nkasa-lupala-tented-lodge/reviews/4"
+      ]
+    },
+    {
+      "slug": "nunda-river-lodge",
+      "name": "Nunda River Lodge",
+      "area": "Okavango River, south of Divundu, about 2 km downstream of Popa Falls",
+      "country": "Namibia",
+      "lat": null,
+      "lng": null,
+      "type": "lodge",
+      "self_drive_access": "drive-in",
+      "access_notes": "Listed as self-drive accessible; road surface for the last stretch not stated — unverified.",
+      "nightly_from_usd": null,
+      "rate_year": "unverified",
+      "rate_basis": "Half board is the standard basis (Expert Africa). No current rate found — unverified.",
+      "sets_it_apart": "A river lodge with game drives into the Mahango Core Area and Bwabwata, boats on the Okavango and walking for birds — the panhandle at a modest price.",
+      "guided_activities": ["game drives into Mahango and Bwabwata", "boat trips and sunset cruises", "birding walks", "village visit", "fishing", "mokoro"],
+      "ownership": "Unverified.",
+      "why_we_list_it": "Plain, well-placed and close to Mahango, where elephant and sable come down to the Okavango floodplain in the dry season. Somewhere to stop driving for two nights without paying for it.",
+      "cautions": "No 2026 rate found. Mixed accommodation: river-facing bungalows, tents, and chalets without a view — book a river-facing unit. Also runs a campsite.",
+      "sources": [
+        "https://expertafrica.com/namibia/caprivi-strip/nunda-river-lodge/in-detail",
+        "https://www.info-namibia.com/accommodation/kavango/nunda-lodge"
+      ]
+    },
+    {
+      "slug": "divava-okavango-lodge",
+      "name": "Divava Okavango Lodge & Spa",
+      "area": "Okavango River at Popa Falls, Divundu",
+      "country": "Namibia",
+      "lat": null,
+      "lng": null,
+      "type": "lodge",
+      "self_drive_access": "drive-in",
+      "access_notes": "A few hundred metres from Popa Falls. Access road not described — unverified.",
+      "nightly_from_usd": 252,
+      "rate_year": "2026",
+      "rate_basis": "From R4,137 per person sharing, half board, 1 May–30 Jun 2026; R5,052, 1 Jul–30 Nov 2026 (about US$252 / US$308 at R16.4 to US$1). Agent guideline rates.",
+      "sets_it_apart": "Chalets on the river beside Popa Falls, with boats up to the rapids and Mahango about 14 km away.",
+      "guided_activities": ["boat cruises to Popa Falls", "game viewing in Mahango"],
+      "ownership": "Unverified (names vary: 'Lodge & Spa' / 'Resort & Spa').",
+      "why_we_list_it": "The more comfortable alternative at Divundu, for travellers who want a spa and a better room after a week on the road. Popa Falls is a short boat ride away.",
+      "cautions": "Thinly sourced: ownership, spa and activity details not confirmed with the lodge. 2027 rates not seen. 20 chalets.",
+      "sources": [
+        "https://www.siyabona.com/pricing-divava-okavango-lodge.html",
+        "https://www.travelbutlers.com/property/divava-okavango-lodge--spa"
+      ]
+    },
+    {
+      "slug": "chobe-river-camp",
+      "name": "Chobe River Camp",
+      "area": "Namibian bank of the Chobe, 4 km from Ngoma border",
+      "country": "Namibia",
+      "lat": -17.898339,
+      "lng": 24.728972,
+      "type": "on-the-road",
+      "self_drive_access": "park-and-transfer",
+      "access_notes": "4 km from the Ngoma border post off the B8. The access track is muddy and 4x4-only in the rainy season; the lodge escorts 4x4s in and out. Non-4x4 vehicles park at Ngoma Police Station and guests are transferred.",
+      "nightly_from_usd": 159,
+      "rate_year": "2026–27 (validity not stated; transfer rates on the page dated 1 Nov 2026–31 Oct 2027)",
+      "rate_basis": "N$2,600 per person sharing, bed and breakfast (about US$159 at N$16.4 to US$1). Activities extra: 3-hour cruise N$990, sunset cruise N$670, full-day cruise N$1,355, canoe N$555, guided walk N$455.",
+      "sets_it_apart": "Boats on the Chobe from the quiet Namibian bank, and the shortest possible morning to the Ngoma border.",
+      "guided_activities": ["morning or afternoon Chobe boat cruise", "sunset cruise", "full-day cruise", "Canadian canoe", "birding drive", "guided walk", "Mali village visit", "Chobe NP day trip"],
+      "ownership": "Gondwana Collection Namibia.",
+      "why_we_list_it": "The night before the border, done properly: a tent on the Chobe, a sunset cruise if you arrive in time, and four kilometres to drive in the morning.",
+      "cautions": "Boat cruises limited or unavailable September–December when water is low. Page is inconsistent on tent configuration. 20 tented units.",
+      "sources": [
+        "https://gondwana-collection.com/accommodation/chobe-river-camp",
+        "https://www.currency.me.uk/convert/usd/zar?amount=1"
+      ]
+    },
+    {
+      "slug": "zambezi-mubala-lodge",
+      "name": "Zambezi Mubala Lodge",
+      "area": "Zambezi River, 40 km east of Katima Mulilo",
+      "country": "Namibia",
+      "lat": -17.54,
+      "lng": 24.5663,
+      "type": "on-the-road",
+      "self_drive_access": "park-and-transfer",
+      "access_notes": "40 km east of Katima Mulilo on the D3508 (Kalimbeza road). Secure parking is listed 'at Zambezi Mubala Camp', which suggests a short transfer to the lodge — unverified.",
+      "nightly_from_usd": 216,
+      "rate_year": "2026–27 (validity not stated on page)",
+      "rate_basis": "N$3,541 per person sharing, bed and breakfast (about US$216 at N$16.4 to US$1). Activities extra: sunset cruise N$670, 3-hour cruise N$990, bird-colony walk N$310.",
+      "sets_it_apart": "The Zambezi floodplain east of Katima, with a walk to the bird colonies in season and cruises on the upper Zambezi.",
+      "guided_activities": ["sunset cruise", "morning or afternoon cruise", "guided walk to bird colonies (seasonal)", "catch-and-release fishing"],
+      "ownership": "Gondwana Collection Namibia.",
+      "why_we_list_it": "An on-the-road stop that earns its place: the river is right there, and the bird colonies make a good early walk before the drive to Ngoma.",
+      "cautions": "Access arrangement (boat or road) not confirmed. Unit count inconsistent on the page (17 or 21).",
+      "sources": [
+        "https://gondwana-collection.com/accommodation/zambezi-mubala-lodge",
+        "https://gondwana-collection.com/accommodation/zambezi-mubala-camp"
+      ]
+    },
+    {
+      "slug": "livingstone-tongabezi-lodge",
+      "name": "Tongabezi Lodge",
+      "area": "Zambezi River, about 12 km upstream of Victoria Falls",
+      "country": "Zambia",
+      "lat": null,
+      "lng": null,
+      "type": "lodge",
+      "self_drive_access": "drive-in",
+      "access_notes": "On the Zambian bank upstream of Livingstone. Road access and parking for self-drivers not confirmed — unverified.",
+      "nightly_from_usd": 735,
+      "rate_year": "2026",
+      "rate_basis": "Per person per night sharing, fully inclusive (meals, selected drinks and activities): US$735 3 Jan–30 Jun and 1 Nov–31 Dec 2026; US$965 1 Jul–31 Oct 2026.",
+      "sets_it_apart": "A family-created river camp from the early 1990s with its own Trust School for more than 240 children, a floating dinner and an electric dhow.",
+      "guided_activities": ["sunrise and sunset river cruises", "electric dhow cruise", "tiger-fish fishing", "Victoria Falls tour", "Tongabezi Trust School visit", "village visit"],
+      "ownership": "Family-created; now part of Green Safaris (per existing listing research).",
+      "why_we_list_it": "For the variant that ends in Zambia. Above our usual band, and worth it for a last night on the river before the bridge back to Zimbabwe.",
+      "cautions": "Above the band. Existing listing record: handoff/listings/tongabezi-lodge.md (status pending).",
+      "sources": [
+        "https://greensafaris.com/tongabezi/",
+        "https://www.go2africa.com/accommodation/tongabezi-lodge",
+        "https://www.siyabona.com/pricing-zambezi-river-romance-tongabezi.html"
+      ]
+    },
+    {
+      "slug": "livingstone-waterberry-zambezi-lodge",
+      "name": "Waterberry Zambezi Lodge",
+      "area": "Zambezi River, about 22 km from Livingstone towards Kazungula",
+      "country": "Zambia",
+      "lat": null,
+      "lng": null,
+      "type": "lodge",
+      "self_drive_access": "drive-in",
+      "access_notes": "Off the Livingstone–Kazungula road (M10). Condition of the access road unverified.",
+      "nightly_from_usd": 600,
+      "rate_year": "2026–27",
+      "rate_basis": "From US$600 per person per night (agent, 2026/27); 2025 rate sheet US$570–630 including one or two in-house activities. Basis not confirmed.",
+      "sets_it_apart": "A small independent lodge on the river on the Kazungula side of Livingstone — the right side for a traveller arriving from Botswana.",
+      "guided_activities": ["river cruise (per lodge gallery captions)", "other activities unverified"],
+      "ownership": "Described as small and independent; owner unverified.",
+      "why_we_list_it": "Placeholder alternative for the Zambia variant, pending better sourcing. Its position on the Kazungula road makes it the natural first stop after the bridge.",
+      "cautions": "Weakly sourced. Upper end of the band. Do not publish without operator confirmation.",
+      "sources": [
+        "https://www.theafricaspecialists.com/zambia/victoria-falls/waterberry-lodge/",
+        "https://uyaphi.com/zambia/lodges/livingstone/waterberry-zambezi-lodge",
+        "https://inventtour.com/Documents/Rates%202025_4705.pdf"
+      ]
+    }
+  ],
+  "practicalities": {
+    "borders": [
+      {
+        "name": "Kazungula road border",
+        "between": "Zimbabwe – Botswana (Victoria Falls to Kasane)",
+        "hours": "06:00–20:00 (Botswana side, Botswana Department of Immigration list updated April 2025)",
+        "notes": "Used on day 3 and day 10. KAZA UNIVISA can be issued here. Zimbabwe vehicle charges (if a vehicle is driven in) are paid on the Zimbabwe side; Botswana road permit, third-party insurance and road safety levy on the Botswana side (amounts conflict across sources — unverified).",
+        "sources": [
+          "https://pcf11.org/wp-content/uploads/2025/04/Botswana-Ports-of-Entry.pdf",
+          "https://www.gov.uk/foreign-travel-advice/zimbabwe/entry-requirements",
+          "https://tracks4africa.co.za/listings/item/w150079/kazungula-road-border-post-botszim-06h00-20h00/"
+        ]
+      },
+      {
+        "name": "Kazungula Bridge one-stop border post",
+        "between": "Botswana – Zambia (Kasane to Livingstone)",
+        "hours": "06:00–22:00 (Botswana list, April 2025). A move to 24-hour operation was announced on 24 February 2026; start date not given — unverified.",
+        "notes": "Only used in the Livingstone variant. One-stop post on the bridge. Bridge toll status for private vehicles unverified.",
+        "sources": [
+          "https://pcf11.org/wp-content/uploads/2025/04/Botswana-Ports-of-Entry.pdf",
+          "https://allafrica.com/stories/202602250045.html",
+          "https://satrucker.co.za/kazungula-border-post-to-operate-24-hours-as-botswana-and-zambia-push-for-non-stop-trade-corridor/"
+        ]
+      },
+      {
+        "name": "Ngoma Bridge",
+        "between": "Botswana – Namibia (Chobe to Katima Mulilo)",
+        "hours": "07:00–18:00 (Botswana list, April 2025; same on Namibia Wetlands Route page)",
+        "notes": "Used on day 5 and day 10. Reached from Kasane on the Sedudu–Ngoma transit road through Chobe NP, open 24 hours since 1 April 2025; travellers sign a register at the gates and, by most accounts, pay no park fee if they stay on the tar (official confirmation not found). Namibian press has reported long waits from understaffing. Namibia charges a cross-border charge on foreign-registered vehicles (N$350 for a car on one undated page; another source N$300 — unverified).",
+        "sources": [
+          "https://pcf11.org/wp-content/uploads/2025/04/Botswana-Ports-of-Entry.pdf",
+          "https://namibiawetland.com/access-zambezi/",
+          "https://dailynews.gov.bw/news-detail/85576",
+          "https://atta.travel/resource/botswana-implements-24-hour-access-to-sedudu-ngoma-transit-route.html",
+          "https://theguide.tab.travel/hub/hanbd/muchenje-campsite-cottages",
+          "https://nbcnews.na/node/116618"
+        ]
+      },
+      {
+        "name": "Wenela / Katima Mulilo – Sesheke",
+        "between": "Namibia – Zambia",
+        "hours": "Conflicting: reported as 24 hours in Namibian press (Economist Namibia, NBC); older listings give 06:00–18:00 — unverified.",
+        "notes": "Not used in the main route. The Zambian road from Sesheke to Kazungula (M10, about 135 km) has a long reputation for very poor condition; reconstruction of the Livingstone–Sesheke road has been contracted and funded in 2026 but progress is unverified. Revisit when complete.",
+        "sources": [
+          "https://economist.com.na/81893/retail/katima-mulilo-border-now-open-24-7-move-to-promote-further-trade/",
+          "https://nbcnews.na/taxonomy/term/16761",
+          "https://namibiawetland.com/access-zambezi/",
+          "https://tracks4africa.co.za/listings/item/w147897/sesheke-border-post-zamnam-06h00-18h00/",
+          "https://en.wikipedia.org/wiki/M10_road_(Zambia)",
+          "https://www.lusakatimes.com/2026/08/31/govt-disburses-k1-7-billion-for-livingstone-sesheke-road-works/"
+        ]
+      },
+      {
+        "name": "Victoria Falls Bridge",
+        "between": "Zimbabwe – Zambia (Victoria Falls to Livingstone)",
+        "hours": "24 hours since 13 November 2025 (previously 06:00–22:00)",
+        "notes": "Used in the Livingstone variant, and for a day visit to the Zambian side of the Falls on foot. KAZA UNIVISA issued here.",
+        "sources": [
+          "https://allafrica.com/stories/202511170559.html",
+          "https://www.tourismupdate.com/article/vic-falls-border-now-open-24-hours",
+          "https://www.gov.uk/foreign-travel-advice/zambia/entry-requirements"
+        ]
+      },
+      {
+        "name": "Mohembo",
+        "between": "Namibia – Botswana (Divundu to Shakawe, Okavango panhandle)",
+        "hours": "06:00–18:00 (Botswana side, April 2025). Namibian side hours unverified.",
+        "notes": "Only in the Shakawe variant. The approach from Divundu passes through the Mahango Core Area of Bwabwata. The Mohembo bridge opened in 2022–23 crosses the Okavango inside Botswana (to Seronga); it is not the border crossing.",
+        "sources": [
+          "https://pcf11.org/wp-content/uploads/2025/04/Botswana-Ports-of-Entry.pdf",
+          "https://tracks4africa.co.za/listings/item/w150017/mohembo-border-post-botsnam-06h00-18h00/",
+          "https://getaway.co.za/travel-news/botswana-opens-mohembo-bridge-across-okavango-river"
+        ]
+      }
+    ],
+    "kaza_univisa": "The KAZA UNIVISA currently covers Zimbabwe and Zambia only: US$50, valid 30 days, unlimited travel between the two and day trips into Botswana through Kazungula (UK FCDO). It does not cover Namibia, and an overnight stay in Botswana ends it — so on this route, where travellers sleep in Botswana and Namibia, it only helps if the trip starts and ends in the Zimbabwe–Zambia pair with Botswana as a day trip. Expansion to Botswana and Namibia was agreed in principle in 2024; no launch date confirmed as of November 2026. A separate SADC UniVisa pilot (Angola, Mozambique, Namibia, South Africa, Zimbabwe) is in preparation. Status of any expansion: unverified, sources conflict. Practical consequence: travellers leaving Zimbabwe on day 3 and returning on day 10 need a double-entry Zimbabwe visa or a second single entry. US and UK passport holders: visa-free for Zambia and Botswana; Zimbabwe visa on arrival or e-visa; Namibia has required a visa (on arrival or e-visa) since 1 April 2025.",
+    "fuel": "Fuel in Zimbabwe is sometimes unavailable, with queues (UK FCDO) — one more reason not to depend on a car there. In Namibia there is a filling station at Kongola and a service station at Divundu, with no facilities in Bwabwata between them; fill up at both. Kasane and Katima Mulilo are the main towns on the route; current fuel supply there unverified.",
+    "cash_and_payments": "Zimbabwe: US dollars in small notes; cash is short and international cards may not work for withdrawals (UK FCDO). Botswana: pula. Namibia: Namibian dollars (rand widely accepted — unverified). Zambia: the kwacha is legal tender and some border charges (carbon tax, council levy) are payable in kwacha; registered tourism businesses may still accept US dollars, and a 2024 draft ban on dollar transactions was not confirmed as law — unverified. Carry some cash in each currency for border charges.",
+    "park_fees": "Chobe NP: international adults BWP 270 per day from 1 April 2026 per one secondary source, with vehicle fees extra; earlier published rate BWP 120 — unverified, confirm with DWNP. Sedudu–Ngoma transit: no park fee if staying on the tar road (unofficial sources). Namibia standard parks (Bwabwata incl. Mahango, Mudumu, Nkasa Rupara): international adults reported at N$200 per day from 1 April 2026 (secondary source) — unverified. Victoria Falls Rainforest (Zimbabwe): US$58 for international visitors since January 2026. Fully inclusive lodge rates usually include park fees for the lodge's own activities; check per lodge.",
+    "gate_times": "Chobe NP: 06:00–18:30 (1 April–30 September), 05:30–19:00 (1 October–31 March). The Sedudu–Ngoma transit road is open 24 hours from 1 April 2025. Mahango Core Area: sunrise to sunset or 06:00–19:00 (traveller reports, unverified). Avoid driving outside towns after dark throughout (UK FCDO advice for Zimbabwe; general practice elsewhere).",
+    "rental_and_cross_border": "Yes, a rental vehicle can legally cross all of these borders, but only with the rental company's written authorisation (a letter of authority) obtained at booking, and only if that company's insurance covers each country. Policies differ: at least one major southern African 4x4 supplier with a depot in Kasane lists insurance valid in Botswana, Namibia, Zambia and Zimbabwe, a once-off cross-border surcharge, towing covered in southern Zambia (Livingstone District) only, and third-party cover bought at the border outside Botswana and Namibia; other brands bar Zambia (Avis Botswana) or Zimbabwe and Zambia (Hertz South Africa). Hire cars collected in Victoria Falls are reported as not normally permitted to cross. Zimbabwe treats hired foreign vehicles differently from private ones: press reports (2017) say they need a Commercial Temporary Import Permit backed by a commercial vehicle guarantee — confirm with ZIMRA. Recommendation: start without a car in Victoria Falls, collect the vehicle in Kasane, and return it there, so the vehicle only enters Botswana and Namibia (and Zambia in the Livingstone variant). Carry: passport, driving licence (international driving permit recommended), vehicle registration papers or certified copy, the letter of authority, proof of insurance, police clearance for Zimbabwe if the car is not Zimbabwean. Border charges on a foreign vehicle (amounts dated or conflicting — unverified): Zimbabwe road access fee US$10 per entry, third-party US$30 per month, carbon tax US$10 per month (ZIMRA sheet, 2018); Botswana road permit about BWP 50–65, third-party about BWP 50, road safety levy BWP 50; Namibia cross-border charge about N$300–350; Zambia carbon tax by engine size (kwacha), road access/toll, third-party insurance or COMESA yellow card, council levy."
+  },
+  "variants": [
+    "Without the panhandle (8 nights): Victoria Falls 2, Chobe 2, Kwando 2, Nkasa Rupara 2, back via Ngoma and Kasane. Shorter driving, more time on the water.",
+    "Out through Zambia (10 nights): from Kasane cross the Kazungula Bridge to Livingstone (about 70 km on the M10), one or two nights on the Zambian Zambezi, then the Victoria Falls Bridge into Zimbabwe. The rental must be authorised for Zambia and Zimbabwe; simpler to return the car in Kasane and do the Zambia leg by transfer.",
+    "Botswana panhandle via Mohembo: from Divundu through Mahango to the Mohembo border (06:00–18:00) and on to Shakawe for the Okavango panhandle, returning the same way. Adds two border crossings; stays not yet researched.",
+    "Return via Wenela and Sesheke: not recommended until the Kazungula–Sesheke road in Zambia is rebuilt.",
+    "Falls, both ways: join to route R1 (Victoria Falls, Hwange, Matobo).",
+    "Windhoek to the Falls: approach from route R2 along the B8 through Rundu and Divundu, joining this route at day 7."
+  ],
+  "sources": [
+    "https://pcf11.org/wp-content/uploads/2025/04/Botswana-Ports-of-Entry.pdf",
+    "https://www.gov.uk/foreign-travel-advice/zimbabwe/entry-requirements",
+    "https://www.gov.uk/foreign-travel-advice/zambia/entry-requirements",
+    "https://www.gov.uk/foreign-travel-advice/zimbabwe/safety-and-security",
+    "https://www.gov.uk/foreign-travel-advice/namibia/entry-requirements",
+    "https://www.victoriafalls-guide.net/univisa-zimbabwe-zambia.html",
+    "https://visasnews.com/en/southern-africa-sadc-approves-agreement-establishing-univisa-its-future-regional-tourist-visa/",
+    "https://atta.travel/resource/kaza-tfca-approves-conservation-and-tourism-frameworks-as-zimbabwe-assumes-chair.html",
+    "https://allafrica.com/stories/202602250045.html",
+    "https://allafrica.com/stories/202511170559.html",
+    "https://namibiawetland.com/access-zambezi/",
+    "https://dailynews.gov.bw/news-detail/85576",
+    "https://ecustoms.zimra.co.zw/etip/files/TIPRequirements.pdf",
+    "https://www.businessweekly.co.zw/temporary-importation-permit-tip-for-visitors-vehicles/",
+    "https://www.drivesouthafrica.com/?p=133707",
+    "https://hertz.co.za/cross-border-policy",
+    "https://www.avis.com/amp/es/locations/bw/francistown/frw",
+    "https://eathealthy365.com/a-guide-to-victoria-falls-car-hire/",
+    "https://www.cbrta.co.za/uploads/files/Zambia-Country-Handbook.pdf",
+    "https://en.wikipedia.org/wiki/M10_road_(Zambia)",
+    "https://namibweb.com/bwabwatapark.htm",
+    "https://wildhorizons.co.za/start-planning/",
+    "https://www.yourafricansafari.com/parks/chobe",
+    "https://safarifind.com/blog/botswana-national-park-fees-availability-2026",
+    "https://umhambi.blogspot.com/2026/01/namibia-to-increase-national-park.html",
+    "https://vicfallsbitsnblogs.blogspot.com/2026/01/zimparks-raises-victoria-falls-entry.html",
+    "https://www.zambiatourism.com/travel-info/money/",
+    "https://www.travelweekly.com/Middle-East-Africa-Travel/Are-US-dollars-accepted-in-Zambia?ct=afme",
+    "https://app.ioverlander.com/places/37009-mahango-park-entry-exit-gate"
+  ]
+}

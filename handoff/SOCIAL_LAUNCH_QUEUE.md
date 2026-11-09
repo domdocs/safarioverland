@@ -1,3 +1,11 @@
+> **RETIRED — 9 November 2026. Do not schedule anything from this file.**
+>
+> Superseded by `handoff/relaunch/marketing/SOCIAL_RELAUNCH.md` (the self-drive relaunch calendar, starting Monday 16 November 2026).
+>
+> Why: this queue was written for the May 2026 editorial-collection launch. Its claims are no longer true. Post 0 says "No commission. No markup." — we now earn from the trips we book (lodge margin, vehicle commission, partner referrals), never from who we list. It also carries pan-African and East African content, uses CAT posting times for a Victoria Falls audience, and calls Niels "founder" (he's the editor). Kept for the record only (D-36).
+
+---
+
 # Launch series queue — Safari Overland
 
 The first thirteen posts. One launch announcement (Saturday) and twelve

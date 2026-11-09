@@ -60,11 +60,33 @@ function walk(dir, urlPath, out) {
     out[urlPath] = extractFromSource(src, mtimeIso)
   }
   for (const entry of entries) {
+    // Dynamic segments (e.g. self-drive/[slug]) are expanded only when
+    // they carry a generated slugs.json listing their static params;
+    // every slug shares the segment's dates.ts. Without one they are
+    // skipped, so no literal "[slug]" key ever reaches the map.
+    if (/^\[[^\].]+\]$/.test(entry)) {
+      expandDynamic(path.join(dir, entry), urlPath, out)
+      continue
+    }
     if (entry.startsWith("[") || entry.startsWith("(") || entry.startsWith("_")) continue
     const full = path.join(dir, entry)
     try {
       if (statSync(full).isDirectory()) walk(full, `${urlPath}/${entry}`, out)
     } catch {}
+  }
+}
+
+function expandDynamic(dir, parentUrl, out) {
+  let entries = []
+  try { entries = readdirSync(dir) } catch { return }
+  if (!entries.includes("page.tsx") || !entries.includes("slugs.json")) return
+  const slugs = JSON.parse(readFileSync(path.join(dir, "slugs.json"), "utf8"))
+  const mtimeIso = statSync(path.join(dir, "page.tsx")).mtime.toISOString().slice(0, 10)
+  const src = entries.includes("dates.ts")
+    ? readFileSync(path.join(dir, "dates.ts"), "utf8")
+    : ""
+  for (const slug of slugs) {
+    out[`${parentUrl}/${slug}`] = extractFromSource(src, mtimeIso)
   }
 }
 

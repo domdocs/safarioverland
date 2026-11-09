@@ -8,6 +8,9 @@ import type { BriefStatus } from "@/lib/briefs/types"
 import { STATUS_LABELS } from "@/lib/briefs/types"
 import {
   BUDGET_TIER_OPTIONS,
+  COUNTRY_OPTIONS,
+  DRIVE_EXPERIENCE_OPTIONS,
+  DRIVE_HOURS_OPTIONS,
   DURATION_OPTIONS,
   INTENT_OPTIONS,
   PACE_OPTIONS,
@@ -41,6 +44,14 @@ type Brief = {
   season_preference: string | null
   budget_tier: "budget" | "mid" | "luxury" | "exclusive" | "discuss" | null
   source_listing_id: string | null
+  // Self-drive intake (20261109) — absent until that migration is applied
+  drive_experience?: string | null
+  drive_hours?: string | null
+  countries?: string[] | null
+  // Ad click attribution (20261109) — absent until that migration is applied
+  gclid?: string | null
+  utm_source?: string | null
+  utm_campaign?: string | null
   // Triage
   status: BriefStatus
   assigned_to: string | null
@@ -96,10 +107,14 @@ export function BriefRow({ brief: initial }: { brief: Brief }) {
   const wildlifeLine = listFromOptions(brief.wildlife_priorities, WILDLIFE_OPTIONS)
   const quietLine = listFromOptions(brief.quiet_markers, QUIET_OPTIONS)
   const paceLine = labelFor(PACE_OPTIONS, brief.pace) ?? brief.rhythm
+  const driveExperienceLine = labelFor(DRIVE_EXPERIENCE_OPTIONS, brief.drive_experience)
+  const driveHoursLine = labelFor(DRIVE_HOURS_OPTIONS, brief.drive_hours)
+  const countriesLine = listFromOptions(brief.countries ?? null, COUNTRY_OPTIONS)
   const durationLine = labelFor(DURATION_OPTIONS, brief.duration)
   const seasonLine = labelFor(SEASON_OPTIONS, brief.season_preference)
   const budgetLine =
     labelFor(BUDGET_TIER_OPTIONS, brief.budget_tier) ?? brief.budget_per_person
+  const sourceLine = attributionLine(brief)
 
   return (
     <>
@@ -114,6 +129,9 @@ export function BriefRow({ brief: initial }: { brief: Brief }) {
             <span className="font-medium">{brief.contact_name}</span>
           </button>
           <p className="mt-1 text-xs text-stone-500">{brief.contact_email}</p>
+          {sourceLine && (
+            <p className="mt-1 text-xs text-stone-500">Source: {sourceLine}</p>
+          )}
         </td>
         <td className="px-4 py-3 align-top text-stone-700">
           {intentLine || brief.chapters.join(", ") || (
@@ -160,6 +178,9 @@ export function BriefRow({ brief: initial }: { brief: Brief }) {
             <div className="grid gap-6 md:grid-cols-2 max-w-5xl">
               <div className="space-y-3 text-sm">
                 <Field label="Phone" value={brief.contact_phone} />
+                <Field label="Driven in Africa" value={driveExperienceLine} />
+                <Field label="Hours at the wheel" value={driveHoursLine} />
+                <Field label="Countries" value={countriesLine} />
                 <Field label="Wildlife / landscape" value={wildlifeLine} multiline />
                 <Field label="Quiet markers" value={quietLine} multiline />
                 <Field label="Duration" value={durationLine} />
@@ -205,6 +226,15 @@ export function BriefRow({ brief: initial }: { brief: Brief }) {
       )}
     </>
   )
+}
+
+/** "google / campaign · Google Ads click", or null when nothing was captured. */
+function attributionLine(b: Brief): string | null {
+  const parts = [b.utm_source, b.utm_campaign].filter((x): x is string => !!x)
+  const campaign = parts.length ? parts.join(" / ") : null
+  const click = b.gclid ? "Google Ads click" : null
+  const line = [campaign, click].filter(Boolean).join(" · ")
+  return line || null
 }
 
 function Field({

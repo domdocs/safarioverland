@@ -7,7 +7,7 @@ import { AutoBreadcrumbs } from "@/components/AutoBreadcrumbs"
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Safari Overland — a small, opinionated collection of African lodges and operators, chosen for what the wild does to you, not just what it shows you.",
+    "Safari Overland plans and books lodge-based self-drive safaris in southern Africa, from Victoria Falls. Operators never pay to be listed.",
   alternates: { canonical: "https://safarioverland.com/about" },
 }
 

@@ -54,7 +54,7 @@ Use these. Don't suggest alternatives unless asked.
 - **Editor identity:** Niels van de Meer (one editor, not three). Dom acknowledged in operations only.
 - **Business model:** booking margin against rack rates + partner DMC referrals. **Operators do NOT pay editorial fees.** Never publish copy suggesting otherwise (this killed SEO Brief 3 — see CHANGELOG).
 - **Coverage scope:** small kept list (~15 lodges), Victoria Falls and Hwange are the most complete; the rest is in progress.
-- **No X/Twitter** in the social plan — distracting, off-tone. LinkedIn (Niels) and Instagram (@safarioverland) only.
+- **No X/Twitter** in the social plan — distracting, off-tone. LinkedIn (Niels) and Instagram (@safari_overland) only.
 - **Content rewrites for SEO are NOT delegated to external audits** — see SEO Brief 3 rejection. Voice work happens inside Cowork.
 
 ## How Dom works

@@ -11,17 +11,20 @@ type EditorialHeaderProps = {
   className?: string
 }
 
+// Self-drive relaunch IA (handoff/relaunch/STRATEGY.md §7). Sign in and
+// Register are no longer advertised here; /sign-in and /sign-up still work.
 const PRIMARY: DrawerLink[] = [
-  { href: "/categories", label: "Categories" },
-  { href: "/destinations", label: "Destinations" },
+  { href: "/routes", label: "Routes" },
+  { href: "/categories", label: "The collection" },
+  { href: "/destinations/southern-africa", label: "Southern Africa" },
+  { href: "/field-notes", label: "Field Notes" },
   { href: "/plan", label: "By hand" },
-  { href: "/field-notes", label: "Field notes" },
   { href: "/about", label: "About" },
 ]
 
-const AUTH: DrawerLink[] = [
-  { href: "/sign-in", label: "Sign in" },
-  { href: "/sign-up", label: "Register", primary: true },
+// Bottom-of-drawer CTA, in the slot Sign in / Register used to fill.
+const DRAWER_CTA: DrawerLink[] = [
+  { href: "/plan", label: "Start a brief →", primary: true },
 ]
 
 const SECONDARY: DrawerLink[] = [
@@ -33,9 +36,10 @@ const SECONDARY: DrawerLink[] = [
  * Editorial site header — replaces components/header.tsx.
  *
  * Layout:
- *   [logo]          [primary nav]                 [search] [sign in] [register]
+ *   [logo]          [primary nav]                 [search] [start a brief]
  *
- * On <lg the primary nav collapses into the MobileDrawer overlay.
+ * On <xl the primary nav collapses into the MobileDrawer overlay (six
+ * items no longer fit beside the logo and CTA at lg).
  *
  * Server Component. The MobileDrawer is the only client island inside.
  */
@@ -70,8 +74,8 @@ export function EditorialHeader({ variant = "standard", className }: EditorialHe
           </span>
         </Link>
 
-        {/* Primary nav (lg+) */}
-        <nav aria-label="Primary" className="hidden lg:flex items-center gap-8">
+        {/* Primary nav (xl+) */}
+        <nav aria-label="Primary" className="hidden xl:flex items-center gap-6">
           {PRIMARY.map((link) => (
             <Link
               key={link.href}
@@ -83,20 +87,14 @@ export function EditorialHeader({ variant = "standard", className }: EditorialHe
           ))}
         </nav>
 
-        {/* Auth + search (lg+) */}
-        <div className="hidden lg:flex items-center gap-4">
+        {/* Search + brief CTA (xl+) */}
+        <div className="hidden xl:flex items-center gap-4">
           <Link
             href="/search"
             aria-label="Search"
             className="text-bone-mute hover:text-amber transition-colors"
           >
             <Search className="h-5 w-5" />
-          </Link>
-          <Link
-            href="/sign-in"
-            className="mono text-bone-mute hover:text-amber transition-colors"
-          >
-            Sign in
           </Link>
           <StartBriefLink
             source="header"
@@ -106,8 +104,8 @@ export function EditorialHeader({ variant = "standard", className }: EditorialHe
           </StartBriefLink>
         </div>
 
-        {/* Mobile drawer (lg-) */}
-        <MobileDrawer links={PRIMARY} authLinks={AUTH} secondaryLinks={SECONDARY} />
+        {/* Mobile drawer (xl-) */}
+        <MobileDrawer links={PRIMARY} authLinks={DRAWER_CTA} secondaryLinks={SECONDARY} />
       </div>
     </header>
   )

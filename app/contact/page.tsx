@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Contact us",
   description: "Get in touch with the Safari Overland team for inquiries about safari listings, partnerships, or support.",
   alternates: { canonical: "https://safarioverland.com/contact" },
 }
@@ -16,10 +16,10 @@ export default function ContactPage() {
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Contact Us</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">Contact us</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Have questions about safari planning? Need help with your listing? 
-            Get in touch with our team based in Cape Town, London, and Victoria Falls.
+            We&apos;re based in Victoria Falls.
           </p>
         </div>
 
@@ -27,7 +27,7 @@ export default function ContactPage() {
           <div className="lg:col-span-3">
             <Card>
               <CardContent className="p-6">
-                <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
+                <h2 className="text-2xl font-bold mb-6">Send us a message</h2>
                 <ContactForm />
               </CardContent>
             </Card>
@@ -36,13 +36,13 @@ export default function ContactPage() {
           <div className="lg:col-span-2 space-y-6">
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-4">Contact Information</h3>
+                <h3 className="text-xl font-bold mb-4">Contact information</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-medium">Locations</p>
-                      <p className="text-muted-foreground">Cape Town | London | Victoria Falls</p>
+                      <p className="font-medium">Location</p>
+                      <p className="text-muted-foreground">Victoria Falls</p>
                     </div>
                   </div>
                   
@@ -70,7 +70,7 @@ export default function ContactPage() {
         <Separator className="my-12" />
 
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-center">Frequently Asked Questions</h2>
+          <h2 className="text-2xl font-bold mb-6 text-center">Frequently asked questions</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card>
               <CardContent className="p-6">
@@ -106,7 +106,7 @@ export default function ContactPage() {
               <CardContent className="p-6">
                 <h3 className="text-lg font-bold mb-2">Do you offer advertising opportunities?</h3>
                 <p className="text-muted-foreground mb-4">
-                  Yes, we offer various promotional opportunities for safari businesses. Contact us at info@safarioverland.com for information about featured listings and advertising packages.
+                  No. Operators never pay to be listed, and we don&apos;t sell featured placements or advertising. We earn from the trips we book.
                 </p>
                 <Link 
                   href="mailto:info@safarioverland.com" 
@@ -121,7 +121,7 @@ export default function ContactPage() {
               <CardContent className="p-6">
                 <h3 className="text-lg font-bold mb-2">How can I partner with Safari Overland?</h3>
                 <p className="text-muted-foreground mb-4">
-                  We're always open to collaborations with travel agencies, conservation organizations, and other stakeholders in the safari industry. Send us an email outlining your partnership proposal.
+                  We're always open to collaborations with travel agencies, conservation organizations, and other stakeholders in the safari industry. Send us an email outlining your partnership proposal. A partnership never buys a place in the collection.
                 </p>
                 <Link 
                   href="mailto:info@safarioverland.com" 

@@ -311,9 +311,9 @@ export function SearchInterface() {
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-4">
               <Search className="h-8 w-8 text-muted-foreground" />
             </div>
-            <h3 className="text-lg font-medium mb-2">No results found</h3>
+            <h3 className="text-lg font-medium mb-2">Nothing matched that.</h3>
             <p className="text-muted-foreground max-w-md mx-auto">
-              We couldn't find any matches for your search. Try adjusting your search terms or filters.
+              Try a place, a park or a route name.
             </p>
           </div>
         )}

@@ -32,6 +32,7 @@ const NAMED_SEGMENTS: Record<string, string> = {
   "seasonal-guides": "Seasonal guides",
   conservation: "Conservation",
   "safety-tips": "Safety",
+  "self-drive": "Self-drive",
   faqs: "FAQs",
   "east-africa": "East Africa",
   "southern-africa": "Southern Africa",
@@ -39,8 +40,6 @@ const NAMED_SEGMENTS: Record<string, string> = {
   "north-africa": "North Africa",
   "what-to-pack": "What to pack",
   "best-times": "Best times to go",
-  "east-vs-southern": "East vs Southern",
-  "off-the-beaten-path": "Off the beaten path",
   "luxury-vs-budget": "Luxury vs budget",
   "hidden-costs": "Hidden costs",
   "before-you-go": "Before you go",
@@ -50,13 +49,8 @@ const NAMED_SEGMENTS: Record<string, string> = {
   "photography-gear": "Photography gear",
   "seasonal-packing": "Seasonal packing",
   "packing-list": "Packing list",
-  "wildlife-events": "Wildlife events",
   "choosing-destinations": "Choosing destinations",
   "green-season": "Green season",
-  "great-migration": "Great migration",
-  "gorilla-trekking": "Gorilla trekking",
-  "bird-watching": "Bird watching",
-  "north-africa-birds": "North Africa birds",
   "wildlife-behavior": "Wildlife behaviour",
   "anti-poaching": "Anti-poaching",
   "beyond-safari": "Beyond safari",
@@ -70,17 +64,22 @@ const NAMED_SEGMENTS: Record<string, string> = {
   "habitat-preservation": "Habitat preservation",
   "responsible-practices": "Responsible practices",
   "success-stories": "Success stories",
-  "kenya-corridors": "Kenya corridors",
-  "mountain-gorillas": "Mountain gorillas",
   "namibia-conservancies": "Namibia conservancies",
   "zimbabwe-rhinos": "Zimbabwe rhinos",
   "sustainable-tourism": "Sustainable tourism",
   "budget-travel": "Budget travel",
-  "uganda-rwanda": "Uganda & Rwanda",
   "zimbabwe-zambia": "Zimbabwe & Zambia",
   "family-safari": "Family safari",
   "south-africa": "South Africa",
 }
+
+/**
+ * Path segments that have no index page of their own. They are left
+ * out of the trail so no crumb (or BreadcrumbList item) points at a
+ * 404 — e.g. /field-notes/conservation/success-stories/zimbabwe-rhinos
+ * reads Home / Field Notes / Conservation / Zimbabwe rhinos.
+ */
+const INDEXLESS_SEGMENTS = new Set(["success-stories"])
 
 function humanise(slug: string): string {
   if (NAMED_SEGMENTS[slug]) return NAMED_SEGMENTS[slug]
@@ -108,6 +107,7 @@ export function buildCrumbsFromPath(pathname: string): Crumb[] {
   segments.forEach((segment, idx) => {
     accumulated += `/${segment}`
     const isLast = idx === segments.length - 1
+    if (!isLast && INDEXLESS_SEGMENTS.has(segment)) return
     crumbs.push({
       name: humanise(segment),
       href: isLast ? undefined : accumulated,

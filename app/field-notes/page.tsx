@@ -12,6 +12,7 @@ import { BlendOverlay } from "@/components/editorial/blend-overlay"
 import { Button } from "@/components/ui/button"
 import { EditorialImage } from "@/components/editorial/editorial-image"
 import { getArticles, type Article } from "@/lib/articles"
+import { SELF_DRIVE_NOTES } from "@/lib/field-notes/self-drive-notes"
 
 /**
  * Revalidate every hour so the DB-backed "Latest field notes" rail
@@ -73,7 +74,7 @@ const PILLARS: Pillar[] = [
   {
     href: "/field-notes/seasonal-guides",
     label: "Seasonal",
-    lede: "When to go, region by region. Migration timing, weather windows, shoulder months.",
+    lede: "When to go, region by region. Weather windows, dry and green seasons, shoulder months.",
     icon: Calendar,
   },
 ]
@@ -93,13 +94,6 @@ const ARTICLES = [
     title: "Reading wildlife behaviour",
     lede: "The single most useful safety skill on safari is reading what an animal is telling you.",
     image: "/images/destinations/wildlife/lion.jpg",
-  },
-  {
-    href: "/field-notes/seasonal-guides/great-migration",
-    eyebrow: "Seasonal · 05 min",
-    title: "The Great Migration, by month",
-    lede: "Where the herds are now, where they'll be in eight weeks, when the crossings happen.",
-    image: "/images/seasonal-guides/kenya-migration.jpg",
   },
 ]
 
@@ -123,6 +117,47 @@ export default async function ResourcesPage() {
             The kind of writing we wish had existed when we were planning our own first safari.
             Practical, opinionated, occasionally annoying — never PR.
           </p>
+        </div>
+      </section>
+
+      <SectionRule className="container" />
+
+      {/* ─── Self-drive guides (first section since the relaunch) ── */}
+      <section className="container py-20">
+        <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+          <div className="max-w-2xl">
+            <Eyebrow withRule>Self-drive</Eyebrow>
+            <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
+              What to read before you <span className="italic text-amber">drive</span>.
+            </h2>
+          </div>
+          <Link
+            href="/field-notes/self-drive"
+            className="mono text-amber hover:text-amber-deep transition-colors"
+          >
+            All self-drive guides →
+          </Link>
+        </div>
+
+        <div className="grid gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+          {SELF_DRIVE_NOTES.map((n, i) => (
+            <Link
+              key={n.slug}
+              href={`/field-notes/self-drive/${n.slug}`}
+              className="group block border-t border-rule pt-6 transition-colors hover:border-amber"
+            >
+              <div className="flex items-baseline gap-3 mb-3">
+                <span className="mono text-amber" aria-hidden>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="eyebrow">{n.eyebrow}</span>
+              </div>
+              <h3 className="font-serif text-h3-fluid text-bone leading-tight transition-colors group-hover:text-amber text-balance">
+                {n.title}
+              </h3>
+              <p className="mt-3 text-bone-mute leading-relaxed">{n.description}</p>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -220,7 +255,7 @@ export default async function ResourcesPage() {
           </Link>
         </div>
 
-        <div className="grid gap-12 md:grid-cols-3">
+        <div className="grid gap-12 md:grid-cols-2">
           {ARTICLES.map((a, i) => (
             <Link
               key={a.href}

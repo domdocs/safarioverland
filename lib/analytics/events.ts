@@ -32,6 +32,10 @@ export type StartBriefSource =
   | "404"                  // /404 (not-found) page
   | "plan-sent"            // /plan/sent missing-handoff path
   | "mobile-drawer"        // MobileDrawer "Register" CTA — close-cousin entry point
+  | "routes-index"         // /routes "How a route works" CTA
+  | "route-page"           // /routes/[slug] "Make it yours" CTA
+  | "self-drive-landing"   // /self-drive/[country] ad landing pages
+  | "destination-page"     // /destinations/southern-africa closing CTA
 
 /** Every public placement of the "Speak to a planner" modal trigger. */
 export type SpeakToPlannerSource =
@@ -40,6 +44,7 @@ export type SpeakToPlannerSource =
   | "plan-sent"     // /plan/sent inline section
   | "listing-detail" // /listings/[id] desktop CTA
   | "field-notes"    // any Field Notes article
+  | "route-page"     // /routes/[slug] "Make it yours" CTA
 
 /** The Calendly booking-completed event re-uses the same set. */
 export type CalendlyBookingSource = SpeakToPlannerSource

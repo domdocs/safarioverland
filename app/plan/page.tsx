@@ -9,9 +9,9 @@ import { AutoBreadcrumbs } from "@/components/AutoBreadcrumbs"
 import { getListingById } from "@/lib/listings"
 
 export const metadata: Metadata = {
-  title: "Plan a safari, by hand",
+  title: "Plan a self-drive safari, by hand",
   description:
-    "Tell us what you're chasing — the months, the rhythm, the kind of quiet you want. We'll come back with three routes within 48 hours.",
+    "Tell us how you like to travel and how long you're happy at the wheel. We'll come back with three self-drive routes within 48 hours. Free, no commitment.",
   alternates: { canonical: "https://safarioverland.com/plan" },
 }
 
@@ -32,17 +32,17 @@ export default async function PlanPage({ searchParams }: PlanPageProps) {
         {/* ─── Opening ───────────────────────────────────────── */}
         <section className="container py-24 md:py-32 border-b border-rule">
           <div className="max-w-3xl">
-            <Eyebrow withRule>By hand — eight short questions</Eyebrow>
+            <Eyebrow withRule>By hand — eleven short questions</Eyebrow>
             <h1 className="mt-6 font-serif text-display-fluid text-bone leading-[0.96] tracking-tighter text-balance">
-              A safari, drawn{" "}
+              Your route, drawn{" "}
               <span className="italic text-amber">by hand</span>.
             </h1>
             <p className="mt-8 font-serif italic text-h4-fluid text-bone-mute max-w-2xl leading-snug">
-              Tell us what you&apos;re chasing — the months, the rhythm, the kind of quiet you want.
+              Tell us how you like to travel and how long you&apos;re happy at the wheel.
               We&apos;ll come back with three routes within 48 hours.
             </p>
             <p className="mt-4 mono text-bone-mute">
-              Free, no commitment. About five minutes. Saved locally — return any time.
+              Free, no commitment. About five minutes. Saved on this device — come back any time.
             </p>
 
             {listing && (
@@ -68,7 +68,7 @@ export default async function PlanPage({ searchParams }: PlanPageProps) {
         <PlannerCallInline
           className="container py-16 md:py-24"
           heading="Or speak to a planner first."
-          lede="Thirty minutes on a call before you fill anything in — sometimes faster than a form."
+          lede="Thirty minutes on a call before you fill anything in. Sometimes faster than a form."
           source="plan"
         />
       </main>

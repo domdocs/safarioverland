@@ -89,16 +89,6 @@ export const FIELD_NOTE_DATES: Record<string, FieldNoteDates> = {
     "dateModified": "2026-05-20",
     "editorId": "editor-niels"
   },
-  "/field-notes/conservation/success-stories/kenya-corridors": {
-    "datePublished": "2026-05-20",
-    "dateModified": "2026-05-20",
-    "editorId": "editor-niels"
-  },
-  "/field-notes/conservation/success-stories/mountain-gorillas": {
-    "datePublished": "2026-05-20",
-    "dateModified": "2026-05-20",
-    "editorId": "editor-niels"
-  },
   "/field-notes/conservation/success-stories/namibia-conservancies": {
     "datePublished": "2026-05-20",
     "dateModified": "2026-05-20",
@@ -149,11 +139,6 @@ export const FIELD_NOTE_DATES: Record<string, FieldNoteDates> = {
     "dateModified": "2026-05-20",
     "editorId": "editor-niels"
   },
-  "/field-notes/planning-guides/east-vs-southern": {
-    "datePublished": "2026-05-20",
-    "dateModified": "2026-05-20",
-    "editorId": "editor-niels"
-  },
   "/field-notes/planning-guides/family-safaris": {
     "datePublished": "2026-05-20",
     "dateModified": "2026-05-20",
@@ -170,11 +155,6 @@ export const FIELD_NOTE_DATES: Record<string, FieldNoteDates> = {
     "editorId": "editor-niels"
   },
   "/field-notes/planning-guides/luxury-vs-budget": {
-    "datePublished": "2026-05-20",
-    "dateModified": "2026-05-20",
-    "editorId": "editor-niels"
-  },
-  "/field-notes/planning-guides/off-the-beaten-path": {
     "datePublished": "2026-05-20",
     "dateModified": "2026-05-20",
     "editorId": "editor-niels"
@@ -204,11 +184,6 @@ export const FIELD_NOTE_DATES: Record<string, FieldNoteDates> = {
     "dateModified": "2026-05-18",
     "editorId": "editor-niels"
   },
-  "/field-notes/planning-guides/wildlife-events": {
-    "datePublished": "2026-05-20",
-    "dateModified": "2026-05-20",
-    "editorId": "editor-niels"
-  },
   "/field-notes/safety-tips": {
     "datePublished": "2026-05-20",
     "dateModified": "2026-05-20",
@@ -224,11 +199,6 @@ export const FIELD_NOTE_DATES: Record<string, FieldNoteDates> = {
     "dateModified": "2026-05-20",
     "editorId": "editor-niels"
   },
-  "/field-notes/seasonal-guides/bird-watching": {
-    "datePublished": "2026-05-20",
-    "dateModified": "2026-05-20",
-    "editorId": "editor-niels"
-  },
   "/field-notes/seasonal-guides/botswana": {
     "datePublished": "2026-05-20",
     "dateModified": "2026-05-20",
@@ -239,42 +209,7 @@ export const FIELD_NOTE_DATES: Record<string, FieldNoteDates> = {
     "dateModified": "2026-05-20",
     "editorId": "editor-niels"
   },
-  "/field-notes/seasonal-guides/egypt": {
-    "datePublished": "2026-05-20",
-    "dateModified": "2026-05-20",
-    "editorId": "editor-niels"
-  },
   "/field-notes/seasonal-guides/family-safari": {
-    "datePublished": "2026-05-20",
-    "dateModified": "2026-05-20",
-    "editorId": "editor-niels"
-  },
-  "/field-notes/seasonal-guides/ghana": {
-    "datePublished": "2026-05-20",
-    "dateModified": "2026-05-20",
-    "editorId": "editor-niels"
-  },
-  "/field-notes/seasonal-guides/gorilla-trekking": {
-    "datePublished": "2026-05-20",
-    "dateModified": "2026-05-20",
-    "editorId": "editor-niels"
-  },
-  "/field-notes/seasonal-guides/great-migration": {
-    "datePublished": "2025-11-04",
-    "dateModified": "2026-05-18",
-    "editorId": "editor-niels"
-  },
-  "/field-notes/seasonal-guides/kenya": {
-    "datePublished": "2026-05-20",
-    "dateModified": "2026-05-20",
-    "editorId": "editor-niels"
-  },
-  "/field-notes/seasonal-guides/morocco": {
-    "datePublished": "2026-05-20",
-    "dateModified": "2026-05-20",
-    "editorId": "editor-niels"
-  },
-  "/field-notes/seasonal-guides/north-africa-birds": {
     "datePublished": "2026-05-20",
     "dateModified": "2026-05-20",
     "editorId": "editor-niels"
@@ -284,27 +219,7 @@ export const FIELD_NOTE_DATES: Record<string, FieldNoteDates> = {
     "dateModified": "2026-05-20",
     "editorId": "editor-niels"
   },
-  "/field-notes/seasonal-guides/senegal": {
-    "datePublished": "2026-05-20",
-    "dateModified": "2026-05-20",
-    "editorId": "editor-niels"
-  },
   "/field-notes/seasonal-guides/south-africa": {
-    "datePublished": "2026-05-20",
-    "dateModified": "2026-05-20",
-    "editorId": "editor-niels"
-  },
-  "/field-notes/seasonal-guides/tanzania": {
-    "datePublished": "2026-05-20",
-    "dateModified": "2026-05-20",
-    "editorId": "editor-niels"
-  },
-  "/field-notes/seasonal-guides/uganda-rwanda": {
-    "datePublished": "2026-05-20",
-    "dateModified": "2026-05-20",
-    "editorId": "editor-niels"
-  },
-  "/field-notes/seasonal-guides/west-africa": {
     "datePublished": "2026-05-20",
     "dateModified": "2026-05-20",
     "editorId": "editor-niels"
@@ -312,6 +227,46 @@ export const FIELD_NOTE_DATES: Record<string, FieldNoteDates> = {
   "/field-notes/seasonal-guides/zimbabwe-zambia": {
     "datePublished": "2026-05-20",
     "dateModified": "2026-05-20",
+    "editorId": "editor-niels"
+  },
+  "/field-notes/self-drive": {
+    "datePublished": "2026-11-09",
+    "dateModified": "2026-11-09",
+    "editorId": "editor-niels"
+  },
+  "/field-notes/self-drive/after-dark-and-wildlife-on-the-road": {
+    "datePublished": "2026-11-09",
+    "dateModified": "2026-11-09",
+    "editorId": "editor-niels"
+  },
+  "/field-notes/self-drive/border-crossings": {
+    "datePublished": "2026-11-09",
+    "dateModified": "2026-11-09",
+    "editorId": "editor-niels"
+  },
+  "/field-notes/self-drive/choosing-a-vehicle": {
+    "datePublished": "2026-11-09",
+    "dateModified": "2026-11-09",
+    "editorId": "editor-niels"
+  },
+  "/field-notes/self-drive/driving-on-the-left": {
+    "datePublished": "2026-11-09",
+    "dateModified": "2026-11-09",
+    "editorId": "editor-niels"
+  },
+  "/field-notes/self-drive/fuel-cash-and-signal": {
+    "datePublished": "2026-11-09",
+    "dateModified": "2026-11-09",
+    "editorId": "editor-niels"
+  },
+  "/field-notes/self-drive/gravel-roads": {
+    "datePublished": "2026-11-09",
+    "dateModified": "2026-11-09",
+    "editorId": "editor-niels"
+  },
+  "/field-notes/self-drive/namibia-or-zimbabwe-first": {
+    "datePublished": "2026-11-09",
+    "dateModified": "2026-11-09",
     "editorId": "editor-niels"
   }
 } as const
