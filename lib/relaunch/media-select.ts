@@ -123,8 +123,15 @@ export function placeLabelFor(item: MediaItem): string | null {
 }
 
 /** The credit line that must be printed, or null when none is required. */
+/**
+ * The short on-image credit: the photographer's name, as they ask to be
+ * credited. The licence, source link and the note that files were resized
+ * and converted live on /credits, linked from every page's footer — CC 4.0
+ * allows attribution "in any reasonable manner", including via a linked
+ * page. The full licence line stays in `item.credit` for /credits.
+ */
 export function creditFor(item: MediaItem): string | null {
-  return item.attributionRequired && item.credit ? item.credit : null
+  return item.attributionRequired && item.author ? `Photo: ${item.author}` : null
 }
 
 /** Card-size source where one exists. */

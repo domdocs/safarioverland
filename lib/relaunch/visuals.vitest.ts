@@ -100,7 +100,7 @@ describe("captions and credits", () => {
 
   test("attribution-required items return their credit; others none", () => {
     for (const m of media) {
-      if (m.attributionRequired) expect(creditFor(m), m.id).toBe(m.credit)
+      if (m.attributionRequired) expect(creditFor(m), m.id).toBe(`Photo: ${m.author}`)
       else expect(creditFor(m), m.id).toBeNull()
     }
   })

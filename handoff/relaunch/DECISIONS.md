@@ -78,4 +78,6 @@ Everything here has a working placeholder, so the relaunch built around it. Noth
 | D-61 | Some atmosphere shots are from outside our routes (a game-drive photo from Kruger, an elephant video from South Africa, a fire in Lusaka) | Used only with generic captions, never labelled as our places; replace when we have our own | Homepage, route pages |
 | D-62 | A Matobo road sign reading "Rhodes Matopos" (the park's colonial-era name) | Not used, pending an editorial view | — |
 
+| D-63 | On-image photo credits shortened to "Photo: name" (Dom, 2026-11-09). Licence, source and the resized/converted note live on /credits, linked from every footer. Fine for the 26 CC 4.0 files; the 12 CC 2.0/3.0 files rely on the same reasonable-manner reading — accepted practice, but not legal advice | Done | Whole site |
+
 Further entries are added as the team reports them.
