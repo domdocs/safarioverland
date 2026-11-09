@@ -59,7 +59,10 @@ export function HeroMedia({
       <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-night/50 via-night/35 to-night" />
       <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-night/70 via-night/30 to-transparent" />
       {children}
-      <div className="pointer-events-none absolute bottom-4 right-4 max-w-[60%] sm:max-w-sm md:bottom-6 md:right-8">
+      {/* Top-right on phones, under the header: at the bottom the caption
+          (often two or three lines with a credit) collided with the hero
+          copy. Bottom-right from md up, where there's room beside it. */}
+      <div className="pointer-events-none absolute top-20 right-4 max-w-[60%] sm:max-w-sm md:top-auto md:bottom-6 md:right-8">
         <MediaCaption item={captionItem} tone="overlay" align="right" />
       </div>
     </section>
