@@ -355,29 +355,7 @@ export default async function RoutePage({ params }: PageProps) {
             </section>
           )}
 
-          {/* ─── Sources ──────────────────────────────────────── */}
-          {view.sources.length > 0 && (
-            <section className="container pb-16">
-              <details className="group border-t border-rule pt-6">
-                <summary className="cursor-pointer list-none mono text-bone-mute hover:text-amber transition-colors">
-                  {C.sources.summary} ({view.sources.length})
-                  <span className="ml-2 inline-block transition-transform group-open:rotate-90" aria-hidden>
-                    →
-                  </span>
-                </summary>
-                <p className="mt-4 text-sm text-bone-mute max-w-3xl">{C.sources.lede}</p>
-                <ol className="mt-4 space-y-1 text-xs text-bone-mute break-all columns-1 lg:columns-2 gap-12">
-                  {view.sources.map((u) => (
-                    <li key={u}>
-                      <a href={u} rel="nofollow noopener noreferrer" target="_blank" className="hover:text-amber">
-                        {u}
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              </details>
-            </section>
-          )}
+          {/* Sources are kept in handoff/relaunch/research/, not shown on the page. */}
         </>
       )}
 
