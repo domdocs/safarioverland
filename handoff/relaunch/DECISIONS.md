@@ -65,4 +65,13 @@ Everything here has a working placeholder, so the relaunch built around it. Noth
 | D-51 | Source lists on route pages link to rental companies' pages | Rental-company URLs hidden from the public sources list (kept in research) | Route pages |
 | D-52 | Pre-existing broken links: /field-notes/safety-tips → three missing sub-pages; success-stories breadcrumb; two h1s on bird-watching | Not fixed (outside the relaunch) | Field Notes |
 
+| D-53 | Stock photos and video (Pexels, Unsplash, Wikimedia Commons) used until we have our own and the lodges' photography. Wikimedia CC BY / BY-SA files need a printed credit. Full list in design/MEDIA_CREDITS.md | Used, with a credits list | Whole site |
+| D-54 | Sources sections removed from route pages (Dom, 2026-11-09); sources stay in the research files | Done | Route pages |
+
+| D-55 | Pull quotes from real travellers — only with permission and attribution | None used until we have them | Route pages |
+| D-56 | Lodge photography: ask each lodge for images (or set a media budget); until then, stay cards say "Photograph to come" or use licensed place photos | Licensed place photos | Route pages |
+| D-57 | Video hosting: hero clips served from /public on Vercel (small mp4s), or a video host later if traffic grows | /public | Homepage, route pages |
+| D-58 | Homepage order: routes section moved above "Three things" (per the visual brief) | Moved, for review | Homepage |
+| D-59 | Photograph a printed road book (on a car seat) once one exists — the most tangible image of the offer | Placeholder | By hand section |
+
 Further entries are added as the team reports them.

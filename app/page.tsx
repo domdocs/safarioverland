@@ -16,6 +16,9 @@ import { EditorialImage } from "@/components/editorial/editorial-image"
 import { Button } from "@/components/ui/button"
 import { getFeaturedListings } from "@/lib/listings"
 import { getSettings } from "@/lib/settings"
+import { OverviewMap } from "@/components/maps/overview-map"
+import { RouteHoverProvider } from "@/components/maps/route-hover"
+import { RouteCard } from "@/components/routes/route-card"
 import { ROUTES } from "@/lib/relaunch/routes"
 import { CAN_I } from "@/lib/relaunch/copy"
 
@@ -275,56 +278,35 @@ export default async function HomePage() {
         {ROUTES.length > 0 && (
           <section className="bg-ink border-y border-rule py-24 md:py-32">
             <div className="container">
-              <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
-                <div className="max-w-2xl">
-                  <Eyebrow withRule>{ROUTES_TEASER.eyebrow}</Eyebrow>
-                  <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
-                    {ROUTES_TEASER.headlineLead}{" "}
-                    <span className="italic text-amber">{ROUTES_TEASER.headlineAccent}</span>
-                    {ROUTES_TEASER.headlineTail}
-                  </h2>
-                  <p className="mt-6 text-bone-mute leading-relaxed">{ROUTES_TEASER.lede}</p>
+              <RouteHoverProvider>
+                <div className="grid gap-12 mb-16 lg:grid-cols-12 lg:items-end">
+                  <div className="lg:col-span-5">
+                    <Eyebrow withRule>{ROUTES_TEASER.eyebrow}</Eyebrow>
+                    <h2 className="mt-6 font-serif text-h2-fluid text-bone leading-tight tracking-tight text-balance">
+                      {ROUTES_TEASER.headlineLead}{" "}
+                      <span className="italic text-amber">{ROUTES_TEASER.headlineAccent}</span>
+                      {ROUTES_TEASER.headlineTail}
+                    </h2>
+                    <p className="mt-6 text-bone-mute leading-relaxed">{ROUTES_TEASER.lede}</p>
+                    <Link
+                      href="/routes"
+                      className="mt-8 inline-block mono text-amber hover:text-amber-deep transition-colors"
+                    >
+                      {ROUTES_TEASER.allLink}
+                    </Link>
+                  </div>
+                  <OverviewMap
+                    titles={Object.fromEntries(ROUTES.map((r) => [r.slug, r.title]))}
+                    className="lg:col-span-7"
+                  />
                 </div>
-                <Link
-                  href="/routes"
-                  className="mono text-amber hover:text-amber-deep transition-colors"
-                >
-                  {ROUTES_TEASER.allLink}
-                </Link>
-              </div>
 
-              <div className="grid gap-12 md:grid-cols-3">
-                {ROUTES.map((route, i) => (
-                  <Link
-                    key={route.slug}
-                    href={`/routes/${route.slug}`}
-                    className="group block border-t border-rule pt-6 transition-colors hover:border-amber"
-                  >
-                    <div className="relative aspect-[4/3] overflow-hidden bg-card mb-6">
-                      <EditorialImage
-                        src={route.heroImage}
-                        alt={route.title}
-                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
-                      <BlendOverlay />
-                    </div>
-                    <div className="flex items-baseline gap-3 mb-3">
-                      <span className="mono text-amber">{String(i + 1).padStart(2, "0")}</span>
-                      <span className="eyebrow">
-                        {[route.countries.join(" · "), route.nights].filter(Boolean).join(" — ")}
-                      </span>
-                    </div>
-                    <h3 className="font-serif text-h3-fluid text-bone leading-tight transition-colors group-hover:text-amber text-balance">
-                      {route.title}
-                    </h3>
-                    <p className="mt-3 text-bone-mute leading-relaxed">{route.hook}</p>
-                    <span className="mt-4 inline-block mono text-amber transition-colors group-hover:text-amber-deep">
-                      {ROUTES_TEASER.cardLink}
-                    </span>
-                  </Link>
-                ))}
-              </div>
+                <div className="grid gap-12 md:grid-cols-3">
+                  {ROUTES.map((route, i) => (
+                    <RouteCard key={route.slug} route={route} index={i + 1} linkLabel={ROUTES_TEASER.cardLink} />
+                  ))}
+                </div>
+              </RouteHoverProvider>
             </div>
           </section>
         )}

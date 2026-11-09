@@ -10,6 +10,7 @@ import { Breadcrumbs, type Crumb } from "@/components/Breadcrumbs"
 import { BreadcrumbsJsonLd } from "@/components/JsonLd/BreadcrumbsJsonLd"
 import { StartBriefLink } from "@/components/analytics/start-brief-link"
 import { PlannerCallTrigger } from "@/components/planner-call/planner-call-trigger"
+import { ScrollRouteMap } from "@/components/maps/scroll-route-map"
 import { RouteItinerary } from "@/components/routes/route-itinerary"
 import { StayCard } from "@/components/routes/stay-card"
 import { Button } from "@/components/ui/button"
@@ -197,9 +198,13 @@ export default async function RoutePage({ params }: PageProps) {
           {/* ─── The drive ────────────────────────────────────── */}
           <section className="container pb-16 md:pb-24">
             <SectionHead eyebrow="Day by day" heading={C.drive.heading} lede={C.drive.lede} />
-            <div className="max-w-4xl">
+            <ScrollRouteMap
+              slug={slug}
+              title={summary.title}
+              days={view.days.map((d) => ({ key: d.key, label: d.label, from: d.from, to: d.to, noDriving: d.noDriving }))}
+            >
               <RouteItinerary days={view.days} />
-            </div>
+            </ScrollRouteMap>
           </section>
 
           {/* ─── Where you stay ───────────────────────────────── */}

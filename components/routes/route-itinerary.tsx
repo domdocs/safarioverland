@@ -18,7 +18,11 @@ export function RouteItinerary({ days }: { days: DayView[] }) {
         const last = i === days.length - 1
         const optional = Boolean(day.optional)
         return (
-          <li key={day.key} className="relative grid grid-cols-[2rem_1fr] gap-x-5 md:grid-cols-[2.5rem_1fr] md:gap-x-8">
+          <li
+            key={day.key}
+            data-route-day={day.key}
+            className="group/day relative grid scroll-mt-60 grid-cols-[2rem_1fr] gap-x-5 md:scroll-mt-28 md:grid-cols-[2.5rem_1fr] md:gap-x-8"
+          >
             {/* Rail */}
             <div className="relative flex justify-center" aria-hidden>
               {!last && (
@@ -51,7 +55,7 @@ export function RouteItinerary({ days }: { days: DayView[] }) {
                     </span>
                   )}
                 </div>
-                <h3 className="mt-2 font-serif text-h4-fluid text-bone leading-tight text-balance">
+                <h3 className="mt-2 font-serif text-h4-fluid text-bone leading-tight text-balance transition-colors group-data-[map-hover]/day:text-amber">
                   {day.from === day.to ? day.to : `${day.from} to ${day.to.replace(/^The /, "the ")}`}
                 </h3>
 

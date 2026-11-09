@@ -6,6 +6,8 @@ import { SectionRule } from "@/components/editorial/section-rule"
 import { Breadcrumbs, type Crumb } from "@/components/Breadcrumbs"
 import { BreadcrumbsJsonLd } from "@/components/JsonLd/BreadcrumbsJsonLd"
 import { StartBriefLink } from "@/components/analytics/start-brief-link"
+import { OverviewMap } from "@/components/maps/overview-map"
+import { RouteHoverProvider } from "@/components/maps/route-hover"
 import { RouteCard } from "@/components/routes/route-card"
 import { Button } from "@/components/ui/button"
 import { ROUTES } from "@/lib/relaunch/routes"
@@ -47,14 +49,20 @@ export default function RoutesIndexPage() {
         </div>
       </section>
 
-      {/* ─── Routes ──────────────────────────────────────────── */}
-      <section className="container pb-24 md:pb-32">
-        <div className="grid gap-12 md:grid-cols-3">
-          {ROUTES.map((route, i) => (
-            <RouteCard key={route.slug} route={route} index={i + 1} linkLabel={C.cardLink} />
-          ))}
-        </div>
-      </section>
+      {/* ─── Routes: the overview map, then the cards ────────── */}
+      <RouteHoverProvider>
+        <section className="container pb-24 md:pb-32">
+          <OverviewMap
+            titles={Object.fromEntries(ROUTES.map((r) => [r.slug, r.title]))}
+            className="mb-16 max-w-5xl md:mb-20"
+          />
+          <div className="grid gap-12 md:grid-cols-3">
+            {ROUTES.map((route, i) => (
+              <RouteCard key={route.slug} route={route} index={i + 1} linkLabel={C.cardLink} thumbnail />
+            ))}
+          </div>
+        </section>
+      </RouteHoverProvider>
 
       {/* ─── How a route works ───────────────────────────────── */}
       <section className="bg-ink border-y border-rule py-24 md:py-32">
