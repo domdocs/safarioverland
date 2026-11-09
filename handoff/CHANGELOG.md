@@ -29,14 +29,12 @@ Safari Overland now plans and books **lodge-based self-drive journeys through so
 
 **Database, done on 9 Nov.** Linkwasha and Somalisa are set to `rejected`: they're private concessions that self-drivers can't drive into. The live collection is now Royal Chundu, Camelthorn Lodge and The Hide.
 
-**Database, pending.** The briefs migration (`20261109_briefs_self_drive_fields.sql`) has to be run from `handoff/relaunch/GO_LIVE_MIGRATION.sql` in the Supabase SQL editor. The Supabase CLI isn't installed on this machine. Until it runs:
-- the submit route and admin fall back without the new columns;
-- briefs choosing "discuss" for budget still fail to save. That is a live bug dating back to May, and the last brief in the table is dated 14 May 2026.
+**Database, briefs migration (applied 9 Nov).** Dom ran `handoff/relaunch/GO_LIVE_MIGRATION.sql` in the Supabase SQL editor, because the Supabase CLI isn't installed on this machine. The twelve new `briefs` columns were confirmed through the REST API afterwards. It also widened the `budget_tier` check to allow `discuss`. Briefs choosing that option had been failing to save since May: the last brief in the table before this is dated 14 May 2026. The 42703/PGRST204 fallbacks in the submit route and the admin can now be removed.
 
 **Lessons worth keeping.**
 - **Don't share `.next` between servers.** Several `next dev` servers running from one worktree overwrote the `.next` that `next start` was serving. Run one server per worktree, or build to a separate output directory.
 - **gh doesn't install on this macOS.** It has no Homebrew bottle for macOS 27. Pushes work over SSH (`git@github.com:domdocs/safarioverland.git`), and PRs are opened from the GitHub link.
-- **Mind the domain split.** Vercel now redirects the apex to `www`, but canonicals and the sitemap use the apex. One of them needs to change.
+- **The apex domain is primary (Dom, 9 Nov).** `safarioverland.com` serves the site. `www.` and `http://` each 308-redirect to it in one hop, matching the canonicals and the sitemap. That morning the apex had been redirecting to `www`; it was changed in Vercel → Domains, which the MCP tools can't edit.
 
 ---
 
