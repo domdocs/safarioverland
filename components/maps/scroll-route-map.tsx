@@ -140,7 +140,9 @@ export function ScrollRouteMap({ slug, title, days, children }: Props) {
       </div>
 
       <div className="hidden md:block">
-        <div className="sticky top-20 flex h-[calc(100vh-6rem)] flex-col justify-center">
+        {/* Below lg the fixed StickyCTA bar (~4.5rem) sits at the bottom of
+            the screen; leave room so it doesn't cover the map's scale bar. */}
+        <div className="sticky top-20 flex h-[calc(100vh-11rem)] flex-col justify-center lg:h-[calc(100vh-6rem)]">
           <div className="mx-auto w-full" style={{ maxWidth: `calc((100vh - 11rem) * ${aspect.toFixed(3)})` }}>
             <RouteMap
               slug={slug}

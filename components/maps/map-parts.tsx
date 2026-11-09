@@ -181,6 +181,7 @@ export function MapLabel({
   anchor = "e",
   className,
   style,
+  labelKey,
   children,
 }: {
   vb: ViewBox
@@ -189,11 +190,14 @@ export function MapLabel({
   anchor?: LabelAnchor | "c"
   className?: string
   style?: CSSProperties
+  /** Opts the label into collision handling (see placeLabels). */
+  labelKey?: string
   children: ReactNode
 }) {
   const align = anchor === "w" || anchor === "nw" || anchor === "sw" ? "text-right" : anchor === "e" || anchor === "ne" || anchor === "se" ? "text-left" : "text-center"
   return (
     <span
+      data-label={labelKey}
       className={cn("absolute whitespace-nowrap leading-tight", align, className)}
       style={{ ...toPct(vb, x, y), transform: anchor === "c" ? "translate(-50%, -50%)" : ANCHOR[anchor], ...style }}
     >
@@ -204,3 +208,100 @@ export function MapLabel({
 
 /** "a:b" ids from useId aren't safe inside url(#…). */
 export const safeId = (id: string) => id.replace(/[^a-zA-Z0-9_-]/g, "")
+
+// ─── Label collision handling ────────────────────────────────────
+
+/** Pixel offsets matching ANCHOR, as the box's top-left for a w×h label at (px, py). */
+function anchorBox(anchor: LabelAnchor | "c", px: number, py: number, w: number, h: number): Box {
+  const at = (x: number, y: number): Box => ({ x, y, w, h })
+  switch (anchor) {
+    case "e": return at(px + 10, py - h / 2)
+    case "w": return at(px - w - 10, py - h / 2)
+    case "n": return at(px - w / 2, py - h - 9)
+    case "s": return at(px - w / 2, py + 9)
+    case "ne": return at(px + 6, py - h - 5)
+    case "nw": return at(px - w - 6, py - h - 5)
+    case "se": return at(px + 6, py + 5)
+    case "sw": return at(px - w - 6, py + 5)
+    default: return at(px - w / 2, py - h / 2)
+  }
+}
+
+export type Box = { x: number; y: number; w: number; h: number }
+
+const GAP = 3
+const hit = (a: Box, b: Box) =>
+  a.x < b.x + b.w + GAP && b.x < a.x + a.w + GAP && a.y < b.y + b.h + GAP && b.y < a.y + a.h + GAP
+
+/** Alternatives, nearest the preferred anchor first. */
+const FALLBACK: Record<LabelAnchor, LabelAnchor[]> = {
+  e: ["e", "ne", "se", "w", "n", "s", "nw", "sw"],
+  w: ["w", "nw", "sw", "e", "n", "s", "ne", "se"],
+  n: ["n", "ne", "nw", "s", "e", "w", "se", "sw"],
+  s: ["s", "se", "sw", "n", "e", "w", "ne", "nw"],
+  ne: ["ne", "e", "n", "nw", "se", "w", "s", "sw"],
+  nw: ["nw", "w", "n", "ne", "sw", "e", "s", "se"],
+  se: ["se", "e", "s", "sw", "ne", "w", "n", "nw"],
+  sw: ["sw", "w", "s", "se", "nw", "e", "n", "ne"],
+}
+
+export type LabelSpec = {
+  key: string
+  /** Marker position as a fraction of the frame. */
+  fx: number
+  fy: number
+  anchor: LabelAnchor | "c"
+  /** Higher wins; placed first. */
+  priority: number
+  /** Always shown (the active stop): never hidden, only moved. */
+  keep?: boolean
+  /** Centred labels (countries, parks) don't move: shown or hidden. */
+  fixed?: boolean
+}
+
+export type LabelPlacement = { anchor: LabelAnchor | "c"; visible: boolean }
+
+/**
+ * Greedy label placement at the rendered size. Labels go in priority
+ * order; each takes the first of its anchors (preferred first) whose box
+ * stays inside the frame and clear of the HUD and of labels already
+ * placed, preferring one that also clears other stops' markers. A label
+ * with no clear anchor is hidden, except a `keep` label, which takes
+ * the least-crowded anchor.
+ */
+export function placeLabels(
+  specs: (LabelSpec & { w: number; h: number })[],
+  frame: { w: number; h: number },
+  hud: Box[],
+  markers: { x: number; y: number }[],
+): Map<string, LabelPlacement> {
+  const out = new Map<string, LabelPlacement>()
+  const placed: Box[] = [...hud]
+  const markerBoxes = markers.map((m) => ({ x: m.x - 5, y: m.y - 5, w: 10, h: 10 }))
+  const sorted = [...specs].sort((a, b) => Number(Boolean(b.keep)) - Number(Boolean(a.keep)) || b.priority - a.priority)
+  for (const s of sorted) {
+    const px = s.fx * frame.w
+    const py = s.fy * frame.h
+    const own = { x: px - 5, y: py - 5, w: 10, h: 10 }
+    const tries: (LabelAnchor | "c")[] = s.anchor === "c" || s.fixed ? [s.anchor] : FALLBACK[s.anchor]
+    let best: { anchor: LabelAnchor | "c"; box: Box; cost: number } | null = null
+    for (const anchor of tries) {
+      const box = anchorBox(anchor, px, py, s.w, s.h)
+      const outside = box.x < 2 || box.y < 2 || box.x + box.w > frame.w - 2 || box.y + box.h > frame.h - 2
+      const hard = placed.filter((p) => hit(box, p)).length + (outside ? 1 : 0)
+      const soft = markerBoxes.filter((m) => !hit(m, own) && hit(box, m)).length
+      const cost = hard * 100 + soft
+      if (!best || cost < best.cost) best = { anchor, box, cost }
+      if (cost === 0) break
+    }
+    if (!best) continue
+    const visible = best.cost < 100 || Boolean(s.keep)
+    out.set(s.key, { anchor: best.anchor, visible })
+    if (visible) placed.push(best.box)
+  }
+  return out
+}
+
+export const anchorTransform = (anchor: LabelAnchor | "c") => (anchor === "c" ? "translate(-50%, -50%)" : ANCHOR[anchor])
+export const anchorAlign = (anchor: LabelAnchor | "c") =>
+  anchor === "w" || anchor === "nw" || anchor === "sw" ? "right" : anchor === "e" || anchor === "ne" || anchor === "se" ? "left" : "center"

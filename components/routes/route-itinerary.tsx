@@ -105,7 +105,7 @@ export function RouteItinerary({ days, media = {} }: { days: DayView[]; media?: 
 
                 {day.stay && (
                   <p className="mt-4 text-sm text-bone-mute">
-                    <span className="mono text-[11px] uppercase tracking-[0.18em]">Stay</span>{" "}
+                    <span className="mb-1 block mono text-[11px] uppercase tracking-[0.18em]">Stay</span>
                     <span className="text-bone">{day.stay.name}</span>
                     {day.alternatives.length > 0 && (
                       <> or {day.alternatives.map((a) => a.name).join(" or ")}</>

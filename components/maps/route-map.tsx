@@ -18,7 +18,7 @@
  * only when `onStopSelect` is given.
  */
 
-import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from "react"
+import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react"
 
 import type { ViewBox } from "@/lib/relaunch/geo/project"
 import { getRoutePlan, routeMapLabel } from "@/lib/relaunch/waypoints"
@@ -26,7 +26,20 @@ import { cn } from "@/lib/utils"
 
 import { countryLabels, dayViewBox, kmPerUnit, routeGeometry, type LegGeometry } from "./geometry"
 import { useInViewOnce, usePrefersReducedMotion } from "./hooks"
-import { BaseLayer, DrawnLine, MapLabel, safeId, unitFor, useDrawSchedule, type LineStyle } from "./map-parts"
+import {
+  BaseLayer,
+  DrawnLine,
+  MapLabel,
+  anchorAlign,
+  anchorTransform,
+  placeLabels,
+  safeId,
+  unitFor,
+  useDrawSchedule,
+  type Box,
+  type LabelSpec,
+  type LineStyle,
+} from "./map-parts"
 
 type Props = {
   slug: string
@@ -91,6 +104,70 @@ function useAnimatedViewBox(target: ViewBox, animate: boolean): ViewBox {
 
 const NICE_KM = [10, 20, 25, 50, 100, 200, 250, 500]
 
+// useLayoutEffect warns on the server; labels are placed in the browser only.
+const useIsoLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect
+
+/**
+ * Hides or moves labels that would collide at the rendered size: the
+ * active stop always shows; then overnights (start and end first), named
+ * stops, park names and, last, country names. The HUD (day caption,
+ * north arrow, scale bar) is an obstacle for all of them. Runs after
+ * every render (the frame animates) and on resize; writes to the DOM
+ * directly so placement never costs another render.
+ */
+function useLabelLayout(specs: Map<string, LabelSpec>, markers: { fx: number; fy: number }[]) {
+  const overlayRef = useRef<HTMLDivElement>(null)
+  const state = useRef({ specs, markers })
+  state.current = { specs, markers }
+
+  const layout = useCallback(() => {
+    const ov = overlayRef.current
+    if (!ov) return
+    const frame = { w: ov.clientWidth, h: ov.clientHeight }
+    if (!frame.w || !frame.h) return
+    const o = ov.getBoundingClientRect()
+    const hud: Box[] = []
+    ov.querySelectorAll<HTMLElement>("[data-hud]").forEach((el) => {
+      const range = document.createRange()
+      range.selectNodeContents(el)
+      for (const r of Array.from(range.getClientRects())) {
+        if (r.width > 0 && r.height > 0) hud.push({ x: r.left - o.left, y: r.top - o.top, w: r.width, h: r.height })
+      }
+    })
+    const els = new Map<string, HTMLElement>()
+    const measured: (LabelSpec & { w: number; h: number })[] = []
+    ov.querySelectorAll<HTMLElement>("[data-label]").forEach((el) => {
+      const spec = state.current.specs.get(el.dataset.label ?? "")
+      // display:none (labels that only show from sm up) measures 0.
+      if (!spec || el.offsetWidth === 0) return
+      els.set(spec.key, el)
+      measured.push({ ...spec, w: el.offsetWidth, h: el.offsetHeight })
+    })
+    const markers = state.current.markers.map((m) => ({ x: m.fx * frame.w, y: m.fy * frame.h }))
+    const placed = placeLabels(measured, frame, hud, markers)
+    els.forEach((el, key) => {
+      const p = placed.get(key)
+      if (!p) return
+      el.style.transform = anchorTransform(p.anchor)
+      el.style.textAlign = anchorAlign(p.anchor)
+      el.style.visibility = p.visible ? "" : "hidden"
+    })
+  }, [])
+
+  useIsoLayoutEffect(layout)
+
+  useEffect(() => {
+    const ov = overlayRef.current
+    if (!ov) return
+    const ro = new ResizeObserver(() => layout())
+    ro.observe(ov)
+    document.fonts?.ready.then(() => layout())
+    return () => ro.disconnect()
+  }, [layout])
+
+  return overlayRef
+}
+
 export function RouteMap({
   slug,
   title,
@@ -128,20 +205,42 @@ export function RouteMap({
     [geom, strip],
   )
 
-  if (!plan || !geom) return null
-
-  const activeEnd = active !== null ? geom.dayEnds[active] : null
+  const activeEnd = active !== null && geom ? geom.dayEnds[active] : null
   const inVb = (x: number, y: number) => x >= vb.x && x <= vb.x + vb.w && y >= vb.y && y <= vb.y + vb.h
-  /** The day a stop's label leads to: the first day ending there, else the first day it's reached. */
-  const dayFor = (id: string, firstDay: number) => {
-    const i = geom.dayEnds.findIndex((e) => e === id)
-    return i >= 0 ? i : firstDay
-  }
+  const fx = (x: number) => (x - vb.x) / vb.w
+  const fy = (y: number) => (y - vb.y) / vb.h
 
   // In the strip only the current stop is labelled: keep it inside the frame.
   const stripAnchor = (x: number) => {
     const f = (x - vb.x) / vb.w
     return f < 0.35 ? "se" : f > 0.65 ? "sw" : "s"
+  }
+
+  const specs = new Map<string, LabelSpec>()
+  for (const c of countries) specs.set(`c:${c.name}`, { key: `c:${c.name}`, fx: fx(c.x), fy: fy(c.y), anchor: "c", priority: 0, fixed: true })
+  if (geom && !strip) {
+    for (const l of geom.extraLabels) specs.set(`x:${l.text}`, { key: `x:${l.text}`, fx: fx(l.x), fy: fy(l.y), anchor: "c", priority: 10, fixed: true })
+  }
+  for (const s of geom?.stops ?? []) {
+    const isActive = s.id === activeEnd
+    const base = s.kind === "stop" ? 20 : 40
+    specs.set(`s:${s.id}`, {
+      key: `s:${s.id}`,
+      fx: fx(s.x),
+      fy: fy(s.y),
+      anchor: strip ? stripAnchor(s.x) : s.anchor,
+      priority: base + (s.isStart || s.isEnd ? 5 : 0),
+      keep: isActive,
+    })
+  }
+  const markers = (geom?.stops ?? []).filter((s) => !(strip && s.kind === "stop")).map((s) => ({ fx: fx(s.x), fy: fy(s.y) }))
+  const overlayRef = useLabelLayout(specs, markers)
+
+  if (!plan || !geom) return null
+  /** The day a stop's label leads to: the first day ending there, else the first day it's reached. */
+  const dayFor = (id: string, firstDay: number) => {
+    const i = geom.dayEnds.findIndex((e) => e === id)
+    return i >= 0 ? i : firstDay
   }
 
   // Scale bar: a round distance about a fifth of the frame wide.
@@ -236,11 +335,11 @@ export function RouteMap({
       </svg>
 
       {/* Labels: HTML over the SVG so the type stays a readable size. */}
-      <div className="pointer-events-none absolute inset-0" aria-hidden={onStopSelect ? undefined : true}>
+      <div ref={overlayRef} className="pointer-events-none absolute inset-0" aria-hidden={onStopSelect ? undefined : true}>
         {countries
           .filter((c) => inVb(c.x, c.y))
           .map((c) => (
-            <MapLabel key={c.name} vb={vb} x={c.x} y={c.y} anchor="c" className="mono text-[10px] tracking-[0.35em] text-bone/25">
+            <MapLabel key={c.name} labelKey={`c:${c.name}`} vb={vb} x={c.x} y={c.y} anchor="c" className="mono text-[10px] tracking-[0.35em] text-bone/25">
               {c.name}
             </MapLabel>
           ))}
@@ -248,7 +347,7 @@ export function RouteMap({
           geom.extraLabels
             .filter((l) => inVb(l.x, l.y))
             .map((l) => (
-              <MapLabel key={l.text} vb={vb} x={l.x} y={l.y} anchor="c" className="mono text-[9px] tracking-[0.2em] text-bone/35 hidden sm:block">
+              <MapLabel key={l.text} labelKey={`x:${l.text}`} vb={vb} x={l.x} y={l.y} anchor="c" className="mono text-[9px] tracking-[0.2em] text-bone/35 hidden sm:block">
                 {l.text}
               </MapLabel>
             ))}
@@ -272,7 +371,7 @@ export function RouteMap({
           )
           const day = dayFor(s.id, s.firstDay)
           return (
-            <MapLabel key={s.id} vb={vb} x={s.x} y={s.y} anchor={strip ? stripAnchor(s.x) : s.anchor} className={labelClass}>
+            <MapLabel key={s.id} labelKey={`s:${s.id}`} vb={vb} x={s.x} y={s.y} anchor={strip ? stripAnchor(s.x) : s.anchor} className={labelClass}>
               {onStopSelect ? (
                 <button
                   type="button"
@@ -293,12 +392,17 @@ export function RouteMap({
           )
         })}
 
-        {caption && <div className="absolute left-3 top-3 right-3">{caption}</div>}
+        {caption && (
+          <div data-hud className="absolute left-3 top-3 right-3">
+            {caption}
+          </div>
+        )}
 
         {!strip && (
           <>
             <span
               aria-hidden
+              data-hud
               className="absolute bottom-3 left-3 flex flex-col items-center leading-none mono text-[9px] tracking-[0.1em] text-bone/50"
             >
               <span>↑</span>
@@ -306,6 +410,7 @@ export function RouteMap({
             </span>
             <span
               aria-hidden
+              data-hud
               className="absolute bottom-3 left-9 flex flex-col gap-1 mono text-[9px] tracking-[0.18em] text-bone/50"
               style={{ width: `${barPct}%` }}
             >

@@ -119,8 +119,11 @@ export default async function SelfDriveLandingPage({ params }: PageProps) {
     <>
       {/* ─── Hero: a fast still, no video (paid traffic) ──────── */}
       {heroItem ? (
-        <HeroMedia still={heroItem} height="h-[82vh] min-h-[620px]">
-          <div className="container relative h-full flex flex-col justify-end pb-20 md:pb-24">
+        <HeroMedia still={heroItem} height="flex min-h-[max(82vh,620px)] flex-col">
+          {/* min-height, not height: on narrow phones the copy runs taller than
+              the frame, and the top padding keeps it clear of the caption
+              HeroMedia pins top-right on phones. */}
+          <div className="container relative flex flex-1 flex-col justify-end pt-40 pb-20 md:pt-28 md:pb-24">
             <div className="max-w-4xl">
               <Eyebrow withRule>Self-drive · {page.label}</Eyebrow>
               <h1 className="mt-6 font-serif text-display-fluid text-bone leading-[0.96] tracking-tighter text-balance">

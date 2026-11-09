@@ -58,7 +58,7 @@ export function Mosaic({ items: all, label, className }: Props) {
           type="button"
           onClick={() => show(i)}
           aria-label={`Open photograph ${i + 1} of ${items.length}: ${captionFor(m)}`}
-          className="group relative block h-full w-full overflow-hidden bg-card focus:outline-none focus-visible:ring-2 focus-visible:ring-amber"
+          className="group relative block aspect-[4/3] w-full overflow-hidden bg-card focus:outline-none focus-visible:ring-2 focus-visible:ring-amber sm:aspect-auto sm:h-full"
         >
           <Image
             src={cardSrc(m)}
@@ -68,10 +68,14 @@ export function Mosaic({ items: all, label, className }: Props) {
             className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
           />
           <BlendOverlay className="opacity-70" />
-          <span className="pointer-events-none absolute bottom-3 left-3 right-3 text-left">
+          {/* From sm up the caption sits on the photo; phones get it underneath. */}
+          <span className="pointer-events-none absolute bottom-3 left-3 right-3 hidden text-left sm:block">
             <MediaCaption item={m} tone="overlay" />
           </span>
         </button>
+        <figcaption className="mt-2 sm:hidden">
+          <MediaCaption item={m} />
+        </figcaption>
       </figure>
     )
   }
@@ -80,10 +84,11 @@ export function Mosaic({ items: all, label, className }: Props) {
 
   return (
     <>
-      <div className={cn("grid grid-cols-2 gap-2 md:grid-cols-3 md:grid-rows-2", className)}>
-        {tile(0, "(min-width: 768px) 66vw, 100vw", "col-span-2 aspect-[4/3] md:row-span-2 md:aspect-auto")}
-        {tile(1, "(min-width: 768px) 33vw, 50vw", "aspect-[4/3]")}
-        {tile(2, "(min-width: 768px) 33vw, 50vw", "aspect-[4/3]")}
+      {/* Phones: one column, each caption under its own photograph. */}
+      <div className={cn("grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-2 md:grid-cols-3 md:grid-rows-2", className)}>
+        {tile(0, "(min-width: 768px) 66vw, 100vw", "sm:col-span-2 sm:aspect-[4/3] md:row-span-2 md:aspect-auto")}
+        {tile(1, "(min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw", "sm:aspect-[4/3]")}
+        {tile(2, "(min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw", "sm:aspect-[4/3]")}
       </div>
       {open !== null && (
         <Lightbox item={items[open]} index={open} total={items.length} label={label} onClose={close} onStep={step} />
