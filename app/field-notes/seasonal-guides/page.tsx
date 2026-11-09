@@ -314,14 +314,18 @@ export default function SeasonalGuidesPage() {
       <section>
         <div className="bg-primary text-white p-8 md:p-12 rounded-lg">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Need Help Planning Your Safari Timing?</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">Not sure which months suit your route?</h2>
             <p className="mb-6">
-              Our team of safari experts based in Victoria Falls, Zimbabwe can help you determine the best time for your
-              safari based on your interests, budget, and desired experiences. With firsthand knowledge of seasonal
-              conditions across Africa, we'll ensure you visit at the optimal time.
+              Tell us when you could travel and how long you&apos;re happy at the wheel. We&apos;ll come back
+              with three routes within 48 hours, timed for the season.
             </p>
-            <Button variant="secondary" size="lg">
-              Get Personalized Seasonal Advice
+            <Button
+              variant="secondary"
+              size="lg"
+              className="h-auto max-w-full whitespace-normal text-center"
+              asChild
+            >
+              <Link href="/plan">Start a brief →</Link>
             </Button>
           </div>
         </div>
