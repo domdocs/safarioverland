@@ -6,11 +6,13 @@ Everything is on the local branch `feat/self-drive-relaunch` in the worktree `.c
 
 The site runs on your computer at **http://localhost:3000**. It reads live listings from production Supabase, read-only.
 
-If the server has stopped, start it again from the worktree:
+It's the production build, so pages are as fast as they'll be live. If the server has stopped, start it again from the worktree:
 
 ```bash
-cd "/Volumes/Dom Crucial/Projects/safari-overland/.claude/worktrees/adoring-haibt-d3fdad" && node ./node_modules/next/dist/bin/next dev -p 3000
+cd "/Volumes/Dom Crucial/Projects/safari-overland/.claude/worktrees/adoring-haibt-d3fdad" && node ./node_modules/next/dist/bin/next start -p 3000
 ```
+
+**New since your last look:** route prices on the route pages and cards, the rewritten `/destinations/southern-africa`, partner towns and the 24/7 line on the homepage and About, Niels's bio, the shorter photo credits and `/credits`, and the slimmer Field Notes (off-region notes removed).
 
 **Don't submit a real brief on `/plan` locally.** It would write to the production `briefs` table and email the planner.
 
