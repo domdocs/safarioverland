@@ -215,7 +215,295 @@ House voice rules applied: sentence case, no exclamation marks (Google Ads also 
 - "Three routes within 48 hours": matches the existing `/plan` promise. If the team can't hold 48 hours at ad volume, change it everywhere at once.
 - "Send a brief. It's free": true under D-01 (the brief and first sketch are free). Don't mention the planning fee in ads.
 
-{{ADS}}
+### Ad copy
+
+#### US — Generic self-drive
+
+**Final URL:** `/routes`
+
+| # | Headline | Chars |
+|---|---|---|
+| H1 | Self-drive safari, planned | 26 |
+| H2 | Southern Africa self-drive | 26 |
+| H3 | Drive yourself, sleep well | 26 |
+| H4 | Lodges, not rooftop tents | 25 |
+| H5 | We draw the route for you | 25 |
+| H6 | We book the lodges and car | 26 |
+| H7 | Your route in a road book | 25 |
+| H8 | Someone to call on the road | 27 |
+| H9 | Partners in Victoria Falls | 26 |
+| H10 | Three routes within 48 hours | 28 |
+| H11 | Send a brief. It's free | 23 |
+| H12 | Namibia, Zimbabwe, Botswana | 27 |
+| H13 | The drive is half the safari | 28 |
+| H14 | Guided mornings, your own car | 29 |
+| H15 | Safari Overland | 15 |
+
+| # | Description | Chars |
+|---|---|---|
+| D1 | Self-drive journeys through southern Africa, staying at camps and lodges, not in tents. | 87 |
+| D2 | We draw the route, book the lodges and the vehicle, and stay at the end of the phone. | 85 |
+| D3 | Drive times, road surfaces, fuel and border crossings, worked out before you leave. | 83 |
+| D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
+
+#### US — Namibia
+
+**Final URL:** `/self-drive/namibia`
+
+| # | Headline | Chars |
+|---|---|---|
+| H1 | Namibia self-drive safari | 25 |
+| H2 | Namibia, by road and lodge | 26 |
+| H3 | Windhoek to Etosha, planned | 27 |
+| H4 | Sossusvlei, Damaraland, Etosha | 30 |
+| H5 | Lodges, not rooftop tents | 25 |
+| H6 | We draw the route for you | 25 |
+| H7 | Lodges and vehicle booked | 25 |
+| H8 | Your route in a road book | 25 |
+| H9 | Someone to call on the road | 27 |
+| H10 | Gravel roads, timed in advance | 30 |
+| H11 | Three routes within 48 hours | 28 |
+| H12 | Send a brief. It's free | 23 |
+| H13 | 14 to 16 nights, or shorter | 27 |
+| H14 | Guided drives at the lodges | 27 |
+| H15 | Safari Overland | 15 |
+
+| # | Description | Chars |
+|---|---|---|
+| D1 | Windhoek, the Kalahari, Sossusvlei, the coast, Damaraland and Etosha, in your own car. | 86 |
+| D2 | We draw the route, book the lodges and the vehicle, and stay at the end of the phone. | 85 |
+| D3 | Drive times and road surfaces in a road book, in print and offline on your phone. | 81 |
+| D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
+
+#### US — Zimbabwe
+
+**Final URL:** `/self-drive/zimbabwe`
+
+| # | Headline | Chars |
+|---|---|---|
+| H1 | Zimbabwe self-drive safari | 26 |
+| H2 | Victoria Falls to Hwange | 24 |
+| H3 | Hwange, Matobo and the Falls | 28 |
+| H4 | Rhino tracking in Matobo | 24 |
+| H5 | Lodges, not rooftop tents | 25 |
+| H6 | We draw the route for you | 25 |
+| H7 | Lodges and vehicle booked | 25 |
+| H8 | Your route in a road book | 25 |
+| H9 | Partners in Victoria Falls | 26 |
+| H10 | Someone to call on the road | 27 |
+| H11 | 10 to 12 nights, or shorter | 27 |
+| H12 | Three routes within 48 hours | 28 |
+| H13 | Send a brief. It's free | 23 |
+| H14 | Guided walks in Hwange | 22 |
+| H15 | Safari Overland | 15 |
+
+| # | Description | Chars |
+|---|---|---|
+| D1 | Victoria Falls, Hwange and Matobo in your own car, with guided activities at each camp. | 87 |
+| D2 | Partners in Victoria Falls hand over the vehicle, and are there if something goes wrong. | 88 |
+| D3 | Drive times, road surfaces, fuel and park gate times, worked out before you leave. | 82 |
+| D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
+
+#### US — Four corners (Botswana, Zambia)
+
+**Final URL:** `/self-drive/botswana-zambia`
+
+| # | Headline | Chars |
+|---|---|---|
+| H1 | Victoria Falls and Chobe | 24 |
+| H2 | Chobe, Caprivi and the Falls | 28 |
+| H3 | Self-drive from Victoria Falls | 30 |
+| H4 | Botswana and Zambia self-drive | 30 |
+| H5 | Where four countries meet | 25 |
+| H6 | Lodges, not rooftop tents | 25 |
+| H7 | We draw the route for you | 25 |
+| H8 | Border paperwork prepared | 25 |
+| H9 | Partners in Victoria Falls | 26 |
+| H10 | Someone to call on the road | 27 |
+| H11 | An easy add-on to the Falls | 27 |
+| H12 | Three routes within 48 hours | 28 |
+| H13 | Send a brief. It's free | 23 |
+| H14 | Boat safaris on the Chobe | 25 |
+| H15 | Safari Overland | 15 |
+
+| # | Description | Chars |
+|---|---|---|
+| D1 | Victoria Falls, Chobe and the Zambezi Region in 8 to 10 nights, staying at lodges. | 82 |
+| D2 | We prepare the border paperwork. Our partners in Victoria Falls hand over the vehicle. | 86 |
+| D3 | We draw the route, book the lodges and the vehicle, and stay at the end of the phone. | 85 |
+| D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
+
+#### US — Road trip (test)
+
+**Final URL:** `/routes (Namibia queries: /self-drive/namibia)`
+
+| # | Headline | Chars |
+|---|---|---|
+| H1 | Southern Africa road trip | 25 |
+| H2 | A Namibia road trip, planned | 28 |
+| H3 | An African road trip, planned | 29 |
+| H4 | A road trip with safari lodges | 30 |
+| H5 | Lodges, not rooftop tents | 25 |
+| H6 | We draw the route for you | 25 |
+| H7 | Lodges and vehicle booked | 25 |
+| H8 | Your route in a road book | 25 |
+| H9 | Someone to call on the road | 27 |
+| H10 | The drive is half the safari | 28 |
+| H11 | Zimbabwe, Namibia, Botswana | 27 |
+| H12 | Three routes within 48 hours | 28 |
+| H13 | Send a brief. It's free | 23 |
+| H14 | Gravel roads, timed in advance | 30 |
+| H15 | Safari Overland | 15 |
+
+| # | Description | Chars |
+|---|---|---|
+| D1 | A road trip through southern Africa, with a lodge and a guide at the end of the day. | 84 |
+| D2 | We draw the route, book the lodges and the vehicle, and stay at the end of the phone. | 85 |
+| D3 | Drive times, road surfaces, fuel and border crossings, worked out before you leave. | 83 |
+| D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
+
+#### UK — Generic self-drive
+
+**Final URL:** `/routes`
+
+| # | Headline | Chars |
+|---|---|---|
+| H1 | Self-drive safari holidays | 26 |
+| H2 | Southern Africa self-drive | 26 |
+| H3 | Drive yourself, sleep well | 26 |
+| H4 | Lodges, not rooftop tents | 25 |
+| H5 | We draw the route for you | 25 |
+| H6 | We book the lodges and car | 26 |
+| H7 | Your route in a road book | 25 |
+| H8 | Someone to call on the road | 27 |
+| H9 | Partners in Victoria Falls | 26 |
+| H10 | Three routes within 48 hours | 28 |
+| H11 | Send a brief. It's free | 23 |
+| H12 | Namibia, Zimbabwe, Botswana | 27 |
+| H13 | Tailor-made self-drive | 22 |
+| H14 | The drive is half the safari | 28 |
+| H15 | Safari Overland | 15 |
+
+| # | Description | Chars |
+|---|---|---|
+| D1 | Self-drive holidays in southern Africa, staying at camps and lodges, not in tents. | 82 |
+| D2 | We draw the route, book the lodges and the vehicle, and stay at the end of the phone. | 85 |
+| D3 | Drive times, road surfaces, fuel and border crossings, worked out before you leave. | 83 |
+| D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
+
+#### UK — Namibia
+
+**Final URL:** `/self-drive/namibia`
+
+| # | Headline | Chars |
+|---|---|---|
+| H1 | Namibia self-drive holiday | 26 |
+| H2 | Namibia fly-drive, planned | 26 |
+| H3 | Windhoek to Etosha, planned | 27 |
+| H4 | Sossusvlei, Damaraland, Etosha | 30 |
+| H5 | Lodges, not rooftop tents | 25 |
+| H6 | We draw the route for you | 25 |
+| H7 | Lodges and car hire booked | 26 |
+| H8 | Your route in a road book | 25 |
+| H9 | Someone to call on the road | 27 |
+| H10 | Gravel roads, timed in advance | 30 |
+| H11 | Three routes within 48 hours | 28 |
+| H12 | Send a brief. It's free | 23 |
+| H13 | 14 to 16 nights, or shorter | 27 |
+| H14 | Guided drives at the lodges | 27 |
+| H15 | Safari Overland | 15 |
+
+| # | Description | Chars |
+|---|---|---|
+| D1 | A Namibia self-drive holiday: the Kalahari, Sossusvlei, the coast, Damaraland, Etosha. | 86 |
+| D2 | We draw the route, book the lodges and the vehicle, and stay at the end of the phone. | 85 |
+| D3 | Drive times and road surfaces in a road book, in print and offline on your phone. | 81 |
+| D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
+
+#### UK — Zimbabwe
+
+**Final URL:** `/self-drive/zimbabwe`
+
+| # | Headline | Chars |
+|---|---|---|
+| H1 | Zimbabwe self-drive holiday | 27 |
+| H2 | Victoria Falls to Hwange | 24 |
+| H3 | Hwange, Matobo and the Falls | 28 |
+| H4 | Rhino tracking in Matobo | 24 |
+| H5 | Lodges, not rooftop tents | 25 |
+| H6 | We draw the route for you | 25 |
+| H7 | Lodges and car hire booked | 26 |
+| H8 | Your route in a road book | 25 |
+| H9 | Partners in Victoria Falls | 26 |
+| H10 | Someone to call on the road | 27 |
+| H11 | 10 to 12 nights, or shorter | 27 |
+| H12 | Three routes within 48 hours | 28 |
+| H13 | Send a brief. It's free | 23 |
+| H14 | Guided walks in Hwange | 22 |
+| H15 | Safari Overland | 15 |
+
+| # | Description | Chars |
+|---|---|---|
+| D1 | A Zimbabwe self-drive holiday: Victoria Falls, Hwange and Matobo, staying at lodges. | 84 |
+| D2 | Partners in Victoria Falls hand over the vehicle, and are there if something goes wrong. | 88 |
+| D3 | Drive times, road surfaces, fuel and park gate times, worked out before you leave. | 82 |
+| D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
+
+#### UK — Four corners (Botswana, Zambia)
+
+**Final URL:** `/self-drive/botswana-zambia`
+
+| # | Headline | Chars |
+|---|---|---|
+| H1 | Victoria Falls and Chobe | 24 |
+| H2 | Chobe, Caprivi and the Falls | 28 |
+| H3 | Self-drive from Victoria Falls | 30 |
+| H4 | Botswana and Zambia self-drive | 30 |
+| H5 | Where four countries meet | 25 |
+| H6 | Lodges, not rooftop tents | 25 |
+| H7 | We draw the route for you | 25 |
+| H8 | Border paperwork prepared | 25 |
+| H9 | Partners in Victoria Falls | 26 |
+| H10 | Someone to call on the road | 27 |
+| H11 | An easy add-on to the Falls | 27 |
+| H12 | Three routes within 48 hours | 28 |
+| H13 | Send a brief. It's free | 23 |
+| H14 | Boat safaris on the Chobe | 25 |
+| H15 | Safari Overland | 15 |
+
+| # | Description | Chars |
+|---|---|---|
+| D1 | A short self-drive holiday: Victoria Falls, Chobe and the Zambezi Region, 8 to 10 nights. | 89 |
+| D2 | We prepare the border paperwork. Our partners in Victoria Falls hand over the vehicle. | 86 |
+| D3 | We draw the route, book the lodges and the vehicle, and stay at the end of the phone. | 85 |
+| D4 | Tell us your months and how long you'll drive in a day. Three routes within 48 hours. | 85 |
+
+### Assets (all ad groups)
+
+#### Sitelinks (text ≤25, each description line ≤35)
+
+| Text | Line 1 | Line 2 | URL |
+|---|---|---|---|
+| Our three routes (16) | Zimbabwe, Namibia, four corners (31) | How we plan a route (19) | `/routes` |
+| Send us a brief (15) | Free. Three routes within 48 hours (34) | Months, pace, how long you'll drive (35) | `/plan` |
+| Speak to a planner (18) | A short call, at a time that suits (34) | Book it in the calendar (23) | `/plan` |
+| Can I drive this? (17) | Roads, the left side, borders (29) | And why nobody drives after dark (32) | `/routes` |
+
+#### Callouts (≤25)
+
+| Callout | Chars |
+|---|---|
+| Lodges, not tents | 17 |
+| Road book, print/offline | 24 |
+| Partners on the ground | 22 |
+| First route sketch free | 23 |
+| Vehicle matched to roads | 24 |
+| Support while on the road | 25 |
+
+#### Structured snippet
+
+Header **Destinations**: Namibia · Zimbabwe · Botswana · Zambia · Victoria Falls (each value ≤25).
+
 
 ---
 
@@ -354,7 +642,7 @@ Ad groups share a campaign budget, so these are steering targets, set through bi
 
 ### When people travel
 
-July to October is the dry season and peak for Namibia ([Wild Wings Safaris](https://wild-wings-safaris.com/travel-guide-calendars/when-to-visit-namibia), [Rough Guides](https://www.roughguides.com/destinations/africa/namibia/when-to-go)), and the same broadly holds for Hwange, Chobe and the Zambezi Region. One operator also names April, October and November as shoulder months worth selling.
+The dry winter months are peak season for Namibia. Guides put it at July to October or June to September depending on the source ([Wild Wings Safaris](https://wild-wings-safaris.com/travel-guide-calendars/when-to-visit-namibia), [Rough Guides](https://www.roughguides.com/destinations/africa/namibia/when-to-go)). I'm assuming the same broadly holds for Hwange, Chobe and the Zambezi Region; the research team should confirm. One operator also names April, October and November as shoulder months worth selling.
 
 ### When they book July–October trips
 
